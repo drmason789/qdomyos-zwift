@@ -2,6 +2,7 @@
 #include "trixterxdreamv1client.h"
 
 #include <string>
+#include <math.h>
 
 trixterxdreamv1client::trixterxdreamv1client() { this->ConfigureResistanceMessages(); }
 
@@ -36,9 +37,9 @@ trixterxdreamv1client::PacketState trixterxdreamv1client::ProcessChar(char c) {
 
     constexpr int headerLength = 2;
     constexpr int packetLength = 16;
-    constexpr unsigned char header[] = {0x6, 0xA};
+    constexpr uint8_t header[] = {0x6, 0xA};
 
-    unsigned char b;
+    uint8_t b;
 
     if (isdigit(c)) {
         b = c - '0';
@@ -80,10 +81,10 @@ trixterxdreamv1client::PacketState trixterxdreamv1client::ProcessChar(char c) {
 }
 
 void trixterxdreamv1client::ConfigureResistanceMessages() {
-    resistanceMessages = new unsigned char *[251];
+    resistanceMessages = new uint8_t *[251];
 
-    for (unsigned char level = 0; level <= 250; level++) {
-        unsigned char *message = new unsigned char[6];
+    for (uint8_t level = 0; level <= 250; level++) {
+        unsigned char *message = new uint8_t[6];
         resistanceMessages[level] = message;
 
         message[5] = message[0] = 0x6a;
@@ -94,13 +95,13 @@ void trixterxdreamv1client::ConfigureResistanceMessages() {
     }
 }
 
-void trixterxdreamv1client::ReceiveChar(char c, unsigned long t) {
+bool trixterxdreamv1client::ReceiveChar(char c, unsigned long t) {
     if (this->ProcessChar(c) != Complete)
-        return;
+        return false;
 
     lastPacket.Steering = this->byteBuffer[0x1];
-    lastPacket.Flywheel = (static_cast<unsigned short>(this->byteBuffer[0xC]) << 8) + this->byteBuffer[0xD];
-    lastPacket.Crank = (static_cast<unsigned short>(this->byteBuffer[0xA]) << 8) + this->byteBuffer[0xB];
+    lastPacket.Flywheel = (static_cast<uint16_t>(this->byteBuffer[0xC]) << 8) + this->byteBuffer[0xD];
+    lastPacket.Crank = (static_cast<uint16_t>(this->byteBuffer[0xA]) << 8) + this->byteBuffer[0xB];
     lastPacket.HeartRate = byteBuffer[0xE];
 
     constexpr double baseUnitToMilliseconds = 1000.0 / 1024.0;
@@ -113,19 +114,19 @@ void trixterxdreamv1client::ReceiveChar(char c, unsigned long t) {
 
     if (lastPacket.Flywheel < 65534) {
         flywheelAngularVelocity =
-            flywheelToRevolutionsPerMinute * revolutionsPerMinuteToRadiansPerSecond / std::max(static_cast<unsigned short>(1), lastPacket.Flywheel);
+            flywheelToRevolutionsPerMinute * revolutionsPerMinuteToRadiansPerSecond / std::max(static_cast<uint16_t>(1), lastPacket.Flywheel);
     }
 
     if (lastPacket.Crank > 0 && lastPacket.Crank < 65534) {
         crankAngularVelocity =
-            crankToRevolutionsPerMinute * revolutionsPerMinuteToRadiansPerSecond / std::max(static_cast<unsigned short>(1), lastPacket.Crank);
+            crankToRevolutionsPerMinute * revolutionsPerMinuteToRadiansPerSecond / std::max(static_cast<uint16_t>(1), lastPacket.Crank);
     }
 
     const unsigned long dt = t - this->lastT;
 
     if (dt <= 0) {
         this->Reset();
-        return;
+        return false;
     }
 
     // update the internal, precise state
@@ -142,10 +143,12 @@ void trixterxdreamv1client::ReceiveChar(char c, unsigned long t) {
     newState.LastWheelEventTime = newState.LastCrankEventTime;
     newState.Steering = lastPacket.Steering;
     newState.HeartRate = lastPacket.HeartRate;
-    newState.CumulativeCrankRevolutions = static_cast<unsigned short>(round(flywheelRevolutions));
-    newState.CumulativeWheelRevolutions = static_cast<unsigned short>(round(crankRevolutions));
+    newState.CumulativeCrankRevolutions = static_cast<uint16_t>(round(flywheelRevolutions));
+    newState.CumulativeWheelRevolutions = static_cast<uint16_t>(round(crankRevolutions));
 
     this->lastState = newState;
+
+    return true;
 }
 
 trixterxdreamv1client::state trixterxdreamv1client::getLastState() const { return this->lastState; }
@@ -155,7 +158,7 @@ void trixterxdreamv1client::SendResistance(int level) {
     this->SendBytes(this->resistanceMessages[std::max(250, std::min(0, level))]);
 }
 
-void trixterxdreamv1client::SendBytes(unsigned char *bytes) {}
+void trixterxdreamv1client::SendBytes(uint8_t *bytes) {}
 
 void trixterxdreamv1client::Reset() {
     this->lastT = 0;

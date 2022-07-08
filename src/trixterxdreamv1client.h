@@ -1,6 +1,7 @@
 #pragma once
 #include <queue>
 #include <vector>
+#include <stdint.h>
 
 class trixterxdreamv1client {
   public:
@@ -11,32 +12,32 @@ class trixterxdreamv1client {
         /**
          * \brief Steering value, from 0 (left) to 250 (right)
          */
-        unsigned char Steering;
+        uint8_t Steering;
 
         /**
          * \brief Heart rate in beats per minute.
          */
-        unsigned char HeartRate;
+        uint8_t HeartRate;
 
         /**
          * \brief The number of flywheel revolutions since the last reset event.
          */
-        unsigned int CumulativeWheelRevolutions;
+        uint16_t CumulativeWheelRevolutions;
 
         /**
          * \brief The time of the last flywheel event. Unit:  1/1024 s
          */
-        unsigned short LastWheelEventTime;
+        uint16_t LastWheelEventTime;
 
         /**
          * \brief The number of crank revolutions since the last reset event.
          */
-        unsigned short CumulativeCrankRevolutions;
+        uint16_t CumulativeCrankRevolutions;
 
         /**
          * \brief  The time of the last crank event. Unit:  1/1024 s
          */
-        unsigned short LastCrankEventTime;
+        uint16_t LastCrankEventTime;
     };
 
   private:
@@ -45,19 +46,17 @@ class trixterxdreamv1client {
     enum PacketState { None, Incomplete, Invalid, Complete };
 
     struct Packet {
-        unsigned char Steering;
-        unsigned short Flywheel;
-        unsigned short Crank;
-        unsigned char HeartRate;
+        uint8_t Steering;
+        uint16_t Flywheel;
+        uint16_t Crank;
+        uint8_t HeartRate;
     };
-
-    struct state;
 
     unsigned long lastT = 0;
     double flywheelRevolutions{}, crankRevolutions{};
     Packet lastPacket{};
     std::vector<char> inputBuffer;
-    std::vector<unsigned char> byteBuffer;
+    std::vector<uint8_t> byteBuffer;
     state lastState;
 
     /**
@@ -81,14 +80,15 @@ class trixterxdreamv1client {
      * \brief Receives and processes a character of input from the device.
      * \param c Should be '0' to '9' or 'a' to 'f' (lower case)
      * \param t The time: the number of milliseconds since the last reset.
+     * \return true if a packet was completed and the state updated, otherwise false.
      */
-    void ReceiveChar(char c, unsigned long t);
+    bool ReceiveChar(char c, unsigned long t);
 
     /**
      * \brief Utility method to send bytes back to the device.
      * \param bytes Binary data, not text as when receiving.
      */
-    void SendBytes(unsigned char *bytes);
+    void SendBytes(uint8_t *bytes);
 
     /**
      * \brief Gets the state of the device as it was last read. This consists of CSCS data, steering and heartbeat.
