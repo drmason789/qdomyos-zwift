@@ -10,7 +10,6 @@ trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartSer
 
 void trixterxdreamv1bike::update(QByteArray bytes)
 {
-    char c; // let this be the new byte from the serial port, expected to be '0'..'9' or 'a'..'f'
     bool stateChanged = false;
 
     for(int i=0; i<bytes.length();i++)
