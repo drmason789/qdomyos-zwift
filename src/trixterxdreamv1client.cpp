@@ -158,7 +158,7 @@ void trixterxdreamv1client::SendResistance(int level) {
     // to maintain the resistance, this needs to be resent about every 10ms.
     if(level!=0 && this->write_bytes)
     {
-        // TODO: send this every 10ms. This single call won't do anything noticabel
+        // TODO: send this every 50ms. This single call won't do anything noticabel
         this->write_bytes(this->resistanceMessages[std::max(250, std::min(0, level))],6);
     }
 }
