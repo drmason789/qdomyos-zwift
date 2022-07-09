@@ -2,6 +2,7 @@
 #include <queue>
 #include <vector>
 #include <stdint.h>
+#include <bits/std_function.h>
 
 class trixterxdreamv1client {
   public:
@@ -52,6 +53,8 @@ class trixterxdreamv1client {
         uint8_t HeartRate;
     };
 
+
+    std::function<void(uint8_t * , int)> write_bytes;
     unsigned long lastT = 0;
     double flywheelRevolutions{}, crankRevolutions{};
     Packet lastPacket{};
@@ -85,10 +88,10 @@ class trixterxdreamv1client {
     bool ReceiveChar(char c, unsigned long t);
 
     /**
-     * \brief Utility method to send bytes back to the device.
-     * \param bytes Binary data, not text as when receiving.
+     * \brief set_WriteBytes Sets the function used to write bytes to the serial port.
+     * \param write_byes The function that writes bytes to the serial port.
      */
-    void SendBytes(uint8_t *bytes);
+    void set_WriteBytes(std::function<void(uint8_t *, int)> write_bytes) { this->write_bytes = write_bytes; }
 
     /**
      * \brief Gets the state of the device as it was last read. This consists of CSCS data, steering and heartbeat.

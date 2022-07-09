@@ -154,11 +154,16 @@ bool trixterxdreamv1client::ReceiveChar(char c, unsigned long t) {
 trixterxdreamv1client::state trixterxdreamv1client::getLastState() const { return this->lastState; }
 
 void trixterxdreamv1client::SendResistance(int level) {
+
     // to maintain the resistance, this needs to be resent about every 10ms.
-    this->SendBytes(this->resistanceMessages[std::max(250, std::min(0, level))]);
+    if(level!=0 && this->write_bytes)
+    {
+        // TODO: send this every 10ms. This single call won't do anything noticabel
+        this->write_bytes(this->resistanceMessages[std::max(250, std::min(0, level))],6);
+    }
 }
 
-void trixterxdreamv1client::SendBytes(uint8_t *bytes) {}
+
 
 void trixterxdreamv1client::Reset() {
     this->lastT = 0;
