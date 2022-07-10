@@ -3,9 +3,39 @@
 
 trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice)
 {
-    auto x = this;
-    this->port.set_bytes_read([&x](QByteArray bytes) -> void {x->update(bytes); });
+    // QZ things from expected constructor
+    this->noWriteResistance = noWriteResistance;
+    this->noHeartService = noHeartService;
+    this->noVirtualDevice = noVirtualDevice;
 
+    // Get the current time in milliseconds since ancient times.
+    // This will be subtracted from further readings from getTime() to get an easier to look at number.
+    this->t0 = QDateTime::currentDateTime().toMSecsSinceEpoch();
+
+    // References to objects for callbacks
+    auto thisObject = this;
+    auto device=&this->port;
+
+    // tell the client where to get the time
+    this->client.set_GetTime([&thisObject]()->uint32_t { return thisObject->getTime();} );
+
+    // tell the client how to send data to the device
+    if(!noWriteResistance)
+        this->client.set_WriteBytes([device](uint8_t * bytes, int length)->void{ device->write(bytes, length, "");});
+
+    // tell the serial port where to send incoming data blocks
+    this->port.set_bytes_read([&thisObject](QByteArray bytes) -> void {thisObject->update(bytes); });
+
+    // open the port. This should be at 115200 bits per second.
+    // TODO: determine if this is the right port, and add the ability to specify the port name.
+    this->port.open("/dev/ttyUSB0", 10000);
+
+
+}
+
+uint32_t trixterxdreamv1bike::getTime()
+{
+    return static_cast<uint32_t>(QDateTime::currentDateTime().toMSecsSinceEpoch() - this->t0);
 }
 
 void trixterxdreamv1bike::update(QByteArray bytes)
@@ -13,10 +43,7 @@ void trixterxdreamv1bike::update(QByteArray bytes)
     bool stateChanged = false;
 
     for(int i=0; i<bytes.length();i++)
-    {
-        unsigned long t = 0; // TODO: get the milliseconds (not the BT unit of 1/1024ms) since t0
-        stateChanged = this->client.ReceiveChar(c, t);
-    }
+        stateChanged |= this->client.ReceiveChar(bytes[i]);
 
     if(!stateChanged)
         return;
@@ -24,19 +51,15 @@ void trixterxdreamv1bike::update(QByteArray bytes)
     // Take the most recent state read
     auto state = this->client.getLastState();
 
-    // presumeably the values can be copied from the state object to members of the base class
-    // TODO: find out what to do with the incoming values
-    bike::Heart.setValue(state.HeartRate);
-    bike::steeringAngleChanged(90.0 / 250.0 * state.Steering -45.0);
-    this->LastCrankEventTime = state.LastCrankEventTime;
-
-    // TODO: what to do with these?
-    //state.CumulativeCrankRevolutions;
-    //state.CumulativeWheelRevolutions;
-    //state.LastWheelEventTime;
+    // update the metrics
+    if(!this->noHeartService)
+        this->Heart.setValue(state.HeartRate);
+    this->LastCrankEventTime = state.LastEventTime;
+    this->CrankRevs = state.CumulativeCrankRevolutions; // TODO: probablu needs to be assigned to Cadence instead, but what are the units?
+    this->Speed.setValue(state.CumulativeWheelRevolutions); // TODO: this is wrong, fix it.
+    this->currentSteeringAngle().setValue(90.0 / 250.0 * state.Steering -45.0);
 
 }
-
 
 trixterxdreamv1bike::~trixterxdreamv1bike()
 {

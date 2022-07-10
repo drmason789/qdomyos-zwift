@@ -26,19 +26,14 @@ class trixterxdreamv1client {
         uint32_t CumulativeWheelRevolutions;
 
         /**
-         * \brief The time of the last flywheel event. Unit:  1/1024 s
-         */
-        uint16_t LastWheelEventTime;
-
-        /**
          * \brief The number of crank revolutions since the last reset event.
          */
         uint16_t CumulativeCrankRevolutions;
 
         /**
-         * \brief  The time of the last crank event. Unit:  1/1024 s
+         * \brief  The time of the last event. Unit:  1/1024 s
          */
-        uint16_t LastCrankEventTime;
+        uint16_t LastEventTime;
     };
 
   private:
@@ -56,7 +51,7 @@ class trixterxdreamv1client {
         uint8_t HeartRate;
     };
 
-
+    std::function<uint32_t()> get_time_ms;
     std::function<void(uint8_t * , int)> write_bytes; // TODO: is it better (and faster) to use a Qt signal instead?
     unsigned long lastT = 0;
     double flywheelRevolutions{}, crankRevolutions{};
@@ -85,16 +80,22 @@ class trixterxdreamv1client {
     /**
      * \brief Receives and processes a character of input from the device.
      * \param c Should be '0' to '9' or 'a' to 'f' (lower case)
-     * \param t The time: the number of milliseconds since the last reset.
      * \return true if a packet was completed and the state updated, otherwise false.
      */
-    bool ReceiveChar(char c, unsigned long t);
+    bool ReceiveChar(char c);
 
     /**
      * \brief set_WriteBytes Sets the function used to write bytes to the serial port.
-     * \param write_byes The function that writes bytes to the serial port.
+     * \param write_bytes The function that writes bytes to the serial port.
      */
     void set_WriteBytes(std::function<void(uint8_t *, int)> write_bytes) { this->write_bytes = write_bytes; }
+
+    /**
+     * \brief set_GetTime Sets the function to get the time in milliseconds since
+     * a starting point understood by the client.
+     * \param get_time_ms A function to get the time.
+     */
+    void set_GetTime(std::function<uint32_t()> get_time_ms) { this->get_time_ms = get_time_ms; }
 
     /**
      * \brief Gets the state of the device as it was last read. This consists of CSCS data, steering and heartbeat.
