@@ -54,4 +54,10 @@ public:
     trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice);
 
     ~trixterxdreamv1bike();
+
+    /**
+     * @brief maxResistance The maximum resistance supported.
+     * @return
+     */
+    virtual uint8_t maxResistance() { return trixterxdreamv1client::MaxResistance; }
 };

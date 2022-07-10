@@ -75,6 +75,11 @@ class trixterxdreamv1client {
     void ConfigureResistanceMessages();
 
   public:
+    /**
+     * \brief MaxResistance The maximum resistance value supported by the device.
+     */
+    constexpr static uint8_t MaxResistance = 250;
+
     trixterxdreamv1client();
 
     /**

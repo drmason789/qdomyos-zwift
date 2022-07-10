@@ -28,9 +28,6 @@ void trixterxdreamv1serial::write(const uint8_t *buffer, int len, QString info) 
 
 void trixterxdreamv1serial::run() {
 
-    bool initRequest = true;
-    uint8_t phase = 0;
-
     bool currentPortNameChanged = false;
 
     m_mutex.lock();

@@ -55,6 +55,7 @@ void trixterxdreamv1bike::update(QByteArray bytes)
     if(!this->noHeartService)
         this->Heart.setValue(state.HeartRate);
     this->LastCrankEventTime = state.LastEventTime;
+
     this->CrankRevs = state.CumulativeCrankRevolutions; // TODO: probablu needs to be assigned to Cadence instead, but what are the units?
     this->Speed.setValue(state.CumulativeWheelRevolutions); // TODO: this is wrong, fix it.
     this->currentSteeringAngle().setValue(90.0 / 250.0 * state.Steering -45.0);
