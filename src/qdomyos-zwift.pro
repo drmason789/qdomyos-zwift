@@ -211,6 +211,7 @@ SOURCES += \
 		  treadmill.cpp \
     trixterxdreamv1bike.cpp \
     trixterxdreamv1client.cpp \
+    trixterxdreamv1serial.cpp \
    trxappgateusbbike.cpp \
    ultrasportbike.cpp \
    virtualrower.cpp \
@@ -603,6 +604,7 @@ HEADERS += \
 	trainprogram.h \
     trixterxdreamv1bike.h \
     trixterxdreamv1client.h \
+    trixterxdreamv1serial.h \
    trxappgateusbbike.h \
 	trxappgateusbtreadmill.h \
    ultrasportbike.h \

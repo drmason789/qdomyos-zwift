@@ -23,7 +23,7 @@ class trixterxdreamv1client {
         /**
          * \brief The number of flywheel revolutions since the last reset event.
          */
-        uint16_t CumulativeWheelRevolutions;
+        uint32_t CumulativeWheelRevolutions;
 
         /**
          * \brief The time of the last flywheel event. Unit:  1/1024 s
@@ -46,6 +46,9 @@ class trixterxdreamv1client {
 
     enum PacketState { None, Incomplete, Invalid, Complete };
 
+    /**
+     * \brief Raw data selected from the incoming packet.
+     */
     struct Packet {
         uint8_t Steering;
         uint16_t Flywheel;
@@ -54,7 +57,7 @@ class trixterxdreamv1client {
     };
 
 
-    std::function<void(uint8_t * , int)> write_bytes;
+    std::function<void(uint8_t * , int)> write_bytes; // TODO: is it better (and faster) to use a Qt signal instead?
     unsigned long lastT = 0;
     double flywheelRevolutions{}, crankRevolutions{};
     Packet lastPacket{};

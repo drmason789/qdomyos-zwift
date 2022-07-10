@@ -144,7 +144,7 @@ bool trixterxdreamv1client::ReceiveChar(char c, unsigned long t) {
     newState.Steering = lastPacket.Steering;
     newState.HeartRate = lastPacket.HeartRate;
     newState.CumulativeCrankRevolutions = static_cast<uint16_t>(round(flywheelRevolutions));
-    newState.CumulativeWheelRevolutions = static_cast<uint16_t>(round(crankRevolutions));
+    newState.CumulativeWheelRevolutions = static_cast<uint32_t>(round(crankRevolutions));
 
     this->lastState = newState;
 
