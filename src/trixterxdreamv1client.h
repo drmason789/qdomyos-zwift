@@ -11,29 +11,39 @@ class trixterxdreamv1client {
      */
     struct state {
         /**
-         * \brief Steering value, from 0 (left) to 250 (right)
+         * \brief Steering Steering value, from 0 (left) to 250 (right)
          */
         uint8_t Steering;
 
         /**
-         * \brief Heart rate in beats per minute.
+         * \brief HeartRate Heart rate in beats per minute.
          */
         uint8_t HeartRate;
 
         /**
-         * \brief The number of flywheel revolutions since the last reset event.
+         * \brief CumulativeWheelRevolutions The number of flywheel revolutions since the last reset event.
          */
         uint32_t CumulativeWheelRevolutions;
 
         /**
-         * \brief The number of crank revolutions since the last reset event.
+         * \brief CumulativeCrankRevolutions The number of crank revolutions since the last reset event.
          */
         uint16_t CumulativeCrankRevolutions;
 
         /**
-         * \brief  The time of the last event. Unit:  1/1024 s
+         * \brief LastEventTime The time of the last event. Unit:  1/1024 s
          */
         uint16_t LastEventTime;
+
+        /**
+         * \brief FlywheelRPM Flywheel speed. Units: revolutions per minute
+         */
+        uint16_t FlywheelRPM;
+
+        /**
+         * @brief CrankRPM Crank speed. Units: revolutions per minute
+         */
+        uint16_t CrankRPM;
     };
 
   private:
@@ -52,7 +62,7 @@ class trixterxdreamv1client {
     };
 
     std::function<uint32_t()> get_time_ms;
-    std::function<void(uint8_t * , int)> write_bytes; // TODO: is it better (and faster) to use a Qt signal instead?
+    std::function<void(uint8_t * , int)> write_bytes;
     unsigned long lastT = 0;
     double flywheelRevolutions{}, crankRevolutions{};
     Packet lastPacket{};

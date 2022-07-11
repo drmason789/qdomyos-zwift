@@ -44,6 +44,12 @@ private:
     uint8_t resistanceLevel;
 
     /**
+     * @brief wheelCircumference The assumed circumference of the bike's wheels, for converting
+     * angular velocity to a speed. Units: meters.
+     */
+    double wheelCircumference;
+
+    /**
      * \brief t0 The start time in milliseconds. Used to reduce te size of time values processed.
      */
     qint64 t0;
@@ -75,9 +81,20 @@ public Q_SLOTS:
 
 public:
 
+    constexpr static double MaxWheelDiameter = 2.0;
+    constexpr static double MinWheelDiameter = 0.1;
+    constexpr static double DefaultWheelDiamter = 26*0.0254;
+
+
     trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice);
 
     ~trixterxdreamv1bike();
+
+    /**
+     * \brief wheelDiameter Set the wheel diameter to be used for converting angular velocity to speed. Units: meters
+     * @param value
+     */
+    void set_wheelDiameter(double value);
 
     /**
      * @brief maxResistance The maximum resistance supported.

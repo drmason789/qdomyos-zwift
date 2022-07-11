@@ -107,19 +107,16 @@ bool trixterxdreamv1client::ReceiveChar(char c) {
     constexpr double millisecondsToBaseUnit = 1024.0 / 1000.0;
     constexpr double flywheelToRevolutionsPerMinute = 576000.0;
     constexpr double crankToRevolutionsPerMinute = 1.0 / 6e-6;
-    constexpr double PI = 3.14159265358979323846;
-    constexpr double revolutionsPerMinuteToRadiansPerSecond = PI / 30;
+    constexpr double minutesToMilliseconds = 60.0*1000.0;
 
-    double flywheelAngularVelocity = 0, crankAngularVelocity = 0;
+    double flywheelRevsPerMinute =0, crankRevsPerMinute = 0;
 
     if (lastPacket.Flywheel < 65534) {
-        flywheelAngularVelocity =
-            flywheelToRevolutionsPerMinute * revolutionsPerMinuteToRadiansPerSecond / std::max(static_cast<uint16_t>(1), lastPacket.Flywheel);
+        flywheelRevsPerMinute = flywheelToRevolutionsPerMinute / std::max(static_cast<uint16_t>(1), lastPacket.Flywheel);
     }
 
     if (lastPacket.Crank > 0 && lastPacket.Crank < 65534) {
-        crankAngularVelocity =
-            crankToRevolutionsPerMinute * revolutionsPerMinuteToRadiansPerSecond / std::max(static_cast<uint16_t>(1), lastPacket.Crank);
+        crankRevsPerMinute = crankToRevolutionsPerMinute / std::max(static_cast<uint16_t>(1), lastPacket.Crank);
     }
 
     const uint32_t t = this->get_time_ms();
@@ -133,9 +130,10 @@ bool trixterxdreamv1client::ReceiveChar(char c) {
     }
 
     // update the internal, precise state
+    double dt_minutes = dt / minutesToMilliseconds;
     this->lastT = t;
-    this->flywheelRevolutions += dt * flywheelAngularVelocity / (2 * PI);
-    this->crankRevolutions += dt * crankAngularVelocity / (2 * PI);
+    this->flywheelRevolutions += dt_minutes * flywheelRevsPerMinute;
+    this->crankRevolutions += dt_minutes * crankRevsPerMinute;
 
     state newState{};
 
@@ -144,6 +142,8 @@ bool trixterxdreamv1client::ReceiveChar(char c) {
     newState.HeartRate = lastPacket.HeartRate;
     newState.CumulativeCrankRevolutions = static_cast<uint16_t>(round(flywheelRevolutions));
     newState.CumulativeWheelRevolutions = static_cast<uint32_t>(round(crankRevolutions));
+    newState.CrankRPM = static_cast<uint16_t>(crankRevsPerMinute);
+    newState.FlywheelRPM = static_cast<uint16_t>(flywheelRevsPerMinute);
 
     // TODO: get a mutex lock to make this change so it doesn't interfere with getLastState()
     this->lastState = newState;

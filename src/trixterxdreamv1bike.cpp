@@ -1,8 +1,12 @@
 #include "trixterxdreamv1bike.h"
+#include <math.h>
 
 
 trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice)
 {
+    // Set the wheel diameter for speed and distance calculations
+    this->set_wheelDiameter(DefaultWheelDiamter);
+
     // QZ things from expected constructor
     this->noWriteResistance = noWriteResistance;
     this->noHeartService = noHeartService;
@@ -58,8 +62,16 @@ void trixterxdreamv1bike::update(QByteArray bytes)
         this->Heart.setValue(state.HeartRate);
     this->LastCrankEventTime = state.LastEventTime;
 
-    this->CrankRevs = state.CumulativeCrankRevolutions; // TODO: probably needs to be assigned to Cadence instead, but what are the units?
-    this->Speed.setValue(state.CumulativeWheelRevolutions); // TODO: this is wrong, fix it.
+    // set the speed in km/h
+    this->Speed.setValue(state.FlywheelRPM * this->wheelCircumference * 60.0 / 1000.0 );
+
+    // set the distance in km
+    this->Distance.setValue(state.CumulativeWheelRevolutions * this->wheelCircumference / 1000.0);
+
+    // set the cadence in revolutions per minute
+    this->Cadence.setValue(state.CrankRPM);
+
+    // Set the steering
     this->currentSteeringAngle().setValue(90.0 / 250.0 * state.Steering -45.0);
 
 }
@@ -91,4 +103,12 @@ trixterxdreamv1bike::~trixterxdreamv1bike()
     this->port.quit();
 
     delete this->resistanceTimer;
+}
+
+void trixterxdreamv1bike::set_wheelDiameter(double value)
+{
+    // clip the value
+    value = std::min(MaxWheelDiameter, std::max(value, MinWheelDiameter));
+
+    this->wheelCircumference = value * M_PI;
 }
