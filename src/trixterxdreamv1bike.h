@@ -8,35 +8,40 @@ class trixterxdreamv1bike : public bike
     Q_OBJECT
 private:
     /**
-     * \brief client An object that processes incoming data to CSCS, heart rate and steering data
+     * @brief client An object that processes incoming data to CSCS, heart rate and steering data
      */
     trixterxdreamv1client client;
 
     /**
-     * \brief port An object that monitors a serial port to read incoming data, and to write
+     * @brief port An object that monitors a serial port to read incoming data, and to write
      * resistance level requests.
      */
     trixterxdreamv1serial port;
 
     /**
-     * \brief resistanceTimer A timer to push the currently requested resistance level to the device.
+     * @brief resistanceTimer A timer to push the currently requested resistance level to the device.
      */
     QTimer * resistanceTimer;
 
     /**
-     * \brief noHeartService Suppress heart rate readings.
+     * @brief noHeartService Suppress heart rate readings.
      */
     bool noHeartService;
 
     /**
-     * \brief noVirtualDevice Suppress virtual device.
+     * @brief noVirtualDevice Suppress virtual device.
      */
     bool noVirtualDevice;
 
     /**
-     * \brief noWriteResistance Suppress sending resistance to device.
+     * @brief noWriteResistance Suppress sending resistance to device.
      */
     bool noWriteResistance;
+
+    /**
+     * @brief noSteering Suppress steering readings.
+     */
+    bool noSteering;
 
     /**
      * @brief resistanceLevel The last requested resistance level.
@@ -45,53 +50,71 @@ private:
 
     /**
      * @brief wheelCircumference The assumed circumference of the bike's wheels, for converting
-     * angular velocity to a speed. Units: meters.
+     * angular velocity to a speed. Units: kilometers.
      */
     double wheelCircumference;
 
     /**
-     * \brief t0 The start time in milliseconds. Used to reduce te size of time values processed.
+     * @brief t0 The start time in milliseconds. Used to reduce te size of time values processed.
      */
     qint64 t0;
 
     /**
-     * \brief getTime Gets the time in miliseconds since this object was created.
-     * \return The number of milliseconds since this object was created.
+     * @brief getTime Gets the time in miliseconds since this object was created.
+     * @return The number of milliseconds since this object was created.
      */
     uint32_t getTime();
     
     /**
-     * \brief Temporary method to contain what happens when a new block of data comes in
+     * @brief Temporary method to contain what happens when a new block of data comes in
      * from the data source (serial port).
      */
     void update(QByteArray bytes);
 
     /**
-     * \brief updateResistance Called by the resistanceTimer to send the resistence request to the
+     * @brief updateResistance Called by the resistanceTimer to send the resistence request to the
      * device.
      */
     void updateResistance();
 
 public Q_SLOTS:
     /**
-     * \brief changeResistance Called to change the requested resistance level.
-     * \param resistanceLevel The resitance level to request.
+     * @brief changeResistance Called to change the requested resistance level.
+     * @param resistanceLevel The resitance level to request.
      */
     virtual void changeResistance(int8_t resistanceLevel);
 
 public:
 
+    /**
+     * @brief MaxWheelDiameter The maximum supported wheel diameter. Unit: meters
+     */
     constexpr static double MaxWheelDiameter = 2.0;
+
+    /**
+     * @brief MinWheelDiameter The minimum supported wheel diameter. Unit: meters
+     */
     constexpr static double MinWheelDiameter = 0.1;
+
+    /**
+     * @brief DefaultWheelDiameter The default wheel diameter. Unit: meters
+     */
     constexpr static double DefaultWheelDiamter = 26*0.0254;
 
 
-    trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice);
+    /**
+     * @brief trixterxdreamv1bike Constructor
+     * @param noWriteResistance Option to avoid sending resistance to the device.
+     * @param noHeartService Option to avoid using the heart rate reading.
+     * @param noVirtualDevice Option to avoid using a virtual device.
+     * @param noSteering Option to avoid using the steering reading.
+     */
+    trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice, bool noSteering);
 
     ~trixterxdreamv1bike();
 
     /**
-     * \brief wheelDiameter Set the wheel diameter to be used for converting angular velocity to speed. Units: meters
+     * @brief wheelDiameter Set the wheel diameter to be used for converting angular velocity to speed. Units: meters
      * @param value
      */
     void set_wheelDiameter(double value);

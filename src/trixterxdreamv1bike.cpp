@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice)
+trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice, bool noSteering)
 {
     // Set the wheel diameter for speed and distance calculations
     this->set_wheelDiameter(DefaultWheelDiamter);
@@ -11,6 +11,7 @@ trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartSer
     this->noWriteResistance = noWriteResistance;
     this->noHeartService = noHeartService;
     this->noVirtualDevice = noVirtualDevice;
+    this->noSteering = noSteering;
 
     // Get the current time in milliseconds since ancient times.
     // This will be subtracted from further readings from getTime() to get an easier to look at number.
@@ -58,21 +59,26 @@ void trixterxdreamv1bike::update(QByteArray bytes)
     auto state = this->client.getLastState();
 
     // update the metrics
+    this->LastCrankEventTime = state.LastEventTime;
     if(!this->noHeartService)
         this->Heart.setValue(state.HeartRate);
-    this->LastCrankEventTime = state.LastEventTime;
 
     // set the speed in km/h
-    this->Speed.setValue(state.FlywheelRPM * this->wheelCircumference * 60.0 / 1000.0 );
+    constexpr double minutesPerHour = 60.0;
+    this->Speed.setValue(state.FlywheelRPM * minutesPerHour * this->wheelCircumference);
 
     // set the distance in km
-    this->Distance.setValue(state.CumulativeWheelRevolutions * this->wheelCircumference / 1000.0);
+    this->Distance.setValue(state.CumulativeWheelRevolutions * this->wheelCircumference);
 
     // set the cadence in revolutions per minute
     this->Cadence.setValue(state.CrankRPM);
 
+    // set the crank revolutions
+    this->CrankRevs = state.CumulativeCrankRevolutions;
+
     // Set the steering
-    this->currentSteeringAngle().setValue(90.0 / 250.0 * state.Steering -45.0);
+    if(!this->noSteering)
+        this->currentSteeringAngle().setValue(90.0 / 250.0 * state.Steering -45.0);
 
 }
 
@@ -82,7 +88,7 @@ void trixterxdreamv1bike::changeResistance(int8_t resistanceLevel)
     // but it doesn't involve a function call and a cast to get the value.
     this->resistanceLevel = resistanceLevel;
 
-    // don't do anything if reistance is disabled
+    // don't do anything if resistance is disabled
     if(this->noWriteResistance)
         return;
 
@@ -110,5 +116,6 @@ void trixterxdreamv1bike::set_wheelDiameter(double value)
     // clip the value
     value = std::min(MaxWheelDiameter, std::max(value, MinWheelDiameter));
 
-    this->wheelCircumference = value * M_PI;
+    // stored as km to avoid dividing by 1000 every time it's used
+    this->wheelCircumference = value * M_PI / 1000.0;
 }
