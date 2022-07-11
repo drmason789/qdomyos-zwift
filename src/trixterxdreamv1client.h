@@ -80,6 +80,11 @@ class trixterxdreamv1client {
      */
     constexpr static uint8_t MaxResistance = 250;
 
+    /**
+     * \brief The time interval between sending resistance requests to the device.
+     */
+    constexpr static uint8_t ResistancePulseIntervalMilliseconds = 50;
+
     trixterxdreamv1client();
 
     /**
@@ -114,7 +119,7 @@ class trixterxdreamv1client {
     void Reset();
 
     /**
-     * \brief Sends 1 packet indicating a specific resistance level to the device.
+     * \brief Sends 1 packet indicating a specific resistance level to the device. Needs to be sent every 50ms.
      * \param level 0 to 250.
      */
     void SendResistance(int level);

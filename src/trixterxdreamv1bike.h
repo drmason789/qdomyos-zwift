@@ -19,6 +19,11 @@ private:
     trixterxdreamv1serial port;
 
     /**
+     * \brief resistanceTimer A timer to push the currently requested resistance level to the device.
+     */
+    QTimer * resistanceTimer;
+
+    /**
      * \brief noHeartService Suppress heart rate readings.
      */
     bool noHeartService;
@@ -32,6 +37,11 @@ private:
      * \brief noWriteResistance Suppress sending resistance to device.
      */
     bool noWriteResistance;
+
+    /**
+     * @brief resistanceLevel The last requested resistance level.
+     */
+    uint8_t resistanceLevel;
 
     /**
      * \brief t0 The start time in milliseconds. Used to reduce te size of time values processed.
@@ -49,6 +59,20 @@ private:
      * from the data source (serial port).
      */
     void update(QByteArray bytes);
+
+    /**
+     * \brief updateResistance Called by the resistanceTimer to send the resistence request to the
+     * device.
+     */
+    void updateResistance();
+
+public Q_SLOTS:
+    /**
+     * \brief changeResistance Called to change the requested resistance level.
+     * \param resistanceLevel The resitance level to request.
+     */
+    virtual void changeResistance(int8_t resistanceLevel);
+
 public:
 
     trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice);

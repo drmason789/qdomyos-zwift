@@ -30,7 +30,9 @@ trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartSer
     // TODO: determine if this is the right port, and add the ability to specify the port name.
     this->port.open("/dev/ttyUSB0", 10000);
 
-
+    // create the timer for the resistance. This only needs to be active when a non-zero resistance is requested.
+    this->resistanceTimer = new QTimer(this);
+    connect(this->resistanceTimer, &QTimer::timeout, this, &trixterxdreamv1bike::updateResistance);
 }
 
 uint32_t trixterxdreamv1bike::getTime()
@@ -56,13 +58,37 @@ void trixterxdreamv1bike::update(QByteArray bytes)
         this->Heart.setValue(state.HeartRate);
     this->LastCrankEventTime = state.LastEventTime;
 
-    this->CrankRevs = state.CumulativeCrankRevolutions; // TODO: probablu needs to be assigned to Cadence instead, but what are the units?
+    this->CrankRevs = state.CumulativeCrankRevolutions; // TODO: probably needs to be assigned to Cadence instead, but what are the units?
     this->Speed.setValue(state.CumulativeWheelRevolutions); // TODO: this is wrong, fix it.
     this->currentSteeringAngle().setValue(90.0 / 250.0 * state.Steering -45.0);
 
 }
 
+void trixterxdreamv1bike::changeResistance(int8_t resistanceLevel)
+{
+    // store the new resistance level. This might be the same as lastRequestedResistance(),Value
+    // but it doesn't involve a function call and a cast to get the value.
+    this->resistanceLevel = resistanceLevel;
+
+    // don't do anything if reistance is disabled
+    if(this->noWriteResistance)
+        return;
+
+    if(resistanceLevel==0)
+        this->resistanceTimer->stop();
+    else
+        this->resistanceTimer->start(trixterxdreamv1client::ResistancePulseIntervalMilliseconds);
+}
+
+void trixterxdreamv1bike::updateResistance()
+{
+    this->client.SendResistance(this->resistanceLevel);
+}
+
 trixterxdreamv1bike::~trixterxdreamv1bike()
 {
+    this->resistanceTimer->stop();
     this->port.quit();
+
+    delete this->resistanceTimer;
 }
