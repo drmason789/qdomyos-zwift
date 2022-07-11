@@ -82,6 +82,11 @@ class bluetoothdevice : public QObject {
     virtual BLUETOOTH_TYPE deviceType();
     static QStringList metrics();
     virtual uint8_t metrics_override_heartrate();
+
+    /**
+     * @brief Overridden in subclasses to specify the maximum resistance level supported by the device.
+     * @return The device's maximum resistance level.
+     */
     virtual uint8_t maxResistance();
 
   public Q_SLOTS:
@@ -110,11 +115,26 @@ class bluetoothdevice : public QObject {
 
     metric elapsed;
     metric moving; // moving time
-    metric Speed;
     metric KCal;
+
+    /**
+     * @brief Flywheel speed. Units: kilometers per hour 
+     */
+    metric Speed;        
+
+    /**
+     * @brief Cumulative flywheel revolutions multiplied by the wheel circumference. Units: kilometers
+     */
     metric Distance;
+
+
     uint8_t FanSpeed = 0;
+
+    /**
+     * @brief Heart rate. Unit: beats per minute 
+     */
     metric Heart;
+
     int8_t requestStart = -1;
     int8_t requestStop = -1;
     int8_t requestIncreaseFan = -1;
@@ -126,8 +146,18 @@ class bluetoothdevice : public QObject {
     metric m_watt;
     metric WattKg;
     metric WeightLoss;
+
+    /**
+     * @brief The speed at which the crank is turning. Units: revolutions per minute (RPM)
+     */
     metric Cadence;
+
+    /**
+     * @brief The currently requested resistance level. Expected range: 0 to maxResistance()
+     */
     metric Resistance;
+
+
     metric METS;
     QGeoCoordinate coordinate;
     metric Inclination;
