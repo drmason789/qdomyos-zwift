@@ -77,6 +77,9 @@ private:
      */
     void updateResistance();
 
+protected:
+    virtual BLUETOOTH_TYPE devicetype() { return BIKE; }
+
 public Q_SLOTS:
     /**
      * @brief changeResistance Called to change the requested resistance level.
