@@ -145,28 +145,35 @@ bool trixterxdreamv1client::ReceiveChar(char c) {
     newState.CrankRPM = static_cast<uint16_t>(crankRevsPerMinute);
     newState.FlywheelRPM = static_cast<uint16_t>(flywheelRevsPerMinute);
 
-    // TODO: get a mutex lock to make this change so it doesn't interfere with getLastState()
+    this->stateMutex.lock();
     this->lastState = newState;
+    this->stateMutex.unlock();
 
     return true;
 }
 
-trixterxdreamv1client::state trixterxdreamv1client::getLastState() const {
-    // TODO: get a mutex lock to read this so it doesn't interfere with ReceiveChar
-    return this->lastState;
+trixterxdreamv1client::state trixterxdreamv1client::getLastState() {
+    this->stateMutex.lock();
+    state result = this->lastState;
+    this->stateMutex.unlock();
+    return result;
 }
 
 void trixterxdreamv1client::SendResistance(int level) {
 
-    // to maintain the resistance, this needs to be resent about every 10ms.
+    // to maintain the resistance, this needs to be resent about every 50ms.
     if(level!=0 && this->write_bytes)
     {
-        // TODO: send this every 50ms. This single call won't do anything noticable
-        this->write_bytes(this->resistanceMessages[std::max(250, std::min(0, level))],6);
+        this->writeMutex.lock();
+        try { this->write_bytes(this->resistanceMessages[std::max(250, std::min(0, level))],6); }
+        catch (...)
+        {
+            this->writeMutex.unlock();
+            throw;
+        }
+        this->writeMutex.unlock();
     }
 }
-
-
 
 void trixterxdreamv1client::Reset() {
     this->lastT = this->get_time_ms();

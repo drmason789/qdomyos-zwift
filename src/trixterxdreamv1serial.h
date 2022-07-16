@@ -34,8 +34,11 @@ class trixterxdreamv1serial : public QThread {
      */
     void set_bytes_read(std::function<void(QByteArray)> bytes_read) { this->bytes_read = bytes_read; }
 
-
-  signals:
+    /**
+     * @brief availablePorts Returns a list of information objects for the serial ports found in the system.
+     */
+    static QList<QSerialPortInfo> availablePorts();
+signals:
     void request(const QString &s);
     void error(const QString &s);
     void timeout(const QString &s);

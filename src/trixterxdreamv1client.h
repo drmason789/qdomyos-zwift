@@ -3,6 +3,7 @@
 #include <vector>
 #include <stdint.h>
 #include <bits/std_function.h>
+#include <mutex>
 
 class trixterxdreamv1client {
   public:
@@ -63,6 +64,7 @@ class trixterxdreamv1client {
 
     std::function<uint32_t()> get_time_ms;
     std::function<void(uint8_t * , int)> write_bytes;
+    std::mutex stateMutex, writeMutex;
     unsigned long lastT = 0;
     double flywheelRevolutions{}, crankRevolutions{};
     Packet lastPacket{};
@@ -78,7 +80,6 @@ class trixterxdreamv1client {
     /**
      * @brief Add the character to the input buffer and process to eventually read the next packet.
      * @param c A text character '0'..'9' or 'a'..'f'
-     * \return
      */
     PacketState ProcessChar(char c);
 
@@ -100,7 +101,7 @@ class trixterxdreamv1client {
     /**
      * @brief Receives and processes a character of input from the device.
      * @param c Should be '0' to '9' or 'a' to 'f' (lower case)
-     * \return true if a packet was completed and the state updated, otherwise false.
+     * @return true if a packet was completed and the state updated, otherwise false.
      */
     bool ReceiveChar(char c);
 
@@ -119,9 +120,8 @@ class trixterxdreamv1client {
 
     /**
      * @brief Gets the state of the device as it was last read. This consists of CSCS data, steering and heartbeat.
-     * \return The last state.
      */
-    state getLastState() const;
+    state getLastState();
 
     /**
      * @brief Reset the Cycle Speed and Cadence information.

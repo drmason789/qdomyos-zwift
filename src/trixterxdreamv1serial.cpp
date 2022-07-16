@@ -2,6 +2,7 @@
 
 #include <QDebug>
 #include <QTime>
+#include <QSerialPortInfo>
 
 trixterxdreamv1serial::trixterxdreamv1serial(QObject *parent) : QThread(parent) {}
 
@@ -10,6 +11,11 @@ trixterxdreamv1serial::~trixterxdreamv1serial() {
     m_quit = true;
     m_mutex.unlock();
     wait();
+}
+
+QList<QSerialPortInfo> trixterxdreamv1serial::availablePorts()
+{
+    return QSerialPortInfo::availablePorts();
 }
 
 void trixterxdreamv1serial::open(const QString &portName, int waitTimeout) {

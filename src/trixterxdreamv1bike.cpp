@@ -1,8 +1,9 @@
 #include "trixterxdreamv1bike.h"
 #include <math.h>
+#include <QSerialPortInfo>
 
 
-trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice, bool noSteering)
+trixterxdreamv1bike::trixterxdreamv1bike(QString portName, bool noWriteResistance, bool noHeartService, bool noVirtualDevice, bool noSteering)
 {
     // Set the wheel diameter for speed and distance calculations
     this->set_wheelDiameter(DefaultWheelDiamter);
@@ -32,12 +33,53 @@ trixterxdreamv1bike::trixterxdreamv1bike(bool noWriteResistance, bool noHeartSer
     this->port.set_bytes_read([&thisObject](QByteArray bytes) -> void {thisObject->update(bytes); });
 
     // open the port. This should be at 115200 bits per second.
-    // TODO: determine if this is the right port, and add the ability to specify the port name.
-    this->port.open("/dev/ttyUSB0", 10000);
+    this->port.open(portName, 1000);
 
     // create the timer for the resistance. This only needs to be active when a non-zero resistance is requested.
     this->resistanceTimer = new QTimer(this);
     connect(this->resistanceTimer, &QTimer::timeout, this, &trixterxdreamv1bike::updateResistance);
+}
+
+bool trixterxdreamv1bike::testPort(const QString& portName)
+{
+    trixterxdreamv1bike * bike = nullptr;
+    int stateChanges = 0;
+    try
+    {
+        bike = new trixterxdreamv1bike(portName, true, true, true, true);
+        auto lastState = bike->client.getLastState().LastEventTime;
+        for(int i=0; i<10; i++)
+        {
+            QThread::msleep(50);
+            auto newState = bike->client.getLastState().LastEventTime;
+            if(newState!=lastState)
+            {
+                stateChanges++;
+                lastState = newState;
+            }
+
+        }
+        delete bike;
+    }  catch (...) {
+        delete bike;
+        return false;
+    }
+
+   // stateChanges>0 is probably adequate
+    return stateChanges>20;
+}
+
+QString trixterxdreamv1bike::findPort()
+{
+    auto availablePorts = trixterxdreamv1serial::availablePorts();
+
+    for(int i=0; i<availablePorts.length(); i++)
+    {
+        if(testPort(availablePorts[i].portName()))
+            return availablePorts[i].portName();
+    }
+
+    return nullptr;
 }
 
 uint32_t trixterxdreamv1bike::getTime()
@@ -45,14 +87,19 @@ uint32_t trixterxdreamv1bike::getTime()
     return static_cast<uint32_t>(QDateTime::currentDateTime().toMSecsSinceEpoch() - this->t0);
 }
 
-void trixterxdreamv1bike::update(QByteArray bytes)
+bool trixterxdreamv1bike::updateClient(QByteArray bytes, trixterxdreamv1client * client)
 {
     bool stateChanged = false;
 
     for(int i=0; i<bytes.length();i++)
-        stateChanged |= this->client.ReceiveChar(bytes[i]);
+        stateChanged |= client->ReceiveChar(bytes[i]);
 
-    if(!stateChanged)
+    return stateChanged;
+}
+
+void trixterxdreamv1bike::update(QByteArray bytes)
+{
+    if(!updateClient(bytes, &this->client))
         return;
 
     // Take the most recent state read

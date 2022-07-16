@@ -77,6 +77,20 @@ private:
      */
     void updateResistance();
 
+    /**
+     * @brief updateClient Passes the array of bytes into the client one by one.
+     * @param bytes The incoming bytes.
+     * @param client The client object that interprets the incoming bytes into data packets.
+     * @return True if the state of the client changed due to the input.
+     */
+    static bool updateClient(QByteArray bytes, trixterxdreamv1client * client);
+
+    /**
+     * @brief testPort Tries to open a port and looks for valid data packets.
+     * @param portName The name of the serial port.
+     * @return True if valid data packets were obtained from the port.
+     */
+    static bool testPort(const QString &portName);
 protected:
     virtual BLUETOOTH_TYPE devicetype() { return BIKE; }
 
@@ -107,12 +121,13 @@ public:
 
     /**
      * @brief trixterxdreamv1bike Constructor
+     * @param portName The name of the serial port to connect to.
      * @param noWriteResistance Option to avoid sending resistance to the device.
      * @param noHeartService Option to avoid using the heart rate reading.
      * @param noVirtualDevice Option to avoid using a virtual device.
      * @param noSteering Option to avoid using the steering reading.
      */
-    trixterxdreamv1bike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice, bool noSteering);
+    trixterxdreamv1bike(QString portName, bool noWriteResistance, bool noHeartService, bool noVirtualDevice, bool noSteering);
 
     ~trixterxdreamv1bike();
 
@@ -127,4 +142,10 @@ public:
      * @return
      */
     virtual uint8_t maxResistance() { return trixterxdreamv1client::MaxResistance; }
+
+    /**
+     * @brief findPort Looks for an X-Dream V1 bike on known serial ports and returns the port name if it finds one.
+     */
+    static QString findPort();
+
 };
