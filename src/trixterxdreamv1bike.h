@@ -60,7 +60,7 @@ private:
     qint64 t0;
 
     /**
-     * @brief packetsReceived The number of packets processed.
+     * @brief packetsProcessed The number of packets processed.
      */
     uint32_t packetsProcessed;
 
