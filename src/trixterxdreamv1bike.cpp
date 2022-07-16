@@ -42,31 +42,17 @@ trixterxdreamv1bike::trixterxdreamv1bike(QString portName, bool noWriteResistanc
 
 bool trixterxdreamv1bike::testPort(const QString& portName)
 {
-    trixterxdreamv1bike * bike = nullptr;
-    int stateChanges = 0;
     try
     {
-        bike = new trixterxdreamv1bike(portName, true, true, true, true);
-        auto lastState = bike->client.getLastState().LastEventTime;
-        for(int i=0; i<10; i++)
-        {
-            QThread::msleep(50);
-            auto newState = bike->client.getLastState().LastEventTime;
-            if(newState!=lastState)
-            {
-                stateChanges++;
-                lastState = newState;
-            }
-
-        }
-        delete bike;
-    }  catch (...) {
-        delete bike;
+        trixterxdreamv1bike bike(portName, true, true, true, true); // minimal device
+        QThread::msleep(1000);
+        return bike.packetsProcessed>10; // >0 is probably okay, they should arrive every approx 12ms
+    }
+    catch (...)
+    {
         return false;
     }
 
-   // stateChanges>0 is probably adequate
-    return stateChanges>20;
 }
 
 QString trixterxdreamv1bike::findPort()
@@ -99,11 +85,15 @@ bool trixterxdreamv1bike::updateClient(QByteArray bytes, trixterxdreamv1client *
 
 void trixterxdreamv1bike::update(QByteArray bytes)
 {
+    // send the bytes to the client and return if there's no change of state
     if(!updateClient(bytes, &this->client))
         return;
 
     // Take the most recent state read
     auto state = this->client.getLastState();
+
+    // update the packet count
+    this->packetsProcessed++;
 
     // update the metrics
     this->LastCrankEventTime = state.LastEventTime;

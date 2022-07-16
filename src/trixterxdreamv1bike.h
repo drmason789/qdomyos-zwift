@@ -49,7 +49,7 @@ private:
     uint8_t resistanceLevel;
 
     /**
-     * @brief wheelCircumference The assumed circumference of the bike's wheels, for converting
+     * @brief wheelCircumference The simulated circumference of the bike's wheels, for converting
      * angular velocity to a speed. Units: kilometers.
      */
     double wheelCircumference;
@@ -58,6 +58,11 @@ private:
      * @brief t0 The start time in milliseconds. Used to reduce te size of time values processed.
      */
     qint64 t0;
+
+    /**
+     * @brief packetsReceived The number of packets processed.
+     */
+    uint32_t packetsProcessed;
 
     /**
      * @brief getTime Gets the time in miliseconds since this object was created.
@@ -97,7 +102,7 @@ protected:
 public Q_SLOTS:
     /**
      * @brief changeResistance Called to change the requested resistance level.
-     * @param resistanceLevel The resitance level to request.
+     * @param resistanceLevel The resistance level to request (0..250)
      */
     virtual void changeResistance(int8_t resistanceLevel);
 
@@ -132,7 +137,7 @@ public:
     ~trixterxdreamv1bike();
 
     /**
-     * @brief wheelDiameter Set the wheel diameter to be used for converting angular velocity to speed. Units: meters
+     * @brief set_wheelDiameter Set the simulated wheel diameter to be used for converting angular velocity to speed. Units: meters
      * @param value
      */
     void set_wheelDiameter(double value);
