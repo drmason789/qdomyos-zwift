@@ -163,7 +163,7 @@ public Q_SLOTS:
      * @brief changeResistance Called to change the requested resistance level.
      * @param resistanceLevel The resistance level to request (0..250)
      */
-    void changeResistance(int8_t resistanceLevel) override;
+    void changeResistance(resistance_t resistanceLevel) override;
 
 
 public:
@@ -231,14 +231,14 @@ public:
      * @brief maxResistance The maximum resistance supported.
      * @return
      */
-    uint8_t maxResistance() override { return trixterxdreamv1client::MaxResistance; }
+    resistance_t maxResistance() override { return trixterxdreamv1client::MaxResistance; }
 
     /**
      * @brief pelotonToBikeResistance Map Peloton 0 to 100% resistance to the bike's range.
      * @param pelotonResistance The Peloton resistance. Range: 0 to 100.
      * @return The Trixter X-Dream V1 bike resistance. Range 0..250.
      */
-    int pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
 
     /**
      * @brief tryCreate Attempt to create an object to interact with an existing Trixter X-Dream V1 bike on a specific serial port,

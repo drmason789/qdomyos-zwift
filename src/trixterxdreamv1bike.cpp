@@ -290,7 +290,7 @@ void trixterxdreamv1bike::calculateSteeringMap() {
 
 }
 
-void trixterxdreamv1bike::changeResistance(int8_t resistanceLevel) {
+void trixterxdreamv1bike::changeResistance(resistance_t resistanceLevel) {
     // ignore the resistance if this option was selected
     if(this->noWriteResistance)
         return;
@@ -340,7 +340,7 @@ void trixterxdreamv1bike::set_wheelDiameter(double value) {
 }
 
 
-int trixterxdreamv1bike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t trixterxdreamv1bike::pelotonToBikeResistance(int pelotonResistance) {
     pelotonResistance = std::max(0, std::min(100, pelotonResistance));
     return round(0.01*pelotonResistance*trixterxdreamv1client::MaxResistance);
 }
