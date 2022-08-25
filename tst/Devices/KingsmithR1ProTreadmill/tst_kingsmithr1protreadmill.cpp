@@ -1,0 +1,37 @@
+#include <QtTest>
+
+// add necessary includes here
+
+class KingsmithR1ProTreadmill : public QObject
+{
+    Q_OBJECT
+
+public:
+    KingsmithR1ProTreadmill();
+    ~KingsmithR1ProTreadmill();
+
+private slots:
+    void test_case1();
+
+};
+
+KingsmithR1ProTreadmill::KingsmithR1ProTreadmill()
+{
+
+}
+
+KingsmithR1ProTreadmill::~KingsmithR1ProTreadmill()
+{
+
+}
+
+void KingsmithR1ProTreadmill::test_case1()
+{
+
+}
+
+
+
+#include "tst_kingsmithr1protreadmill.moc"
+
+

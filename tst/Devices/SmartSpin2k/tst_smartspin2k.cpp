@@ -1,0 +1,37 @@
+#include <QtTest>
+
+// add necessary includes here
+
+class SmartSpin2k : public QObject
+{
+    Q_OBJECT
+
+public:
+    SmartSpin2k();
+    ~SmartSpin2k();
+
+private slots:
+    void test_case1();
+
+};
+
+SmartSpin2k::SmartSpin2k()
+{
+
+}
+
+SmartSpin2k::~SmartSpin2k()
+{
+
+}
+
+void SmartSpin2k::test_case1()
+{
+
+}
+
+
+
+#include "tst_smartspin2k.moc"
+
+
