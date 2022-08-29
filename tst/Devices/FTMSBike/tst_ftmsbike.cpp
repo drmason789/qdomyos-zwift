@@ -30,6 +30,8 @@ void FTMSBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(FTMSBike)
+
 
 
 #include "tst_ftmsbike.moc"

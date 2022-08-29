@@ -30,6 +30,8 @@ void KingsmithR1ProTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(KingsmithR1ProTreadmill)
+
 
 
 #include "tst_kingsmithr1protreadmill.moc"

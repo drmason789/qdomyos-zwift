@@ -30,6 +30,8 @@ void PafersBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(PafersBike)
+
 
 
 #include "tst_pafersbike.moc"

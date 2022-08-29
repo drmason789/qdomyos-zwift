@@ -30,6 +30,8 @@ void ActivioTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ActivioTreadmill)
+
 #include "tst_activiotreadmill.moc"
 
 

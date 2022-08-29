@@ -30,6 +30,8 @@ void FTMSRower::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(FTMSRower)
+
 
 
 #include "tst_ftmsrower.moc"

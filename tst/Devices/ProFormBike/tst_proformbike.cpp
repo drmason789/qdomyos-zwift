@@ -30,6 +30,8 @@ void ProFormBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ProFormBike)
+
 
 
 #include "tst_proformbike.moc"

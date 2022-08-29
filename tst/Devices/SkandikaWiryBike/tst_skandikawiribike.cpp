@@ -30,6 +30,8 @@ void SkandikaWiryBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SkandikaWiryBike)
+
 
 
 #include "tst_skandikawiribike.moc"

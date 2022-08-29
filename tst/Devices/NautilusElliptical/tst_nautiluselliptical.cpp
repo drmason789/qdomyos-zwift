@@ -30,6 +30,8 @@ void NautilusElliptical::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(NautilusElliptical)
+
 
 
 #include "tst_nautiluselliptical.moc"

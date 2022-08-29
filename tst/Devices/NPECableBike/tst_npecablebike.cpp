@@ -30,6 +30,8 @@ void NPECableBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(NPECableBike)
+
 
 
 #include "tst_npecablebike.moc"

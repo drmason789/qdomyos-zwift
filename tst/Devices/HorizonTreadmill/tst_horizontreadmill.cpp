@@ -30,6 +30,8 @@ void HorizonTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(HorizonTreadmill)
+
 
 
 #include "tst_horizontreadmill.moc"

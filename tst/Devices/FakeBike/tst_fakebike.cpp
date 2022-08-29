@@ -30,6 +30,8 @@ void FakeBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(FakeBike)
+
 
 
 #include "tst_fakebike.moc"

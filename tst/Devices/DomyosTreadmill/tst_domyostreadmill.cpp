@@ -30,6 +30,8 @@ void DomyosTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(DomyosTreadmill)
+
 
 
 #include "tst_domyostreadmill.moc"

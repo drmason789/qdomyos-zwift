@@ -30,6 +30,8 @@ void EliteRizer::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(EliteRizer)
+
 
 
 #include "tst_eliterizer.moc"

@@ -30,6 +30,8 @@ void SoleF80Treadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SoleF80Treadmill)
+
 
 
 #include "tst_solef80treadmill.moc"

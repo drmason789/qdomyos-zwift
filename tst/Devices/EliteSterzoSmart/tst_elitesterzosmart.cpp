@@ -30,6 +30,8 @@ void EliteSterzoSmart::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(EliteSterzoSmart)
+
 
 
 #include "tst_elitesterzosmart.moc"

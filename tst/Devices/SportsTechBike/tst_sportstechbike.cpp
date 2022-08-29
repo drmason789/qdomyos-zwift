@@ -30,6 +30,8 @@ void SportsTechBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SportsTechBike)
+
 
 
 #include "tst_sportstechbike.moc"

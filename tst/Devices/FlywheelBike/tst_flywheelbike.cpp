@@ -30,6 +30,8 @@ void FlywheelBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(FlywheelBike)
+
 
 
 #include "tst_flywheelbike.moc"

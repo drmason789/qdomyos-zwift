@@ -30,6 +30,8 @@ void FitmetriaFanFit::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(FitmetriaFanFit)
+
 
 
 #include "tst_fitmetria_fanfit.moc"

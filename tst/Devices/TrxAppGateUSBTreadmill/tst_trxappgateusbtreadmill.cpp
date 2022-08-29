@@ -30,6 +30,8 @@ void TrxAppGateUSBTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(TrxAppGateUSBTreadmill)
+
 
 
 #include "tst_trxappgateusbtreadmill.moc"

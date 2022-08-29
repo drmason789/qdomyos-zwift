@@ -30,6 +30,8 @@ void SmartRowRower::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SmartRowRower)
+
 
 
 #include "tst_smartrowrower.moc"

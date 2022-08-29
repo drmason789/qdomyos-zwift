@@ -30,6 +30,8 @@ void RenphoBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(RenphoBike)
+
 
 
 #include "tst_renphobike.moc"

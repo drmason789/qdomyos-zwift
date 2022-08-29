@@ -30,6 +30,8 @@ void DomyosElliptical::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(DomyosElliptical)
+
 
 
 #include "tst_domyoselliptical.moc"

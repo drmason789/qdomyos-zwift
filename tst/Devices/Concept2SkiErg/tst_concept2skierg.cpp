@@ -30,6 +30,8 @@ void Concept2SkiErg::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(Concept2SkiErg)
+
 
 
 #include "tst_concept2skierg.moc"

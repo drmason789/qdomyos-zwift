@@ -30,6 +30,8 @@ void EchelonConnectSportBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(EchelonConnectSportBike)
+
 
 
 #include "tst_echelonconnectsport.moc"

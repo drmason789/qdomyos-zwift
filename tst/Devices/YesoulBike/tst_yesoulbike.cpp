@@ -30,6 +30,8 @@ void YesoulBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(YesoulBike)
+
 
 
 #include "tst_yesoulbike.moc"

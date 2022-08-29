@@ -30,6 +30,8 @@ void Shuaa5Treadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(Shuaa5Treadmill)
+
 
 
 #include "tst_shuaa5treadmill.moc"

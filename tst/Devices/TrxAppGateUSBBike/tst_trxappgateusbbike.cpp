@@ -30,6 +30,8 @@ void TrxAppGateUSBBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(TrxAppGateUSBBike)
+
 
 
 #include "tst_trxappgateusbbike.moc"

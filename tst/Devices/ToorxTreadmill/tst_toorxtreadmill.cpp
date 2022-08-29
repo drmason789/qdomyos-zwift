@@ -30,6 +30,8 @@ void ToorxTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ToorxTreadmill)
+
 
 
 #include "tst_toorxtreadmill.moc"

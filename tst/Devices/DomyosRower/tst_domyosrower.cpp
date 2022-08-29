@@ -30,6 +30,8 @@ void DomyosRower::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(DomyosRower)
+
 
 
 #include "tst_domyosrower.moc"

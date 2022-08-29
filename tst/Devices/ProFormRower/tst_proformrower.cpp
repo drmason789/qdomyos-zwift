@@ -30,6 +30,8 @@ void ProFormRower::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ProFormRower)
+
 
 
 #include "tst_proformrower.moc"

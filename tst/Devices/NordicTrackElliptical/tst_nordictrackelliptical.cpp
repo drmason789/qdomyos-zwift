@@ -30,6 +30,8 @@ void NordicTrackElliptical::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(NordicTrackElliptical)
+
 
 
 #include "tst_nordictrackelliptical.moc"

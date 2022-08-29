@@ -1,3 +1,4 @@
+include(../defaults.pri)
 QT += bluetooth widgets xml positioning quick networkauth websockets texttospeech location multimedia
 QTPLUGIN += qavfmediaplayer
 QT+= charts

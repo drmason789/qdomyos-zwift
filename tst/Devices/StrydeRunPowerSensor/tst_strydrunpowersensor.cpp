@@ -30,6 +30,8 @@ void StrydeRunPowerSensor::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(StrydeRunPowerSensor)
+
 
 
 #include "tst_strydrunpowersensor.moc"

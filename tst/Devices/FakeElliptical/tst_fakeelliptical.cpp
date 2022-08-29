@@ -30,6 +30,8 @@ void FakeElliptical::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(FakeElliptical)
+
 
 
 #include "tst_fakeelliptical.moc"

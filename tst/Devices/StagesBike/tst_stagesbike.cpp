@@ -30,6 +30,8 @@ void StagesBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(StagesBike)
+
 
 
 #include "tst_stagesbike.moc"

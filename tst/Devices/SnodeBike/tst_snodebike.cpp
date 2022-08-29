@@ -30,6 +30,8 @@ void SnodeBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SnodeBike)
+
 
 
 #include "tst_snodebike.moc"

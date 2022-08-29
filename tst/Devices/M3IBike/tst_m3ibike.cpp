@@ -30,6 +30,8 @@ void M3IBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(M3IBike)
+
 
 
 #include "tst_m3ibike.moc"

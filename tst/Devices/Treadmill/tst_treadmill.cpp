@@ -30,6 +30,8 @@ void Treadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(Treadmill)
+
 
 
 #include "tst_treadmill.moc"

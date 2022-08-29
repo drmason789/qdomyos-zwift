@@ -30,6 +30,8 @@ void ProFormElliptical::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ProFormElliptical)
+
 
 
 #include "tst_proformelliptical.moc"

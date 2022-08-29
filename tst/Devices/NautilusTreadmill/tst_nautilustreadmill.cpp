@@ -30,6 +30,8 @@ void NautilusTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(NautilusTreadmill)
+
 
 
 #include "tst_nautilustreadmill.moc"

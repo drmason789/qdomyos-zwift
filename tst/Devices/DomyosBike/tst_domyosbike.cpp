@@ -30,6 +30,8 @@ void DomyosBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(DomyosBike)
+
 
 
 #include "tst_domyosbike.moc"

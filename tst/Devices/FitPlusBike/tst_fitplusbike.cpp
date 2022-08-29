@@ -30,6 +30,8 @@ void FitPlusBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(FitPlusBike)
+
 
 
 #include "tst_fitplusbike.moc"

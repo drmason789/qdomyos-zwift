@@ -30,6 +30,8 @@ void HeartRateBelt::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(HeartRateBelt)
+
 
 
 #include "tst_heartratebelt.moc"

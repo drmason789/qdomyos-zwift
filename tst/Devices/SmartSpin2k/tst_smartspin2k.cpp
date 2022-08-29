@@ -30,6 +30,8 @@ void SmartSpin2k::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SmartSpin2k)
+
 
 
 #include "tst_smartspin2k.moc"

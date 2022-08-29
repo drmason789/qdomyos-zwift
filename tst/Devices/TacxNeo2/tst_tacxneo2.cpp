@@ -30,6 +30,8 @@ void TacxNeo2::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(TacxNeo2)
+
 
 
 #include "tst_tacxneo2.moc"

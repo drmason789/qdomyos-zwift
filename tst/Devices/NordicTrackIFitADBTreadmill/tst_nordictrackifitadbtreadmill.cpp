@@ -30,6 +30,8 @@ void NordicTrackIFitADBTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(NordicTrackIFitADBTreadmill)
+
 
 
 #include "tst_nordictrackifitadbtreadmill.moc"

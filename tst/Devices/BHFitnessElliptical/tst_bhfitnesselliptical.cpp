@@ -30,7 +30,7 @@ void BHFitnessElliptical::test_case1()
 
 }
 
-
+QTEST_APPLESS_MAIN(BHFitnessElliptical)
 
 #include "tst_bhfitnesselliptical.moc"
 

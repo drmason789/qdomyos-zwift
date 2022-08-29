@@ -30,6 +30,8 @@ void FitshowTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(FitshowTreadmill)
+
 
 
 #include "tst_fitshowtreadmill.moc"

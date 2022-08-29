@@ -30,6 +30,8 @@ void Bike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(Bike)
+
 
 
 #include "tst_bike.moc"

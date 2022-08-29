@@ -30,6 +30,8 @@ void TechnoGymMyRunTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(TechnoGymMyRunTreadmill)
+
 
 
 #include "tst_technogymmyruntreadmill.moc"

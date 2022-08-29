@@ -30,6 +30,8 @@ void SoleElliptical::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SoleElliptical)
+
 
 
 #include "tst_soleelliptical.moc"

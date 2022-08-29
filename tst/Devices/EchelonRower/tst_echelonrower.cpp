@@ -30,6 +30,8 @@ void EchelonRower::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(EchelonRower)
+
 
 
 #include "tst_echelonrower.moc"

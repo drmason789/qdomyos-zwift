@@ -30,6 +30,8 @@ void NautilusBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(NautilusBike)
+
 
 
 #include "tst_nautilusbike.moc"

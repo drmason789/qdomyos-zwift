@@ -30,6 +30,8 @@ void ESLinkerTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ESLinkerTreadmill)
+
 
 
 #include "tst_eslinkertreadmill.moc"

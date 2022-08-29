@@ -30,4 +30,6 @@ void Bowflex216Treadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(Bowflex216Treadmill)
 
+#include "tst_bowflex216treadmill.moc"

@@ -30,6 +30,8 @@ void KeepBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(KeepBike)
+
 
 
 #include "tst_keepbike.moc"

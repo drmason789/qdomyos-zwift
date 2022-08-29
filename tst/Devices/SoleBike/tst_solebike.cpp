@@ -30,6 +30,8 @@ void SoleBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SoleBike)
+
 
 
 #include "tst_solebike.moc"

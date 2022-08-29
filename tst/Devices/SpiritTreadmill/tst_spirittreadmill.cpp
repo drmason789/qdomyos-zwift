@@ -30,6 +30,8 @@ void SpiritTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(SpiritTreadmill)
+
 
 
 #include "tst_spirittreadmill.moc"

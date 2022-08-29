@@ -30,6 +30,8 @@ void TrueTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(TrueTreadmill)
+
 
 
 #include "tst_truetreadmill.moc"

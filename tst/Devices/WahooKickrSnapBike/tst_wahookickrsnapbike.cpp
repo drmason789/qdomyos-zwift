@@ -30,6 +30,8 @@ void WahooKickrSnapBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(WahooKickrSnapBike)
+
 
 
 #include "tst_wahookickrsnapbike.moc"

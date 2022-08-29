@@ -30,6 +30,8 @@ void CSCBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(CSCBike)
+
 
 
 #include "tst_cscbike.moc"

@@ -30,6 +30,8 @@ void MCFBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(MCFBike)
+
 
 
 #include "tst_mcfbike.moc"

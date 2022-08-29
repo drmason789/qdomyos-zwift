@@ -30,6 +30,8 @@ void ProFormTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ProFormTreadmill)
+
 
 
 #include "tst_proformtreadmill.moc"

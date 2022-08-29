@@ -30,6 +30,8 @@ void ProFormWiFiBike::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ProFormWiFiBike)
+
 
 
 #include "tst_proformwifibike.moc"

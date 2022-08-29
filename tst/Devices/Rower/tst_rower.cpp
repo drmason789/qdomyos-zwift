@@ -30,6 +30,8 @@ void Rower::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(Rower)
+
 
 
 #include "tst_rower.moc"

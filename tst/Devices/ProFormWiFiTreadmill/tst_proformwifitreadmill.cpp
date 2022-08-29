@@ -30,6 +30,8 @@ void ProFormWiFiTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(ProFormWiFiTreadmill)
+
 
 
 #include "tst_proformwifitreadmill.moc"

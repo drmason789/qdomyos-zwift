@@ -30,6 +30,8 @@ void EchelonStrideTreadmill::test_case1()
 
 }
 
+QTEST_APPLESS_MAIN(EchelonStrideTreadmill)
+
 
 
 #include "tst_echelonstride.moc"
