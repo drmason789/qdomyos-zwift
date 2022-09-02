@@ -1,6 +1,7 @@
 #include <QtTest>
 
 // add necessary includes here
+#include "activiotreadmill.h"
 
 class ActivioTreadmill : public QObject
 {
@@ -27,7 +28,9 @@ ActivioTreadmill::~ActivioTreadmill()
 
 void ActivioTreadmill::test_case1()
 {
+    activiotreadmill * treadmill = new activiotreadmill();
 
+    delete treadmill;
 }
 
 QTEST_APPLESS_MAIN(ActivioTreadmill)
