@@ -333,10 +333,13 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
     bool eliteSterzoSmartFound = eliteSterzoSmartName.startsWith(QStringLiteral("Disabled"));
     bool fake_bike = settings.value(QStringLiteral("applewatch_fakedevice"), false).toBool();
     bool fakedevice_elliptical = settings.value(QStringLiteral("fakedevice_elliptical"), false).toBool();
+    bool fakedevice_treadmill = settings.value(QStringLiteral("fakedevice_treadmill"), false).toBool();
     bool pafers_treadmill = settings.value(QStringLiteral("pafers_treadmill"), false).toBool();
     QString proformtdf4ip = settings.value(QStringLiteral("proformtdf4ip"), "").toString();
     QString proformtreadmillip = settings.value(QStringLiteral("proformtreadmillip"), "").toString();
     QString nordictrack_2950_ip = settings.value(QStringLiteral("nordictrack_2950_ip"), "").toString();
+    QString tdf_10_ip = settings.value(QStringLiteral("tdf_10_ip"), "").toString();
+    bool manufacturerDeviceFound = false;
 
     if (!heartRateBeltFound) {
 
@@ -363,19 +366,53 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
         eliteSterzoSmartFound = eliteSterzoSmartAvaiable();
     }
 
-    bool found = false;
-    QMutableListIterator<QBluetoothDeviceInfo> i(devices);
-    while (i.hasNext()) {
-        QBluetoothDeviceInfo b = i.next();
-        if (SAME_BLUETOOTH_DEVICE(b, device) && !b.name().isEmpty()) {
+    QVector<quint16> ids = device.manufacturerIds();
+    qDebug() << "manufacturerData";
+    foreach (quint16 id, ids) {
+        qDebug() << id << device.manufacturerData(id).toHex(' ');
 
-            i.setValue(device); // in order to keep the freshest copy of this struct
-            found = true;
-            break;
+#ifdef Q_OS_ANDROID
+        // yesoul bike on android 13 doesn't send anymore the name
+        if (device.name().count() == 0 && id == yesoulbike::manufacturerDataId &&
+            device.manufacturerData(id).startsWith(
+                QByteArray((const char *)yesoulbike::manufacturerData, yesoulbike::manufacturerDataSize))) {
+            qDebug() << "yesoulBikeFromManufacturerData forcing!";
+            QBluetoothDeviceInfo manufacturerDevice(device.address(), yesoulbike::bluetoothName,
+                                                    device.majorDeviceClass());
+
+            bool found = false;
+            QMutableListIterator<QBluetoothDeviceInfo> i(devices);
+            while (i.hasNext()) {
+                QBluetoothDeviceInfo b = i.next();
+                if (SAME_BLUETOOTH_DEVICE(b, manufacturerDevice) && !b.name().isEmpty()) {
+                    i.setValue(manufacturerDevice); // in order to keep the freshest copy of this struct
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                devices.append(manufacturerDevice);
+            }
+            manufacturerDeviceFound = true;
         }
+#endif
     }
-    if (!found) {
-        devices.append(device);
+
+    if (manufacturerDeviceFound == false) {
+        bool found = false;
+        QMutableListIterator<QBluetoothDeviceInfo> i(devices);
+        while (i.hasNext()) {
+            QBluetoothDeviceInfo b = i.next();
+            if (SAME_BLUETOOTH_DEVICE(b, device) && !b.name().isEmpty()) {
+
+                i.setValue(device); // in order to keep the freshest copy of this struct
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            devices.append(device);
+        }
     }
 
     emit deviceFound(device.name());
@@ -451,6 +488,22 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                 }
                 userTemplateManager->start(fakeElliptical);
                 innerTemplateManager->start(fakeElliptical);
+            } else if (fakedevice_treadmill && !fakeTreadmill) {
+                discoveryAgent->stop();
+                fakeTreadmill = new faketreadmill(noWriteResistance, noHeartService, false);
+                emit deviceConnected(b);
+                connect(fakeTreadmill, &bluetoothdevice::connectedAndDiscovered, this,
+                        &bluetooth::connectedAndDiscovered);
+                connect(fakeTreadmill, &faketreadmill::inclinationChanged, this, &bluetooth::inclinationChanged);
+                // connect(cscBike, SIGNAL(disconnected()), this, SLOT(restart()));
+                // connect(this, SIGNAL(searchingStop()), fakeBike, SLOT(searchingStop())); //NOTE: Commented due to
+                // #358
+                if (!discoveryAgent->isActive()) {
+                    emit searchingStop();
+                }
+                userTemplateManager->start(fakeTreadmill);
+                innerTemplateManager->start(fakeTreadmill);
+
             } else if (!proformtdf4ip.isEmpty() && !proformWifiBike) {
                 discoveryAgent->stop();
                 proformWifiBike =
@@ -497,6 +550,20 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                 }
                 userTemplateManager->start(nordictrackifitadbTreadmill);
                 innerTemplateManager->start(nordictrackifitadbTreadmill);
+            } else if (!tdf_10_ip.isEmpty() && !nordictrackifitadbBike) {
+                discoveryAgent->stop();
+                nordictrackifitadbBike = new nordictrackifitadbbike(noWriteResistance, noHeartService);
+                emit deviceConnected(b);
+                connect(nordictrackifitadbBike, &bluetoothdevice::connectedAndDiscovered, this,
+                        &bluetooth::connectedAndDiscovered);
+                connect(nordictrackifitadbBike, &nordictrackifitadbbike::debug, this, &bluetooth::debug);
+                // nordictrackifitadbTreadmill->deviceDiscovered(b);
+                // connect(this, SIGNAL(searchingStop()), cscBike, SLOT(searchingStop())); //NOTE: Commented due to #358
+                if (!discoveryAgent->isActive()) {
+                    emit searchingStop();
+                }
+                userTemplateManager->start(nordictrackifitadbBike);
+                innerTemplateManager->start(nordictrackifitadbBike);
             } else if (csc_as_bike && b.name().startsWith(cscName) && !cscBike && filter) {
 
                 discoveryAgent->stop();
@@ -626,8 +693,7 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                     emit searchingStop();
                 userTemplateManager->start(nautilusBike);
                 innerTemplateManager->start(nautilusBike);
-            } else if ((b.name().toUpper().startsWith(QStringLiteral("I_FS"))) &&
-                       !proformElliptical && filter) {
+            } else if ((b.name().toUpper().startsWith(QStringLiteral("I_FS"))) && !proformElliptical && filter) {
                 discoveryAgent->stop();
                 proformElliptical = new proformelliptical(noWriteResistance, noHeartService);
                 emit deviceConnected(b);
@@ -641,8 +707,7 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                     emit searchingStop();
                 userTemplateManager->start(proformElliptical);
                 innerTemplateManager->start(proformElliptical);
-            } else if ((b.name().toUpper().startsWith(QStringLiteral("I_EL"))) &&
-                       !nordictrackElliptical && filter) {
+            } else if ((b.name().toUpper().startsWith(QStringLiteral("I_EL"))) && !nordictrackElliptical && filter) {
                 discoveryAgent->stop();
                 nordictrackElliptical = new nordictrackelliptical(noWriteResistance, noHeartService,
                                                                   bikeResistanceOffset, bikeResistanceGain);
@@ -1265,7 +1330,7 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                 sportsPlusBike->deviceDiscovered(b);
                 userTemplateManager->start(sportsPlusBike);
                 innerTemplateManager->start(sportsPlusBike);
-            } else if (b.name().startsWith(QStringLiteral("YESOUL")) && !yesoulBike && filter) {
+            } else if (b.name().startsWith(yesoulbike::bluetoothName) && !yesoulBike && filter) {
                 discoveryAgent->stop();
                 yesoulBike = new yesoulbike(noWriteResistance, noHeartService);
                 // stateFileRead();
@@ -1469,9 +1534,8 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                 trxappgateusb->deviceDiscovered(b);
                 userTemplateManager->start(trxappgateusb);
                 innerTemplateManager->start(trxappgateusb);
-            } else if ((
-                           b.name().toUpper().startsWith(QStringLiteral("TUN ")) ||
-                           ((b.name().startsWith(QStringLiteral("TOORX")) ||
+            } else if ((b.name().toUpper().startsWith(QStringLiteral("TUN ")) ||
+                        ((b.name().startsWith(QStringLiteral("TOORX")) ||
                           b.name().toUpper().startsWith(QStringLiteral("I-CONSOIE+")) ||
                           b.name().toUpper().startsWith(QStringLiteral("I-CONSOLE+")) ||
                           b.name().toUpper().startsWith(QStringLiteral("IBIKING+")) ||
@@ -1647,6 +1711,8 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                 if (!discoveryAgent->isActive()) {
                     emit searchingStop();
                 }
+                userTemplateManager->start(chronoBike);
+                innerTemplateManager->start(chronoBike);
             }
         }
     }
@@ -1748,12 +1814,12 @@ void bluetooth::connectedAndDiscovered() {
 
                 connect(ftmsAccessory, &smartspin2k::debug, this, &bluetooth::debug);
 
-                connect(this->device(), SIGNAL(resistanceChanged(int8_t)), ftmsAccessory,
-                        SLOT(changeResistance(int8_t)));
-                connect(this->device(), SIGNAL(resistanceRead(int8_t)), ftmsAccessory,
-                        SLOT(resistanceReadFromTheBike(int8_t)));
-                connect(ftmsAccessory, SIGNAL(resistanceRead(int8_t)), this->device(),
-                        SLOT(resistanceFromFTMSAccessory(int8_t)));
+                connect(this->device(), SIGNAL(resistanceChanged(resistance_t)), ftmsAccessory,
+                        SLOT(changeResistance(resistance_t)));
+                connect(this->device(), SIGNAL(resistanceRead(resistance_t)), ftmsAccessory,
+                        SLOT(resistanceReadFromTheBike(resistance_t)));
+                connect(ftmsAccessory, SIGNAL(resistanceRead(resistance_t)), this->device(),
+                        SLOT(resistanceFromFTMSAccessory(resistance_t)));
                 emit ftmsAccessoryConnected(ftmsAccessory);
                 ftmsAccessory->deviceDiscovered(b);
                 break;
@@ -2057,6 +2123,11 @@ void bluetooth::restart() {
         delete nordictrackifitadbTreadmill;
         nordictrackifitadbTreadmill = nullptr;
     }
+    if (nordictrackifitadbBike) {
+
+        delete nordictrackifitadbBike;
+        nordictrackifitadbBike = nullptr;
+    }
     if (powerBike) {
 
         delete powerBike;
@@ -2076,6 +2147,11 @@ void bluetooth::restart() {
 
         delete fakeElliptical;
         fakeElliptical = nullptr;
+    }
+    if (fakeTreadmill) {
+
+        delete fakeTreadmill;
+        fakeTreadmill = nullptr;
     }
     if (npeCableBike) {
 
@@ -2389,6 +2465,8 @@ bluetoothdevice *bluetooth::device() {
         return proformWifiTreadmill;
     } else if (nordictrackifitadbTreadmill) {
         return nordictrackifitadbTreadmill;
+    } else if (nordictrackifitadbBike) {
+        return nordictrackifitadbBike;
     } else if (powerBike) {
         return powerBike;
     } else if (powerTreadmill) {
@@ -2397,6 +2475,8 @@ bluetoothdevice *bluetooth::device() {
         return fakeBike;
     } else if (fakeElliptical) {
         return fakeElliptical;
+    } else if (fakeTreadmill) {
+        return fakeTreadmill;
     } else if (npeCableBike) {
         return npeCableBike;
     } else if (tacxneo2Bike) {

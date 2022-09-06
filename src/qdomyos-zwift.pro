@@ -71,9 +71,11 @@ SOURCES += \
     characteristicnotifier2acd.cpp \
     characteristicnotifier2ad9.cpp \
     fakeelliptical.cpp \
+   faketreadmill.cpp \
    kmlworkout.cpp \
    nautilusbike.cpp \
     nordictrackelliptical.cpp \
+    nordictrackifitadbbike.cpp \
    nordictrackifitadbtreadmill.cpp \
    octanetreadmill.cpp \
    proformellipticaltrainer.cpp \
@@ -251,10 +253,13 @@ HEADERS += \
     characteristicnotifier2acc.h \
     characteristicnotifier2acd.h \
     characteristicnotifier2ad9.h \
+    definitions.h \
     fakeelliptical.h \
+   faketreadmill.h \
    kmlworkout.h \
    nautilusbike.h \
     nordictrackelliptical.h \
+    nordictrackifitadbbike.h \
    nordictrackifitadbtreadmill.h \
    octanetreadmill.h \
    proformellipticaltrainer.h \
@@ -712,4 +717,4 @@ INCLUDEPATH += purchasing/inapp
 
 WINRT_MANIFEST = AppxManifest.xml
 
-VERSION = 2.11.30
+VERSION = 2.11.43

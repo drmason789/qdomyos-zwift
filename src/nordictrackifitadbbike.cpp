@@ -1,4 +1,4 @@
-#include "nordictrackifitadbtreadmill.h"
+#include "nordictrackifitadbbike.h"
 #include "homeform.h"
 #include "ios/lockscreen.h"
 #include "keepawakehelper.h"
@@ -13,7 +13,7 @@
 
 using namespace std::chrono_literals;
 
-nordictrackifitadbtreadmill::nordictrackifitadbtreadmill(bool noWriteResistance, bool noHeartService) {
+nordictrackifitadbbike::nordictrackifitadbbike(bool noWriteResistance, bool noHeartService) {
     QSettings settings;
     m_watt.setType(metric::METRIC_WATT);
     Speed.setType(metric::METRIC_SPEED);
@@ -21,8 +21,8 @@ nordictrackifitadbtreadmill::nordictrackifitadbtreadmill(bool noWriteResistance,
     this->noWriteResistance = noWriteResistance;
     this->noHeartService = noHeartService;
     initDone = false;
-    connect(refresh, &QTimer::timeout, this, &nordictrackifitadbtreadmill::update);
-    QString ip = settings.value("nordictrack_2950_ip", "").toString();
+    connect(refresh, &QTimer::timeout, this, &nordictrackifitadbbike::update);
+    QString ip = settings.value("tdf_10_ip", "").toString();
     refresh->start(200ms);
 
     socket = new QUdpSocket(this);
@@ -32,29 +32,22 @@ nordictrackifitadbtreadmill::nordictrackifitadbtreadmill(bool noWriteResistance,
     connect(socket, SIGNAL(readyRead()), this, SLOT(processPendingDatagrams()));
 
     // ******************************************* virtual treadmill init *************************************
-    if (!firstStateChanged && !virtualTreadmill && !virtualBike) {
+    if (!firstStateChanged && !virtualBike) {
         bool virtual_device_enabled = settings.value("virtual_device_enabled", true).toBool();
-        bool virtual_device_force_bike = settings.value("virtual_device_force_bike", false).toBool();
         if (virtual_device_enabled) {
-            if (!virtual_device_force_bike) {
-                debug("creating virtual treadmill interface...");
-                virtualTreadmill = new virtualtreadmill(this, noHeartService);
-                connect(virtualTreadmill, &virtualtreadmill::debug, this, &nordictrackifitadbtreadmill::debug);
-                connect(virtualTreadmill, &virtualtreadmill::changeInclination, this,
-                        &nordictrackifitadbtreadmill::changeInclinationRequested);
-            } else {
-                debug("creating virtual bike interface...");
-                virtualBike = new virtualbike(this);
-                connect(virtualBike, &virtualbike::changeInclination, this,
-                        &nordictrackifitadbtreadmill::changeInclinationRequested);
-            }
+            debug("creating virtual bike interface...");
+            virtualBike = new virtualbike(this);
+            connect(virtualBike, &virtualbike::changeInclination, this,
+                    &nordictrackifitadbbike::changeInclinationRequested);
             firstStateChanged = 1;
         }
     }
     // ********************************************************************************************************
 }
 
-void nordictrackifitadbtreadmill::processPendingDatagrams() {
+bool nordictrackifitadbbike::inclinationAvailableByHardware() { return true; }
+
+void nordictrackifitadbbike::processPendingDatagrams() {
     qDebug() << "in !";
     QHostAddress sender;
     QSettings settings;
@@ -68,13 +61,17 @@ void nordictrackifitadbtreadmill::processPendingDatagrams() {
         qDebug() << "Port From :: " << port;
         qDebug() << "Message :: " << datagram;
 
-        QString ip = settings.value("nordictrack_2950_ip", "").toString();
+        QString ip = settings.value("tdf_10_ip", "").toString();
         QString heartRateBeltName =
             settings.value(QStringLiteral("heart_rate_belt_name"), QStringLiteral("Disabled")).toString();
         double weight = settings.value(QStringLiteral("weight"), 75.0).toFloat();
 
         double speed = 0;
-        double incline = 0;
+        double cadence = 0;
+        double resistance = 0;
+        double gears = 0;
+        double watt = 0;
+        double grade = 0;
         QStringList lines = QString::fromLocal8Bit(datagram.data()).split("\n");
         foreach (QString line, lines) {
             qDebug() << line;
@@ -84,22 +81,46 @@ void nordictrackifitadbtreadmill::processPendingDatagrams() {
                     speed = QLocale().toDouble(aValues.last());
                     Speed = speed;
                 }
+            } else if (line.contains(QStringLiteral("Changed RPM"))) {
+                QStringList aValues = line.split(" ");
+                if (aValues.length()) {
+                    cadence = QLocale().toDouble(aValues.last());
+                    Cadence = cadence;
+                }
+            } else if (line.contains(QStringLiteral("Changed CurrentGear"))) {
+                QStringList aValues = line.split(" ");
+                if (aValues.length()) {
+                    gears = QLocale().toDouble(aValues.last());
+                    // Cadence = cadence;
+                }
+            } else if (line.contains(QStringLiteral("Changed Resistance"))) {
+                QStringList aValues = line.split(" ");
+                if (aValues.length()) {
+                    resistance = QLocale().toDouble(aValues.last());
+                    Resistance = resistance;
+                }
+            } else if (line.contains(QStringLiteral("Changed Watts"))) {
+                QStringList aValues = line.split(" ");
+                if (aValues.length()) {
+                    watt = QLocale().toDouble(aValues.last());
+                    m_watt = watt;
+                }
             } else if (line.contains(QStringLiteral("Changed Grade"))) {
                 QStringList aValues = line.split(" ");
                 if (aValues.length()) {
-                    incline = QLocale().toDouble(aValues.last());
-                    Inclination = incline;
+                    grade = QLocale().toDouble(aValues.last());
+                    Inclination = grade;
                 }
             }
         }
 
-        QByteArray message = (QString::number(requestSpeed) + ";" + QString::number(requestInclination)).toLocal8Bit();
+        QByteArray message = (QString::number(requestResistance).toLocal8Bit()) + ";";
         int ret = socket->writeDatagram(message, message.size(), sender, 8003);
         qDebug() << QString::number(ret) + " >> " + message;
 
-        if (watts(weight))
+        if (watts())
             KCal +=
-                ((((0.048 * ((double)watts(weight)) + 1.19) * weight * 3.5) / 200.0) /
+                ((((0.048 * ((double)watts()) + 1.19) * weight * 3.5) / 200.0) /
                  (60000.0 / ((double)lastRefreshCharacteristicChanged.msecsTo(
                                 QDateTime::currentDateTime())))); //(( (0.048* Output in watts +1.19) * body weight in
                                                                   // kg * 3.5) / 200 ) / 60
@@ -129,43 +150,23 @@ void nordictrackifitadbtreadmill::processPendingDatagrams() {
             }
         }
 
-        emit debug(QStringLiteral("Current Inclination: ") + QString::number(Inclination.value()));
+        emit debug(QStringLiteral("Current Watt: ") + QString::number(watts()));
+        emit debug(QStringLiteral("Current Resistance: ") + QString::number(Resistance.value()));
+        emit debug(QStringLiteral("Current Gear: ") + QString::number(gears));
+        emit debug(QStringLiteral("Current Cadence: ") + QString::number(Cadence.value()));
         emit debug(QStringLiteral("Current Speed: ") + QString::number(Speed.value()));
+        emit debug(QStringLiteral("Current Inclination: ") + QString::number(Inclination.value()));
         emit debug(QStringLiteral("Current Calculate Distance: ") + QString::number(Distance.value()));
         // debug("Current Distance: " + QString::number(distance));
-        emit debug(QStringLiteral("Current Watt: ") + QString::number(watts(weight)));
     }
 }
 
-/*
-void nordictrackifitadbtreadmill::writeCharacteristic(uint8_t *data, uint8_t data_len, const QString &info, bool
-disable_log, bool wait_for_response) { QEventLoop loop; QTimer timeout; if (wait_for_response) {
-        connect(gattCommunicationChannelService, &QLowEnergyService::characteristicChanged, &loop, &QEventLoop::quit);
-        timeout.singleShot(300ms, &loop, &QEventLoop::quit);
-    } else {
-        connect(gattCommunicationChannelService, &QLowEnergyService::characteristicWritten, &loop, &QEventLoop::quit);
-        timeout.singleShot(300ms, &loop, &QEventLoop::quit);
-    }
+void nordictrackifitadbbike::forceResistance(double resistance) {}
 
-    gattCommunicationChannelService->writeCharacteristic(gattWriteCharacteristic,
-                                                         QByteArray((const char *)data, data_len));
-
-    if (!disable_log) {
-        emit debug(QStringLiteral(" >> ") + QByteArray((const char *)data, data_len).toHex(' ') +
-                   QStringLiteral(" // ") + info);
-    }
-
-    loop.exec();
-}
-*/
-void nordictrackifitadbtreadmill::forceIncline(double incline) {}
-
-void nordictrackifitadbtreadmill::forceSpeed(double speed) {}
-
-void nordictrackifitadbtreadmill::update() {
+void nordictrackifitadbbike::update() {
 
     QSettings settings;
-    update_metrics(true, watts(settings.value(QStringLiteral("weight"), 75.0).toFloat()));
+    update_metrics(false, 0);
 
     // updating the treadmill console every second
     if (sec1Update++ == (500 / refresh->interval())) {
@@ -179,7 +180,6 @@ void nordictrackifitadbtreadmill::update() {
         // btinit();
 
         requestStart = -1;
-        emit tapeStarted();
     }
     if (requestStop != -1) {
         emit debug(QStringLiteral("stopping..."));
@@ -188,14 +188,14 @@ void nordictrackifitadbtreadmill::update() {
     }
 }
 
-void nordictrackifitadbtreadmill::changeInclinationRequested(double grade, double percentage) {
+uint16_t nordictrackifitadbbike::watts() { return m_watt.value(); }
+
+void nordictrackifitadbbike::changeInclinationRequested(double grade, double percentage) {
     if (percentage < 0)
         percentage = 0;
     changeInclination(grade, percentage);
 }
 
-bool nordictrackifitadbtreadmill::connected() {}
+bool nordictrackifitadbbike::connected() {}
 
-void *nordictrackifitadbtreadmill::VirtualTreadmill() { return virtualTreadmill; }
-
-void *nordictrackifitadbtreadmill::VirtualDevice() { return VirtualTreadmill(); }
+void *nordictrackifitadbbike::VirtualDevice() { return virtualBike; }
