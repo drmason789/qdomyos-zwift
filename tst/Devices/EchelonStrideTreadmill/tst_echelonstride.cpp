@@ -11,6 +11,8 @@ class EchelonStrideTreadmill : public BluetoothDevice
 public:
     EchelonStrideTreadmill();
 	~EchelonStrideTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ EchelonStrideTreadmill::~EchelonStrideTreadmill()
 {
 
 }
+
+QStringList EchelonStrideTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void EchelonStrideTreadmill::test_case1()
 {

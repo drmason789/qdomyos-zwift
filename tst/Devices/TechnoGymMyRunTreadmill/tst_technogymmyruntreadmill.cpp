@@ -11,6 +11,8 @@ class TechnoGymMyRunTreadmill : public BluetoothDevice
 public:
     TechnoGymMyRunTreadmill();
 	~TechnoGymMyRunTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ TechnoGymMyRunTreadmill::~TechnoGymMyRunTreadmill()
 {
 
 }
+
+QStringList TechnoGymMyRunTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void TechnoGymMyRunTreadmill::test_case1()
 {

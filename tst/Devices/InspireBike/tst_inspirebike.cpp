@@ -11,6 +11,8 @@ class InspireBike : public BluetoothDevice
 public:
     InspireBike();
 	~InspireBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ InspireBike::~InspireBike()
 {
 
 }
+
+QStringList InspireBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void InspireBike::test_case1()
 {

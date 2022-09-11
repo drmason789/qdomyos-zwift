@@ -11,6 +11,8 @@ class SkandikaWiryBike : public BluetoothDevice
 public:
     SkandikaWiryBike();
 	~SkandikaWiryBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SkandikaWiryBike::~SkandikaWiryBike()
 {
 
 }
+
+QStringList SkandikaWiryBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SkandikaWiryBike::test_case1()
 {

@@ -11,6 +11,8 @@ class SnodeBike : public BluetoothDevice
 public:
     SnodeBike();
 	~SnodeBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SnodeBike::~SnodeBike()
 {
 
 }
+
+QStringList SnodeBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SnodeBike::test_case1()
 {

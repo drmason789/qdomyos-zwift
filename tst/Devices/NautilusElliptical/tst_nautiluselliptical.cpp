@@ -11,6 +11,8 @@ class NautilusElliptical : public BluetoothDevice
 public:
     NautilusElliptical();
 	~NautilusElliptical();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ NautilusElliptical::~NautilusElliptical()
 {
 
 }
+
+QStringList NautilusElliptical::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void NautilusElliptical::test_case1()
 {

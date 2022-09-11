@@ -11,6 +11,8 @@ class HeartRateBelt : public BluetoothDevice
 public:
     HeartRateBelt();
 	~HeartRateBelt();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ HeartRateBelt::~HeartRateBelt()
 {
 
 }
+
+QStringList HeartRateBelt::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void HeartRateBelt::test_case1()
 {

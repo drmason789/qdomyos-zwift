@@ -11,6 +11,8 @@ class FTMSRower : public BluetoothDevice
 public:
     FTMSRower();
 	~FTMSRower();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ FTMSRower::~FTMSRower()
 {
 
 }
+
+QStringList FTMSRower::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void FTMSRower::test_case1()
 {

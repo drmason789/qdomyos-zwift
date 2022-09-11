@@ -11,6 +11,8 @@ class ESLinkerTreadmill : public BluetoothDevice
 public:
     ESLinkerTreadmill();
 	~ESLinkerTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ ESLinkerTreadmill::~ESLinkerTreadmill()
 {
 
 }
+
+QStringList ESLinkerTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void ESLinkerTreadmill::test_case1()
 {

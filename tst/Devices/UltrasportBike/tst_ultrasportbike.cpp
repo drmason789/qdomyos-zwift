@@ -11,6 +11,8 @@ class UltrasportBike : public BluetoothDevice
 public:
     UltrasportBike();
 	~UltrasportBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ UltrasportBike::~UltrasportBike()
 {
 
 }
+
+QStringList UltrasportBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void UltrasportBike::test_case1()
 {

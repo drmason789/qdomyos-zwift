@@ -11,6 +11,8 @@ class TrueTreadmill : public BluetoothDevice
 public:
     TrueTreadmill();
 	~TrueTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ TrueTreadmill::~TrueTreadmill()
 {
 
 }
+
+QStringList TrueTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void TrueTreadmill::test_case1()
 {

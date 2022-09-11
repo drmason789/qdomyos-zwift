@@ -11,6 +11,8 @@ class EliteSterzoSmart : public BluetoothDevice
 public:
     EliteSterzoSmart();
 	~EliteSterzoSmart();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ EliteSterzoSmart::~EliteSterzoSmart()
 {
 
 }
+
+QStringList EliteSterzoSmart::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void EliteSterzoSmart::test_case1()
 {

@@ -11,6 +11,8 @@ class EchelonRower : public BluetoothDevice
 public:
     EchelonRower();
 	~EchelonRower();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ EchelonRower::~EchelonRower()
 {
 
 }
+
+QStringList EchelonRower::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void EchelonRower::test_case1()
 {

@@ -11,6 +11,8 @@ class SmartSpin2k : public BluetoothDevice
 public:
     SmartSpin2k();
 	~SmartSpin2k();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SmartSpin2k::~SmartSpin2k()
 {
 
 }
+
+QStringList SmartSpin2k::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SmartSpin2k::test_case1()
 {

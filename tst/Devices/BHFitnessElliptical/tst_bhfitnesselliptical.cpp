@@ -9,9 +9,8 @@ class BHFitnessElliptical : public BluetoothDevice
 public:
     BHFitnessElliptical();
 	~BHFitnessElliptical();
-    
 
-    QStringList get_DeviceNames() override;
+    QStringList get_deviceNames() override;
 
 private slots:
     void test_case1();
@@ -28,7 +27,7 @@ BHFitnessElliptical::~BHFitnessElliptical()
 
 }
 
-QStringList BHFitnessElliptical::get_DeviceNames() {
+QStringList BHFitnessElliptical::get_deviceNames() {
     QStringList result;
 
     result.append("B01_");

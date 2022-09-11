@@ -11,6 +11,8 @@ class KingsmithR1ProTreadmill : public BluetoothDevice
 public:
     KingsmithR1ProTreadmill();
 	~KingsmithR1ProTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ KingsmithR1ProTreadmill::~KingsmithR1ProTreadmill()
 {
 
 }
+
+QStringList KingsmithR1ProTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void KingsmithR1ProTreadmill::test_case1()
 {

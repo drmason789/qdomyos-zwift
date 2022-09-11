@@ -11,6 +11,8 @@ class WahooKickrSnapBike : public BluetoothDevice
 public:
     WahooKickrSnapBike();
 	~WahooKickrSnapBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ WahooKickrSnapBike::~WahooKickrSnapBike()
 {
 
 }
+
+QStringList WahooKickrSnapBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void WahooKickrSnapBike::test_case1()
 {

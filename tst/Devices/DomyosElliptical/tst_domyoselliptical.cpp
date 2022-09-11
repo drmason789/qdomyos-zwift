@@ -11,6 +11,8 @@ class DomyosElliptical : public BluetoothDevice
 public:
     DomyosElliptical();
 	~DomyosElliptical();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ DomyosElliptical::~DomyosElliptical()
 {
 
 }
+
+QStringList DomyosElliptical::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void DomyosElliptical::test_case1()
 {

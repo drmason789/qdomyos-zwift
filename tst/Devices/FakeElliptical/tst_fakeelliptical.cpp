@@ -11,6 +11,8 @@ class FakeElliptical : public BluetoothDevice
 public:
     FakeElliptical();
 	~FakeElliptical();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ FakeElliptical::~FakeElliptical()
 {
 
 }
+
+QStringList FakeElliptical::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void FakeElliptical::test_case1()
 {

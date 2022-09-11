@@ -11,6 +11,8 @@ class ProFormEllipticalTrainer : public BluetoothDevice
 public:
     ProFormEllipticalTrainer();
 	~ProFormEllipticalTrainer();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ ProFormEllipticalTrainer::~ProFormEllipticalTrainer()
 {
 
 }
+
+QStringList ProFormEllipticalTrainer::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void ProFormEllipticalTrainer::test_case1()
 {

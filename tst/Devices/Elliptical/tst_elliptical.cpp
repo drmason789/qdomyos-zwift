@@ -11,6 +11,8 @@ class Elliptical : public BluetoothDevice
 public:
     Elliptical();
 	~Elliptical();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ Elliptical::~Elliptical()
 {
 
 }
+
+QStringList Elliptical::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void Elliptical::test_case1()
 {

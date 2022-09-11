@@ -11,6 +11,8 @@ class NordicTrackIFitADBTreadmill : public BluetoothDevice
 public:
     NordicTrackIFitADBTreadmill();
 	~NordicTrackIFitADBTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ NordicTrackIFitADBTreadmill::~NordicTrackIFitADBTreadmill()
 {
 
 }
+
+QStringList NordicTrackIFitADBTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void NordicTrackIFitADBTreadmill::test_case1()
 {

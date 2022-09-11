@@ -11,6 +11,8 @@ class NautilusBike : public BluetoothDevice
 public:
     NautilusBike();
 	~NautilusBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ NautilusBike::~NautilusBike()
 {
 
 }
+
+QStringList NautilusBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void NautilusBike::test_case1()
 {

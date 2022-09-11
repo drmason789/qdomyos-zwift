@@ -11,6 +11,8 @@ class ProFormWiFiTreadmill : public BluetoothDevice
 public:
     ProFormWiFiTreadmill();
 	~ProFormWiFiTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ ProFormWiFiTreadmill::~ProFormWiFiTreadmill()
 {
 
 }
+
+QStringList ProFormWiFiTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void ProFormWiFiTreadmill::test_case1()
 {

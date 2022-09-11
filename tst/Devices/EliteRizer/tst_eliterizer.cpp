@@ -11,6 +11,8 @@ class EliteRizer : public BluetoothDevice
 public:
     EliteRizer();
 	~EliteRizer();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ EliteRizer::~EliteRizer()
 {
 
 }
+
+QStringList EliteRizer::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void EliteRizer::test_case1()
 {

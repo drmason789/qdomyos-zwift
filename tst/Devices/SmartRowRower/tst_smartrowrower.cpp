@@ -11,6 +11,8 @@ class SmartRowRower : public BluetoothDevice
 public:
     SmartRowRower();
 	~SmartRowRower();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SmartRowRower::~SmartRowRower()
 {
 
 }
+
+QStringList SmartRowRower::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SmartRowRower::test_case1()
 {

@@ -11,6 +11,8 @@ class FitmetriaFanFit : public BluetoothDevice
 public:
     FitmetriaFanFit();
 	~FitmetriaFanFit();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ FitmetriaFanFit::~FitmetriaFanFit()
 {
 
 }
+
+QStringList FitmetriaFanFit::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void FitmetriaFanFit::test_case1()
 {

@@ -11,6 +11,8 @@ class MCFBike : public BluetoothDevice
 public:
     MCFBike();
 	~MCFBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ MCFBike::~MCFBike()
 {
 
 }
+
+QStringList MCFBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void MCFBike::test_case1()
 {

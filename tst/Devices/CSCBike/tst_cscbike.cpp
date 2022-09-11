@@ -11,6 +11,8 @@ class CSCBike : public BluetoothDevice
 public:
     CSCBike();
 	~CSCBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ CSCBike::~CSCBike()
 {
 
 }
+
+QStringList CSCBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void CSCBike::test_case1()
 {

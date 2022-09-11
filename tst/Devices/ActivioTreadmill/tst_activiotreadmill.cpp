@@ -12,9 +12,9 @@ class ActivioTreadmill : public BluetoothDevice
 public:
     ActivioTreadmill();
 	~ActivioTreadmill();
-    
 
-    QStringList get_DeviceNames() override;
+    QStringList get_deviceNames() override;
+
 
 private slots:
     void test_case1();
@@ -31,7 +31,7 @@ ActivioTreadmill::~ActivioTreadmill()
 
 }
 
-QStringList ActivioTreadmill::get_DeviceNames() {
+QStringList ActivioTreadmill::get_deviceNames() {
     QStringList result;
 
     result.append("RUNNERT");
@@ -42,11 +42,10 @@ QStringList ActivioTreadmill::get_DeviceNames() {
     return result;
 }
 
+
 void ActivioTreadmill::test_case1()
 {
     activiotreadmill * treadmill = new activiotreadmill();
-	~activiotreadmill();
-
     delete treadmill;
 }
 

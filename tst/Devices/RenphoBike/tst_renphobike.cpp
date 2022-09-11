@@ -11,6 +11,8 @@ class RenphoBike : public BluetoothDevice
 public:
     RenphoBike();
 	~RenphoBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ RenphoBike::~RenphoBike()
 {
 
 }
+
+QStringList RenphoBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void RenphoBike::test_case1()
 {

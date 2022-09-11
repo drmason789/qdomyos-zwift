@@ -11,6 +11,8 @@ class Concept2SkiErg : public BluetoothDevice
 public:
     Concept2SkiErg();
 	~Concept2SkiErg();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ Concept2SkiErg::~Concept2SkiErg()
 {
 
 }
+
+QStringList Concept2SkiErg::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void Concept2SkiErg::test_case1()
 {

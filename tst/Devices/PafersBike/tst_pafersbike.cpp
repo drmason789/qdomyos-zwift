@@ -11,6 +11,8 @@ class PafersBike : public BluetoothDevice
 public:
     PafersBike();
 	~PafersBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ PafersBike::~PafersBike()
 {
 
 }
+
+QStringList PafersBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void PafersBike::test_case1()
 {

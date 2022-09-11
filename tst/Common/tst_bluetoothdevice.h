@@ -18,7 +18,7 @@ public:
     /**
      * @brief Gets a list of the advertised bluetooth device names that should be recognised as the tested device object.
      */
-    virtual QStringList get_DeviceNames() { throw std::exception(); }
+    virtual QStringList get_deviceNames() { throw std::exception(); }
 
 private slots:
     void test_deviceDetection();

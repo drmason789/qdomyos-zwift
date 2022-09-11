@@ -11,6 +11,8 @@ class SoleBike : public BluetoothDevice
 public:
     SoleBike();
 	~SoleBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SoleBike::~SoleBike()
 {
 
 }
+
+QStringList SoleBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SoleBike::test_case1()
 {

@@ -11,6 +11,8 @@ class TacxNeo2 : public BluetoothDevice
 public:
     TacxNeo2();
 	~TacxNeo2();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ TacxNeo2::~TacxNeo2()
 {
 
 }
+
+QStringList TacxNeo2::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void TacxNeo2::test_case1()
 {

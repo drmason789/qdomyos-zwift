@@ -11,6 +11,8 @@ class iConceptBike : public BluetoothDevice
 public:
     iConceptBike();
 	~iConceptBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ iConceptBike::~iConceptBike()
 {
 
 }
+
+QStringList iConceptBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void iConceptBike::test_case1()
 {

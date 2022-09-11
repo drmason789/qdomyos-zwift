@@ -11,6 +11,8 @@ class FlywheelBike : public BluetoothDevice
 public:
     FlywheelBike();
 	~FlywheelBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ FlywheelBike::~FlywheelBike()
 {
 
 }
+
+QStringList FlywheelBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void FlywheelBike::test_case1()
 {

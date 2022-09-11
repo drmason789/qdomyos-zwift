@@ -11,6 +11,8 @@ class NordicTrackElliptical : public BluetoothDevice
 public:
     NordicTrackElliptical();
 	~NordicTrackElliptical();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ NordicTrackElliptical::~NordicTrackElliptical()
 {
 
 }
+
+QStringList NordicTrackElliptical::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void NordicTrackElliptical::test_case1()
 {

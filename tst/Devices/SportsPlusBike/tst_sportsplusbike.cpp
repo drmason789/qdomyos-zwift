@@ -11,6 +11,8 @@ class SportsPlusBike : public BluetoothDevice
 public:
     SportsPlusBike();
 	~SportsPlusBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SportsPlusBike::~SportsPlusBike()
 {
 
 }
+
+QStringList SportsPlusBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SportsPlusBike::test_case1()
 {

@@ -11,6 +11,8 @@ class TrxAppGateUSBTreadmill : public BluetoothDevice
 public:
     TrxAppGateUSBTreadmill();
 	~TrxAppGateUSBTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ TrxAppGateUSBTreadmill::~TrxAppGateUSBTreadmill()
 {
 
 }
+
+QStringList TrxAppGateUSBTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void TrxAppGateUSBTreadmill::test_case1()
 {

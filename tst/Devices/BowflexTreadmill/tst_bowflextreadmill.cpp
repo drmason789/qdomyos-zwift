@@ -11,6 +11,8 @@ class BowflexTreadmill : public BluetoothDevice
 public:
     BowflexTreadmill();
 	~BowflexTreadmill();
+
+    QStringList get_deviceNames() override;
     
 
 private slots:
@@ -26,6 +28,11 @@ BowflexTreadmill::BowflexTreadmill()
 BowflexTreadmill::~BowflexTreadmill()
 {
 
+}
+
+QStringList BowflexTreadmill::get_deviceNames() {
+    QStringList result;
+    return result;
 }
 
 void BowflexTreadmill::test_case1()

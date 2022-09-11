@@ -11,6 +11,8 @@ class SoleElliptical : public BluetoothDevice
 public:
     SoleElliptical();
 	~SoleElliptical();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SoleElliptical::~SoleElliptical()
 {
 
 }
+
+QStringList SoleElliptical::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SoleElliptical::test_case1()
 {

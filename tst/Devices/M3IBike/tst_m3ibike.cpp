@@ -11,6 +11,8 @@ class M3IBike : public BluetoothDevice
 public:
     M3IBike();
 	~M3IBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ M3IBike::~M3IBike()
 {
 
 }
+
+QStringList M3IBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void M3IBike::test_case1()
 {

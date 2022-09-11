@@ -11,6 +11,8 @@ class FitshowTreadmill : public BluetoothDevice
 public:
     FitshowTreadmill();
 	~FitshowTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ FitshowTreadmill::~FitshowTreadmill()
 {
 
 }
+
+QStringList FitshowTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void FitshowTreadmill::test_case1()
 {

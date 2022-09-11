@@ -11,6 +11,8 @@ class EchelonConnectSportBike : public BluetoothDevice
 public:
     EchelonConnectSportBike();
 	~EchelonConnectSportBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ EchelonConnectSportBike::~EchelonConnectSportBike()
 {
 
 }
+
+QStringList EchelonConnectSportBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void EchelonConnectSportBike::test_case1()
 {

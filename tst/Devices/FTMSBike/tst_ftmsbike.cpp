@@ -11,6 +11,8 @@ class FTMSBike : public BluetoothDevice
 public:
     FTMSBike();
 	~FTMSBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ FTMSBike::~FTMSBike()
 {
 
 }
+
+QStringList FTMSBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void FTMSBike::test_case1()
 {

@@ -11,6 +11,8 @@ class ToorxTreadmill : public BluetoothDevice
 public:
     ToorxTreadmill();
 	~ToorxTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ ToorxTreadmill::~ToorxTreadmill()
 {
 
 }
+
+QStringList ToorxTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void ToorxTreadmill::test_case1()
 {

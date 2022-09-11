@@ -11,6 +11,8 @@ class SoleF80Treadmill : public BluetoothDevice
 public:
     SoleF80Treadmill();
 	~SoleF80Treadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SoleF80Treadmill::~SoleF80Treadmill()
 {
 
 }
+
+QStringList SoleF80Treadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SoleF80Treadmill::test_case1()
 {

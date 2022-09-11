@@ -11,6 +11,8 @@ class PafersTreadmill : public BluetoothDevice
 public:
     PafersTreadmill();
 	~PafersTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ PafersTreadmill::~PafersTreadmill()
 {
 
 }
+
+QStringList PafersTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void PafersTreadmill::test_case1()
 {

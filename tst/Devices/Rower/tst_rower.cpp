@@ -11,6 +11,8 @@ class Rower : public BluetoothDevice
 public:
     Rower();
 	~Rower();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ Rower::~Rower()
 {
 
 }
+
+QStringList Rower::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void Rower::test_case1()
 {

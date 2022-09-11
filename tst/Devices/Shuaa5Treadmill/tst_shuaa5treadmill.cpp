@@ -11,6 +11,8 @@ class Shuaa5Treadmill : public BluetoothDevice
 public:
     Shuaa5Treadmill();
 	~Shuaa5Treadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ Shuaa5Treadmill::~Shuaa5Treadmill()
 {
 
 }
+
+QStringList Shuaa5Treadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void Shuaa5Treadmill::test_case1()
 {

@@ -11,6 +11,8 @@ class DomyosTreadmill : public BluetoothDevice
 public:
     DomyosTreadmill();
 	~DomyosTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ DomyosTreadmill::~DomyosTreadmill()
 {
 
 }
+
+QStringList DomyosTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void DomyosTreadmill::test_case1()
 {

@@ -11,6 +11,8 @@ class ProFormBike : public BluetoothDevice
 public:
     ProFormBike();
 	~ProFormBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ ProFormBike::~ProFormBike()
 {
 
 }
+
+QStringList ProFormBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void ProFormBike::test_case1()
 {

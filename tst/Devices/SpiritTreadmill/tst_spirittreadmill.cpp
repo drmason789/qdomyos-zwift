@@ -11,6 +11,8 @@ class SpiritTreadmill : public BluetoothDevice
 public:
     SpiritTreadmill();
 	~SpiritTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SpiritTreadmill::~SpiritTreadmill()
 {
 
 }
+
+QStringList SpiritTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SpiritTreadmill::test_case1()
 {

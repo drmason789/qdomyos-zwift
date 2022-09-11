@@ -11,6 +11,8 @@ class StrydeRunPowerSensor : public BluetoothDevice
 public:
     StrydeRunPowerSensor();
 	~StrydeRunPowerSensor();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ StrydeRunPowerSensor::~StrydeRunPowerSensor()
 {
 
 }
+
+QStringList StrydeRunPowerSensor::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void StrydeRunPowerSensor::test_case1()
 {

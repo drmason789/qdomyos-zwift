@@ -11,6 +11,8 @@ class HorizonTreadmill : public BluetoothDevice
 public:
     HorizonTreadmill();
 	~HorizonTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ HorizonTreadmill::~HorizonTreadmill()
 {
 
 }
+
+QStringList HorizonTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void HorizonTreadmill::test_case1()
 {

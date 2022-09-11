@@ -11,6 +11,8 @@ class SchwinnIC4Bike : public BluetoothDevice
 public:
     SchwinnIC4Bike();
 	~SchwinnIC4Bike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ SchwinnIC4Bike::~SchwinnIC4Bike()
 {
 
 }
+
+QStringList SchwinnIC4Bike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void SchwinnIC4Bike::test_case1()
 {

@@ -11,6 +11,8 @@ class ProFormRower : public BluetoothDevice
 public:
     ProFormRower();
 	~ProFormRower();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ ProFormRower::~ProFormRower()
 {
 
 }
+
+QStringList ProFormRower::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void ProFormRower::test_case1()
 {

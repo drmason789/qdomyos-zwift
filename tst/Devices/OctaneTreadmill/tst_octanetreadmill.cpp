@@ -11,6 +11,8 @@ class OctaneTreadmill : public BluetoothDevice
 public:
     OctaneTreadmill();
 	~OctaneTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ OctaneTreadmill::~OctaneTreadmill()
 {
 
 }
+
+QStringList OctaneTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void OctaneTreadmill::test_case1()
 {

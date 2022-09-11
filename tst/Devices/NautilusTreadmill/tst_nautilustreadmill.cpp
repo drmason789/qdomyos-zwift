@@ -11,6 +11,8 @@ class NautilusTreadmill : public BluetoothDevice
 public:
     NautilusTreadmill();
 	~NautilusTreadmill();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ NautilusTreadmill::~NautilusTreadmill()
 {
 
 }
+
+QStringList NautilusTreadmill::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void NautilusTreadmill::test_case1()
 {

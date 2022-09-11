@@ -11,6 +11,8 @@ class HorizonGR7Bike : public BluetoothDevice
 public:
     HorizonGR7Bike();
 	~HorizonGR7Bike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ HorizonGR7Bike::~HorizonGR7Bike()
 {
 
 }
+
+QStringList HorizonGR7Bike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void HorizonGR7Bike::test_case1()
 {

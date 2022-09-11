@@ -11,6 +11,8 @@ class YesoulBike : public BluetoothDevice
 public:
     YesoulBike();
 	~YesoulBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ YesoulBike::~YesoulBike()
 {
 
 }
+
+QStringList YesoulBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void YesoulBike::test_case1()
 {

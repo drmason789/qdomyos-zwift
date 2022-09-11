@@ -11,6 +11,8 @@ class TechnogymMyRunTreadmillRFComm : public BluetoothDevice
 public:
     TechnogymMyRunTreadmillRFComm();
 	~TechnogymMyRunTreadmillRFComm();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ TechnogymMyRunTreadmillRFComm::~TechnogymMyRunTreadmillRFComm()
 {
 
 }
+
+QStringList TechnogymMyRunTreadmillRFComm::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void TechnogymMyRunTreadmillRFComm::test_case1()
 {

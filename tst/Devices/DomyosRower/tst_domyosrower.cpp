@@ -11,6 +11,8 @@ class DomyosRower : public BluetoothDevice
 public:
     DomyosRower();
 	~DomyosRower();
+
+    QStringList get_deviceNames() override;
     
 
 private slots:
@@ -26,6 +28,16 @@ DomyosRower::DomyosRower()
 DomyosRower::~DomyosRower()
 {
 
+}
+
+QStringList DomyosRower::get_deviceNames() {
+    QStringList result;
+
+    result.append("DOMYOS-ROW");
+    result.append("domyos-row");
+    result.append("domYos-RoWfjdsfd");
+
+    return result;
 }
 
 void DomyosRower::test_case1()

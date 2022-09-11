@@ -11,6 +11,8 @@ class StagesBike : public BluetoothDevice
 public:
     StagesBike();
 	~StagesBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ StagesBike::~StagesBike()
 {
 
 }
+
+QStringList StagesBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void StagesBike::test_case1()
 {

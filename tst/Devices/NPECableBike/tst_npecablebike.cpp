@@ -11,6 +11,8 @@ class NPECableBike : public BluetoothDevice
 public:
     NPECableBike();
 	~NPECableBike();
+
+	QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ NPECableBike::~NPECableBike()
 {
 
 }
+
+QStringList NPECableBike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void NPECableBike::test_case1()
 {

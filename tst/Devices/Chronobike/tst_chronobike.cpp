@@ -11,6 +11,8 @@ class Chronobike : public BluetoothDevice
 public:
     Chronobike();
 	~Chronobike();
+
+    QStringList get_deviceNames() override;
     
 
 private slots:
@@ -27,6 +29,11 @@ Chronobike::~Chronobike()
 {
 
 }
+
+QStringList Chronobike::get_deviceNames() {
+	QStringList result;
+	return result;
+ }
 
 void Chronobike::test_case1()
 {
