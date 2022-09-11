@@ -1,0 +1,11 @@
+include(qdomyos-zwift.pri)
+
+TARGET = qdomyos-zwift
+TEMPLATE = lib
+DEFINES += LIB_LIBRARY
+
+# Default rules for deployment.
+unix {
+    target.path = /usr/lib
+}
+!isEmpty(target.path): INSTALLS += target

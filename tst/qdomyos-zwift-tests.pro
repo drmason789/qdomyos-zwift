@@ -1,4 +1,4 @@
-include(../defaults.pri)
+include(qdomyos-zwift-tests.pri)
 
 TEMPLATE = subdirs
 
