@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class ToorxTreadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class ToorxTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     ToorxTreadmill();
-    ~ToorxTreadmill();
+	~ToorxTreadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 ToorxTreadmill::ToorxTreadmill()

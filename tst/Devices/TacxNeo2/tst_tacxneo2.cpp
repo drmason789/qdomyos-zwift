@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class TacxNeo2 : public QObject
+#include "tst_bluetoothdevice.h"
+
+class TacxNeo2 : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     TacxNeo2();
-    ~TacxNeo2();
+	~TacxNeo2();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 TacxNeo2::TacxNeo2()

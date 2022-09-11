@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class InspireBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class InspireBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     InspireBike();
-    ~InspireBike();
+	~InspireBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 InspireBike::InspireBike()

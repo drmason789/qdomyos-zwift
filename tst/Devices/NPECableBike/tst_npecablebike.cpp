@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class NPECableBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class NPECableBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     NPECableBike();
-    ~NPECableBike();
+	~NPECableBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 NPECableBike::NPECableBike()

@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class DomyosBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class DomyosBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     DomyosBike();
-    ~DomyosBike();
+	~DomyosBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 DomyosBike::DomyosBike()

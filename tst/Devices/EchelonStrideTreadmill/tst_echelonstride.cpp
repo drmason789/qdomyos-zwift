@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class EchelonStrideTreadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class EchelonStrideTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     EchelonStrideTreadmill();
-    ~EchelonStrideTreadmill();
+	~EchelonStrideTreadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 EchelonStrideTreadmill::EchelonStrideTreadmill()

@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class FitmetriaFanFit : public QObject
+#include "tst_bluetoothdevice.h"
+
+class FitmetriaFanFit : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     FitmetriaFanFit();
-    ~FitmetriaFanFit();
+	~FitmetriaFanFit();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 FitmetriaFanFit::FitmetriaFanFit()

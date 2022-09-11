@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class NordicTrackIFitADBTreadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class NordicTrackIFitADBTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     NordicTrackIFitADBTreadmill();
-    ~NordicTrackIFitADBTreadmill();
+	~NordicTrackIFitADBTreadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 NordicTrackIFitADBTreadmill::NordicTrackIFitADBTreadmill()

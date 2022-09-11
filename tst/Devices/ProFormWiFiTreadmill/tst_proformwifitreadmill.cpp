@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class ProFormWiFiTreadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class ProFormWiFiTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     ProFormWiFiTreadmill();
-    ~ProFormWiFiTreadmill();
+	~ProFormWiFiTreadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 ProFormWiFiTreadmill::ProFormWiFiTreadmill()

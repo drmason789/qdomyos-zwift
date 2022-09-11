@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class UltrasportBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class UltrasportBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     UltrasportBike();
-    ~UltrasportBike();
+	~UltrasportBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 UltrasportBike::UltrasportBike()

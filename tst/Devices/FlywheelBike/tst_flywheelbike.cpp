@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class FlywheelBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class FlywheelBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     FlywheelBike();
-    ~FlywheelBike();
+	~FlywheelBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 FlywheelBike::FlywheelBike()

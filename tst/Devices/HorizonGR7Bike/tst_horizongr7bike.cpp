@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class HorizonGR7Bike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class HorizonGR7Bike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     HorizonGR7Bike();
-    ~HorizonGR7Bike();
+	~HorizonGR7Bike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 HorizonGR7Bike::HorizonGR7Bike()

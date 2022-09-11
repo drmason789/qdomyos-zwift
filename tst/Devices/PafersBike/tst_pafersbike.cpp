@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class PafersBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class PafersBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     PafersBike();
-    ~PafersBike();
+	~PafersBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 PafersBike::PafersBike()

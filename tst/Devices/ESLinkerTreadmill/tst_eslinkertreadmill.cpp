@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class ESLinkerTreadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class ESLinkerTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     ESLinkerTreadmill();
-    ~ESLinkerTreadmill();
+	~ESLinkerTreadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 ESLinkerTreadmill::ESLinkerTreadmill()

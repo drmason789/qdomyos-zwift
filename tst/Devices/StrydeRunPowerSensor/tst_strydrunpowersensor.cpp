@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class StrydeRunPowerSensor : public QObject
+#include "tst_bluetoothdevice.h"
+
+class StrydeRunPowerSensor : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     StrydeRunPowerSensor();
-    ~StrydeRunPowerSensor();
+	~StrydeRunPowerSensor();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 StrydeRunPowerSensor::StrydeRunPowerSensor()

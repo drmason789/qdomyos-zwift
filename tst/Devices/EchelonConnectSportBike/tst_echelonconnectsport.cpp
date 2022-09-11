@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class EchelonConnectSportBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class EchelonConnectSportBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     EchelonConnectSportBike();
-    ~EchelonConnectSportBike();
+	~EchelonConnectSportBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 EchelonConnectSportBike::EchelonConnectSportBike()

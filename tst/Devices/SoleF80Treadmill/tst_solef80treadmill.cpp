@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class SoleF80Treadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class SoleF80Treadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     SoleF80Treadmill();
-    ~SoleF80Treadmill();
+	~SoleF80Treadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 SoleF80Treadmill::SoleF80Treadmill()

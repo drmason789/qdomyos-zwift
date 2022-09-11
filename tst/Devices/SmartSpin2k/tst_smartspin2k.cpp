@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class SmartSpin2k : public QObject
+#include "tst_bluetoothdevice.h"
+
+class SmartSpin2k : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     SmartSpin2k();
-    ~SmartSpin2k();
+	~SmartSpin2k();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 SmartSpin2k::SmartSpin2k()

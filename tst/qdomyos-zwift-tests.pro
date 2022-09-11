@@ -10,5 +10,7 @@ CONFIG -= app_bundle
 
 INCLUDEPATH += src/qmdnsengine/src/include
 
-SUBDIRS = Devices
+SUBDIRS = Devices \
+    Common
 
+Devices.depends = Common

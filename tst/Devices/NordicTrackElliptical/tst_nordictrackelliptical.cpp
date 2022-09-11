@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class NordicTrackElliptical : public QObject
+#include "tst_bluetoothdevice.h"
+
+class NordicTrackElliptical : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     NordicTrackElliptical();
-    ~NordicTrackElliptical();
+	~NordicTrackElliptical();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 NordicTrackElliptical::NordicTrackElliptical()

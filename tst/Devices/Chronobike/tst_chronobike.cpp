@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class Chronobike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class Chronobike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     Chronobike();
-    ~Chronobike();
+	~Chronobike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 Chronobike::Chronobike()

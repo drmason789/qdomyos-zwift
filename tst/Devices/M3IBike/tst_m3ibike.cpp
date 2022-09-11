@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class M3IBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class M3IBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     M3IBike();
-    ~M3IBike();
+	~M3IBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 M3IBike::M3IBike()

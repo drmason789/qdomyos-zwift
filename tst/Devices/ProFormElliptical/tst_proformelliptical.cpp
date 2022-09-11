@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class ProFormElliptical : public QObject
+#include "tst_bluetoothdevice.h"
+
+class ProFormElliptical : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     ProFormElliptical();
-    ~ProFormElliptical();
+	~ProFormElliptical();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 ProFormElliptical::ProFormElliptical()

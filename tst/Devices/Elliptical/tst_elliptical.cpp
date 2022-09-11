@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class Elliptical : public QObject
+#include "tst_bluetoothdevice.h"
+
+class Elliptical : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     Elliptical();
-    ~Elliptical();
+	~Elliptical();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 Elliptical::Elliptical()

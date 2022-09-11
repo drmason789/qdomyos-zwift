@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class PafersTreadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class PafersTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     PafersTreadmill();
-    ~PafersTreadmill();
+	~PafersTreadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 PafersTreadmill::PafersTreadmill()

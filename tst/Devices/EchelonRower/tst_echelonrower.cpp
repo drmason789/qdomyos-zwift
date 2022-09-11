@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class EchelonRower : public QObject
+#include "tst_bluetoothdevice.h"
+
+class EchelonRower : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     EchelonRower();
-    ~EchelonRower();
+	~EchelonRower();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 EchelonRower::EchelonRower()

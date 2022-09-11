@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class ProFormRower : public QObject
+#include "tst_bluetoothdevice.h"
+
+class ProFormRower : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     ProFormRower();
-    ~ProFormRower();
+	~ProFormRower();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 ProFormRower::ProFormRower()

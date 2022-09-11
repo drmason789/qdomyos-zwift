@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class HeartRateBelt : public QObject
+#include "tst_bluetoothdevice.h"
+
+class HeartRateBelt : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     HeartRateBelt();
-    ~HeartRateBelt();
+	~HeartRateBelt();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 HeartRateBelt::HeartRateBelt()

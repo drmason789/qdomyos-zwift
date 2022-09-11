@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class FTMSBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class FTMSBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     FTMSBike();
-    ~FTMSBike();
+	~FTMSBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 FTMSBike::FTMSBike()

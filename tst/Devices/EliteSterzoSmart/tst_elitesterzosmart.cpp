@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class EliteSterzoSmart : public QObject
+#include "tst_bluetoothdevice.h"
+
+class EliteSterzoSmart : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     EliteSterzoSmart();
-    ~EliteSterzoSmart();
+	~EliteSterzoSmart();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 EliteSterzoSmart::EliteSterzoSmart()

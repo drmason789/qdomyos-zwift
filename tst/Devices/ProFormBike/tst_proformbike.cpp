@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class ProFormBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class ProFormBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     ProFormBike();
-    ~ProFormBike();
+	~ProFormBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 ProFormBike::ProFormBike()

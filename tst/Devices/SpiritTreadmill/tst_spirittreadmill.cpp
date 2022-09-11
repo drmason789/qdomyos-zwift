@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class SpiritTreadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class SpiritTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     SpiritTreadmill();
-    ~SpiritTreadmill();
+	~SpiritTreadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 SpiritTreadmill::SpiritTreadmill()

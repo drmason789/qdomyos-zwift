@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class NautilusElliptical : public QObject
+#include "tst_bluetoothdevice.h"
+
+class NautilusElliptical : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     NautilusElliptical();
-    ~NautilusElliptical();
+	~NautilusElliptical();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 NautilusElliptical::NautilusElliptical()

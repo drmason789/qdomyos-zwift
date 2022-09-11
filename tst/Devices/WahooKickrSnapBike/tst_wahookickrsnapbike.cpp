@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class WahooKickrSnapBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class WahooKickrSnapBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     WahooKickrSnapBike();
-    ~WahooKickrSnapBike();
+	~WahooKickrSnapBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 WahooKickrSnapBike::WahooKickrSnapBike()

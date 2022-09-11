@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class EliteRizer : public QObject
+#include "tst_bluetoothdevice.h"
+
+class EliteRizer : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     EliteRizer();
-    ~EliteRizer();
+	~EliteRizer();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 EliteRizer::EliteRizer()

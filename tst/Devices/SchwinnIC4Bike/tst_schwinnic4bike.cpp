@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class SchwinnIC4Bike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class SchwinnIC4Bike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     SchwinnIC4Bike();
-    ~SchwinnIC4Bike();
+	~SchwinnIC4Bike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 SchwinnIC4Bike::SchwinnIC4Bike()

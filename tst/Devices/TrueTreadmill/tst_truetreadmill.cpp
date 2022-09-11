@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class TrueTreadmill : public QObject
+#include "tst_bluetoothdevice.h"
+
+class TrueTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     TrueTreadmill();
-    ~TrueTreadmill();
+	~TrueTreadmill();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 TrueTreadmill::TrueTreadmill()

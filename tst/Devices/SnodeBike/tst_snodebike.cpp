@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class SnodeBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class SnodeBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     SnodeBike();
-    ~SnodeBike();
+	~SnodeBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 SnodeBike::SnodeBike()

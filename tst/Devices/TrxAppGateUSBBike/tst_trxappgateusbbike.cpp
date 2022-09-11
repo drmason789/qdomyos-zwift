@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class TrxAppGateUSBBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class TrxAppGateUSBBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     TrxAppGateUSBBike();
-    ~TrxAppGateUSBBike();
+	~TrxAppGateUSBBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 TrxAppGateUSBBike::TrxAppGateUSBBike()

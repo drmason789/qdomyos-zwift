@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class SmartRowRower : public QObject
+#include "tst_bluetoothdevice.h"
+
+class SmartRowRower : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     SmartRowRower();
-    ~SmartRowRower();
+	~SmartRowRower();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 SmartRowRower::SmartRowRower()

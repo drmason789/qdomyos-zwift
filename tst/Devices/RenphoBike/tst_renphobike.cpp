@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class RenphoBike : public QObject
+#include "tst_bluetoothdevice.h"
+
+class RenphoBike : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     RenphoBike();
-    ~RenphoBike();
+	~RenphoBike();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 RenphoBike::RenphoBike()

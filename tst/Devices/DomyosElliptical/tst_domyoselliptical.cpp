@@ -2,17 +2,20 @@
 
 // add necessary includes here
 
-class DomyosElliptical : public QObject
+#include "tst_bluetoothdevice.h"
+
+class DomyosElliptical : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
     DomyosElliptical();
-    ~DomyosElliptical();
+	~DomyosElliptical();
+    
 
 private slots:
     void test_case1();
-
+	
 };
 
 DomyosElliptical::DomyosElliptical()
