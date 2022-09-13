@@ -7,14 +7,14 @@
 
 class ActivioTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    ActivioTreadmill();
+	ActivioTreadmill();
 	~ActivioTreadmill();
 
     QStringList get_deviceNames() override;
-
+    bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
 
 private slots:
     void test_case1();
@@ -29,6 +29,10 @@ ActivioTreadmill::ActivioTreadmill()
 ActivioTreadmill::~ActivioTreadmill()
 {
 
+}
+
+bool ActivioTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<activiotreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList ActivioTreadmill::get_deviceNames() {

@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "eslinkertreadmill.h"
+
 class ESLinkerTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    ESLinkerTreadmill();
+	ESLinkerTreadmill();
 	~ESLinkerTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ ESLinkerTreadmill::ESLinkerTreadmill()
 ESLinkerTreadmill::~ESLinkerTreadmill()
 {
 
+}
+
+bool ESLinkerTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<eslinkertreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList ESLinkerTreadmill::get_deviceNames() {

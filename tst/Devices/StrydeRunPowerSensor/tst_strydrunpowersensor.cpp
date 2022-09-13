@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "stryderunpowersensor.h"
+
 class StrydeRunPowerSensor : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    StrydeRunPowerSensor();
+	StrydeRunPowerSensor();
 	~StrydeRunPowerSensor();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ StrydeRunPowerSensor::StrydeRunPowerSensor()
 StrydeRunPowerSensor::~StrydeRunPowerSensor()
 {
 
+}
+
+bool StrydeRunPowerSensor::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<stryderunpowersensor*>(detectedDevice)!=nullptr;	
 }
 
 QStringList StrydeRunPowerSensor::get_deviceNames() {

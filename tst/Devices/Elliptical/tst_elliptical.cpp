@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "elliptical.h"
+
 class Elliptical : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    Elliptical();
+	Elliptical();
 	~Elliptical();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ Elliptical::Elliptical()
 Elliptical::~Elliptical()
 {
 
+}
+
+bool Elliptical::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<elliptical*>(detectedDevice)!=nullptr;	
 }
 
 QStringList Elliptical::get_deviceNames() {

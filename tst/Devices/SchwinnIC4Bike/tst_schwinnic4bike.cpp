@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "schwinnic4bike.h"
+
 class SchwinnIC4Bike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    SchwinnIC4Bike();
+	SchwinnIC4Bike();
 	~SchwinnIC4Bike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ SchwinnIC4Bike::SchwinnIC4Bike()
 SchwinnIC4Bike::~SchwinnIC4Bike()
 {
 
+}
+
+bool SchwinnIC4Bike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<schwinnic4bike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList SchwinnIC4Bike::get_deviceNames() {

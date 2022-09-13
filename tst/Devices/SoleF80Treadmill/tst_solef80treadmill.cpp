@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "solef80treadmill.h"
+
 class SoleF80Treadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    SoleF80Treadmill();
+	SoleF80Treadmill();
 	~SoleF80Treadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ SoleF80Treadmill::SoleF80Treadmill()
 SoleF80Treadmill::~SoleF80Treadmill()
 {
 
+}
+
+bool SoleF80Treadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<solef80treadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList SoleF80Treadmill::get_deviceNames() {

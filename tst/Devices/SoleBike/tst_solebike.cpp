@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "solebike.h"
+
 class SoleBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    SoleBike();
+	SoleBike();
 	~SoleBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ SoleBike::SoleBike()
 SoleBike::~SoleBike()
 {
 
+}
+
+bool SoleBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<solebike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList SoleBike::get_deviceNames() {

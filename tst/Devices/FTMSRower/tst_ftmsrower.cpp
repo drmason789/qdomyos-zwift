@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "ftmsrower.h"
+
 class FTMSRower : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    FTMSRower();
+	FTMSRower();
 	~FTMSRower();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ FTMSRower::FTMSRower()
 FTMSRower::~FTMSRower()
 {
 
+}
+
+bool FTMSRower::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<ftmsrower*>(detectedDevice)!=nullptr;	
 }
 
 QStringList FTMSRower::get_deviceNames() {

@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "soleelliptical.h"
+
 class SoleElliptical : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    SoleElliptical();
+	SoleElliptical();
 	~SoleElliptical();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ SoleElliptical::SoleElliptical()
 SoleElliptical::~SoleElliptical()
 {
 
+}
+
+bool SoleElliptical::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<soleelliptical*>(detectedDevice)!=nullptr;	
 }
 
 QStringList SoleElliptical::get_deviceNames() {

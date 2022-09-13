@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "echelonconnectsportbike.h"
+
 class EchelonConnectSportBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    EchelonConnectSportBike();
+	EchelonConnectSportBike();
 	~EchelonConnectSportBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ EchelonConnectSportBike::EchelonConnectSportBike()
 EchelonConnectSportBike::~EchelonConnectSportBike()
 {
 
+}
+
+bool EchelonConnectSportBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<echelonconnectsportbike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList EchelonConnectSportBike::get_deviceNames() {

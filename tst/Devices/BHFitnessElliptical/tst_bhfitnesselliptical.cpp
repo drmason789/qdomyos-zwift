@@ -2,15 +2,18 @@
 #include "tst_bluetoothdevice.h"
 
 
+#include "bhfitnesselliptical.h"
+
 class BHFitnessElliptical : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    BHFitnessElliptical();
+	BHFitnessElliptical();
 	~BHFitnessElliptical();
 
     QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
 
 private slots:
     void test_case1();
@@ -25,6 +28,10 @@ BHFitnessElliptical::BHFitnessElliptical()
 BHFitnessElliptical::~BHFitnessElliptical()
 {
 
+}
+
+bool BHFitnessElliptical::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<bhfitnesselliptical*>(detectedDevice)!=nullptr;	
 }
 
 QStringList BHFitnessElliptical::get_deviceNames() {

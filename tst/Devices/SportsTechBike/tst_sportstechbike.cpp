@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "sportstechbike.h"
+
 class SportsTechBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    SportsTechBike();
+	SportsTechBike();
 	~SportsTechBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ SportsTechBike::SportsTechBike()
 SportsTechBike::~SportsTechBike()
 {
 
+}
+
+bool SportsTechBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<sportstechbike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList SportsTechBike::get_deviceNames() {

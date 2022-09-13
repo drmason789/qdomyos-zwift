@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "heartratebelt.h"
+
 class HeartRateBelt : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    HeartRateBelt();
+	HeartRateBelt();
 	~HeartRateBelt();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ HeartRateBelt::HeartRateBelt()
 HeartRateBelt::~HeartRateBelt()
 {
 
+}
+
+bool HeartRateBelt::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<heartratebelt*>(detectedDevice)!=nullptr;	
 }
 
 QStringList HeartRateBelt::get_deviceNames() {

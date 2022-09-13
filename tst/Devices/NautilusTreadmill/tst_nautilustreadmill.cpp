@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "nautilustreadmill.h"
+
 class NautilusTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    NautilusTreadmill();
+	NautilusTreadmill();
 	~NautilusTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ NautilusTreadmill::NautilusTreadmill()
 NautilusTreadmill::~NautilusTreadmill()
 {
 
+}
+
+bool NautilusTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<nautilustreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList NautilusTreadmill::get_deviceNames() {

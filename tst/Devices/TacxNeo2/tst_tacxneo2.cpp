@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "tacxneo2.h"
+
 class TacxNeo2 : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    TacxNeo2();
+	TacxNeo2();
 	~TacxNeo2();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ TacxNeo2::TacxNeo2()
 TacxNeo2::~TacxNeo2()
 {
 
+}
+
+bool TacxNeo2::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<tacxneo2*>(detectedDevice)!=nullptr;	
 }
 
 QStringList TacxNeo2::get_deviceNames() {

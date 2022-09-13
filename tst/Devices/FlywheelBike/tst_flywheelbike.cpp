@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "flywheelbike.h"
+
 class FlywheelBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    FlywheelBike();
+	FlywheelBike();
 	~FlywheelBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ FlywheelBike::FlywheelBike()
 FlywheelBike::~FlywheelBike()
 {
 
+}
+
+bool FlywheelBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<flywheelbike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList FlywheelBike::get_deviceNames() {

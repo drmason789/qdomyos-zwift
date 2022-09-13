@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "domyostreadmill.h"
+
 class DomyosTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    DomyosTreadmill();
+	DomyosTreadmill();
 	~DomyosTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ DomyosTreadmill::DomyosTreadmill()
 DomyosTreadmill::~DomyosTreadmill()
 {
 
+}
+
+bool DomyosTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<domyostreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList DomyosTreadmill::get_deviceNames() {

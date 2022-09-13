@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "m3ibike.h"
+
 class M3IBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    M3IBike();
+	M3IBike();
 	~M3IBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ M3IBike::M3IBike()
 M3IBike::~M3IBike()
 {
 
+}
+
+bool M3IBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<m3ibike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList M3IBike::get_deviceNames() {

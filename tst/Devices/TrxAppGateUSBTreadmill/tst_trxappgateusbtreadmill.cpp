@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "trxappgateusbtreadmill.h"
+
 class TrxAppGateUSBTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    TrxAppGateUSBTreadmill();
+	TrxAppGateUSBTreadmill();
 	~TrxAppGateUSBTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ TrxAppGateUSBTreadmill::TrxAppGateUSBTreadmill()
 TrxAppGateUSBTreadmill::~TrxAppGateUSBTreadmill()
 {
 
+}
+
+bool TrxAppGateUSBTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<trxappgateusbtreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList TrxAppGateUSBTreadmill::get_deviceNames() {

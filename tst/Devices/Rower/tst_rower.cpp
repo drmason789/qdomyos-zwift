@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "rower.h"
+
 class Rower : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    Rower();
+	Rower();
 	~Rower();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ Rower::Rower()
 Rower::~Rower()
 {
 
+}
+
+bool Rower::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<rower*>(detectedDevice)!=nullptr;	
 }
 
 QStringList Rower::get_deviceNames() {

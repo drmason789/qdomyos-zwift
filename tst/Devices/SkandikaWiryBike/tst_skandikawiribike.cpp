@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "skandikawirybike.h"
+
 class SkandikaWiryBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    SkandikaWiryBike();
+	SkandikaWiryBike();
 	~SkandikaWiryBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ SkandikaWiryBike::SkandikaWiryBike()
 SkandikaWiryBike::~SkandikaWiryBike()
 {
 
+}
+
+bool SkandikaWiryBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<skandikawirybike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList SkandikaWiryBike::get_deviceNames() {

@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "horizongr7bike.h"
+
 class HorizonGR7Bike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    HorizonGR7Bike();
+	HorizonGR7Bike();
 	~HorizonGR7Bike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ HorizonGR7Bike::HorizonGR7Bike()
 HorizonGR7Bike::~HorizonGR7Bike()
 {
 
+}
+
+bool HorizonGR7Bike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<horizongr7bike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList HorizonGR7Bike::get_deviceNames() {

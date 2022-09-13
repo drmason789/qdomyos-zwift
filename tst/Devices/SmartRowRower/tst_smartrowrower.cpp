@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "smartrowrower.h"
+
 class SmartRowRower : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    SmartRowRower();
+	SmartRowRower();
 	~SmartRowRower();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ SmartRowRower::SmartRowRower()
 SmartRowRower::~SmartRowRower()
 {
 
+}
+
+bool SmartRowRower::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<smartrowrower*>(detectedDevice)!=nullptr;	
 }
 
 QStringList SmartRowRower::get_deviceNames() {

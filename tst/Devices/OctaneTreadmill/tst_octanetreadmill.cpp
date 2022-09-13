@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "octanetreadmill.h"
+
 class OctaneTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    OctaneTreadmill();
+	OctaneTreadmill();
 	~OctaneTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ OctaneTreadmill::OctaneTreadmill()
 OctaneTreadmill::~OctaneTreadmill()
 {
 
+}
+
+bool OctaneTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<octanetreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList OctaneTreadmill::get_deviceNames() {

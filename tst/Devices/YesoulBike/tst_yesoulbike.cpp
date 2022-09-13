@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "yesoulbike.h"
+
 class YesoulBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    YesoulBike();
+	YesoulBike();
 	~YesoulBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ YesoulBike::YesoulBike()
 YesoulBike::~YesoulBike()
 {
 
+}
+
+bool YesoulBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<yesoulbike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList YesoulBike::get_deviceNames() {

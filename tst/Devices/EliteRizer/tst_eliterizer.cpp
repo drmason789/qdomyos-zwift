@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "eliterizer.h"
+
 class EliteRizer : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    EliteRizer();
+	EliteRizer();
 	~EliteRizer();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ EliteRizer::EliteRizer()
 EliteRizer::~EliteRizer()
 {
 
+}
+
+bool EliteRizer::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<eliterizer*>(detectedDevice)!=nullptr;	
 }
 
 QStringList EliteRizer::get_deviceNames() {

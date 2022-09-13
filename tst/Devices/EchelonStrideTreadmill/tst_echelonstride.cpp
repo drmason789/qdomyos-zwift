@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "echelonstridetreadmill.h"
+
 class EchelonStrideTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    EchelonStrideTreadmill();
+	EchelonStrideTreadmill();
 	~EchelonStrideTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ EchelonStrideTreadmill::EchelonStrideTreadmill()
 EchelonStrideTreadmill::~EchelonStrideTreadmill()
 {
 
+}
+
+bool EchelonStrideTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<echelonstridetreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList EchelonStrideTreadmill::get_deviceNames() {

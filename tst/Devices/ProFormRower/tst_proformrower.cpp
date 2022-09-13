@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "proformrower.h"
+
 class ProFormRower : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    ProFormRower();
+	ProFormRower();
 	~ProFormRower();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ ProFormRower::ProFormRower()
 ProFormRower::~ProFormRower()
 {
 
+}
+
+bool ProFormRower::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<proformrower*>(detectedDevice)!=nullptr;	
 }
 
 QStringList ProFormRower::get_deviceNames() {

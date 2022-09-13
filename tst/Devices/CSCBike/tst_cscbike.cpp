@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "cscbike.h"
+
 class CSCBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    CSCBike();
+	CSCBike();
 	~CSCBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ CSCBike::CSCBike()
 CSCBike::~CSCBike()
 {
 
+}
+
+bool CSCBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<cscbike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList CSCBike::get_deviceNames() {

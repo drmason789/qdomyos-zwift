@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "renphobike.h"
+
 class RenphoBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    RenphoBike();
+	RenphoBike();
 	~RenphoBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ RenphoBike::RenphoBike()
 RenphoBike::~RenphoBike()
 {
 
+}
+
+bool RenphoBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<renphobike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList RenphoBike::get_deviceNames() {

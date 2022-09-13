@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "wahookickrsnapbike.h"
+
 class WahooKickrSnapBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    WahooKickrSnapBike();
+	WahooKickrSnapBike();
 	~WahooKickrSnapBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ WahooKickrSnapBike::WahooKickrSnapBike()
 WahooKickrSnapBike::~WahooKickrSnapBike()
 {
 
+}
+
+bool WahooKickrSnapBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<wahookickrsnapbike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList WahooKickrSnapBike::get_deviceNames() {

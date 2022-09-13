@@ -4,7 +4,7 @@ SUBDIRS = \
 	ActivioTreadmill \
 	BHFitnessElliptical \
 	Bike \
-	Bowflex216Treadmill \
+	BowflexT216Treadmill \
 	BowflexTreadmill \
 	Chronobike \
 	Concept2SkiErg \

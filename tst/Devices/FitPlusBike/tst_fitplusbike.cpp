@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "fitplusbike.h"
+
 class FitPlusBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    FitPlusBike();
+	FitPlusBike();
 	~FitPlusBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ FitPlusBike::FitPlusBike()
 FitPlusBike::~FitPlusBike()
 {
 
+}
+
+bool FitPlusBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<fitplusbike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList FitPlusBike::get_deviceNames() {

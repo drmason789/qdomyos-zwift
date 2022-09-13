@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "toorxtreadmill.h"
+
 class ToorxTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    ToorxTreadmill();
+	ToorxTreadmill();
 	~ToorxTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ ToorxTreadmill::ToorxTreadmill()
 ToorxTreadmill::~ToorxTreadmill()
 {
 
+}
+
+bool ToorxTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<toorxtreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList ToorxTreadmill::get_deviceNames() {

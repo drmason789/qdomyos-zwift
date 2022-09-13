@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "inspirebike.h"
+
 class InspireBike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    InspireBike();
+	InspireBike();
 	~InspireBike();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ InspireBike::InspireBike()
 InspireBike::~InspireBike()
 {
 
+}
+
+bool InspireBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<inspirebike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList InspireBike::get_deviceNames() {

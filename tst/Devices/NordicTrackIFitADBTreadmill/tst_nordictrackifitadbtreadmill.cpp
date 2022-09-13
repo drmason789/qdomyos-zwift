@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "nordictrackifitadbtreadmill.h"
+
 class NordicTrackIFitADBTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    NordicTrackIFitADBTreadmill();
+	NordicTrackIFitADBTreadmill();
 	~NordicTrackIFitADBTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ NordicTrackIFitADBTreadmill::NordicTrackIFitADBTreadmill()
 NordicTrackIFitADBTreadmill::~NordicTrackIFitADBTreadmill()
 {
 
+}
+
+bool NordicTrackIFitADBTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<nordictrackifitadbtreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList NordicTrackIFitADBTreadmill::get_deviceNames() {

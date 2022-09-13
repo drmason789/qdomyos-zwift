@@ -6,6 +6,7 @@
 #include <QString>
 
 // add necessary includes here
+#include "bluetoothdevice.h"
 
 class BluetoothDevice : public QObject
 {
@@ -19,6 +20,8 @@ public:
      * @brief Gets a list of the advertised bluetooth device names that should be recognised as the tested device object.
      */
     virtual QStringList get_deviceNames() { throw std::exception(); }
+
+    virtual bool get_isExpectedDevice(bluetoothdevice * detectedDevice) { throw std::exception(); }
 
 private slots:
     void test_deviceDetection();

@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "chronobike.h"
+
 class Chronobike : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    Chronobike();
+	Chronobike();
 	~Chronobike();
 
     QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ Chronobike::Chronobike()
 Chronobike::~Chronobike()
 {
 
+}
+
+bool Chronobike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<chronobike*>(detectedDevice)!=nullptr;	
 }
 
 QStringList Chronobike::get_deviceNames() {

@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "domyoselliptical.h"
+
 class DomyosElliptical : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    DomyosElliptical();
+	DomyosElliptical();
 	~DomyosElliptical();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ DomyosElliptical::DomyosElliptical()
 DomyosElliptical::~DomyosElliptical()
 {
 
+}
+
+bool DomyosElliptical::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<domyoselliptical*>(detectedDevice)!=nullptr;	
 }
 
 QStringList DomyosElliptical::get_deviceNames() {

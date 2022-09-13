@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "shuaa5treadmill.h"
+
 class Shuaa5Treadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    Shuaa5Treadmill();
+	Shuaa5Treadmill();
 	~Shuaa5Treadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ Shuaa5Treadmill::Shuaa5Treadmill()
 Shuaa5Treadmill::~Shuaa5Treadmill()
 {
 
+}
+
+bool Shuaa5Treadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<shuaa5treadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList Shuaa5Treadmill::get_deviceNames() {

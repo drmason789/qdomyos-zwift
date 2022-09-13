@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "proformelliptical.h"
+
 class ProFormElliptical : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    ProFormElliptical();
+	ProFormElliptical();
 	~ProFormElliptical();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ ProFormElliptical::ProFormElliptical()
 ProFormElliptical::~ProFormElliptical()
 {
 
+}
+
+bool ProFormElliptical::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<proformelliptical*>(detectedDevice)!=nullptr;	
 }
 
 QStringList ProFormElliptical::get_deviceNames() {

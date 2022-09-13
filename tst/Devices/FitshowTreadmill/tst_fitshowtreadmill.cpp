@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "fitshowtreadmill.h"
+
 class FitshowTreadmill : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    FitshowTreadmill();
+	FitshowTreadmill();
 	~FitshowTreadmill();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ FitshowTreadmill::FitshowTreadmill()
 FitshowTreadmill::~FitshowTreadmill()
 {
 
+}
+
+bool FitshowTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<fitshowtreadmill*>(detectedDevice)!=nullptr;	
 }
 
 QStringList FitshowTreadmill::get_deviceNames() {

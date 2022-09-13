@@ -4,15 +4,18 @@
 
 #include "tst_bluetoothdevice.h"
 
+#include "nordictrackelliptical.h"
+
 class NordicTrackElliptical : public BluetoothDevice
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    NordicTrackElliptical();
+	NordicTrackElliptical();
 	~NordicTrackElliptical();
 
 	QStringList get_deviceNames() override;
+	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
     
 
 private slots:
@@ -28,6 +31,10 @@ NordicTrackElliptical::NordicTrackElliptical()
 NordicTrackElliptical::~NordicTrackElliptical()
 {
 
+}
+
+bool NordicTrackElliptical::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
+	return dynamic_cast<nordictrackelliptical*>(detectedDevice)!=nullptr;	
 }
 
 QStringList NordicTrackElliptical::get_deviceNames() {
