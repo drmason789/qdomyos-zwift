@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "proformelliptical.h"
 
@@ -47,7 +48,7 @@ void ProFormElliptical::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(ProFormElliptical)
+DECLARE_TEST(ProFormElliptical)
 
 
 

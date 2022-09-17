@@ -3,8 +3,9 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
-#include "skandikawirybike.h"
+#include "skandikawiribike.h"
 
 class SkandikaWiryBike : public BluetoothDevice
 {
@@ -34,7 +35,7 @@ SkandikaWiryBike::~SkandikaWiryBike()
 }
 
 bool SkandikaWiryBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
-	return dynamic_cast<skandikawirybike*>(detectedDevice)!=nullptr;	
+    return dynamic_cast<skandikawiribike*>(detectedDevice)!=nullptr;
 }
 
 QStringList SkandikaWiryBike::get_deviceNames() {
@@ -47,7 +48,7 @@ void SkandikaWiryBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(SkandikaWiryBike)
+DECLARE_TEST(SkandikaWiryBike)
 
 
 

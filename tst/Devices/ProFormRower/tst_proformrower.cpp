@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "proformrower.h"
 
@@ -47,7 +48,7 @@ void ProFormRower::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(ProFormRower)
+DECLARE_TEST(ProFormRower)
 
 
 

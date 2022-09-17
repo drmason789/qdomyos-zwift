@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "elitesterzosmart.h"
 
@@ -47,7 +48,7 @@ void EliteSterzoSmart::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(EliteSterzoSmart)
+DECLARE_TEST(EliteSterzoSmart)
 
 
 

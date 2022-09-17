@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "nautilusbike.h"
 
@@ -47,7 +48,7 @@ void NautilusBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(NautilusBike)
+DECLARE_TEST(NautilusBike)
 
 
 

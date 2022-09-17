@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "nordictrackelliptical.h"
 
@@ -47,7 +48,7 @@ void NordicTrackElliptical::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(NordicTrackElliptical)
+DECLARE_TEST(NordicTrackElliptical)
 
 
 

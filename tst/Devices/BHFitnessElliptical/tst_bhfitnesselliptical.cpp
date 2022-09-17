@@ -1,5 +1,6 @@
 #include <QtTest>
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 
 #include "bhfitnesselliptical.h"
@@ -50,7 +51,7 @@ void BHFitnessElliptical::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(BHFitnessElliptical)
+DECLARE_TEST(BHFitnessElliptical)
 
 #include "tst_bhfitnesselliptical.moc"
 

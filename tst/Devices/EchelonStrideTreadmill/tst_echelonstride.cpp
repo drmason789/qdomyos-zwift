@@ -3,8 +3,8 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-
-#include "echelonstridetreadmill.h"
+#include "autotest.h"
+#include "echelonstride.h"
 
 class EchelonStrideTreadmill : public BluetoothDevice
 {
@@ -34,7 +34,7 @@ EchelonStrideTreadmill::~EchelonStrideTreadmill()
 }
 
 bool EchelonStrideTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
-	return dynamic_cast<echelonstridetreadmill*>(detectedDevice)!=nullptr;	
+    return dynamic_cast<echelonstride*>(detectedDevice)!=nullptr;
 }
 
 QStringList EchelonStrideTreadmill::get_deviceNames() {
@@ -47,7 +47,7 @@ void EchelonStrideTreadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(EchelonStrideTreadmill)
+DECLARE_TEST(EchelonStrideTreadmill)
 
 
 

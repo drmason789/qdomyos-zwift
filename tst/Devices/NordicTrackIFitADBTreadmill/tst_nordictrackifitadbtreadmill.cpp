@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "nordictrackifitadbtreadmill.h"
 
@@ -47,7 +48,7 @@ void NordicTrackIFitADBTreadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(NordicTrackIFitADBTreadmill)
+DECLARE_TEST(NordicTrackIFitADBTreadmill)
 
 
 

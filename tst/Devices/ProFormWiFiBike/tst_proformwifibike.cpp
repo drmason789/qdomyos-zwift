@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "proformwifibike.h"
 
@@ -47,7 +48,7 @@ void ProFormWiFiBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(ProFormWiFiBike)
+DECLARE_TEST(ProFormWiFiBike)
 
 
 

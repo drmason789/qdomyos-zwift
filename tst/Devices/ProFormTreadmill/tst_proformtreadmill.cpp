@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "proformtreadmill.h"
 
@@ -47,7 +48,7 @@ void ProFormTreadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(ProFormTreadmill)
+DECLARE_TEST(ProFormTreadmill)
 
 
 

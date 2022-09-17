@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "smartrowrower.h"
 
@@ -47,7 +48,7 @@ void SmartRowRower::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(SmartRowRower)
+DECLARE_TEST(SmartRowRower)
 
 
 

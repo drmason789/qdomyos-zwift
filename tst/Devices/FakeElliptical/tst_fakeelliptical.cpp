@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "fakeelliptical.h"
 
@@ -47,7 +48,7 @@ void FakeElliptical::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(FakeElliptical)
+DECLARE_TEST(FakeElliptical)
 
 
 

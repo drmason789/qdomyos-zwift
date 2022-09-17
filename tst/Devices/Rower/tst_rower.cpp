@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "rower.h"
 
@@ -47,7 +48,7 @@ void Rower::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(Rower)
+DECLARE_TEST(Rower)
 
 
 

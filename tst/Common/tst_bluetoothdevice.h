@@ -8,6 +8,7 @@
 // add necessary includes here
 #include "bluetoothdevice.h"
 
+
 class BluetoothDevice : public QObject
 {
     Q_OBJECT
@@ -21,7 +22,7 @@ public:
      */
     virtual QStringList get_deviceNames() { throw std::exception(); }
 
-    virtual bool get_isExpectedDevice(bluetoothdevice * detectedDevice) { throw std::exception(); }
+    virtual bool get_isExpectedDevice(bluetoothdevice * detectedDevice);
 
 private slots:
     void test_deviceDetection();

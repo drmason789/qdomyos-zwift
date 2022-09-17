@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "inspirebike.h"
 
@@ -47,7 +48,7 @@ void InspireBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(InspireBike)
+DECLARE_TEST(InspireBike)
 
 
 

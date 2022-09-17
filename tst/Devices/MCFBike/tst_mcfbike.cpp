@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "mcfbike.h"
 
@@ -47,7 +48,7 @@ void MCFBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(MCFBike)
+DECLARE_TEST(MCFBike)
 
 
 

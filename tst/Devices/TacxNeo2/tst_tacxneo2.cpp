@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "tacxneo2.h"
 
@@ -47,7 +48,7 @@ void TacxNeo2::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(TacxNeo2)
+DECLARE_TEST(TacxNeo2)
 
 
 

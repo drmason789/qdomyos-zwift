@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "ftmsbike.h"
 
@@ -47,7 +48,7 @@ void FTMSBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(FTMSBike)
+DECLARE_TEST(FTMSBike)
 
 
 

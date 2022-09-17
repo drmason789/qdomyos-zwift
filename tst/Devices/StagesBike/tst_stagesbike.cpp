@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "stagesbike.h"
 
@@ -47,7 +48,7 @@ void StagesBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(StagesBike)
+DECLARE_TEST(StagesBike)
 
 
 

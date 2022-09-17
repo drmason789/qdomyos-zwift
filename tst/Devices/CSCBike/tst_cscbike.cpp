@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "cscbike.h"
 
@@ -47,7 +48,7 @@ void CSCBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(CSCBike)
+DECLARE_TEST(CSCBike)
 
 
 

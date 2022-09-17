@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "paferstreadmill.h"
 
@@ -47,7 +48,7 @@ void PafersTreadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(PafersTreadmill)
+DECLARE_TEST(PafersTreadmill)
 
 
 

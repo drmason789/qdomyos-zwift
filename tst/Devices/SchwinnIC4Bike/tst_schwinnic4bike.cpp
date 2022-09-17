@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "schwinnic4bike.h"
 
@@ -47,7 +48,7 @@ void SchwinnIC4Bike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(SchwinnIC4Bike)
+DECLARE_TEST(SchwinnIC4Bike)
 
 
 

@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "fitshowtreadmill.h"
 
@@ -47,7 +48,7 @@ void FitshowTreadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(FitshowTreadmill)
+DECLARE_TEST(FitshowTreadmill)
 
 
 

@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "bowflextreadmill.h"
 
@@ -47,7 +48,7 @@ void BowflexTreadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(BowflexTreadmill)
+DECLARE_TEST(BowflexTreadmill)
 
 
 #include "tst_bowflextreadmill.moc"

@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "wahookickrsnapbike.h"
 
@@ -47,7 +48,7 @@ void WahooKickrSnapBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(WahooKickrSnapBike)
+DECLARE_TEST(WahooKickrSnapBike)
 
 
 

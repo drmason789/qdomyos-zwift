@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "horizongr7bike.h"
 
@@ -47,7 +48,7 @@ void HorizonGR7Bike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(HorizonGR7Bike)
+DECLARE_TEST(HorizonGR7Bike)
 
 
 

@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "domyosrower.h"
 
@@ -52,7 +53,7 @@ void DomyosRower::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(DomyosRower)
+DECLARE_TEST(DomyosRower)
 
 
 

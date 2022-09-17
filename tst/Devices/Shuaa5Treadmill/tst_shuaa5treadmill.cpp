@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "shuaa5treadmill.h"
 
@@ -47,7 +48,7 @@ void Shuaa5Treadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(Shuaa5Treadmill)
+DECLARE_TEST(Shuaa5Treadmill)
 
 
 

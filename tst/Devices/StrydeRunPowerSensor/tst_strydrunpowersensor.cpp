@@ -3,8 +3,9 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
-#include "stryderunpowersensor.h"
+#include "strydrunpowersensor.h"
 
 class StrydeRunPowerSensor : public BluetoothDevice
 {
@@ -34,7 +35,7 @@ StrydeRunPowerSensor::~StrydeRunPowerSensor()
 }
 
 bool StrydeRunPowerSensor::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
-	return dynamic_cast<stryderunpowersensor*>(detectedDevice)!=nullptr;	
+    return dynamic_cast<strydrunpowersensor*>(detectedDevice)!=nullptr;
 }
 
 QStringList StrydeRunPowerSensor::get_deviceNames() {
@@ -47,7 +48,7 @@ void StrydeRunPowerSensor::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(StrydeRunPowerSensor)
+DECLARE_TEST(StrydeRunPowerSensor)
 
 
 

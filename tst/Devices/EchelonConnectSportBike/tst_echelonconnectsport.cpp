@@ -3,8 +3,9 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
-#include "echelonconnectsportbike.h"
+#include "echelonconnectsport.h"
 
 class EchelonConnectSportBike : public BluetoothDevice
 {
@@ -34,7 +35,7 @@ EchelonConnectSportBike::~EchelonConnectSportBike()
 }
 
 bool EchelonConnectSportBike::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
-	return dynamic_cast<echelonconnectsportbike*>(detectedDevice)!=nullptr;	
+    return dynamic_cast<echelonconnectsport*>(detectedDevice)!=nullptr;
 }
 
 QStringList EchelonConnectSportBike::get_deviceNames() {
@@ -47,7 +48,7 @@ void EchelonConnectSportBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(EchelonConnectSportBike)
+DECLARE_TEST(EchelonConnectSportBike)
 
 
 

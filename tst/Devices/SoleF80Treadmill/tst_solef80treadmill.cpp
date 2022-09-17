@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "solef80treadmill.h"
 
@@ -47,7 +48,7 @@ void SoleF80Treadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(SoleF80Treadmill)
+DECLARE_TEST(SoleF80Treadmill)
 
 
 

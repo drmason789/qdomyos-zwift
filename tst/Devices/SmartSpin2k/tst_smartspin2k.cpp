@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "smartspin2k.h"
 
@@ -47,7 +48,7 @@ void SmartSpin2k::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(SmartSpin2k)
+DECLARE_TEST(SmartSpin2k)
 
 
 

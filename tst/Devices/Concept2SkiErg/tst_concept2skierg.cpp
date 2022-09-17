@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "concept2skierg.h"
 
@@ -47,7 +48,7 @@ void Concept2SkiErg::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(Concept2SkiErg)
+DECLARE_TEST(Concept2SkiErg)
 
 
 

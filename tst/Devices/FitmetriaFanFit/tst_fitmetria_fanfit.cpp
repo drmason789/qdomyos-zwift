@@ -3,8 +3,9 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
-#include "fitmetriafanfit.h"
+#include "fitmetria_fanfit.h"
 
 class FitmetriaFanFit : public BluetoothDevice
 {
@@ -34,7 +35,7 @@ FitmetriaFanFit::~FitmetriaFanFit()
 }
 
 bool FitmetriaFanFit::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
-	return dynamic_cast<fitmetriafanfit*>(detectedDevice)!=nullptr;	
+    return dynamic_cast<fitmetria_fanfit*>(detectedDevice)!=nullptr;
 }
 
 QStringList FitmetriaFanFit::get_deviceNames() {
@@ -47,7 +48,7 @@ void FitmetriaFanFit::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(FitmetriaFanFit)
+DECLARE_TEST(FitmetriaFanFit)
 
 
 

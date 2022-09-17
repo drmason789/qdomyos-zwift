@@ -4,6 +4,8 @@
 // add necessary includes here
 #include "activiotreadmill.h"
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
+
 
 class ActivioTreadmill : public BluetoothDevice
 {
@@ -53,7 +55,7 @@ void ActivioTreadmill::test_case1()
     delete treadmill;
 }
 
-QTEST_APPLESS_MAIN(ActivioTreadmill)
+DECLARE_TEST(ActivioTreadmill)
 
 #include "tst_activiotreadmill.moc"
 

@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "trxappgateusbbike.h"
 
@@ -47,7 +48,7 @@ void TrxAppGateUSBBike::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(TrxAppGateUSBBike)
+DECLARE_TEST(TrxAppGateUSBBike)
 
 
 

@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "domyostreadmill.h"
 
@@ -47,7 +48,7 @@ void DomyosTreadmill::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(DomyosTreadmill)
+DECLARE_TEST(DomyosTreadmill)
 
 
 

@@ -3,6 +3,7 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
+#include "autotest.h"
 
 #include "technogymmyruntreadmillrfcomm.h"
 
@@ -47,7 +48,7 @@ void TechnogymMyRunTreadmillRFComm::test_case1()
 
 }
 
-QTEST_APPLESS_MAIN(TechnogymMyRunTreadmillRFComm)
+DECLARE_TEST(TechnogymMyRunTreadmillRFComm)
 
 
 
