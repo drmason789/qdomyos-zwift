@@ -95,7 +95,8 @@ SOURCES += \
     Devices/UltrasportBike/tst_ultrasportbike.cpp \
     Devices/WahooKickrSnapBike/tst_wahookickrsnapbike.cpp \
     Devices/YesoulBike/tst_yesoulbike.cpp \
-    Devices/iConceptBike/tst_iconceptbike.cpp
+    Devices/iConceptBike/tst_iconceptbike.cpp \
+    main.cpp
 
 
 

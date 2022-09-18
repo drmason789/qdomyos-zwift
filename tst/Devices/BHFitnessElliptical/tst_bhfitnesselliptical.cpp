@@ -21,6 +21,8 @@ private slots:
 	
 };
 
+
+
 BHFitnessElliptical::BHFitnessElliptical()
 {
 

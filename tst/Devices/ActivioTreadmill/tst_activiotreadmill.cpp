@@ -9,19 +9,21 @@
 
 class ActivioTreadmill : public BluetoothDevice
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	ActivioTreadmill();
-	~ActivioTreadmill();
+    ActivioTreadmill();
+    ~ActivioTreadmill();
 
     QStringList get_deviceNames() override;
     bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
 
 private slots:
     void test_case1();
-	
+
 };
+
+DECLARE_TEST(ActivioTreadmill)
 
 ActivioTreadmill::ActivioTreadmill()
 {
@@ -54,8 +56,6 @@ void ActivioTreadmill::test_case1()
     activiotreadmill * treadmill = new activiotreadmill();
     delete treadmill;
 }
-
-DECLARE_TEST(ActivioTreadmill)
 
 #include "tst_activiotreadmill.moc"
 
