@@ -13,6 +13,7 @@ class TechnoGymMyRunTreadmill : public BluetoothDevice
 
 public:
 	// QTEST macro so that QtCreator recognises the test
+	// This is inside the class definition to avoid repeated definitions.
 	QTEST_APPLESS_MAIN(TechnoGymMyRunTreadmill)
 
 	TechnoGymMyRunTreadmill();
