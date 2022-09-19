@@ -8,7 +8,6 @@
 // add necessary includes here
 #include "bluetoothdevice.h"
 
-
 class BluetoothDevice : public QObject
 {
     Q_OBJECT

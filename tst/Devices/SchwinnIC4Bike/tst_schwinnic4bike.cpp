@@ -12,6 +12,9 @@ class SchwinnIC4Bike : public BluetoothDevice
 	Q_OBJECT
 
 public:
+	// QTEST macro so that QtCreator recognises the test
+	QTEST_APPLESS_MAIN(SchwinnIC4Bike)
+
 	SchwinnIC4Bike();
 	~SchwinnIC4Bike();
 

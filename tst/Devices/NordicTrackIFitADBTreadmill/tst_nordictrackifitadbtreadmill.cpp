@@ -2,21 +2,21 @@
 
 // add necessary includes here
 
-#include "tst_bluetoothdevice.h"
+//#include "tst_bluetoothdevice.h"
 #include "autotest.h"
 
-#include "nordictrackifitadbtreadmill.h"
-
-class NordicTrackIFitADBTreadmill : public BluetoothDevice
+class NordicTrackIFitADBTreadmill : public QObject
 {
 	Q_OBJECT
 
 public:
+	// QTEST macro so that QtCreator recognises the test
+	QTEST_APPLESS_MAIN(NordicTrackIFitADBTreadmill)
+
 	NordicTrackIFitADBTreadmill();
 	~NordicTrackIFitADBTreadmill();
 
-	QStringList get_deviceNames() override;
-	bool get_isExpectedDevice(bluetoothdevice * detectedDevice) override;
+
     
 
 private slots:
@@ -34,14 +34,7 @@ NordicTrackIFitADBTreadmill::~NordicTrackIFitADBTreadmill()
 
 }
 
-bool NordicTrackIFitADBTreadmill::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
-	return dynamic_cast<nordictrackifitadbtreadmill*>(detectedDevice)!=nullptr;	
-}
 
-QStringList NordicTrackIFitADBTreadmill::get_deviceNames() {
-	QStringList result;
-	return result;
- }
 
 void NordicTrackIFitADBTreadmill::test_case1()
 {

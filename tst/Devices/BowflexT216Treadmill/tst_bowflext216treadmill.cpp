@@ -12,7 +12,10 @@ class BowflexT216Treadmill : public BluetoothDevice
 	Q_OBJECT
 
 public:
-    BowflexT216Treadmill();
+	// QTEST macro so that QtCreator recognises the test
+	QTEST_APPLESS_MAIN(BowflexT216Treadmill)
+
+	BowflexT216Treadmill();
     ~BowflexT216Treadmill();
 
 	QStringList get_deviceNames() override;

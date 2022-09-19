@@ -1,6 +1,6 @@
 include(qdomyos-zwift-tests.pri)
 
-TEMPLATE = lib
+TEMPLATE = app
 
 QT += testlib
 QT -= gui

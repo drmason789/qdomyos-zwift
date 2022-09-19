@@ -12,6 +12,9 @@ class SmartSpin2k : public BluetoothDevice
 	Q_OBJECT
 
 public:
+	// QTEST macro so that QtCreator recognises the test
+	QTEST_APPLESS_MAIN(SmartSpin2k)
+
 	SmartSpin2k();
 	~SmartSpin2k();
 

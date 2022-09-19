@@ -6,13 +6,15 @@
 #include "tst_bluetoothdevice.h"
 #include "autotest.h"
 
-
 class ActivioTreadmill : public BluetoothDevice
 {
     Q_OBJECT
 
 public:
-    ActivioTreadmill();
+	// QTEST macro so that QtCreator recognises the test
+	QTEST_APPLESS_MAIN(ActivioTreadmill)
+
+	ActivioTreadmill();
     ~ActivioTreadmill();
 
     QStringList get_deviceNames() override;

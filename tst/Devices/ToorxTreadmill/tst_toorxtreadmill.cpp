@@ -12,6 +12,9 @@ class ToorxTreadmill : public BluetoothDevice
 	Q_OBJECT
 
 public:
+	// QTEST macro so that QtCreator recognises the test
+	QTEST_APPLESS_MAIN(ToorxTreadmill)
+
 	ToorxTreadmill();
 	~ToorxTreadmill();
 

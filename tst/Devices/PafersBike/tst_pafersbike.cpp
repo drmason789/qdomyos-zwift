@@ -12,6 +12,9 @@ class PafersBike : public BluetoothDevice
 	Q_OBJECT
 
 public:
+	// QTEST macro so that QtCreator recognises the test
+	QTEST_APPLESS_MAIN(PafersBike)
+
 	PafersBike();
 	~PafersBike();
 
