@@ -1,6 +1,5 @@
 #include <QtTest>
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 
 #include "bhfitnesselliptical.h"
@@ -10,10 +9,6 @@ class BHFitnessElliptical : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(BHFitnessElliptical)
-
 	BHFitnessElliptical();
 	~BHFitnessElliptical();
 
@@ -24,8 +19,6 @@ private slots:
     void test_case1();
 	
 };
-
-
 
 BHFitnessElliptical::BHFitnessElliptical()
 {
@@ -57,7 +50,7 @@ void BHFitnessElliptical::test_case1()
 
 }
 
-DECLARE_TEST(BHFitnessElliptical)
+QTEST_APPLESS_MAIN(BHFitnessElliptical)
 
 #include "tst_bhfitnesselliptical.moc"
 

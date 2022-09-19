@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "tacxneo2.h"
 
@@ -12,10 +11,6 @@ class TacxNeo2 : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(TacxNeo2)
-
 	TacxNeo2();
 	~TacxNeo2();
 
@@ -52,7 +47,7 @@ void TacxNeo2::test_case1()
 
 }
 
-DECLARE_TEST(TacxNeo2)
+QTEST_APPLESS_MAIN(TacxNeo2)
 
 
 

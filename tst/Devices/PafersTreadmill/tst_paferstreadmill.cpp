@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "paferstreadmill.h"
 
@@ -12,10 +11,6 @@ class PafersTreadmill : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(PafersTreadmill)
-
 	PafersTreadmill();
 	~PafersTreadmill();
 
@@ -52,7 +47,7 @@ void PafersTreadmill::test_case1()
 
 }
 
-DECLARE_TEST(PafersTreadmill)
+QTEST_APPLESS_MAIN(PafersTreadmill)
 
 
 

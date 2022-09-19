@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "shuaa5treadmill.h"
 
@@ -12,10 +11,6 @@ class Shuaa5Treadmill : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(Shuaa5Treadmill)
-
 	Shuaa5Treadmill();
 	~Shuaa5Treadmill();
 
@@ -52,7 +47,7 @@ void Shuaa5Treadmill::test_case1()
 
 }
 
-DECLARE_TEST(Shuaa5Treadmill)
+QTEST_APPLESS_MAIN(Shuaa5Treadmill)
 
 
 

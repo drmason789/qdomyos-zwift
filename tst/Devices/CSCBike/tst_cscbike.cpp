@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "cscbike.h"
 
@@ -12,10 +11,6 @@ class CSCBike : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(CSCBike)
-
 	CSCBike();
 	~CSCBike();
 
@@ -52,7 +47,7 @@ void CSCBike::test_case1()
 
 }
 
-DECLARE_TEST(CSCBike)
+QTEST_APPLESS_MAIN(CSCBike)
 
 
 

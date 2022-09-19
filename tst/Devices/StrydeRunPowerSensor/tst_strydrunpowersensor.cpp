@@ -3,19 +3,14 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
-#include "strydrunpowersensor.h"
+#include "stryderunpowersensor.h"
 
 class StrydeRunPowerSensor : public BluetoothDevice
 {
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(StrydeRunPowerSensor)
-
 	StrydeRunPowerSensor();
 	~StrydeRunPowerSensor();
 
@@ -39,7 +34,7 @@ StrydeRunPowerSensor::~StrydeRunPowerSensor()
 }
 
 bool StrydeRunPowerSensor::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
-    return dynamic_cast<strydrunpowersensor*>(detectedDevice)!=nullptr;
+	return dynamic_cast<stryderunpowersensor*>(detectedDevice)!=nullptr;	
 }
 
 QStringList StrydeRunPowerSensor::get_deviceNames() {
@@ -52,7 +47,7 @@ void StrydeRunPowerSensor::test_case1()
 
 }
 
-DECLARE_TEST(StrydeRunPowerSensor)
+QTEST_APPLESS_MAIN(StrydeRunPowerSensor)
 
 
 

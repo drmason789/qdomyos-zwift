@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "concept2skierg.h"
 
@@ -12,10 +11,6 @@ class Concept2SkiErg : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(Concept2SkiErg)
-
 	Concept2SkiErg();
 	~Concept2SkiErg();
 
@@ -52,7 +47,7 @@ void Concept2SkiErg::test_case1()
 
 }
 
-DECLARE_TEST(Concept2SkiErg)
+QTEST_APPLESS_MAIN(Concept2SkiErg)
 
 
 

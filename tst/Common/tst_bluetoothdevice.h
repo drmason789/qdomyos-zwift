@@ -21,7 +21,7 @@ public:
      */
     virtual QStringList get_deviceNames() { throw std::exception(); }
 
-    virtual bool get_isExpectedDevice(bluetoothdevice * detectedDevice);
+    virtual bool get_isExpectedDevice(bluetoothdevice * detectedDevice) { throw std::exception(); }
 
 private slots:
     void test_deviceDetection();

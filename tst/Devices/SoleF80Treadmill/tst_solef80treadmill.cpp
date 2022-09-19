@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "solef80treadmill.h"
 
@@ -12,10 +11,6 @@ class SoleF80Treadmill : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(SoleF80Treadmill)
-
 	SoleF80Treadmill();
 	~SoleF80Treadmill();
 
@@ -52,7 +47,7 @@ void SoleF80Treadmill::test_case1()
 
 }
 
-DECLARE_TEST(SoleF80Treadmill)
+QTEST_APPLESS_MAIN(SoleF80Treadmill)
 
 
 

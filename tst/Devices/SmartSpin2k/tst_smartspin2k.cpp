@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "smartspin2k.h"
 
@@ -12,10 +11,6 @@ class SmartSpin2k : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(SmartSpin2k)
-
 	SmartSpin2k();
 	~SmartSpin2k();
 
@@ -52,7 +47,7 @@ void SmartSpin2k::test_case1()
 
 }
 
-DECLARE_TEST(SmartSpin2k)
+QTEST_APPLESS_MAIN(SmartSpin2k)
 
 
 

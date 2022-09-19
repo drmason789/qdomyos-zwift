@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "bowflext216treadmill.h"
 
@@ -12,11 +11,7 @@ class BowflexT216Treadmill : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(BowflexT216Treadmill)
-
-	BowflexT216Treadmill();
+    BowflexT216Treadmill();
     ~BowflexT216Treadmill();
 
 	QStringList get_deviceNames() override;
@@ -52,6 +47,6 @@ void BowflexT216Treadmill::test_case1()
 
 }
 
-DECLARE_TEST(BowflexT216Treadmill)
+QTEST_APPLESS_MAIN(BowflexT216Treadmill)
 
 #include "tst_bowflext216treadmill.moc"

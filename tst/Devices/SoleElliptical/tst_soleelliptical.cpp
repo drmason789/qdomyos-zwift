@@ -3,7 +3,6 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
 #include "soleelliptical.h"
 
@@ -12,10 +11,6 @@ class SoleElliptical : public BluetoothDevice
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(SoleElliptical)
-
 	SoleElliptical();
 	~SoleElliptical();
 
@@ -52,7 +47,7 @@ void SoleElliptical::test_case1()
 
 }
 
-DECLARE_TEST(SoleElliptical)
+QTEST_APPLESS_MAIN(SoleElliptical)
 
 
 

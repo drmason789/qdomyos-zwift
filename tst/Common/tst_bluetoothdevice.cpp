@@ -14,13 +14,6 @@ BluetoothDevice::~BluetoothDevice()
 
 }
 
-bool BluetoothDevice::get_isExpectedDevice(bluetoothdevice *detectedDevice) {
-    throw std::exception();
-
-    // do something with the parameter to avoid the compiler warning.
-    return detectedDevice!=nullptr;
-}
-
 
 void BluetoothDevice::test_deviceDetection()
 {

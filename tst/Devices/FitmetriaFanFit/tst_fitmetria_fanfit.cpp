@@ -3,19 +3,14 @@
 // add necessary includes here
 
 #include "tst_bluetoothdevice.h"
-#include "autotest.h"
 
-#include "fitmetria_fanfit.h"
+#include "fitmetriafanfit.h"
 
 class FitmetriaFanFit : public BluetoothDevice
 {
 	Q_OBJECT
 
 public:
-	// QTEST macro so that QtCreator recognises the test
-	// This is inside the class definition to avoid repeated definitions.
-	QTEST_APPLESS_MAIN(FitmetriaFanFit)
-
 	FitmetriaFanFit();
 	~FitmetriaFanFit();
 
@@ -39,7 +34,7 @@ FitmetriaFanFit::~FitmetriaFanFit()
 }
 
 bool FitmetriaFanFit::get_isExpectedDevice(bluetoothdevice * detectedDevice) {
-    return dynamic_cast<fitmetria_fanfit*>(detectedDevice)!=nullptr;
+	return dynamic_cast<fitmetriafanfit*>(detectedDevice)!=nullptr;	
 }
 
 QStringList FitmetriaFanFit::get_deviceNames() {
@@ -52,7 +47,7 @@ void FitmetriaFanFit::test_case1()
 
 }
 
-DECLARE_TEST(FitmetriaFanFit)
+QTEST_APPLESS_MAIN(FitmetriaFanFit)
 
 
 
