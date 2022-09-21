@@ -5,13 +5,14 @@ TEMPLATE = subdirs
 QT += testlib
 QT -= gui
 
-CONFIG += qt console warn_on depend_includepath testcase
+CONFIG += qt console warn_on depend_includepath testcase ordered
 CONFIG -= app_bundle
 
 INCLUDEPATH += src/qmdnsengine/src/include
 
-SUBDIRS = Devices \
-    Common
+SUBDIRS = \
+    Common \
+	Devices
 
 Devices.depends = Common
 
