@@ -778,7 +778,7 @@ discovereddevice bluetooth::discoverDevice(const devicediscoveryinfo& info, cons
                   b.name().toUpper().contains(QStringLiteral("CR011R")) ||
                   b.name().toUpper().startsWith(QStringLiteral("DKN MOTION"))) &&
                  (info.toorx_bike))) &&
-               !!info.excludes(deviceType::TrxAppGateUSBTreadmill) && filter) {
+                 !info.excludes(deviceType::TrxAppGateUSBTreadmill) && filter) {
         result = deviceType::TrxAppGateUSBBike;
     } else if ((b.name().toUpper().startsWith(QStringLiteral("X-BIKE"))) && filter) {
         result = deviceType::UltraSportBike;
