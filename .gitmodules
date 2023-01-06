@@ -5,8 +5,8 @@
 	path = src/smtpclient
 	url = https://github.com/cagnulein/SmtpClient-for-Qt.git
 	branch = cagnulein-patch-2
-[submodule "lib/qmdnsengine"]
-	path = lib/qmdnsengine
+[submodule "src/qmdnsengine"]
+	path = src/qmdnsengine
 	url = https://github.com/cagnulein/qmdnsengine.git
 	branch = zwift
 [submodule "tst/googletest"]
