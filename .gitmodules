@@ -9,3 +9,6 @@
 	path = tst/googletest
 	url = https://github.com/google/googletest.git
 	branch = tags/release-1.12.1
+[submodule "lib/qmdnsengine"]
+	path = lib/qmdnsengine
+	url = https://github.com/cagnulein/qmdnsengine.git
