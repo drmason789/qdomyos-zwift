@@ -12,3 +12,4 @@
 [submodule "lib/qmdnsengine"]
 	path = lib/qmdnsengine
 	url = https://github.com/cagnulein/qmdnsengine.git
+	branch=zwift
