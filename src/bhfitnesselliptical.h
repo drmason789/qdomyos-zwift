@@ -74,9 +74,7 @@ class bhfitnesselliptical : public elliptical {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    qzlockscreen *h = 0;
 
   Q_SIGNALS:
     void disconnected();

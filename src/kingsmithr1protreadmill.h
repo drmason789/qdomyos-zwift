@@ -31,9 +31,9 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+#include "qzlockscreen.h"
+
 
 class kingsmithr1protreadmill : public treadmill {
 
@@ -91,9 +91,9 @@ class kingsmithr1protreadmill : public treadmill {
     bool targetSpeedMatchesSpeed = false;
     double lastTargetSpeedMatchesSpeed = -1;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+    qzlockscreen *h = 0;
+
 
   Q_SIGNALS:
     void disconnected();

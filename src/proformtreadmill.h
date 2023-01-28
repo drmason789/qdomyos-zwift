@@ -30,9 +30,8 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+#include "qzlockscreen.h"
+
 
 class proformtreadmill : public treadmill {
     Q_OBJECT
@@ -75,9 +74,8 @@ class proformtreadmill : public treadmill {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    qzlockscreen *h = 0;
+
 
   signals:
     void disconnected();

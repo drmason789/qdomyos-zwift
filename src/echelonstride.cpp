@@ -1,5 +1,4 @@
 #include "echelonstride.h"
-#include "ios/lockscreen.h"
 #include "keepawakehelper.h"
 #include "virtualtreadmill.h"
 #include <QBluetoothLocalDevice>
@@ -300,19 +299,9 @@ void echelonstride::characteristicChanged(const QLowEnergyCharacteristic &charac
 #endif
     {
         if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-
             uint8_t heart = ((uint8_t)newValue.at(11));
             if (heart == 0) {
-#ifdef Q_OS_IOS
-#ifndef IO_UNDER_QT
-                lockscreen h;
-                long appleWatchHeartRate = h.heartRate();
-                h.setKcal(KCal.value());
-                h.setDistance(Distance.value());
-                Heart = appleWatchHeartRate;
-                qDebug() << "Current Heart from Apple Watch: " + QString::number(appleWatchHeartRate);
-#endif
-#endif
+                qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
             } else {
                 Heart = heart;
             }

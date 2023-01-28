@@ -30,9 +30,7 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+#include "qzlockscreen.h"
 
 class proformelliptical : public elliptical {
     Q_OBJECT
@@ -76,9 +74,7 @@ class proformelliptical : public elliptical {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    qzlockscreen *h = 0;
 
   signals:
     void disconnected();

@@ -63,6 +63,7 @@ DEFINES += QT_DEPRECATED_WARNINGS IO_UNDER_QT SMTP_BUILD
 # include(../qtzeroconf/qtzeroconf.pri)
 
 SOURCES += \
+    $$PWD/qzlockscreen.cpp \
    Computrainer.cpp \
    PathController.cpp \
     characteristicnotifier2a53.cpp \
@@ -254,6 +255,7 @@ INCLUDEPATH += fit-sdk/
 
 HEADERS += \
     $$PWD/discoveryoptions.h \
+    $$PWD/qzlockscreen.h \
    Computrainer.h \
    PathController.h \
     characteristicnotifier2a53.h \

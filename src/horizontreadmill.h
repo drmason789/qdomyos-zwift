@@ -32,9 +32,7 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+#include "qzlockscreen.h"
 
 class horizontreadmill : public treadmill {
     Q_OBJECT
@@ -160,9 +158,9 @@ class horizontreadmill : public treadmill {
                                 0x23, 0x00, 0x00, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30};
     // profiles end
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+    qzlockscreen *h = 0;
+
 
   signals:
     void disconnected();

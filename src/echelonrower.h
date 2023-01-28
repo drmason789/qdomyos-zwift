@@ -30,9 +30,8 @@
 #include "virtualbike.h"
 #include "virtualrower.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+#include "qzlockscreen.h"
+
 
 class echelonrower : public rower {
     Q_OBJECT
@@ -84,9 +83,9 @@ class echelonrower : public rower {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+    qzlockscreen *h = 0;
+
 
   Q_SIGNALS:
     void disconnected();
