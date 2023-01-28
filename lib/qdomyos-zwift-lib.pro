@@ -123,6 +123,7 @@ SOURCES += \
     Devices/yesoulbike.cpp \
     keepawakehelper.cpp \
     metric.cpp \
+    qzlockscreen.cpp \
     qzsettings.cpp \
     sessionline.cpp
 
@@ -241,6 +242,7 @@ HEADERS += \
     metric.h \
     qdebugfixup.h \
     qmdnsengine_export.h \
+    qzlockscreen.h \
     qzsettings.h \
     sessionline.h
 

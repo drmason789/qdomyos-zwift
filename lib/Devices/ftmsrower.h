@@ -29,9 +29,8 @@
 #include "rower.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+#include "qzlockscreen.h"
+
 
 class ftmsrower : public rower {
     Q_OBJECT
@@ -70,9 +69,9 @@ class ftmsrower : public rower {
     bool filterWattNull = false;
     bool WHIPR = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+    qzlockscreen *h = 0;
+
 
   Q_SIGNALS:
     void disconnected();

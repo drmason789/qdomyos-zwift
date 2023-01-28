@@ -78,9 +78,7 @@ class activiotreadmill : public treadmill {
     bool initDone = false;
     bool initRequest = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    qzlockscreen *h=0;
 
   Q_SIGNALS:
     void disconnected();

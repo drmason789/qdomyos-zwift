@@ -29,9 +29,8 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+#include "qzlockscreen.h"
+
 
 class yesoulbike : public bike {
     Q_OBJECT
@@ -79,9 +78,8 @@ class yesoulbike : public bike {
     uint8_t bikeResistanceOffset = 4;
     double bikeResistanceGain = 1.0;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    qzlockscreen *h = 0;
+
 
   signals:
     void disconnected();

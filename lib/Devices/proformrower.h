@@ -31,9 +31,7 @@
 #include "virtualrower.h"
 #include "virtualtreadmill.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+#include "qzlockscreen.h"
 
 class proformrower : public rower {
     Q_OBJECT
@@ -79,9 +77,7 @@ class proformrower : public rower {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    qzlockscreen *h = 0;
 
   signals:
     void disconnected();

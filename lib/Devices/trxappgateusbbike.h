@@ -28,9 +28,9 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+#include "qzlockscreen.h"
+
 
 class trxappgateusbbike : public bike {
     Q_OBJECT
@@ -62,9 +62,8 @@ class trxappgateusbbike : public bike {
     QTimer *refresh;
     virtualbike *virtualBike = nullptr;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    qzlockscreen *h = 0;
+
 
     uint8_t bikeResistanceOffset = 4;
     double bikeResistanceGain = 1.0;

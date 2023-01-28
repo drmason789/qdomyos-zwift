@@ -29,9 +29,9 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+#include "qzlockscreen.h"
+
 
 class proformbike : public bike {
     Q_OBJECT
@@ -83,9 +83,9 @@ class proformbike : public bike {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+    qzlockscreen *h = 0;
+
 
   signals:
     void disconnected();

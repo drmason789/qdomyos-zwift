@@ -29,9 +29,9 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+#include "qzlockscreen.h"
+
 
 class tacxneo2 : public bike {
     Q_OBJECT
@@ -76,9 +76,9 @@ class tacxneo2 : public bike {
     uint16_t oldCrankRevs = 0;
     uint16_t CrankRevsRead = 0;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+    qzlockscreen *h = 0;
+
 
   signals:
     void disconnected();

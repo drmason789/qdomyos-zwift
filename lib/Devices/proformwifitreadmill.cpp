@@ -1,5 +1,4 @@
 #include "proformwifitreadmill.h"
-#include "ios/lockscreen.h"
 #include "keepawakehelper.h"
 #include "virtualbike.h"
 #include <QDateTime>
@@ -7,7 +6,7 @@
 #include <QMetaEnum>
 #include <QSettings>
 #include <QThread>
-#include <QtXml>
+//#include <QtXml>
 #include <chrono>
 #include <math.h>
 
@@ -238,29 +237,12 @@ void proformwifitreadmill::characteristicChanged(const QString &newValue) {
 #endif
     {
         if (disable_hr_frommachinery && heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-#ifdef Q_OS_IOS
-#ifndef IO_UNDER_QT
-            lockscreen h;
-            long appleWatchHeartRate = h.heartRate();
-            h.setKcal(KCal.value());
-            h.setDistance(Distance.value());
-            Heart = appleWatchHeartRate;
-            debug("Current Heart from Apple Watch: " + QString::number(appleWatchHeartRate));
-#endif
-#endif
+            qzlockscreen::Update(this->KCal.value(), this->Distance.value(), this->Heart);
         }
     }
 
-#ifdef Q_OS_IOS
-#ifndef IO_UNDER_QT
-    bool cadence = settings.value(QZSettings::bike_cadence_sensor, QZSettings::default_bike_cadence_sensor).toBool();
-    bool ios_peloton_workaround = settings.value(QZSettings::ios_peloton_workaround, QZSettings::default_ios_peloton_workaround).toBool();
-    if (ios_peloton_workaround && cadence && h && firstStateChanged) {
-        h->virtualbike_setCadence(currentCrankRevolutions(), lastCrankEventTime());
-        h->virtualbike_setHeartRate((uint8_t)metrics_override_heartrate());
-    }
-#endif
-#endif
+    if(this->firstStateChanged && this->h)
+        this->h->pelotonUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
 
     /*
     emit debug(QStringLiteral("Current Resistance: ") + QString::number(Resistance.value()));

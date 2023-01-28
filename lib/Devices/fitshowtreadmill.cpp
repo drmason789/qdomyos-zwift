@@ -1,5 +1,4 @@
 #include "fitshowtreadmill.h"
-#include "ios/lockscreen.h"
 #include "keepawakehelper.h"
 #include "virtualtreadmill.h"
 #include <QBluetoothLocalDevice>
@@ -26,9 +25,8 @@ fitshowtreadmill::fitshowtreadmill(uint32_t pollDeviceTime, bool noConsole, bool
     if (forceInitInclination > 0) {
         lastInclination = forceInitInclination;
     }
-#if defined(Q_OS_IOS) && !defined(IO_UNDER_QT)
-    h = new lockscreen();
-#endif
+
+    this->h = qzlockscreen::create();
 
     refresh = new QTimer(this);
     initDone = false;
@@ -47,10 +45,10 @@ fitshowtreadmill::~fitshowtreadmill() {
     if (virtualTreadMill) {
         delete virtualTreadMill;
     }
-#if defined(Q_OS_IOS) && !defined(IO_UNDER_QT)
+
     if (h)
         delete h;
-#endif
+
 }
 
 void fitshowtreadmill::scheduleWrite(const uint8_t *data, uint8_t data_len, const QString &info) {
@@ -483,15 +481,10 @@ void fitshowtreadmill::characteristicChanged(const QLowEnergyCharacteristic &cha
 #endif
                 {
                     if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-#if defined(Q_OS_IOS) && !defined(IO_UNDER_QT)
-                        long appleWatchHeartRate = h->heartRate();
-                        h->setKcal(KCal.value());
-                        h->setDistance(Distance.value());
-                        Heart = appleWatchHeartRate;
-                        debug("Current Heart from Apple Watch: " + QString::number(appleWatchHeartRate));
-#else
-                        Heart = heart;
-#endif
+
+                        if(!qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart))
+                            this->Heart = heart;
+
                     }
                 }
 

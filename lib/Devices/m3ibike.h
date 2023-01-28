@@ -32,8 +32,9 @@
 
 #ifdef Q_OS_IOS
 #include "ios/M3iIOS-Interface.h"
-#include "ios/lockscreen.h"
 #endif
+
+#include "qzlockscreen.h"
 
 typedef struct keiser_m3i_out_s {
     int time = 0;
@@ -191,9 +192,11 @@ class m3ibike : public bike {
     static void newAndroidScanError(JNIEnv *, jobject /*thiz*/, jint code);
 #endif
     QBluetoothDeviceDiscoveryAgent *discoveryAgent = nullptr;
+
+    qzlockscreen *h = 0;
 #ifdef Q_OS_IOS
     M3iIOS *m3iIOS = 0;
-    lockscreen *h = 0;
+
     m3i_result_t m3i_ios_result;
 #endif
 #if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)

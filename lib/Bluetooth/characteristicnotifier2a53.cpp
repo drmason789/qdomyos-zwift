@@ -1,5 +1,5 @@
 #include "characteristicnotifier2a53.h"
-#include "treadmill.h"
+#include "Devices/treadmill.h"
 
 CharacteristicNotifier2A53::CharacteristicNotifier2A53(bluetoothdevice *Bike, QObject *parent)
     : CharacteristicNotifier(0x2a53, parent), Bike(Bike) {}

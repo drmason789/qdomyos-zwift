@@ -29,9 +29,9 @@
 #include "elliptical.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+#include "qzlockscreen.h"
+
 
 class fakeelliptical : public elliptical {
     Q_OBJECT
@@ -62,9 +62,7 @@ class fakeelliptical : public elliptical {
     uint16_t oldLastCrankEventTime = 0;
     uint16_t oldCrankRevs = 0;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    qzlockscreen *h = 0;
 
   signals:
     void disconnected();

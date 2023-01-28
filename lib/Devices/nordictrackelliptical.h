@@ -31,9 +31,9 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+#include "qzlockscreen.h"
+
 
 class nordictrackelliptical : public elliptical {
     Q_OBJECT
@@ -83,10 +83,8 @@ class nordictrackelliptical : public elliptical {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
+    qzlockscreen *h = 0;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
 
   signals:
     void disconnected();

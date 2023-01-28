@@ -1,6 +1,6 @@
 #include "characteristicnotifier2ad2.h"
-#include "elliptical.h"
-#include "treadmill.h"
+#include "Devices/elliptical.h"
+#include "Devices/treadmill.h"
 #include <QSettings>
 
 CharacteristicNotifier2AD2::CharacteristicNotifier2AD2(bluetoothdevice *Bike, QObject *parent)

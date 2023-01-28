@@ -63,13 +63,7 @@ DEFINES += QT_DEPRECATED_WARNINGS IO_UNDER_QT SMTP_BUILD
 # include(../qtzeroconf/qtzeroconf.pri)
 
 SOURCES += \
-
    PathController.cpp \
-
-             bluetooth.cpp \
-                bluetoothdevice.cpp \
-
-
    filedownloader.cpp \
         fit-sdk/fit.cpp \
         fit-sdk/fit_accumulated_field.cpp \
@@ -118,9 +112,10 @@ SOURCES += \
     smtpclient/src/smtpclient.cpp \
     templateinfosender.cpp \
     templateinfosenderbuilder.cpp \
-                  trainprogram.cpp \
-               scanrecordresult.cpp \
-   zwiftworkout.cpp
+    trainprogram.cpp \
+    scanrecordresult.cpp \
+    zwiftworkout.cpp
+
 macx: SOURCES += macos/lockscreen.mm
 !ios: SOURCES += mainwindow.cpp charts.cpp
 
@@ -354,14 +349,12 @@ HEADERS += \
         fit-sdk/fit_zones_target_mesg_listener.hpp \
         homeform.h \
         ios/lockscreen.h \
-        keepawakehelper.h \
         macos/lockscreen.h \
         ios/M3iIOS-Interface.h \
         material.h \
    peloton.h \
    powerzonepack.h \
         qfit.h \
-    qzsettings.h \
    screencapture.h \
    simplecrypt.h \
     smtpclient/src/SmtpMime \
