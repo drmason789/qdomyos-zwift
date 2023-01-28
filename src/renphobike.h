@@ -30,9 +30,6 @@
 #include "ftmsbike.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
 
 class renphobike : public bike {
     Q_OBJECT
@@ -79,10 +76,6 @@ class renphobike : public bike {
     bool noHeartService = false;
 
     metric wattFromBike;
-
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
 
   signals:
     void disconnected();

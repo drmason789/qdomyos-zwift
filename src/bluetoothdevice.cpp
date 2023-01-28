@@ -4,7 +4,14 @@
 #include <QSettings>
 #include <QTime>
 
-bluetoothdevice::bluetoothdevice() {}
+bluetoothdevice::bluetoothdevice() {
+    // let the factory method decide which implementation is appropriate for the platform.
+    this->lockscreenFunctions = QZLockscreenFunctions::create();
+}
+
+bluetoothdevice::~bluetoothdevice() {
+    delete this->lockscreenFunctions;
+}
 
 bluetoothdevice::BLUETOOTH_TYPE bluetoothdevice::deviceType() { return bluetoothdevice::UNKNOWN; }
 void bluetoothdevice::start() { requestStart = 1; }
@@ -93,7 +100,7 @@ QTime bluetoothdevice::maxPace() {
 double bluetoothdevice::odometer() { return Distance.value(); }
 metric bluetoothdevice::calories() { return KCal; }
 metric bluetoothdevice::jouls() { return m_jouls; }
-uint8_t bluetoothdevice::fanSpeed() { return FanSpeed; };
+uint8_t bluetoothdevice::fanSpeed() { return FanSpeed; }
 void *bluetoothdevice::VirtualDevice() { return nullptr; }
 bool bluetoothdevice::changeFanSpeed(uint8_t speed) {
     // managing underflow

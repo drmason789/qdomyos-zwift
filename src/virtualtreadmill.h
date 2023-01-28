@@ -17,9 +17,9 @@
 #else
 #include <QtGui/qguiapplication.h>
 #endif
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+
+
 
 #include <QtCore/qlist.h>
 #include <QtCore/qloggingcategory.h>
@@ -66,9 +66,9 @@ class virtualtreadmill : public QObject {
     bool ftmsTreadmillEnable();
     bool RSCEnable();
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+    
+
 
   signals:
     void debug(QString string);

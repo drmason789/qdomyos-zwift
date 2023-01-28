@@ -21,10 +21,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
-
 class nordictrackifitadbbike : public bike {
     Q_OBJECT
   public:
@@ -63,10 +59,6 @@ class nordictrackifitadbbike : public bike {
 #endif
 
     QString ip;
-
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
 
   signals:
     void disconnected();

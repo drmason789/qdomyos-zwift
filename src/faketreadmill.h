@@ -30,9 +30,6 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
 
 class faketreadmill : public treadmill {
     Q_OBJECT
@@ -61,11 +58,6 @@ class faketreadmill : public treadmill {
     bool noWriteResistance = false;
     bool noHeartService = false;
     bool noVirtualDevice = false;
-
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
-
   signals:
     void disconnected();
     void debug(QString string);

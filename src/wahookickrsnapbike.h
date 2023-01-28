@@ -29,9 +29,9 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+
+
 
 class wahookickrsnapbike : public bike {
     Q_OBJECT
@@ -102,9 +102,8 @@ class wahookickrsnapbike : public bike {
     uint16_t oldLastCrankEventTime = 0;
     uint16_t oldCrankRevs = 0;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+    
+
 
   signals:
     void disconnected();

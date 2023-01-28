@@ -22,9 +22,9 @@
 #include <QtCore/qloggingcategory.h>
 #include <QtCore/qscopedpointer.h>
 #include <QtCore/qtimer.h>
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
+
+
+
 #include "bike.h"
 
 class virtualrower : public QObject {
@@ -54,9 +54,9 @@ class virtualrower : public QObject {
     void writeCharacteristic(QLowEnergyService *service, const QLowEnergyCharacteristic &characteristic,
                              const QByteArray &value);
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+    
+
 
   signals:
     void ftmsCharacteristicChanged(const QLowEnergyCharacteristic &characteristic, const QByteArray &newValue);

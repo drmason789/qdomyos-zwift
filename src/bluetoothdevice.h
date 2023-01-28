@@ -4,6 +4,7 @@
 #include "definitions.h"
 #include "metric.h"
 #include "qzsettings.h"
+#include "qzlockscreen.h"
 
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QBluetoothDeviceInfo>
@@ -21,6 +22,7 @@
 #include <QtBluetooth/qlowenergydescriptordata.h>
 #include <QtBluetooth/qlowenergyservice.h>
 #include <QtBluetooth/qlowenergyservicedata.h>
+
 
 #if defined(Q_OS_IOS)
 #define SAME_BLUETOOTH_DEVICE(d1, d2) (d1.deviceUuid() == d2.deviceUuid())
@@ -50,6 +52,9 @@ class bluetoothdevice : public QObject {
     Q_OBJECT
   public:
     bluetoothdevice();
+
+    ~bluetoothdevice() override;
+
     /**
      * @brief currentHeart Gets a metric object for getting and setting the current heart rate. Units: beats per minute
      */
@@ -418,6 +423,8 @@ class bluetoothdevice : public QObject {
     void verticalOscillationChanged(double verticalOscillation);
 
   protected:
+
+
     QLowEnergyController *m_control = nullptr;
 
     /**
@@ -619,6 +626,11 @@ class bluetoothdevice : public QObject {
      * Units: METs (1 MET is approximately 3.5mL of Oxygen consumed per kg of body weight per minute)
      */
     double calculateMETS();
+
+    QZLockscreenFunctions * get_lockscreenFunctions() { return this->lockscreenFunctions;}
+
+private:
+    QZLockscreenFunctions *lockscreenFunctions = nullptr;
 };
 
 #endif // BLUETOOTHDEVICE_H

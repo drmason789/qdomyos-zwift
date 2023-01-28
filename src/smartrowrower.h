@@ -29,10 +29,6 @@
 #include "rower.h"
 #include "virtualbike.h"
 
-#ifdef Q_OS_IOS
-#include "ios/lockscreen.h"
-#endif
-
 class smartrowrower : public rower {
     Q_OBJECT
   public:
@@ -81,9 +77,9 @@ class smartrowrower : public rower {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-#ifdef Q_OS_IOS
-    lockscreen *h = 0;
-#endif
+
+
+
 
   signals:
     void disconnected();
