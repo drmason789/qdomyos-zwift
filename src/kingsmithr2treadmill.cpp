@@ -308,7 +308,7 @@ void kingsmithr2treadmill::characteristicChanged(const QLowEnergyCharacteristic 
 
             uint8_t heart = 0;
             if (heart == 0) {
-                qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
             } else
                 Heart = heart;
         }

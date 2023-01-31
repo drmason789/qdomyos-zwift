@@ -32,10 +32,6 @@
 #include "ftmsbike.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 class elitesterzosmart : public bike {
 
     Q_OBJECT
@@ -69,10 +65,6 @@ class elitesterzosmart : public bike {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-
-
-    qzlockscreen *h = 0;
-
 
   signals:
     void disconnected();

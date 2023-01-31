@@ -31,10 +31,6 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-
-#include "qzlockscreen.h"
-
-
 class nordictrackelliptical : public elliptical {
     Q_OBJECT
   public:
@@ -83,8 +79,6 @@ class nordictrackelliptical : public elliptical {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-    qzlockscreen *h = 0;
-
 
   signals:
     void disconnected();

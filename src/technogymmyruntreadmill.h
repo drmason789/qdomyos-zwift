@@ -33,7 +33,7 @@
 #include "virtualtreadmill.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class technogymmyruntreadmill : public treadmill {
@@ -85,7 +85,7 @@ class technogymmyruntreadmill : public treadmill {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

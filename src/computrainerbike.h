@@ -25,9 +25,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#include "qzlockscreen.h"
-
-
 class computrainerbike : public bike {
     Q_OBJECT
   public:
@@ -74,8 +71,6 @@ class computrainerbike : public bike {
     bool noHeartService = false;
 
     Computrainer *myComputrainer = nullptr;
-
-    qzlockscreen *h = 0;
 
   signals:
     void disconnected();

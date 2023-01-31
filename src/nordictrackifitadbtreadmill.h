@@ -22,10 +22,6 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-
-#include "qzlockscreen.h"
-
-
 class nordictrackifitadbtreadmill : public treadmill {
     Q_OBJECT
   public:
@@ -56,9 +52,6 @@ class nordictrackifitadbtreadmill : public treadmill {
 
     QUdpSocket *socket = nullptr;
     QHostAddress lastSender;
-
-
-    qzlockscreen *h = 0;
 
 
 #ifdef Q_OS_ANDROID

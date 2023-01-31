@@ -30,7 +30,7 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class skandikawiribike : public bike {
@@ -78,10 +78,6 @@ class skandikawiribike : public bike {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-
-
-    qzlockscreen *h = 0;
-
 
   signals:
     void disconnected();

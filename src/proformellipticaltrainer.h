@@ -31,7 +31,7 @@
 #include "virtualtreadmill.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class proformellipticaltrainer : public elliptical {
@@ -81,8 +81,6 @@ class proformellipticaltrainer : public elliptical {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-
-    qzlockscreen *h = 0;
 
   signals:
     void disconnected();

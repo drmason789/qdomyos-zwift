@@ -29,10 +29,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 class pafersbike : public bike {
     Q_OBJECT
   public:
@@ -80,8 +76,6 @@ class pafersbike : public bike {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-
-    qzlockscreen *h = 0;
 
   Q_SIGNALS:
     void disconnected();

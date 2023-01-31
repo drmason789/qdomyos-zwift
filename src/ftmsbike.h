@@ -29,10 +29,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 enum FtmsControlPointCommand {
     FTMS_REQUEST_CONTROL = 0x00,
     FTMS_RESET,
@@ -106,9 +102,6 @@ class ftmsbike : public bike {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-
-
-    qzlockscreen *h = 0;
 
 
   Q_SIGNALS:

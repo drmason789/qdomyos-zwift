@@ -31,9 +31,6 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
-
-
 class renphobike : public bike {
     Q_OBJECT
   public:
@@ -79,9 +76,6 @@ class renphobike : public bike {
     bool noHeartService = false;
 
     metric wattFromBike;
-
-    qzlockscreen *h = 0;
-
 
   signals:
     void disconnected();

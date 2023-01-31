@@ -31,9 +31,6 @@
 #include "virtualtreadmill.h"
 
 
-#include "qzlockscreen.h"
-
-
 class faketreadmill : public treadmill {
     Q_OBJECT
   public:
@@ -61,9 +58,6 @@ class faketreadmill : public treadmill {
     bool noWriteResistance = false;
     bool noHeartService = false;
     bool noVirtualDevice = false;
-
-    qzlockscreen *h = 0;
-
   signals:
     void disconnected();
     void debug(QString string);

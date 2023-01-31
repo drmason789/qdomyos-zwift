@@ -30,7 +30,7 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class tacxneo2 : public bike {
@@ -77,7 +77,7 @@ class tacxneo2 : public bike {
     uint16_t CrankRevsRead = 0;
 
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

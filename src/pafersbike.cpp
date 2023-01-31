@@ -239,12 +239,12 @@ void pafersbike::characteristicChanged(const QLowEnergyCharacteristic &character
 #endif
     {
         if (heartRateBeltName.startsWith(QLatin1String("Disabled"))) {
-            qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
         }
     }
 
-    if(this->firstStateChanged && this->h)
-        this->h->pelotonUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+    if(this->firstStateChanged)
+        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
 
     qDebug() << QStringLiteral("Current Speed: ") + QString::number(Speed.value());
     qDebug() << QStringLiteral("Current Calculate Distance: ") + QString::number(Distance.value());
@@ -306,11 +306,11 @@ void pafersbike::stateChanged(QLowEnergyService::ServiceState state) {
                 &pafersbike::descriptorWritten);
 
         // ******************************************* virtual bike init *************************************
-        if (!firstStateChanged && !virtualBike && !h) {
+        if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
             QSettings settings;
             bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
 
-            if (!qzlockscreen::pelotonWorkaround(&this->h) && virtual_device_enabled) {
+            if (virtual_device_enabled) {
                 qDebug() << QStringLiteral("creating virtual bike interface...");
                 virtualBike =
                     new virtualbike(this, noWriteResistance, noHeartService, bikeResistanceOffset, bikeResistanceGain);

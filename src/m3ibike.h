@@ -34,8 +34,6 @@
 #include "ios/M3iIOS-Interface.h"
 #endif
 
-#include "qzlockscreen.h"
-
 typedef struct keiser_m3i_out_s {
     int time = 0;
     int time_orig = 0;
@@ -193,7 +191,7 @@ class m3ibike : public bike {
 #endif
     QBluetoothDeviceDiscoveryAgent *discoveryAgent = nullptr;
 
-    qzlockscreen *h = 0;
+
 #ifdef Q_OS_IOS
     M3iIOS *m3iIOS = 0;
 

@@ -32,7 +32,7 @@
 #include "virtualtreadmill.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class truetreadmill : public treadmill {
@@ -68,7 +68,7 @@ class truetreadmill : public treadmill {
     bool initRequest = false;
 
 
-    qzlockscreen *h = 0;
+    
 
 
   Q_SIGNALS:

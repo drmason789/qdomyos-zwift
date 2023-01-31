@@ -31,10 +31,6 @@
 #include "treadmill.h"
 #include "virtualtreadmill.h"
 
-
-#include "qzlockscreen.h"
-
-
 class shuaa5treadmill : public treadmill {
     Q_OBJECT
   public:
@@ -73,10 +69,6 @@ class shuaa5treadmill : public treadmill {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-
-
-    qzlockscreen *h = 0;
-
 
   signals:
     void disconnected();

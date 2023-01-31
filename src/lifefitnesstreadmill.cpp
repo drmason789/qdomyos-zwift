@@ -577,7 +577,7 @@ void lifefitnesstreadmill::characteristicChanged(const QLowEnergyCharacteristic 
         if (heart == 0.0 ||
             settings.value(QZSettings::heart_ignore_builtin, QZSettings::default_heart_ignore_builtin).toBool()) {
 
-            qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
 
         } else {
 
@@ -679,7 +679,7 @@ void lifefitnesstreadmill::stateChanged(QLowEnergyService::ServiceState state) {
     }
 
     // ******************************************* virtual treadmill init *************************************
-    if (!firstStateChanged && !virtualTreadmill && !virtualBike && !h) {
+    if (!firstStateChanged && !virtualTreadmill && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
 
         QSettings settings;
         bool virtual_device_enabled =

@@ -1,6 +1,6 @@
 #include "activiotreadmill.h"
 
-#include "qzlockscreen.h"
+
 #include "keepawakehelper.h"
 #include "virtualtreadmill.h"
 #include <QBluetoothLocalDevice>
@@ -312,7 +312,7 @@ void activiotreadmill::characteristicChanged(const QLowEnergyCharacteristic &cha
 
             uint8_t heart = 0;
             if (heart == 0) {
-                qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
             } else
                 Heart = heart;
         }

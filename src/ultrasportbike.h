@@ -30,7 +30,7 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class ultrasportbike : public bike {
@@ -81,7 +81,7 @@ class ultrasportbike : public bike {
     bool noHeartService = false;
 
 
-    qzlockscreen *h = 0;
+    
 
 
   Q_SIGNALS:

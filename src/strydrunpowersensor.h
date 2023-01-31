@@ -30,7 +30,7 @@
 #include "virtualtreadmill.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class strydrunpowersensor : public treadmill {
@@ -73,7 +73,7 @@ class strydrunpowersensor : public treadmill {
     uint16_t LastCrankEventTime = 0;
     double CrankRevs = 0;
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

@@ -30,7 +30,7 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class solebike : public bike {
@@ -82,7 +82,7 @@ class solebike : public bike {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-    qzlockscreen *h = 0;
+    
 
 
   Q_SIGNALS:

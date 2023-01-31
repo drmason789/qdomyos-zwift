@@ -29,7 +29,7 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class trxappgateusbbike : public bike {
@@ -62,7 +62,7 @@ class trxappgateusbbike : public bike {
     QTimer *refresh;
     virtualbike *virtualBike = nullptr;
 
-    qzlockscreen *h = 0;
+    
 
 
     uint8_t bikeResistanceOffset = 4;

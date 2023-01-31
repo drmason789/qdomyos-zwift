@@ -301,7 +301,7 @@ void echelonstride::characteristicChanged(const QLowEnergyCharacteristic &charac
         if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
             uint8_t heart = ((uint8_t)newValue.at(11));
             if (heart == 0) {
-                qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
             } else {
                 Heart = heart;
             }

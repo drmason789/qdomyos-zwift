@@ -29,9 +29,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#include "qzlockscreen.h"
-
-
 class cscbike : public bike {
     Q_OBJECT
   public:
@@ -68,8 +65,6 @@ class cscbike : public bike {
 
     uint16_t oldLastCrankEventTime = 0;
     uint16_t oldCrankRevs = 0;
-
-    qzlockscreen *h = 0;
 
   signals:
     void disconnected();

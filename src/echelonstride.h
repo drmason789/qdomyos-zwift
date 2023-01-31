@@ -30,10 +30,6 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-
-#include "qzlockscreen.h"
-
-
 class echelonstride : public treadmill {
     Q_OBJECT
   public:
@@ -85,9 +81,6 @@ class echelonstride : public treadmill {
 
     bool initDone = false;
     bool initRequest = false;
-
-    qzlockscreen *h = 0;
-
   signals:
     void disconnected();
     void debug(QString string);

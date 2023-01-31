@@ -31,7 +31,7 @@
 #include "treadmill.h"
 #include "virtualtreadmill.h"
 
-#include "qzlockscreen.h"
+
 
 
 class solef80treadmill : public treadmill {
@@ -86,7 +86,7 @@ class solef80treadmill : public treadmill {
     volatile TYPE treadmill_type = F80;
 
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

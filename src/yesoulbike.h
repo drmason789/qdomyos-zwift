@@ -29,7 +29,7 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#include "qzlockscreen.h"
+
 
 
 class yesoulbike : public bike {
@@ -78,7 +78,7 @@ class yesoulbike : public bike {
     uint8_t bikeResistanceOffset = 4;
     double bikeResistanceGain = 1.0;
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

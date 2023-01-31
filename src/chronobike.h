@@ -29,8 +29,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#include "qzlockscreen.h"
-
 class chronobike : public bike {
     Q_OBJECT
   public:
@@ -60,8 +58,6 @@ class chronobike : public bike {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-
-    qzlockscreen *h = 0;
 
   signals:
     void disconnected();

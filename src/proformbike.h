@@ -29,10 +29,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 class proformbike : public bike {
     Q_OBJECT
   public:
@@ -82,9 +78,6 @@ class proformbike : public bike {
 
     bool noWriteResistance = false;
     bool noHeartService = false;
-
-
-    qzlockscreen *h = 0;
 
 
   signals:

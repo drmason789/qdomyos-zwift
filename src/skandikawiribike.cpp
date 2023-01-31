@@ -321,10 +321,10 @@ void skandikawiribike::stateChanged(QLowEnergyService::ServiceState state) {
                 &skandikawiribike::descriptorWritten);
 
         // ******************************************* virtual bike init *************************************
-        if (!firstStateChanged && !virtualBike && !h) {
+        if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
             QSettings settings;
             bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
-            if (!qzlockscreen::pelotonWorkaround(&this->h) && virtual_device_enabled) {
+            if (virtual_device_enabled) {
                 emit debug(QStringLiteral("creating virtual bike interface..."));
                 virtualBike =
                     new virtualbike(this, noWriteResistance, noHeartService, bikeResistanceOffset, bikeResistanceGain);

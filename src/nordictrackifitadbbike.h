@@ -21,10 +21,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 class nordictrackifitadbbike : public bike {
     Q_OBJECT
   public:
@@ -63,10 +59,6 @@ class nordictrackifitadbbike : public bike {
 #endif
 
     QString ip;
-
-
-    qzlockscreen *h = 0;
-
 
   signals:
     void disconnected();

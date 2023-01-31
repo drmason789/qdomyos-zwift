@@ -23,7 +23,7 @@
 #include <QtCore/qscopedpointer.h>
 #include <QtCore/qtimer.h>
 
-#include "qzlockscreen.h"
+
 
 #include "bike.h"
 
@@ -55,7 +55,7 @@ class virtualrower : public QObject {
                              const QByteArray &value);
 
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

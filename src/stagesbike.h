@@ -29,7 +29,7 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-#include "qzlockscreen.h"
+
 
 
 class stagesbike : public bike {
@@ -75,7 +75,7 @@ class stagesbike : public bike {
     uint16_t oldLastCrankEventTime = 0;
     uint16_t oldCrankRevs = 0;
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

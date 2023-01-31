@@ -29,9 +29,6 @@
 #include "rower.h"
 #include "virtualbike.h"
 
-#include "qzlockscreen.h"
-
-
 class ftmsrower : public rower {
     Q_OBJECT
   public:
@@ -69,9 +66,6 @@ class ftmsrower : public rower {
     bool filterWattNull = false;
     bool WHIPR = false;
     bool KINGSMITH = false;
-
-    qzlockscreen *h = 0;
-
 
   Q_SIGNALS:
     void disconnected();

@@ -29,10 +29,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 class fitplusbike : public bike {
     Q_OBJECT
   public:
@@ -78,11 +74,6 @@ class fitplusbike : public bike {
     bool noHeartService = false;
 
     bool merach_MRK = false;
-
-
-    qzlockscreen *h = 0;
-
-
   Q_SIGNALS:
     void disconnected();
 

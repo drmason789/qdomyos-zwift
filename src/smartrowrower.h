@@ -29,10 +29,6 @@
 #include "rower.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 class smartrowrower : public rower {
     Q_OBJECT
   public:
@@ -82,7 +78,7 @@ class smartrowrower : public rower {
     bool noHeartService = false;
 
 
-    qzlockscreen *h = 0;
+
 
 
   signals:

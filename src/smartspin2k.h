@@ -34,7 +34,7 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class smartspin2k : public bike {
@@ -92,7 +92,7 @@ class smartspin2k : public bike {
 
     bike *parentDevice = nullptr;
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

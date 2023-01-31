@@ -32,10 +32,6 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-
-#include "qzlockscreen.h"
-
-
 class kingsmithr2treadmill : public treadmill {
 
     Q_OBJECT
@@ -90,10 +86,6 @@ class kingsmithr2treadmill : public treadmill {
 
     bool initDone = false;
     bool initRequest = false;
-
-
-    qzlockscreen *h = 0;
-
 
   Q_SIGNALS:
     void disconnected();

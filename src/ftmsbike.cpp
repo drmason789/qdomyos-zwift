@@ -564,11 +564,11 @@ void ftmsbike::characteristicChanged(const QLowEnergyCharacteristic &characteris
 
     if (heartRateBeltName.startsWith(QStringLiteral("Disabled")) &&
         (!heart || Heart.value() == 0 || disable_hr_frommachinery)) {
-            qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
     }
 
-    if(this->firstStateChanged && this->h)
-        this->h->pelotonUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+    if(this->firstStateChanged )
+        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
 
     emit debug(QStringLiteral("Current CrankRevs: ") + QString::number(CrankRevs));
     emit debug(QStringLiteral("Last CrankEventTime: ") + QString::number(LastCrankEventTime));
@@ -680,12 +680,12 @@ void ftmsbike::stateChanged(QLowEnergyService::ServiceState state) {
     }
 
     // ******************************************* virtual bike init *************************************
-    if (!firstStateChanged && !virtualBike && !h) {
+    if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
         QSettings settings;
         bool virtual_device_enabled =
             settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
 
-        if (!qzlockscreen::pelotonWorkaround(&this->h) && virtual_device_enabled) {
+        if (virtual_device_enabled) {
             emit debug(QStringLiteral("creating virtual bike interface..."));
             virtualBike =
                 new virtualbike(this, noWriteResistance, noHeartService, bikeResistanceOffset, bikeResistanceGain);

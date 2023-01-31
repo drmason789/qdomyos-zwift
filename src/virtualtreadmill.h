@@ -18,7 +18,7 @@
 #include <QtGui/qguiapplication.h>
 #endif
 
-#include "qzlockscreen.h"
+
 
 
 #include <QtCore/qlist.h>
@@ -67,7 +67,7 @@ class virtualtreadmill : public QObject {
     bool RSCEnable();
 
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

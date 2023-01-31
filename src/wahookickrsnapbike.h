@@ -30,7 +30,7 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class wahookickrsnapbike : public bike {
@@ -102,7 +102,7 @@ class wahookickrsnapbike : public bike {
     uint16_t oldLastCrankEventTime = 0;
     uint16_t oldCrankRevs = 0;
 
-    qzlockscreen *h = 0;
+    
 
 
   signals:

@@ -28,7 +28,6 @@
 
 #include "rower.h"
 #include "virtualtreadmill.h"
-#include "qzlockscreen.h"
 
 class concept2skierg : public rower {
     Q_OBJECT
@@ -65,8 +64,6 @@ class concept2skierg : public rower {
     bool noHeartService = false;
 
     bool isActive = false;
-
-    qzlockscreen *h = 0;
 
   Q_SIGNALS:
     void disconnected();

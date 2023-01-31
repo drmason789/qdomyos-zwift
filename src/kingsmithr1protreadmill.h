@@ -31,10 +31,6 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-
-#include "qzlockscreen.h"
-
-
 class kingsmithr1protreadmill : public treadmill {
 
     Q_OBJECT
@@ -90,10 +86,6 @@ class kingsmithr1protreadmill : public treadmill {
     double lastTargetSpeed = -1;
     bool targetSpeedMatchesSpeed = false;
     double lastTargetSpeedMatchesSpeed = -1;
-
-
-    qzlockscreen *h = 0;
-
 
   Q_SIGNALS:
     void disconnected();

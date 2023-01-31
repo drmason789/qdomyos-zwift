@@ -180,7 +180,7 @@ void nordictrackifitadbbike::processPendingDatagrams() {
 #endif
         {
             if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-                qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
             }
         }
 

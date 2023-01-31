@@ -237,12 +237,12 @@ void proformwifitreadmill::characteristicChanged(const QString &newValue) {
 #endif
     {
         if (disable_hr_frommachinery && heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-            qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
         }
     }
 
-    if(this->firstStateChanged && this->h)
-        this->h->pelotonUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+    if(this->firstStateChanged)
+        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
 
     /*
     emit debug(QStringLiteral("Current Resistance: ") + QString::number(Resistance.value()));

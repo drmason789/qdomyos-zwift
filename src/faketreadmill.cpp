@@ -84,11 +84,11 @@ void faketreadmill::update() {
         }
 #endif
         if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-            qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
         }
 
-        if(this->firstStateChanged && this->h)
-            this->h->pelotonUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+        if(this->firstStateChanged)
+            this->get_lockscreenFunctions()->pelotonTreadmillUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
     }
 
     if (Heart.value()) {

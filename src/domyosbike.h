@@ -29,10 +29,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 class domyosbike : public bike {
     Q_OBJECT
   public:
@@ -90,10 +86,6 @@ class domyosbike : public bike {
         TELINK,
     };
     _BIKE_TYPE bike_type = CHANG_YOW;
-
-
-    qzlockscreen *h = 0;
-
 
   signals:
     void disconnected();

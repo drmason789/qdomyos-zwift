@@ -32,7 +32,7 @@
 #include "virtualbike.h"
 
 
-#include "qzlockscreen.h"
+
 
 
 class schwinnic4bike : public bike {
@@ -74,9 +74,6 @@ class schwinnic4bike : public bike {
     const resistance_t max_resistance = 100;
 
     metric ResistanceFromFTMSAccessory;
-    qzlockscreen *h = 0;
-
-
   signals:
     void disconnected();
     void debug(QString string);

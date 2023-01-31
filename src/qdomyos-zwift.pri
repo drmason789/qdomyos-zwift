@@ -63,6 +63,8 @@ DEFINES += QT_DEPRECATED_WARNINGS IO_UNDER_QT SMTP_BUILD
 # include(../qtzeroconf/qtzeroconf.pri)
 
 SOURCES += \
+    $$PWD/defaultlockscreenfunctions.cpp \
+    $$PWD/ios/ioslockscreenfunctions.cpp \
     $$PWD/qzlockscreen.cpp \
    Computrainer.cpp \
    PathController.cpp \
@@ -254,7 +256,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 INCLUDEPATH += fit-sdk/
 
 HEADERS += \
+    $$PWD/defaultlockscreenfunctions.h \
     $$PWD/discoveryoptions.h \
+    $$PWD/ios/ioslockscreenfunctions.h \
     $$PWD/qzlockscreen.h \
    Computrainer.h \
    PathController.h \

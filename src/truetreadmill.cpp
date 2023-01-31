@@ -154,13 +154,13 @@ void truetreadmill::characteristicChanged(const QLowEnergyCharacteristic &charac
 
             uint8_t heart = 0;
             if (heart == 0 || disable_hr_frommachinery) {
-                qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
             } else
                 Heart = heart;
         }
     }
 
-    qzlockscreen::updateStepCadence(this->Cadence);
+    this->get_lockscreenFunctions()->updateStepCadence(this->Cadence);
 
     double speed = 0;
 

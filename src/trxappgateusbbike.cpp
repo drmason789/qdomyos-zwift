@@ -298,15 +298,15 @@ void trxappgateusbbike::characteristicChanged(const QLowEnergyCharacteristic &ch
             }
             if (heart == 0.0 ||
                 settings.value(QZSettings::heart_ignore_builtin, QZSettings::default_heart_ignore_builtin).toBool()) {
-                    qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                    this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
             } else {
 
                 Heart = heart;
             }
         }
     }
-    if(this->firstVirtualBike && this->h)
-        this->h->pelotonUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+    if(this->firstVirtualBike)
+        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
 
     FanSpeed = 0;
 

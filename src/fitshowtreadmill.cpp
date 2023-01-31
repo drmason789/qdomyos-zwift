@@ -26,8 +26,6 @@ fitshowtreadmill::fitshowtreadmill(uint32_t pollDeviceTime, bool noConsole, bool
         lastInclination = forceInitInclination;
     }
 
-    this->h = qzlockscreen::create();
-
     refresh = new QTimer(this);
     initDone = false;
     QSettings settings;
@@ -45,10 +43,6 @@ fitshowtreadmill::~fitshowtreadmill() {
     if (virtualTreadMill) {
         delete virtualTreadMill;
     }
-
-    if (h)
-        delete h;
-
 }
 
 void fitshowtreadmill::scheduleWrite(const uint8_t *data, uint8_t data_len, const QString &info) {
@@ -482,7 +476,7 @@ void fitshowtreadmill::characteristicChanged(const QLowEnergyCharacteristic &cha
                 {
                     if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
 
-                        if(!qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart))
+                        if(!this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart))
                             this->Heart = heart;
 
                     }

@@ -30,9 +30,6 @@
 #include "virtualbike.h"
 #include "virtualtreadmill.h"
 
-#include "qzlockscreen.h"
-
-
 class proformtreadmill : public treadmill {
     Q_OBJECT
   public:
@@ -74,10 +71,7 @@ class proformtreadmill : public treadmill {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-    qzlockscreen *h = 0;
-
-
-  signals:
+   signals:
     void disconnected();
     void debug(QString string);
 

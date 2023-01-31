@@ -271,11 +271,11 @@ void strydrunpowersensor::characteristicChanged(const QLowEnergyCharacteristic &
         }
 #endif
         if (heartRateBeltName.startsWith(QStringLiteral("Disabled")) && Heart.value() == 0) {
-            qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
         }
 
-        if(this->firstStateChanged && this->h)
-            this->h->pelotonUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+        if(this->firstStateChanged)
+            this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
     }
 
     if (m_control->error() != QLowEnergyController::NoError) {
@@ -357,7 +357,7 @@ void strydrunpowersensor::stateChanged(QLowEnergyService::ServiceState state) {
     }
 
     // ******************************************* virtual bike init *************************************
-    if (!firstStateChanged && !virtualTreadmill && !noVirtualDevice && !h) {
+    if (!firstStateChanged && !virtualTreadmill && !noVirtualDevice && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
         QSettings settings;
         bool virtual_device_enabled =
             settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();

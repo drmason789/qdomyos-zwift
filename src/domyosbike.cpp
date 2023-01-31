@@ -181,11 +181,11 @@ void domyosbike::update() {
         update_metrics(true, watts());
 
         // ******************************************* virtual bike init *************************************
-        if (!firstStateChanged && !virtualBike && !h) {
+        if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
             QSettings settings;
             bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
 
-            if (!qzlockscreen::pelotonWorkaround(&this->h) && virtual_device_enabled) {
+            if (virtual_device_enabled) {
                 qDebug() << QStringLiteral("creating virtual bike interface...");
                 virtualBike =
                     new virtualbike(this, noWriteResistance, noHeartService, bikeResistanceOffset, bikeResistanceGain);
@@ -361,7 +361,7 @@ void domyosbike::characteristicChanged(const QLowEnergyCharacteristic &character
         if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
             uint8_t heart = ((uint8_t)value.at(18));
             if (heart == 0 || disable_hr_frommachinery) {
-                qzlockscreen::UpdateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
             } else
                 Heart = heart;
         }
@@ -373,8 +373,8 @@ void domyosbike::characteristicChanged(const QLowEnergyCharacteristic &character
     }
     lastRefreshCharacteristicChanged = QDateTime::currentDateTime();
 
-    if(this->firstStateChanged && h)
-        h->pelotonUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(), this->metrics_override_heartrate());
+    if(this->firstStateChanged)
+        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(), this->metrics_override_heartrate());
 
     qDebug() << QStringLiteral("Current speed: ") + QString::number(speed);
     qDebug() << QStringLiteral("Current cadence: ") + QString::number(Cadence.value());

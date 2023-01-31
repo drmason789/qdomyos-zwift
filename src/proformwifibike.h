@@ -36,10 +36,6 @@
 #include "bike.h"
 #include "virtualbike.h"
 
-
-#include "qzlockscreen.h"
-
-
 class proformwifibike : public bike {
     Q_OBJECT
   public:
@@ -92,8 +88,6 @@ class proformwifibike : public bike {
     bool noHeartService = false;
 
     bool tdf2 = false;
-
-    qzlockscreen *h = 0;
 
 
   signals:
