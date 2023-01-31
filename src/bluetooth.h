@@ -125,15 +125,13 @@ class bluetooth : public QObject, public SignalHandler {
     explicit bluetooth(bool logs, const QString &deviceName = QLatin1String(""), bool noWriteResistance = false,
                        bool noHeartService = false, uint32_t pollDeviceTime = 200, bool noConsole = false,
                        bool testResistance = false, uint8_t bikeResistanceOffset = 4, double bikeResistanceGain = 1.0,
-                       bool createTemplateManagers=true, bool startDiscovery=true);
+                       bool startDiscovery=true);
     ~bluetooth();
     bluetoothdevice *device();
     bluetoothdevice *externalInclination() { return eliteRizer; }
     bluetoothdevice *heartRateDevice() { return heartRateBelt; }
     QList<QBluetoothDeviceInfo> devices;
     bool onlyDiscover = false;
-    TemplateInfoSenderBuilder *getUserTemplateManager() const { return userTemplateManager; }
-    TemplateInfoSenderBuilder *getInnerTemplateManager() const { return innerTemplateManager; }
 protected:
     /**
      * @brief discoverNonBluetoothDevices Discover non-bluetooth devices and create an object for the first.
@@ -150,9 +148,6 @@ protected:
 
 private:
     bool useDiscovery = false;
-    bool createTemplateManagers =false;
-    TemplateInfoSenderBuilder *userTemplateManager = nullptr;
-    TemplateInfoSenderBuilder *innerTemplateManager = nullptr;
     QFile *debugCommsLog = nullptr;
     // Indicates generally discovering, bluetooth and others
     bool discovering = false;
@@ -300,14 +295,15 @@ private:
      * @param b The bluetooth device info.
      */
     void setLastBluetoothDevice(const QBluetoothDeviceInfo &b);
-    void startTemplateManagers(bluetoothdevice *b);
-    void stopTemplateManagers();
+    void signalBluetoothDeviceConnected(bluetoothdevice *b);
 signals:
     void deviceConnected(QBluetoothDeviceInfo b);
     void deviceFound(QString name);
     void searchingStop();
     void ftmsAccessoryConnected(smartspin2k *d);
 
+    void bluetoothDeviceConnected(bluetoothdevice *b);
+    void bluetoothDeviceDisconnected();
   public slots:
     void restart();
     void debug(const QString &string);
