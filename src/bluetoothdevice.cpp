@@ -146,10 +146,6 @@ void bluetoothdevice::verticalOscillationSensor(double verticalOscillation) { Q_
 
 double bluetoothdevice::calculateMETS() { return ((0.048 * m_watt.value()) + 1.19); }
 
-bool bluetoothdevice::initialiseLockscreen() {
-
-}
-
 // keiser m3i has a separate management of this, so please check it
 void bluetoothdevice::update_metrics(bool watt_calc, const double watts) {
 

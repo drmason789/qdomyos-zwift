@@ -627,8 +627,6 @@ class bluetoothdevice : public QObject {
      */
     double calculateMETS();
 
-    bool initialiseLockscreen();
-
     QZLockscreenFunctions * get_lockscreenFunctions() { return this->lockscreenFunctions;}
 
 private:
