@@ -327,18 +327,10 @@ void bhfitnesselliptical::characteristicChanged(const QLowEnergyCharacteristic &
         this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
     }
 
-#ifdef Q_OS_IOS
-#ifndef IO_UNDER_QT
-/*
-    bool cadence = settings.value(QZSettings::bike_cadence_sensor, QZSettings::default_bike_cadence_sensor).toBool();
-    bool ios_peloton_workaround = settings.value(QZSettings::ios_peloton_workaround,
-   QZSettings::default_ios_peloton_workaround).toBool();
-   if (ios_peloton_workaround && cadence && h &&  firstStateChanged) { h->virtualTreadmill_setCadence(currentCrankRevolutions(), lastCrankEventTime());
-        h->virtualTreadmill_setHeartRate((uint8_t)metrics_override_heartrate());
-    }
- */
-#endif
-#endif
+    /*
+      if(this->firstStateChanged)
+          this->get_lockscreenFunctions()->pelotonTreadmillUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+      */
 
     emit debug(QStringLiteral("Current CrankRevs: ") + QString::number(CrankRevs));
     emit debug(QStringLiteral("Last CrankEventTime: ") + QString::number(LastCrankEventTime));
