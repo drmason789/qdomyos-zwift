@@ -65,7 +65,7 @@ DEFINES += QT_DEPRECATED_WARNINGS IO_UNDER_QT SMTP_BUILD
 SOURCES += \
     $$PWD/defaultlockscreenfunctions.cpp \
     $$PWD/ios/ioslockscreenfunctions.cpp \
-    $$PWD/qzlockscreen.cpp \
+    $$PWD/qzlockscreenfunctions.cpp \
    Computrainer.cpp \
    PathController.cpp \
     characteristicnotifier2a53.cpp \
@@ -259,7 +259,7 @@ HEADERS += \
     $$PWD/defaultlockscreenfunctions.h \
     $$PWD/discoveryoptions.h \
     $$PWD/ios/ioslockscreenfunctions.h \
-    $$PWD/qzlockscreen.h \
+    $$PWD/qzlockscreenfunctions.h \
    Computrainer.h \
    PathController.h \
     characteristicnotifier2a53.h \

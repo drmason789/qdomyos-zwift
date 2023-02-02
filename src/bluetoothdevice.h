@@ -4,7 +4,7 @@
 #include "definitions.h"
 #include "metric.h"
 #include "qzsettings.h"
-#include "qzlockscreen.h"
+#include "qzlockscreenfunctions.h"
 
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QBluetoothDeviceInfo>

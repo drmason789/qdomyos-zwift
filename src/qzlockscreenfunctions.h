@@ -1,5 +1,5 @@
-#ifndef QZLOCKSCREEN_H
-#define QZLOCKSCREEN_H
+#ifndef QZLOCKSCREENFUNCTIONS_H
+#define QZLOCKSCREENFUNCTIONS_H
 
 #include "metric.h"
 
@@ -20,4 +20,4 @@ public:
     static QZLockscreenFunctions * create();
 };
 
-#endif // QZLOCKSCREEN_H
+#endif // QZLOCKSCREENFUNCTIONS_H

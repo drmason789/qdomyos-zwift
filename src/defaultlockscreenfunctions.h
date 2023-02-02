@@ -1,7 +1,7 @@
 #ifndef DEFAULTLOCKSCREENFUNCTIONS_H
 #define DEFAULTLOCKSCREENFUNCTIONS_H
 
-#include "qzlockscreen.h"
+#include "qzlockscreenfunctions.h"
 
 class DefaultLockscreenFunctions : public QZLockscreenFunctions {
 public:
