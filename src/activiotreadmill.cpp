@@ -312,7 +312,7 @@ void activiotreadmill::characteristicChanged(const QLowEnergyCharacteristic &cha
 
             uint8_t heart = 0;
             if (heart == 0) {
-                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->updateLockscreenEnergyDistanceHeartRate();
             } else
                 Heart = heart;
         }

@@ -549,13 +549,13 @@ void domyostreadmill::characteristicChanged(const QLowEnergyCharacteristic &char
 
             uint8_t heart = ((uint8_t)value.at(18));
             if (heart == 0 || disable_hr_frommachinery) {
-                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart );
+                this->updateLockscreenEnergyDistanceHeartRate();
             } else
                 Heart = heart;
         }
     }
 
-    this->get_lockscreenFunctions()->updateStepCadence(this->Cadence);
+    this->updateLockscreenStepCadence();
 
     FanSpeed = value.at(23);
 

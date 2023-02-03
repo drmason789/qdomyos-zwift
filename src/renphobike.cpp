@@ -340,11 +340,11 @@ void renphobike::characteristicChanged(const QLowEnergyCharacteristic &character
     lastRefreshCharacteristicChanged = QDateTime::currentDateTime();
 
     if (heartRateBeltName.startsWith("Disabled")) {
-        this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+        this->updateLockscreenEnergyDistanceHeartRate();
     }
 
     if(this->firstStateChanged)
-        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+        this->pelotonUpdateCHR();
 
     debug("Current CrankRevs: " + QString::number(CrankRevs));
     debug("Last CrankEventTime: " + QString::number(LastCrankEventTime));
@@ -447,7 +447,7 @@ void renphobike::stateChanged(QLowEnergyService::ServiceState state) {
     }
 
     // ******************************************* virtual bike init *************************************
-    if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
+    if (!firstStateChanged && !virtualBike && !this->isPelotonWorkaroundActive()) {
         QSettings settings;
         bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
 

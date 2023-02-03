@@ -23,6 +23,12 @@ void bike::changeInclination(double grade, double percentage) {
     emit inclinationChanged(grade, percentage);
 }
 
+void bike::pelotonUpdateCHR() {
+   auto functions = this->get_lockscreenFunctions();
+   if(functions)
+        functions->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(), metrics_override_heartrate());
+}
+
 // originally made for renphobike, but i guess it could be very generic
 uint16_t bike::powerFromResistanceRequest(resistance_t requestResistance) {
     // this bike has resistance level to N.m so the formula is Power (kW) = Torque (N.m) x Speed (RPM) / 9.5488

@@ -328,7 +328,7 @@ void shuaa5treadmill::characteristicChanged(const QLowEnergyCharacteristic &char
 
     if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
         if (heart == 0.0 || settings.value(QZSettings::heart_ignore_builtin, QZSettings::default_heart_ignore_builtin).toBool()) {
-            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->updateLockscreenEnergyDistanceHeartRate();
         } else {
 
             Heart = heart;
@@ -423,7 +423,7 @@ void shuaa5treadmill::stateChanged(QLowEnergyService::ServiceState state) {
     }
 
     // ******************************************* virtual treadmill init *************************************
-    if (!firstStateChanged && !virtualTreadmill && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
+    if (!firstStateChanged && !virtualTreadmill && !this->isPelotonWorkaroundActive()) {
 
         QSettings settings;
         bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();

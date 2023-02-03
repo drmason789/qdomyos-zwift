@@ -32,6 +32,8 @@ class fitmetria_fanfit : public bluetoothdevice {
   public:
     fitmetria_fanfit(bluetoothdevice *parentDevice);
     bool connected();
+  protected:
+    void pelotonUpdateCHR() override {}
 
   private:
     QLowEnergyService *gattCommunicationChannelService = nullptr;

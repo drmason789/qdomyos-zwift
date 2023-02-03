@@ -627,8 +627,45 @@ class bluetoothdevice : public QObject {
      */
     double calculateMETS();
 
-    QZLockscreenFunctions * get_lockscreenFunctions() { return this->lockscreenFunctions;}
 
+    bool updateLockscreenEnergyDistanceHeartRate( int defaultHeartRate=0) {
+        auto functions = this->get_lockscreenFunctions();
+        if(functions)
+            functions->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart, defaultHeartRate);
+    }
+
+    bool updateLockscreenHeartRate() {
+        auto functions = this->get_lockscreenFunctions();
+        if(functions)
+            return functions->updateHeartRate(this->Heart);
+        return false;
+    }
+
+
+    void updateLockscreenStepCadence() {
+        auto functions = this->get_lockscreenFunctions();
+        if(functions)
+            functions->updateStepCadence(this->Cadence);
+    }
+
+    /**
+     * @brief Indicates if the IOS lockscreen workaround for Peloton is active.
+     * @return
+     */
+    bool isPelotonWorkaroundActive() {
+        auto functions = this->get_lockscreenFunctions();
+        if(functions)
+            return functions->isPelotonWorkaroundActive();
+        return false;
+    }
+
+    /**
+     * @brief Call the lockscreen function to update the cadence and heart rate.
+     */
+    virtual void pelotonUpdateCHR() = 0;
+
+
+    QZLockscreenFunctions * get_lockscreenFunctions() { return this->lockscreenFunctions;}
 private:
     QZLockscreenFunctions *lockscreenFunctions = nullptr;
 };

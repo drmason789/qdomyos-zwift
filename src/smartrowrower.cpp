@@ -257,11 +257,11 @@ void smartrowrower::characteristicChanged(const QLowEnergyCharacteristic &charac
 #endif
     {
         if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->updateLockscreenEnergyDistanceHeartRate();
         }
     }
     if(this->firstStateChanged)
-        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+        this->pelotonUpdateCHR();
 
     qDebug() << QStringLiteral("Current Local elapsed: ") + localTime.toString();
     qDebug() << QStringLiteral("Current Speed: ") + QString::number(Speed.value());
@@ -323,7 +323,7 @@ void smartrowrower::stateChanged(QLowEnergyService::ServiceState state) {
                 &smartrowrower::descriptorWritten);
 
         // ******************************************* virtual bike init *************************************
-        if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
+        if (!firstStateChanged && !virtualBike && !this->isPelotonWorkaroundActive()) {
             QSettings settings;
             bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
 

@@ -289,7 +289,7 @@ void tacxneo2::characteristicChanged(const QLowEnergyCharacteristic &characteris
     }
 #endif
     if (heartRateBeltName.startsWith(QStringLiteral("Disabled")) && Heart.value() == 0) {
-        this->get_lockscreenFunctions()->updateHeartRate(this->Heart);
+        this->updateLockscreenHeartRate();
     }
 
     if (Cadence.value() > 0) {
@@ -298,7 +298,7 @@ void tacxneo2::characteristicChanged(const QLowEnergyCharacteristic &characteris
     }
 
     if(this->firstStateChanged)
-        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+        this->pelotonUpdateCHR();
 
     emit debug(QStringLiteral("Current CrankRevs: ") + QString::number(CrankRevs));
     emit debug(QStringLiteral("Last CrankEventTime: ") + QString::number(LastCrankEventTime));
@@ -392,7 +392,7 @@ void tacxneo2::stateChanged(QLowEnergyService::ServiceState state) {
     }
 
     // ******************************************* virtual bike init *************************************
-    if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
+    if (!firstStateChanged && !virtualBike && !this->isPelotonWorkaroundActive()) {
         QSettings settings;
         bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
         if (virtual_device_enabled) {

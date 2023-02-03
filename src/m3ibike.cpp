@@ -615,7 +615,7 @@ void m3ibike::processAdvertising(const QByteArray &data) {
         detectDisc->start(M3i_DISCONNECT_THRESHOLD);
         if (!initDone) {
             initDone = true;
-            if (!virtualBike&& !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
+            if (!virtualBike&& !this->isPelotonWorkaroundActive()) {
                 bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
                 if (virtual_device_enabled) {
                     emit debug(QStringLiteral("creating virtual bike interface..."));
@@ -706,12 +706,12 @@ void m3ibike::processAdvertising(const QByteArray &data) {
 #endif
         {
             if (heartRateBeltDisabled) {
-               if(!this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart, k3.pulse))
+               if(!this->updateLockscreenEnergyDistanceHeartRate(k3.pulse))
                       this->Heart = k3.pulse;
             }
         }
 
-        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+        this->pelotonUpdateCHR();
 
         emit debug(QStringLiteral("Current Elapsed: ") + QString::number(elapsed.value()));
         emit debug(QStringLiteral("Current Resistance: ") + QString::number(Resistance.value()));

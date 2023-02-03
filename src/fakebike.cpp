@@ -52,7 +52,7 @@ void fakebike::update() {
     lastRefreshCharacteristicChanged = QDateTime::currentDateTime();
 
     // ******************************************* virtual bike init *************************************
-    if (!firstStateChanged && !virtualBike && !noVirtualDevice && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
+    if (!firstStateChanged && !virtualBike && !noVirtualDevice && !this->isPelotonWorkaroundActive()) {
         bool virtual_device_enabled = settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
 
         if (virtual_device_enabled) {
@@ -75,11 +75,11 @@ void fakebike::update() {
         }
 #endif
         if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->updateLockscreenEnergyDistanceHeartRate();
         }
 
         if(this->firstStateChanged)
-            this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(), metrics_override_heartrate());
+            this->pelotonUpdateCHR();
     }
 
     if (Heart.value()) {

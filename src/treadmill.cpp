@@ -164,3 +164,9 @@ void treadmill::groundContactSensor(double groundContact) { GroundContactMS.setV
 void treadmill::verticalOscillationSensor(double verticalOscillation) {
     VerticalOscillationMM.setValue(verticalOscillation);
 }
+
+void treadmill::pelotonUpdateCHR() {
+    auto functions = this->get_lockscreenFunctions();
+    if(functions)
+        functions->pelotonTreadmillUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(), metrics_override_heartrate());
+}

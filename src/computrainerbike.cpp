@@ -38,7 +38,7 @@ computrainerbike::computrainerbike(bool noWriteResistance, bool noHeartService, 
     initRequest = true;
 
     // ******************************************* virtual bike init *************************************
-    if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
+    if (!firstStateChanged && !virtualBike && !this->isPelotonWorkaroundActive()) {
         QSettings settings;
         bool virtual_device_enabled =
             settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();
@@ -263,12 +263,12 @@ void computrainerbike::update() {
 #endif
         {
             if (disable_hr_frommachinery && heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->updateLockscreenEnergyDistanceHeartRate();
             }
         }
 
         if(this->firstStateChanged)
-            this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(), metrics_override_heartrate());
+            this->pelotonUpdateCHR();
 
         /*
     emit debug(QStringLiteral("Current Resistance: ") + QString::number(Resistance.value()));

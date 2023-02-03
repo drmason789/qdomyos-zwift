@@ -247,11 +247,11 @@ void mepanelbike::characteristicChanged(const QLowEnergyCharacteristic &characte
 #endif
     {
         if (heartRateBeltName.startsWith(QLatin1String("Disabled")) && disable_hr_frommachinery) {
-            this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+            this->updateLockscreenEnergyDistanceHeartRate();
         }
     }
     if(this->firstStateChanged)
-        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+        this->pelotonUpdateCHR();
 
     // these useless lines are needed to calculate the AVG resistance and AVG peloton resistance since
     // echelon just send the resistance values when it changes
@@ -314,7 +314,7 @@ void mepanelbike::stateChanged(QLowEnergyService::ServiceState state) {
                 &mepanelbike::descriptorWritten);
 
         // ******************************************* virtual bike init *************************************
-        if (!firstStateChanged && !virtualBike && !this->get_lockscreenFunctions()->isPelotonWorkaroundActive()) {
+        if (!firstStateChanged && !virtualBike && !this->isPelotonWorkaroundActive()) {
             QSettings settings;
             bool virtual_device_enabled =
                     settings.value(QZSettings::virtual_device_enabled, QZSettings::default_virtual_device_enabled).toBool();

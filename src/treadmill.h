@@ -60,6 +60,8 @@ class treadmill : public bluetoothdevice {
     metric VerticalOscillationMM;
     double m_lastRawSpeedRequested = -1;
     double m_lastRawInclinationRequested = -100;
+
+    void pelotonUpdateCHR() override;
 };
 
 #endif // TREADMILL_H

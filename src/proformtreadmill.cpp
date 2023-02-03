@@ -983,7 +983,7 @@ void proformtreadmill::characteristicChanged(const QLowEnergyCharacteristic &cha
 #endif
         {
             if (heartRateBeltName.startsWith(QStringLiteral("Disabled"))) {
-                this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                this->updateLockscreenEnergyDistanceHeartRate();
             }
         }
 

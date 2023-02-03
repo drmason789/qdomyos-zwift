@@ -298,7 +298,7 @@ void trxappgateusbbike::characteristicChanged(const QLowEnergyCharacteristic &ch
             }
             if (heart == 0.0 ||
                 settings.value(QZSettings::heart_ignore_builtin, QZSettings::default_heart_ignore_builtin).toBool()) {
-                    this->get_lockscreenFunctions()->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart);
+                    this->updateLockscreenEnergyDistanceHeartRate();
             } else {
 
                 Heart = heart;
@@ -306,7 +306,7 @@ void trxappgateusbbike::characteristicChanged(const QLowEnergyCharacteristic &ch
         }
     }
     if(this->firstVirtualBike)
-        this->get_lockscreenFunctions()->pelotonBikeUpdateCHR(currentCrankRevolutions(), lastCrankEventTime(),metrics_override_heartrate());
+        this->pelotonUpdateCHR();
 
     FanSpeed = 0;
 
