@@ -42,6 +42,7 @@ class kingsmithr2treadmill : public treadmill {
 
     void *VirtualTreadMill();
     void *VirtualDevice();
+    virtual bool canStartStop() { return false; }
 
   private:
     const QByteArray PLAINTEXT_TABLE =

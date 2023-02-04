@@ -631,7 +631,8 @@ class bluetoothdevice : public QObject {
     bool updateLockscreenEnergyDistanceHeartRate( int defaultHeartRate=0) {
         auto functions = this->get_lockscreenFunctions();
         if(functions)
-            functions->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart, defaultHeartRate);
+            return functions->updateHeartRate(this->KCal.value(), this->Distance.value(), this->Heart, defaultHeartRate);
+        return false;
     }
 
     bool updateLockscreenHeartRate() {

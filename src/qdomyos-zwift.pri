@@ -66,6 +66,9 @@ SOURCES += \
     $$PWD/defaultlockscreenfunctions.cpp \
     $$PWD/ios/ioslockscreenfunctions.cpp \
     $$PWD/qzlockscreenfunctions.cpp \
+    $$PWD/androidactivityresultreceiver.cpp \
+    $$PWD/androidadblog.cpp \
+   $$PWD/pelotonbike.cpp \
    Computrainer.cpp \
    PathController.cpp \
     characteristicnotifier2a53.cpp \
@@ -257,9 +260,12 @@ INCLUDEPATH += fit-sdk/
 
 HEADERS += \
     $$PWD/defaultlockscreenfunctions.h \
+    $$PWD/androidactivityresultreceiver.h \
+    $$PWD/androidadblog.h \
     $$PWD/discoveryoptions.h \
     $$PWD/ios/ioslockscreenfunctions.h \
     $$PWD/qzlockscreenfunctions.h \
+   $$PWD/pelotonbike.h \
    Computrainer.h \
    PathController.h \
     characteristicnotifier2a53.h \
@@ -670,6 +676,9 @@ RESOURCES += \
 	qml.qrc
 
 DISTFILES += \
+    $$PWD/android/src/MediaProjection.java \
+    $$PWD/android/src/NotificationUtils.java \
+    $$PWD/android/src/ScreenCaptureService.java \
     .clang-format \
    AppxManifest.xml \
    android/AndroidManifest.xml \
@@ -757,4 +766,4 @@ INCLUDEPATH += purchasing/inapp
 
 WINRT_MANIFEST = AppxManifest.xml
 
-VERSION = 2.12.53
+VERSION = 2.12.59

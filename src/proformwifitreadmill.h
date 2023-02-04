@@ -47,6 +47,7 @@ class proformwifitreadmill : public treadmill {
     void *VirtualTreadMill();
     void *VirtualBike();
     void *VirtualDevice();
+    virtual bool canStartStop() { return false; }
 
   private:
     QWebSocket websocket;

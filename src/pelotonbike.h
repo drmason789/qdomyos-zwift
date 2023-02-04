@@ -1,5 +1,5 @@
-#ifndef NORDICTRACKIFITADBTREADMILL_H
-#define NORDICTRACKIFITADBTREADMILL_H
+#ifndef PELOTONBIKE_H
+#define PELOTONBIKE_H
 
 #include <QtCore/qbytearray.h>
 
@@ -18,30 +18,34 @@
 #include <QString>
 #include <QUdpSocket>
 
-#include "treadmill.h"
+#include "bike.h"
 #include "virtualbike.h"
-#include "virtualtreadmill.h"
 
-class nordictrackifitadbtreadmill : public treadmill {
+#ifdef Q_OS_IOS
+#include "ios/lockscreen.h"
+#endif
+
+class pelotonbike : public bike {
     Q_OBJECT
   public:
-    nordictrackifitadbtreadmill(bool noWriteResistance, bool noHeartService);
+    pelotonbike(bool noWriteResistance, bool noHeartService);
     bool connected();
+    bool inclinationAvailableByHardware();
 
     void *VirtualTreadmill();
     void *VirtualDevice();
-    virtual bool canStartStop() { return false; }
 
   private:
-    void forceIncline(double incline);
-    void forceSpeed(double speed);
+    void forceResistance(double resistance);
+    uint16_t watts();
+    double getDouble(QString v);
 
     QTimer *refresh;
-    virtualtreadmill *virtualTreadmill = nullptr;
     virtualbike *virtualBike = nullptr;
 
     uint8_t sec1Update = 0;
     QDateTime lastRefreshCharacteristicChanged = QDateTime::currentDateTime();
+    QDateTime lastInclinationChanged = QDateTime::currentDateTime();
     uint8_t firstStateChanged = 0;
     uint16_t m_watts = 0;
 
@@ -51,12 +55,8 @@ class nordictrackifitadbtreadmill : public treadmill {
     bool noWriteResistance = false;
     bool noHeartService = false;
 
-    QUdpSocket *socket = nullptr;
-    QHostAddress lastSender;
-
-
-#ifdef Q_OS_ANDROID
-    QString lastCommand = "";
+#ifdef Q_OS_IOS
+    lockscreen *h = 0;
 #endif
 
   signals:
@@ -65,10 +65,9 @@ class nordictrackifitadbtreadmill : public treadmill {
 
   private slots:
 
-    void processPendingDatagrams();
     void changeInclinationRequested(double grade, double percentage);
 
     void update();
 };
 
-#endif // NORDICTRACKIFITADBTREADMILL_H
+#endif // PELOTONBIKE_H
