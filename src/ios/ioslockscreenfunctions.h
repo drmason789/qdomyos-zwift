@@ -3,7 +3,7 @@
 
 #include <qglobal.h>
 
-#include "lockscreen/qzlockscreenfunctions.h"
+#include <lockscreen/qzlockscreenfunctions.h>
 
 class IOSLockscreenFunctions : public QZLockscreenFunctions {
 private:

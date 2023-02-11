@@ -9,6 +9,7 @@
 #include "screencapture.h"
 #include "sessionline.h"
 #include "smtpclient/src/SmtpMime"
+#include "templateinfosenderbuilder.h"
 #include "trainprogram.h"
 #include <QChart>
 #include <QColor>

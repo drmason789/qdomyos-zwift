@@ -1,6 +1,6 @@
 #ifndef TRAINPROGRAM_H
 #define TRAINPROGRAM_H
-#include "bluetooth.h"
+#include <bluetooth.h>
 #include <QGeoCoordinate>
 #include <QMutex>
 #include <QObject>
