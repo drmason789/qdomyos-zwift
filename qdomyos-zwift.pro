@@ -1,18 +1,15 @@
 TEMPLATE = subdirs
-CONFIG+=ordered
+
+SUBDIRS = lib src
+
+src.file = src/qdomyos-zwift.pro
+lib.file = lib/qdomyos-zwift-lib.pro
+src.depends = lib
+
 
 !android: {
-SUBDIRS = \
-    src/qdomyos-zwift-lib.pro \
-    src/qdomyos-zwift.pro \
-    tst/qdomyos-zwift-tests.pro
-    
-tst.depends = src/qdomyos-zwift-lib.pro
-}
+    SUBDIRS += tst
 
-android: {
-    SUBDIRS = \
-        src/qdomyos-zwift.pro
+    tst.file = tst/qdomyos-zwift-tests.pro
+    tst.depends = lib
 }
-
- 
