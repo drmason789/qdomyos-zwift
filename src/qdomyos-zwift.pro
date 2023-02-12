@@ -64,7 +64,6 @@ DEFINES += QT_DEPRECATED_WARNINGS IO_UNDER_QT SMTP_BUILD
 # include(../qtzeroconf/qtzeroconf.pri)
 
 SOURCES += \
-            $$PWD/androidactivityresultreceiver.cpp \
             $$PWD/androidadblog.cpp \
             $$PWD/ios/ioslockscreenfunctions.cpp \
             PathController.cpp \
@@ -132,7 +131,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 INCLUDEPATH += fit-sdk/
 
 HEADERS += \
-            $$PWD/androidactivityresultreceiver.h \
             $$PWD/androidadblog.h \
             $$PWD/ios/ioslockscreenfunctions.h \
             PathController.h \
