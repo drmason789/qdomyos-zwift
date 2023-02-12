@@ -1,6 +1,6 @@
 include(../defaults.pri)
 
-QT += bluetooth xml location networkauth websockets
+QT += bluetooth xml location networkauth websockets widgets
 QT -= gui
 
 TEMPLATE = lib
