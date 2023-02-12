@@ -22,7 +22,7 @@ qtHaveModule(httpserver) {
     }
 }
 
-CONFIG += c++17 console app_bundle optimize_full ltcg
+CONFIG += c++17 console app_bundle optimize_full ltcg link_prl
 
 CONFIG += qmltypes
 QML_IMPORT_NAME = org.cagnulein.qdomyoszwift

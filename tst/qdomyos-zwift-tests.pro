@@ -7,7 +7,7 @@ TEMPLATE = app
 
 QT += location networkauth websockets
 
-CONFIG += console c++11
+CONFIG += console c++11 link_prl
 CONFIG -= app_bundle
 CONFIG += thread
 CONFIG += androidextras
