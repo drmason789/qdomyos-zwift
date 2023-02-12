@@ -85,7 +85,17 @@ jobs:
             echo "#define SMTP_PASSWORD ${{ secrets.smtp_password }}" >> secret.h
             echo "#define SMTP_SERVER ${{ secrets.smtp_server }}" >> secret.h
             cd ..
+            
+            cd lib
             make -j8
+            
+            cd ../tst
+            make -j8
+            
+            cd ../src
+            make -j8
+            
+            cd ..        
             ls -R
             cd src/debug
             mkdir output
