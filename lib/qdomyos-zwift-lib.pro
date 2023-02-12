@@ -10,13 +10,14 @@ CONFIG += staticlib create_prl
 
 CONFIG += c++17
 
-INCLUDEPATH += qmdnsengine/src/include devices bluetooth
+INCLUDEPATH += qmdnsengine/src/include devices bluetooth android
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    android/androidactivityresultreceiver.cpp \
     bluetooth/characteristicnotifier2a37.cpp \
     bluetooth/characteristicnotifier2a53.cpp \
     bluetooth/characteristicnotifier2a5b.cpp \
@@ -148,6 +149,7 @@ SOURCES += \
     sessionline.cpp
 
 HEADERS += \
+    android/androidactivityresultreceiver.h \
     bluetooth/characteristicnotifier.h \
     bluetooth/characteristicnotifier2a37.h \
     bluetooth/characteristicnotifier2a53.h \
