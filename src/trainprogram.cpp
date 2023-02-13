@@ -5,8 +5,7 @@
 #include <QtXml/QtXml>
 #include <chrono>
 #ifdef Q_OS_ANDROID
-#include "androidactivityresultreceiver.h"
-#include "keepawakehelper.h"
+#include <androidactivityresultreceiver.h>
 #include <QAndroidJniObject>
 #endif
 

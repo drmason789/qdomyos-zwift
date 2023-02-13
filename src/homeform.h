@@ -1,13 +1,15 @@
 #ifndef HOMEFORM_H
 #define HOMEFORM_H
 
+#include <bluetooth.h>
+#include <sessionline.h>
+
 #include "PathController.h"
-#include "bluetooth.h"
 #include "fit_profile.hpp"
 #include "gpx.h"
 #include "peloton.h"
 #include "screencapture.h"
-#include "sessionline.h"
+
 #include "smtpclient/src/SmtpMime"
 #include "templateinfosenderbuilder.h"
 #include "trainprogram.h"

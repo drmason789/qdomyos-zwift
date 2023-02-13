@@ -499,7 +499,7 @@ win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../lib/release/ -lqdom
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../lib/debug/ -lqdomyos-zwift-lib
 else:unix: LIBS += -L$$OUT_PWD/../lib/ -lqdomyos-zwift-lib
 
-INCLUDEPATH += $$PWD/../lib $$PWD/../lib/devices $$PWD/../lib/bluetooth $$PWD/../lib/qmdnsengine/src/include
+INCLUDEPATH += $$PWD/../lib $$PWD/../lib/devices $$PWD/../lib/bluetooth $$PWD/../lib/qmdnsengine/src/include $$PWD/../lib/android
 DEPENDPATH += $$PWD/../lib
 
 win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../lib/release/libqdomyos-zwift-lib.a
