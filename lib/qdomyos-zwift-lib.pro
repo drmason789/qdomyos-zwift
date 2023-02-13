@@ -18,6 +18,7 @@ INCLUDEPATH += qmdnsengine/src/include devices bluetooth android
 
 SOURCES += \
     android/androidactivityresultreceiver.cpp \
+    android/scanrecordresult.cpp \
     bluetooth/characteristicnotifier2a37.cpp \
     bluetooth/characteristicnotifier2a53.cpp \
     bluetooth/characteristicnotifier2a5b.cpp \
@@ -150,6 +151,7 @@ SOURCES += \
 
 HEADERS += \
     android/androidactivityresultreceiver.h \
+    android/scanrecordresult.h \
     bluetooth/characteristicnotifier.h \
     bluetooth/characteristicnotifier2a37.h \
     bluetooth/characteristicnotifier2a53.h \

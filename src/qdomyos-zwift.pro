@@ -113,7 +113,6 @@ SOURCES += \
             smtpclient/src/mimetext.cpp \
             smtpclient/src/quotedprintable.cpp \
             smtpclient/src/smtpclient.cpp \
-            scanrecordresult.cpp \
             tcpclientinfosender.cpp \
             templateinfosender.cpp \
             templateinfosenderbuilder.cpp \
@@ -384,7 +383,6 @@ HEADERS += \
             trainprogram.h \
             wobjectdefs.h \
             wobjectimpl.h \
-            scanrecordresult.h \
             screencapture.h \
             zwiftworkout.h
 
