@@ -250,12 +250,20 @@ jobs:
       - name: Compile Linux Desktop
         run: |
             qmake
-            cd src
-            make qdomyos-zwift-lib.pro -j8
-            cd ../tst
-            make qdomyos-zwift-tests.pro -j8
-            cd ..
-        
+            make -j8
+
+      - name: Test2
+        run: | 
+          cd tst
+          ./qdomyos-zwift-tests --gtest_output=xml:test-results.xml
+          GTEST_OUTPUT=xml:test-results/ GTEST_COLOR=1 ./qdomyos-zwift-tests -V
+          cd ..
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: test_results_xml
+          path: tst/test-results.xml 
 
       - name: Test1
         run: | 
@@ -271,18 +279,7 @@ jobs:
           name: test_results_xml
           path: tst/test-results/**/*.xml  
           
-      - name: Test2
-        run: | 
-          cd tst
-          ./qdomyos-zwift-tests --gtest_output=xml:test-results.xml
-          GTEST_OUTPUT=xml:test-results/ GTEST_COLOR=1 ./qdomyos-zwift-tests -V
-          cd ..
-      - name: Upload test results
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: test_results_xml
-          path: tst/test-results.xml  
+ 
 
 #      - name: Test Peloton API
 #        if: github.event_name == 'push' || github.event_name == 'schedule'
