@@ -22,3 +22,6 @@ ios: {
 }
 
  
+
+SUBDIRS += \
+    fit-sdk
