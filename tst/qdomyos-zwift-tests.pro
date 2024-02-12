@@ -18,6 +18,7 @@ SOURCES += \
         Devices/SnodeBike/snodebiketestdata.cpp \
         Devices/StagesBike/stagesbiketestdata.cpp \
         Devices/TrxAppGateUSBTreadmill/trxappgateusbtreadmilltestdata.cpp \
+        Devices/biketestsuite.cpp \
         Devices/bluetoothdevicetestdata.cpp \
         Devices/bluetoothdevicetestsuite.cpp \
         Devices/bluetoothsignalreceiver.cpp \
@@ -128,6 +129,7 @@ HEADERS += \
     Devices/WahooKickrSnapBike/wahookickrsnapbiketestdata.h \
     Devices/YesoulBike/yesoulbiketestdata.h \
     Devices/ZiproTreadmill/ziprotreadmilltestdata.h \
+    Devices/biketestsuite.h \
     Devices/bluetoothdevicetestdata.h \
     Devices/bluetoothdevicetestsuite.h \
     Devices/bluetoothsignalreceiver.h \

@@ -8,7 +8,10 @@
 
 
 class M3IBikeTestData : public BikeTestData {
-
+protected:
+    bike* doCreateInstance(const BikeOptions& options) override {
+        return new m3ibike(options.noResistance, options.noHeartService);
+    }
 public:
     M3IBikeTestData() : BikeTestData("M3I Bike") {
         this->testInvalidBluetoothDeviceInfo = true;

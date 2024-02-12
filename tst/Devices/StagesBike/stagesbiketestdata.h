@@ -7,6 +7,9 @@
 
 class StagesBikeTestData : public BikeTestData {
 protected:
+    bike* doCreateInstance(const BikeOptions& options) override {
+        return new stagesbike(options.noResistance, options.noHeartService, options.noVirtualDevice);
+    }
     StagesBikeTestData(std::string testName): BikeTestData(testName) {
     }
 
