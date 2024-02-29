@@ -5,7 +5,7 @@ include(gtest_dependency.pri)
 
 TEMPLATE = app
 
-CONFIG += console c++11
+CONFIG += console c++17
 CONFIG -= app_bundle
 CONFIG += thread
 CONFIG += androidextras
@@ -23,6 +23,7 @@ SOURCES += \
         Devices/bluetoothdevicetestsuite.cpp \
         Devices/bluetoothsignalreceiver.cpp \
         Devices/devicediscoveryinfo.cpp \
+        ErgInterface/bikeergfunctions.cpp \
         ToolTests/testsettingstestsuite.cpp \
         Tools/testsettings.cpp \
         main.cpp
@@ -138,5 +139,7 @@ HEADERS += \
     Devices/iConceptBike/iconceptbiketestdata.h \
     Devices/iConceptElliptical/iconceptellipticaltestdata.h \
     Devices/YpooElliptical/ypooellipticaltestdata.h \
+    ErgInterface/bikeergfunctions.h \
+    ErgInterface/erginterface.h \
     ToolTests/testsettingstestsuite.h \
     Tools/testsettings.h

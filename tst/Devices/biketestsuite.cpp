@@ -1,4 +1,5 @@
 #include "biketestsuite.h"
+#include "ErgInterface/bikeergfunctions.h"
 
 template<typename T>
 void BikeTestSuite<T>::SetUp() {}
@@ -7,46 +8,49 @@ template<typename T>
 void BikeTestSuite<T>::test_powerFunctions() {
     BikeOptions options;
     auto device = std::unique_ptr<bike>(this->typeParam.createInstance(options));
+    auto erg = std::unique_ptr<erginterface>(new bikeergfunctions(device.get()));
 
-
-    const uint32_t maxRPM = 120;
-    const uint32_t minRPM = 30;
-    const resistance_t maxResistance = device->maxResistance();
-    const resistance_t minResistance = 0;
+    const uint32_t maxRPM = erg->getMaxCadence().value_or(255);
+    const uint32_t minRPM = erg->getMinCadence().value_or(1);
+    const resistance_t maxResistance = erg->getMaxResistance().value_or(255);
+    const resistance_t minResistance = erg->getMinResistance().value_or(0);
 
     uint16_t p0, p1;
 
     // traverse the cadence edges checking the power is clipped to the values for the max and min resistance
     for(uint32_t cadenceRPM=minRPM; cadenceRPM<=maxRPM; cadenceRPM++)
     {
-        device->cadenceSensor(cadenceRPM);
-        p0 = device->powerFromResistanceRequest(maxResistance);
-        p1 = device->powerFromResistanceRequest(maxResistance+1);
+        if(erg->getMaxResistance().has_value()) {
+            p0 = erg->getPower(cadenceRPM, maxResistance);
+            p1 = erg->getPower(cadenceRPM, maxResistance+1);
 
-        ASSERT_EQ(p0, p1) << "expected power to stop increasing at max resistance, at cadence " << cadenceRPM << " RPM";
+            EXPECT_EQ(p0, p1) << "expected power to stop increasing at max resistance, at cadence " << cadenceRPM << " RPM";
+        }
 
-        p0 = device->powerFromResistanceRequest(minResistance);
-        p1 = device->powerFromResistanceRequest(minResistance-1);
+        if(erg->getMinResistance().has_value()) {
+            p0 = erg->getPower(cadenceRPM, minResistance);
+            p1 = erg->getPower(cadenceRPM, minResistance-1);
 
-        ASSERT_EQ(p0, p1) << "expected power to stop decreasing at min resistance, at cadence " << cadenceRPM << " RPM";
+            EXPECT_EQ(p0, p1) << "expected power to stop decreasing at min resistance, at cadence " << cadenceRPM << " RPM";
+        }
     }
 
     // traverse the resistance edge checking the power is clipped to the values for the max and min cadence
     for(resistance_t r=minResistance; r<=maxResistance; r++)
     {
-        device->cadenceSensor(minRPM);
-        p0 = device->powerFromResistanceRequest(r);
-        device->cadenceSensor(minRPM-1);
-        p1 = device->powerFromResistanceRequest(r);
+        if(erg->getMinCadence().has_value()) {
+            p0 = erg->getPower(minRPM, r);
+            p1 = erg->getPower(minRPM-1, r);
 
-        ASSERT_EQ(p0, p1) << "expected power to stop decreasing at min cadence, for resistance " << r ;
+            ASSERT_EQ(p0, p1) << "expected power to stop decreasing at min cadence, for resistance " << r ;
+        }
 
-        device->cadenceSensor(maxRPM);
-        p0 = device->powerFromResistanceRequest(r);
-        device->cadenceSensor(maxRPM+1);
-        p1 = device->powerFromResistanceRequest(r);
+        if(erg->getMaxCadence().has_value()) {
+            p0 = erg->getPower(maxRPM, r);
+            p1 = erg->getPower(maxRPM+1, r);
 
-        ASSERT_EQ(p0, p1) << "expected power to stop increasing at max cadence, for resistance " << r ;
+            ASSERT_EQ(p0, p1) << "expected power to stop increasing at max cadence, for resistance " << r ;
+        }
     }
 
     // test inverses
@@ -55,15 +59,14 @@ void BikeTestSuite<T>::test_powerFunctions() {
         uint16_t lastPower=0xFFFF;
         for(resistance_t r=minResistance; r<=maxResistance; r++)
         {
-            device->cadenceSensor(cadenceRPM);
-            uint16_t power = device->powerFromResistanceRequest(r);
+            uint16_t power = erg->getPower(cadenceRPM, r);
 
             if(power!=lastPower)
             {
                 lastPower = power;
-                resistance_t resistance = device->resistanceFromPowerRequest(power);
+                resistance_t resistance = erg->getResistance(cadenceRPM, power);
 
-                ASSERT_EQ(r, resistance) << "unexpected resistance to achieve " << power << "W at "<<cadenceRPM << "RPM";
+                ASSERT_EQ(r, resistance) << "unexpected resistance to achieve " << power << "W at " <<cadenceRPM << "RPM";
             }
 
         }
