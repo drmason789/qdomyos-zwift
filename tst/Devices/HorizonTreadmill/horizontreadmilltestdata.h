@@ -107,3 +107,26 @@ class HorizonTreadmillBodyToneTestData : public TreadmillTestData {
         return dynamic_cast<horizontreadmill *>(detectedDevice) != nullptr;
     }
 };
+
+
+class HorizonTreadmillDomyosTCTestData : public TreadmillTestData {
+protected:
+    void configureBluetoothDeviceInfos(const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos) const override {
+        auto result = info;
+        if(enable) {
+            result.setServiceUuids(QVector<QBluetoothUuid>({QBluetoothUuid((quint16)0x1826)}));
+        }
+
+        bluetoothDeviceInfos.push_back(result);
+    }
+public:
+    HorizonTreadmillDomyosTCTestData() : TreadmillTestData("Horizon Treadmill (Domyos TC)") {
+        this->addDeviceName("DOMYOS-TC", comparison::StartsWithIgnoreCase);
+    }
+
+    deviceType get_expectedDeviceType() const override { return deviceType::HorizonTreadmill; }
+
+    bool get_isExpectedDevice(bluetoothdevice *detectedDevice) const override {
+        return dynamic_cast<horizontreadmill *>(detectedDevice) != nullptr;
+    }   
+};

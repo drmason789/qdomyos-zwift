@@ -152,6 +152,10 @@ void trxappgateusbbike::update() {
 
             const uint8_t noOpData[] = {0xf0, 0xa2, 0x1e, 0x01, 0xb1};
             writeCharacteristic((uint8_t *)noOpData, sizeof(noOpData), QStringLiteral("noOp"), false, true);
+        } else if (bike_type == TYPE::REEBOK || bike_type == REEBOK_2) {
+
+            const uint8_t noOpData[] = {0xf0, 0xa2, 0x32, 0x01, 0xc5};
+            writeCharacteristic((uint8_t *)noOpData, sizeof(noOpData), QStringLiteral("noOp"), false, true);
         } else if (bike_type == TYPE::HOP_SPORT_HS_090H) {
 
             const uint8_t noOpData[] = {0xf0, 0xa2, 0x3f, 0x01, 0xd2};
@@ -637,6 +641,42 @@ void trxappgateusbbike::btinit(bool startTape) {
         QThread::msleep(400);
         writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
         QThread::msleep(400);
+    } else if (bike_type == TYPE::REEBOK || bike_type == TYPE::REEBOK_2) {
+        const uint8_t initData1[] = {0xf0, 0xa0, 0x32, 0x01, 0xc3};
+        const uint8_t initData2[] = {0xf0, 0xa3, 0x32, 0x01, 0x01, 0xc7};
+        const uint8_t initData3[] = {0xf0, 0xa4, 0x32, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0xd1};
+        const uint8_t initData4[] = {0xf0, 0xa5, 0x32, 0x01, 0x02, 0xca};
+
+        writeCharacteristic((uint8_t *)initData1, sizeof(initData1), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData1, sizeof(initData1), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData2, sizeof(initData2), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+
+        writeCharacteristic((uint8_t *)initData3, sizeof(initData3), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
+        writeCharacteristic((uint8_t *)initData4, sizeof(initData4), QStringLiteral("init"), false, true);
+        QThread::msleep(400);
     } else if (bike_type == TYPE::TUNTURI || bike_type == TYPE::TUNTURI_2) {
         const uint8_t initData1[] = {0xf0, 0xa0, 0x01, 0x01, 0x92};
         const uint8_t initData2[] = {0xf0, 0xa0, 0x03, 0x01, 0x94};
@@ -752,7 +792,7 @@ void trxappgateusbbike::stateChanged(QLowEnergyService::ServiceState state) {
         if (bike_type == TYPE::IRUNNING || bike_type == TYPE::CHANGYOW || bike_type == TYPE::ICONSOLE ||
             bike_type == TYPE::JLL_IC400 || bike_type == TYPE::DKN_MOTION_2 || bike_type == TYPE::FYTTER_RI08 ||
             bike_type == TYPE::HERTZ_XR_770_2 || bike_type == TYPE::VIRTUFIT_2 || bike_type == TYPE::TUNTURI ||
-            bike_type == TYPE::FITHIWAY || bike_type == TYPE::ENERFIT_SPX_9500_2) {
+            bike_type == TYPE::FITHIWAY || bike_type == TYPE::ENERFIT_SPX_9500_2 || bike_type == TYPE::REEBOK_2) {
             uuidWrite = QStringLiteral("49535343-8841-43f4-a8d4-ecbe34729bb3");
             uuidNotify1 = QStringLiteral("49535343-1E4D-4BD9-BA61-23C647249616");
             uuidNotify2 = QStringLiteral("49535343-4c8a-39b3-2f49-511cff073b7e");
@@ -869,6 +909,20 @@ void trxappgateusbbike::serviceScanDone(void) {
         }
         if (!found) {
             bike_type = ENERFIT_SPX_9500_2;
+            uuid = uuid2;
+        }
+    } else if (bike_type == REEBOK) {
+
+        bool found = false;
+        foreach (QBluetoothUuid s, m_control->services()) {
+
+            if (s == QBluetoothUuid::fromString(uuid)) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            bike_type = REEBOK_2;
             uuid = uuid2;
         }
     } else if (bike_type == DKN_MOTION) {
@@ -1006,6 +1060,9 @@ void trxappgateusbbike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
 
             bike_type = TYPE::HOP_SPORT_HS_090H;
             qDebug() << QStringLiteral("hop_sport_hs_090h_bike bike found");
+        } else if (device.name().toUpper().startsWith(QStringLiteral("REEBOK"))) {
+            bike_type = TYPE::REEBOK;
+            qDebug() << QStringLiteral("REEBOK bike found");
         } else if (device.name().toUpper().startsWith(QStringLiteral("TUN "))) {
             bike_type = TYPE::TUNTURI;
             qDebug() << QStringLiteral("TUNTURI bike found");
@@ -1100,32 +1157,59 @@ void trxappgateusbbike::controllerStateChanged(QLowEnergyController::ControllerS
 }
 
 uint16_t trxappgateusbbike::wattsFromResistance(double resistance) {
-    double P;
-    // Toorx SRX 3500 #1999
-    P = 37.069 
-        - 1.483 * Cadence.value() 
-        - 4.942 * resistance 
-        + 0.023 * Cadence.value() * Cadence.value() 
-        + 0.336 * Cadence.value() * resistance 
-        - 0.036 * resistance * resistance;
-    return P;
+    QSettings settings;
+    bool toorx_srx_3500 = settings.value(QZSettings::toorx_srx_3500, QZSettings::default_toorx_srx_3500).toBool();
+    if(toorx_srx_3500) {
+        double P;
+        // Toorx SRX 3500 #1999
+        P = 37.069 
+            - 1.483 * Cadence.value() 
+            - 4.942 * resistance 
+            + 0.023 * Cadence.value() * Cadence.value() 
+            + 0.336 * Cadence.value() * resistance 
+            - 0.036 * resistance * resistance;
+        return P;
+    } else {
+        // toorx srx 500 #2138
+        double intercept = -1.0174902288995327;
+        double coef_x1 = -0.2596697;
+        double coef_x2 = -1.63400699;
+        double coef_x1_squared = 0.01471623;
+        double coef_x2_squared = 0.21051417;
+        double coef_x1_x2 = -0.08509624;
+
+        double power = intercept +
+                       coef_x1 * Cadence.value() +
+                       coef_x2 * resistance +
+                       coef_x1_squared * Cadence.value() * Cadence.value() +
+                       coef_x2_squared * resistance * resistance +
+                       coef_x1_x2 * Cadence.value() * resistance;
+        return power;
+        //qDebug() << "no power table for this bike";
+    }
 }
 
 resistance_t trxappgateusbbike::resistanceFromPowerRequest(uint16_t power) {
-    qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
+    //QSettings settings;
+    //bool toorx_srx_3500 = settings.value(QZSettings::toorx_srx_3500, QZSettings::default_toorx_srx_3500).toBool();
+    /*if(toorx_srx_3500)*/ {
+        qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
-    if (Cadence.value() == 0)
-        return 1;
+        if (Cadence.value() == 0)
+            return 1;
 
-    for (resistance_t i = 1; i < maxResistance(); i++) {
-        if (wattsFromResistance(i) <= power && wattsFromResistance(i + 1) >= power) {
-            qDebug() << QStringLiteral("resistanceFromPowerRequest") << wattsFromResistance(i)
-                     << wattsFromResistance(i + 1) << power;
-            return i;
+        for (resistance_t i = 1; i < maxResistance(); i++) {
+            if (wattsFromResistance(i) <= power && wattsFromResistance(i + 1) >= power) {
+                qDebug() << QStringLiteral("resistanceFromPowerRequest") << wattsFromResistance(i)
+                        << wattsFromResistance(i + 1) << power;
+                return i;
+            }
         }
-    }
-    if (power < wattsFromResistance(1))
-        return 1;
-    else
-        return maxResistance();
+        if (power < wattsFromResistance(1))
+            return 1;
+        else
+            return maxResistance();
+    } /*else {
+        return power / 10;
+    }*/
 }

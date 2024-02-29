@@ -1,5 +1,5 @@
-#ifndef NAUTILUSBIKE_H
-#define NAUTILUSBIKE_H
+#ifndef TRXAPPGATEUSBELLIPTICAL_H
+#define TRXAPPGATEUSBELLIPTICAL_H
 
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QtBluetooth/qlowenergyadvertisingdata.h>
@@ -26,54 +26,59 @@
 #include <QObject>
 #include <QString>
 
-#include "devices/bike.h"
+#include "devices/elliptical.h"
 
-class nautilusbike : public bike {
+#ifdef Q_OS_IOS
+#include "ios/lockscreen.h"
+#endif
+
+class trxappgateusbelliptical : public elliptical {
     Q_OBJECT
   public:
-    nautilusbike(bool noWriteResistance = false, bool noHeartService = false, bool testResistance = false,
-                 uint8_t bikeResistanceOffset = 4, double bikeResistanceGain = 1.0);
-    ~nautilusbike();
+    trxappgateusbelliptical(bool noWriteResistance = false, bool noHeartService = false, uint8_t bikeResistanceOffset = 4,
+                   double bikeResistanceGain = 1.0);
     bool connected() override;
-    resistance_t resistanceFromPowerRequest(uint16_t power) override;
-    resistance_t maxResistance() override;
 
   private:
-    double GetSpeedFromPacket(const QByteArray &packet);
-    double GetInclinationFromPacket(QByteArray packet);
-    double GetWattFromPacket(const QByteArray &packet);
-    double GetDistanceFromPacket(const QByteArray &packet);
-    uint16_t watts() override;
-    void btinit(bool startTape);
     void writeCharacteristic(uint8_t *data, uint8_t data_len, const QString &info, bool disable_log = false,
                              bool wait_for_response = false);
     void startDiscover();
-    uint16_t wattsFromResistance(double resistance);
+    uint16_t watts() override;
+    void forceResistance(resistance_t requestResistance);
+    void btinit();
+    double GetSpeedFromPacket(const QByteArray &packet);
+    double GetCadenceFromPacket(const QByteArray &packet);
+    double GetWattFromPacket(const QByteArray &packet);
 
     QTimer *refresh;
-    uint8_t firstVirtual = 0;
-    uint8_t counterPoll = 0;
 
-    QLowEnergyService *gattCommunicationChannelService = nullptr;
+    QLowEnergyService* gattCommunicationChannelService;
     QLowEnergyCharacteristic gattWriteCharacteristic;
     QLowEnergyCharacteristic gattNotify1Characteristic;
-    QLowEnergyCharacteristic gattNotify2Characteristic;
 
-    bool initDone = false;
-    bool initRequest = false;
-    bool noWriteResistance = false;
-    bool noHeartService = false;
-    bool testResistance = false;
-    uint8_t bikeResistanceOffset = 4;
-    double bikeResistanceGain = 1.0;
-    bool searchStopped = false;
     uint8_t sec1Update = 0;
     QByteArray lastPacket;
     QDateTime lastRefreshCharacteristicChanged = QDateTime::currentDateTime();
+    uint8_t firstStateChanged = 0;
+    uint8_t bikeResistanceOffset = 4;
+    double bikeResistanceGain = 1.0;
+    const uint8_t max_resistance = 72; // 24;
+    const uint8_t default_resistance = 6;
 
-    bool B616 = false;
+    bool initDone = false;
+    bool initRequest = false;
 
-  signals:
+    bool noWriteResistance = false;
+    bool noHeartService = false;
+
+    uint8_t counterPoll = 0;
+    bool searchStopped = false;
+
+#ifdef Q_OS_IOS
+    lockscreen *h = 0;
+#endif
+
+  Q_SIGNALS:
     void disconnected();
     void debug(QString string);
 
@@ -88,13 +93,14 @@ class nautilusbike : public bike {
     void descriptorWritten(const QLowEnergyDescriptor &descriptor, const QByteArray &newValue);
     void stateChanged(QLowEnergyService::ServiceState state);
     void controllerStateChanged(QLowEnergyController::ControllerState state);
-    void changeInclinationRequested(double grade, double percentage);
 
     void serviceDiscovered(const QBluetoothUuid &gatt);
     void serviceScanDone(void);
     void update();
     void error(QLowEnergyController::Error err);
     void errorService(QLowEnergyService::ServiceError);
+    void changeInclinationRequested(double grade, double percentage);
+    // void ftmsCharacteristicChanged(const QLowEnergyCharacteristic &characteristic, const QByteArray &newValue);
 };
 
-#endif // NAUTILUSBIKE_H
+#endif // TRXAPPGATEUSBELLIPTICAL_H

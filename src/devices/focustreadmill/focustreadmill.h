@@ -1,5 +1,5 @@
-#ifndef NAUTILUSBIKE_H
-#define NAUTILUSBIKE_H
+#ifndef FOCUSTREADMILL_H
+#define FOCUSTREADMILL_H
 
 #include <QBluetoothDeviceDiscoveryAgent>
 #include <QtBluetooth/qlowenergyadvertisingdata.h>
@@ -24,58 +24,58 @@
 
 #include <QDateTime>
 #include <QObject>
-#include <QString>
 
-#include "devices/bike.h"
+#include "treadmill.h"
 
-class nautilusbike : public bike {
+class focustreadmill : public treadmill {
     Q_OBJECT
   public:
-    nautilusbike(bool noWriteResistance = false, bool noHeartService = false, bool testResistance = false,
-                 uint8_t bikeResistanceOffset = 4, double bikeResistanceGain = 1.0);
-    ~nautilusbike();
+    focustreadmill(uint32_t poolDeviceTime = 200, bool noConsole = false, bool noHeartService = false,
+                    double forceInitSpeed = 0.0, double forceInitInclination = 0.0);
     bool connected() override;
-    resistance_t resistanceFromPowerRequest(uint16_t power) override;
-    resistance_t maxResistance() override;
+    double minStepInclination() override;
+    double minStepSpeed() override;
+    /*bool autoPauseWhenSpeedIsZero() override;
+    bool autoStartWhenSpeedIsGreaterThenZero() override;*/
 
   private:
     double GetSpeedFromPacket(const QByteArray &packet);
-    double GetInclinationFromPacket(QByteArray packet);
-    double GetWattFromPacket(const QByteArray &packet);
-    double GetDistanceFromPacket(const QByteArray &packet);
-    uint16_t watts() override;
+    double GetInclinationFromPacket(const QByteArray &packet);
+    void forceSpeed(double requestSpeed);
+    void forceIncline(double requestIncline);
+    void updateDisplay(uint16_t elapsed);
     void btinit(bool startTape);
+    void forceSpeedAndInclination(double speed, double inclination);
     void writeCharacteristic(uint8_t *data, uint8_t data_len, const QString &info, bool disable_log = false,
                              bool wait_for_response = false);
     void startDiscover();
-    uint16_t wattsFromResistance(double resistance);
+    bool noConsole = false;
+    bool noHeartService = false;
+    uint32_t pollDeviceTime = 200;
+    uint8_t sec1Update = 0;
+    uint8_t firstInit = 0;
+    QByteArray lastPacket;
+    QDateTime lastTimeCharacteristicChanged;
+    bool firstCharacteristicChanged = true;
+    bool searchStopped = false;
+
+    int64_t lastStart = 0;
+    int64_t lastStop = 0;
 
     QTimer *refresh;
-    uint8_t firstVirtual = 0;
-    uint8_t counterPoll = 0;
 
     QLowEnergyService *gattCommunicationChannelService = nullptr;
     QLowEnergyCharacteristic gattWriteCharacteristic;
     QLowEnergyCharacteristic gattNotify1Characteristic;
-    QLowEnergyCharacteristic gattNotify2Characteristic;
 
     bool initDone = false;
     bool initRequest = false;
-    bool noWriteResistance = false;
-    bool noHeartService = false;
-    bool testResistance = false;
-    uint8_t bikeResistanceOffset = 4;
-    double bikeResistanceGain = 1.0;
-    bool searchStopped = false;
-    uint8_t sec1Update = 0;
-    QByteArray lastPacket;
-    QDateTime lastRefreshCharacteristicChanged = QDateTime::currentDateTime();
 
-    bool B616 = false;
-
-  signals:
+  Q_SIGNALS:
     void disconnected();
     void debug(QString string);
+    void speedChanged(double speed);
+    void packetReceived();
 
   public slots:
     void deviceDiscovered(const QBluetoothDeviceInfo &device);
@@ -88,13 +88,14 @@ class nautilusbike : public bike {
     void descriptorWritten(const QLowEnergyDescriptor &descriptor, const QByteArray &newValue);
     void stateChanged(QLowEnergyService::ServiceState state);
     void controllerStateChanged(QLowEnergyController::ControllerState state);
-    void changeInclinationRequested(double grade, double percentage);
 
     void serviceDiscovered(const QBluetoothUuid &gatt);
     void serviceScanDone(void);
     void update();
     void error(QLowEnergyController::Error err);
     void errorService(QLowEnergyService::ServiceError);
+
+    void changeInclinationRequested(double grade, double percentage);
 };
 
-#endif // NAUTILUSBIKE_H
+#endif // FOCUSTREADMILL_H

@@ -1,30 +1,19 @@
 ﻿#pragma once
 
 #include "Devices/Treadmill/treadmilltestdata.h"
-#include "Devices/DomyosElliptical/domyosellipticaltestdata.h"
-#include "Devices/DomyosRower/domyosrowertestdata.h"
-#include "Devices/DomyosBike/domyosbiketestdata.h"
-#include "devices/domyostreadmill/domyostreadmill.h"
+
 
 class DomyosTreadmillTestData : public TreadmillTestData {
-
+protected:
+    void configureBluetoothDeviceInfos(const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos) const override;
 public:
-    DomyosTreadmillTestData() : TreadmillTestData("Domyos Treadmill") {
-        this->addDeviceName("Domyos", comparison::StartsWith);
+    DomyosTreadmillTestData();
 
-        this->addInvalidDeviceName("DomyosBr", comparison::StartsWith);
-    }
+    void configureExclusions() override;
 
-    void configureExclusions() override {
-        this->exclude(new DomyosEllipticalTestData());
-        this->exclude(new DomyosBikeTestData());
-        this->exclude(new DomyosRowerTestData());
-    }
+    deviceType get_expectedDeviceType() const override;
 
-    deviceType get_expectedDeviceType() const override { return deviceType::DomyosTreadmill; }
+    bool get_isExpectedDevice(bluetoothdevice * detectedDevice) const override;
 
-    bool get_isExpectedDevice(bluetoothdevice * detectedDevice) const override {
-        return dynamic_cast<domyostreadmill*>(detectedDevice)!=nullptr;
-    }
 };
 

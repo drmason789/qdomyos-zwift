@@ -9,13 +9,13 @@
 
 class M3IBikeTestData : public BikeTestData {
 protected:
+    void configureBluetoothDeviceInfos(const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos) const override;
+
     bike* doCreateInstance(const BikeOptions& options) override {
         return new m3ibike(options.noResistance, options.noHeartService);
     }
 public:
     M3IBikeTestData() : BikeTestData("M3I Bike") {
-        this->testInvalidBluetoothDeviceInfo = true;
-
         this->addDeviceName("M3", comparison::StartsWith);
     }
 
@@ -25,6 +25,5 @@ public:
         return dynamic_cast<m3ibike*>(detectedDevice)!=nullptr;
     }
 
-    QBluetoothDeviceInfo get_bluetoothDeviceInfo(const QBluetoothUuid& uuid, const QString& name, bool valid=true) override;
 };
 
