@@ -59,7 +59,7 @@ void bkoolbike::writeCharacteristic(uint8_t *data, uint8_t data_len, const QStri
     loop.exec();
 }
 
-void bkoolbike::changePower(int32_t power) {
+void bkoolbike::changePower(power_t power) {
     RequestedPower = power;
     /*
         if (power < 0)
@@ -76,7 +76,7 @@ void bkoolbike::changePower(int32_t power) {
     qDebug() << QStringLiteral("Changepower not implemented");
 }
 
-void bkoolbike::forceInclination(double inclination) {
+void bkoolbike::forceInclination(inclination_t inclination) {
     // TODO: inclination for bikes need to be managed on virtual bike interface
     // Inclination = inclination;
 
@@ -138,14 +138,14 @@ void bkoolbike::update() {
         }
 
         if (requestResistance != -1) {
-            if (requestResistance != currentResistance().value() || lastGearValue != gears()) {
+            if (requestResistance!= currentResistance().value() || lastGearValue != gears()) {
                 emit debug(QStringLiteral("writing resistance ") + QString::number(requestResistance));
                 auto virtualBike = this->VirtualBike();
                 if (((virtualBike && !virtualBike->ftmsDeviceConnected()) || !virtualBike) &&
-                    (requestPower == 0 || requestPower == -1)) {
-                    requestInclination = requestResistance / 10.0;
+                    (requestPower==-100 || requestPower==0)) {
+                    requestResistance = requestResistance / 10.0;
                 }
-                // forceResistance(requestResistance);;
+                // forceResistance(request(Inclination|Power|Resistance|PelotonResistance)([^\.]);;
             }
             lastGearValue = gears();
             requestResistance = -1;
@@ -159,7 +159,7 @@ void bkoolbike::update() {
 
         if (requestPower != -1) {
             changePower(requestPower);
-            requestPower = -1;
+            requestPower;
         }
         if (requestStart != -1) {
             emit debug(QStringLiteral("starting..."));
@@ -715,7 +715,7 @@ bool bkoolbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t bkoolbike::watts() {
+power_t bkoolbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }
@@ -732,7 +732,7 @@ void bkoolbike::controllerStateChanged(QLowEnergyController::ControllerState sta
     }
 }
 
-resistance_t bkoolbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t bkoolbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     for (resistance_t i = 0; i < max_resistance; i++) {
         if (bikeResistanceToPeloton(i) <= pelotonResistance && bikeResistanceToPeloton(i + 1) >= pelotonResistance) {
             return i;

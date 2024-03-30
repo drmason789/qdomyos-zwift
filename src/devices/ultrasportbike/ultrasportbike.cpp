@@ -137,7 +137,7 @@ void ultrasportbike::serviceDiscovered(const QBluetoothUuid &gatt) {
     qDebug() << QStringLiteral("serviceDiscovered ") + gatt.toString();
 }
 
-resistance_t ultrasportbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t ultrasportbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     for (resistance_t i = 1; i < max_resistance; i++) {
         if (bikeResistanceToPeloton(i) <= pelotonResistance && bikeResistanceToPeloton(i + 1) >= pelotonResistance) {
             return i;
@@ -443,7 +443,7 @@ bool ultrasportbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t ultrasportbike::watts() {
+power_t ultrasportbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

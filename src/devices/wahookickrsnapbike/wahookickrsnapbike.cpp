@@ -284,7 +284,7 @@ void wahookickrsnapbike::serviceDiscovered(const QBluetoothUuid &gatt) {
     emit debug(QStringLiteral("serviceDiscovered ") + gatt.toString());
 }
 
-resistance_t wahookickrsnapbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t wahookickrsnapbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     QSettings settings;
     bool schwinn_bike_resistance_v2 =
         settings.value(QZSettings::schwinn_bike_resistance_v2, QZSettings::default_schwinn_bike_resistance_v2).toBool();
@@ -790,7 +790,7 @@ bool wahookickrsnapbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t wahookickrsnapbike::watts() {
+power_t wahookickrsnapbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

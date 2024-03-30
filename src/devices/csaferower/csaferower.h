@@ -129,7 +129,7 @@ class csaferower : public rower {
     QDateTime lastGoodCadence = QDateTime::currentDateTime();
     uint8_t firstStateChanged = 0;
 
-    uint16_t watts() override;
+    power_t watts() override;
 
     bool initDone = false;
     bool initRequest = false;

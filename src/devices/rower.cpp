@@ -26,14 +26,14 @@ void rower::setGears(double gears) {
     qDebug() << "setGears" << gears;
     m_gears = gears;
     settings.setValue(QZSettings::gears_current_value, m_gears);
-    if (lastRawRequestedResistanceValue != -1) {
+    if (lastRawRequestedResistanceValue) {
         changeResistance(lastRawRequestedResistanceValue);
     }
 }
 
-void rower::changeRequestedPelotonResistance(int8_t resistance) { RequestedPelotonResistance = resistance; }
-void rower::changeCadence(int16_t cadence) { RequestedCadence = cadence; }
-void rower::changePower(int32_t power) {
+void rower::changeRequestedPelotonResistance(peloton_t resistance) { RequestedPelotonResistance = resistance; }
+void rower::changeCadence(cadence_t cadence) { RequestedCadence = cadence; }
+void rower::changePower(power_t power) {
     RequestedPower = power;
     qDebug() << "rower::changePower" << power;
 }
@@ -48,12 +48,12 @@ metric rower::currentStrokesCount() { return StrokesCount; }
 metric rower::currentStrokesLength() { return StrokesLength; }
 uint8_t rower::fanSpeed() { return FanSpeed; }
 bool rower::connected() { return false; }
-uint16_t rower::watts() { return 0; }
+power_t rower::watts() { return 0; }
 metric rower::pelotonResistance() { return m_pelotonResistance; }
-resistance_t rower::pelotonToBikeResistance(int pelotonResistance) { return pelotonResistance; }
-resistance_t rower::resistanceFromPowerRequest(uint16_t power) { return power / 10; } // in order to have something
-void rower::cadenceSensor(uint8_t cadence) { Cadence.setValue(cadence); }
-void rower::powerSensor(uint16_t power) { m_watt.setValue(power, false); }
+resistance_t rower::pelotonToBikeResistance(peloton_t pelotonResistance) { return pelotonResistance; }
+resistance_t rower::resistanceFromPowerRequest(power_t power) { return power / 10; } // in order to have something
+void rower::cadenceSensor(cadence_t cadence) { Cadence.setValue(cadence); }
+void rower::powerSensor(power_t power) { m_watt.setValue(power, false); }
 double rower::requestedSpeed() { return requestSpeed; }
 
 bluetoothdevice::BLUETOOTH_TYPE rower::deviceType() { return bluetoothdevice::ROWING; }

@@ -693,6 +693,6 @@ void proformellipticaltrainer::controllerStateChanged(QLowEnergyController::Cont
     }
 }
 
-int proformellipticaltrainer::pelotonToEllipticalResistance(int pelotonResistance) {
+resistance_t proformellipticaltrainer::pelotonToEllipticalResistance(peloton_t pelotonResistance) {
     return ceil((pelotonResistance - 10.0) / 3.33);
 }

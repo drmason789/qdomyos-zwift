@@ -74,7 +74,7 @@ computrainerbike::computrainerbike(bool noWriteResistance, bool noHeartService, 
     // ********************************************************************************************************
 }
 
-resistance_t computrainerbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t computrainerbike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
     QSettings settings;
@@ -342,7 +342,7 @@ bool computrainerbike::inclinationAvailableByHardware() {
         return false;
 }
 
-resistance_t computrainerbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t computrainerbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     if (pelotonResistance <= 10) {
         return 1;
     }
@@ -402,4 +402,4 @@ void computrainerbike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
 
 bool computrainerbike::connected() { return true; }
 
-uint16_t computrainerbike::watts() { return m_watt.value(); }
+power_t computrainerbike::watts() { return m_watt.value(); }

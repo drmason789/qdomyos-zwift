@@ -518,7 +518,7 @@ bool snodebike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t snodebike::watts() {
+power_t snodebike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

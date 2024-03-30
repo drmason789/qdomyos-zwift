@@ -429,11 +429,11 @@ class bluetoothdevice : public QObject {
     virtual void start();
     virtual void stop(bool pause);
     virtual void heartRate(uint8_t heart);
-    virtual void cadenceSensor(uint8_t cadence);
-    virtual void powerSensor(uint16_t power);
+    virtual void cadenceSensor(cadence_t cadence);
+    virtual void powerSensor(power_t power);
     virtual void speedSensor(double speed);
     virtual void changeResistance(resistance_t res);
-    virtual void changePower(int32_t power);
+    virtual void changePower(power_t power);
     virtual void changeInclination(double grade, double percentage);
     virtual void changeGeoPosition(QGeoCoordinate p, double azimuth, double avgAzimuthNext300Meters);
     virtual void workoutEventStateChanged(bluetoothdevice::WORKOUT_EVENT_STATE state);
@@ -445,8 +445,8 @@ class bluetoothdevice : public QObject {
   Q_SIGNALS:
     void connectedAndDiscovered();
     void speedChanged(double speed);
-    void cadenceChanged(uint8_t cadence);
-    void powerChanged(uint16_t power);
+    void cadenceChanged(cadence_t cadence);
+    void powerChanged(power_t power);
     void inclinationChanged(double grade, double percentage);
     void fanSpeedChanged(uint8_t speed);
     void instantaneousStrideLengthChanged(double length);

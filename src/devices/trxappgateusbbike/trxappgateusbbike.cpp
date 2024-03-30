@@ -1133,7 +1133,7 @@ void trxappgateusbbike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
     }
 }
 
-uint16_t trxappgateusbbike::watts() {
+power_t trxappgateusbbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }
@@ -1177,7 +1177,7 @@ uint16_t trxappgateusbbike::wattsFromResistance(double resistance) {
     }
 }
 
-resistance_t trxappgateusbbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t trxappgateusbbike::resistanceFromPowerRequest(power_t power) {
     //QSettings settings;
     //bool toorx_srx_3500 = settings.value(QZSettings::toorx_srx_3500, QZSettings::default_toorx_srx_3500).toBool();
     /*if(toorx_srx_3500)*/ {

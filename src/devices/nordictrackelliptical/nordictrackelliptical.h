@@ -38,7 +38,7 @@ class nordictrackelliptical : public elliptical {
     nordictrackelliptical(bool noWriteResistance, bool noHeartService, uint8_t bikeResistanceOffset,
                           double bikeResistanceGain);
     bool connected() override;
-    int pelotonToEllipticalResistance(int pelotonResistance) override;
+    resistance_t pelotonToEllipticalResistance(peloton_t pelotonResistance) override;
     bool inclinationAvailableByHardware()  override{ return false; }
 
   private:

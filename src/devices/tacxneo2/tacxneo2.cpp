@@ -52,7 +52,7 @@ void tacxneo2::writeCharacteristic(uint8_t *data, uint8_t data_len, const QStrin
     loop.exec();
 }
 
-void tacxneo2::changePower(int32_t power) {
+void tacxneo2::changePower(power_t power) {
     RequestedPower = power;
 
     if (power < 0)
@@ -67,7 +67,7 @@ void tacxneo2::changePower(int32_t power) {
     writeCharacteristic(p, sizeof(p), QStringLiteral("changePower"), false, false);
 }
 
-void tacxneo2::forceInclination(double inclination) {
+void tacxneo2::forceInclination(inclination_t inclination) {
     // TODO: inclination for bikes need to be managed on virtual bike interface
     // Inclination = inclination;
 
@@ -569,7 +569,7 @@ bool tacxneo2::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t tacxneo2::watts() {
+power_t tacxneo2::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }
@@ -586,7 +586,7 @@ void tacxneo2::controllerStateChanged(QLowEnergyController::ControllerState stat
     }
 }
 
-resistance_t tacxneo2::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t tacxneo2::pelotonToBikeResistance(peloton_t pelotonResistance) {
     for (resistance_t i = 0; i < max_resistance; i++) {
         if (bikeResistanceToPeloton(i) <= pelotonResistance && bikeResistanceToPeloton(i + 1) > pelotonResistance) {
             return i;

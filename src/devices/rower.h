@@ -27,9 +27,9 @@ class rower : public bluetoothdevice {
     double currentCrankRevolutions() override;
     uint16_t lastCrankEventTime() override;
     bool connected() override;
-    virtual uint16_t watts();
-    virtual resistance_t pelotonToBikeResistance(int pelotonResistance);
-    virtual resistance_t resistanceFromPowerRequest(uint16_t power);
+    virtual power_t watts();
+    virtual resistance_t pelotonToBikeResistance(peloton_t pelotonResistance);
+    virtual resistance_t resistanceFromPowerRequest(power_t power);
     bluetoothdevice::BLUETOOTH_TYPE deviceType() override;
     metric pelotonResistance();
     void clearStats() override;
@@ -41,11 +41,11 @@ class rower : public bluetoothdevice {
 
   public slots:
     void changeResistance(resistance_t res) override;
-    virtual void changeCadence(int16_t cad);
-    void changePower(int32_t power) override;
-    virtual void changeRequestedPelotonResistance(int8_t resistance);
-    void cadenceSensor(uint8_t cadence) override;
-    void powerSensor(uint16_t power) override;
+    virtual void changeCadence(cadence_t cad);
+    void changePower(power_t power) override;
+    virtual void changeRequestedPelotonResistance(peloton_t resistance);
+    void cadenceSensor(cadence_t cadence) override;
+    void powerSensor(power_t power) override;
     virtual void changeSpeed(double speed);
 
   signals:
@@ -57,7 +57,7 @@ class rower : public bluetoothdevice {
     metric Resistance;
     metric RequestedResistance;
     metric RequestedPelotonResistance;
-    double requestInclination = -100;
+    inclination_t requestInclination = -100;
     metric RequestedCadence;
     metric RequestedPower;
     metric RequestedSpeed;

@@ -36,7 +36,7 @@ class stagesbike : public bike {
     Q_OBJECT
   public:
     stagesbike(bool noWriteResistance, bool noHeartService, bool noVirtualDevice);
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
     bool connected() override;
     resistance_t maxResistance() override { return 100; }
     bool ergManagedBySS2K() override { return true; }
@@ -48,7 +48,7 @@ class stagesbike : public bike {
     metric ResistanceFromFTMSAccessory;
     uint64_t ResistanceFromFTMSAccessoryLastTime = 0;
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
 
     QTimer *refresh;
 

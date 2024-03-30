@@ -45,7 +45,7 @@ class horizongr7bike : public bike {
                              bool wait_for_response = false);
     void startDiscover();
     void btinit();
-    uint16_t watts() override;
+    power_t watts() override;
     void forceResistance(resistance_t requestResistance);
 
     QTimer *refresh;

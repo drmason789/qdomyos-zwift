@@ -46,7 +46,7 @@ class mepanelbike : public bike {
                              bool wait_for_response = false);
     void startDiscover();
     void forceResistance(resistance_t requestResistance);
-    uint16_t watts() override;
+    power_t watts() override;
     uint8_t getCheckNum(uint8_t i, uint8_t i2);
 
     QTimer *refresh;

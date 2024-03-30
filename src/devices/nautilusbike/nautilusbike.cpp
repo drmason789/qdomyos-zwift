@@ -415,7 +415,7 @@ void nautilusbike::controllerStateChanged(QLowEnergyController::ControllerState 
     }
 }
 
-uint16_t nautilusbike::watts() { return m_watt.value(); }
+power_t nautilusbike::watts() { return m_watt.value(); }
 
 
 uint16_t nautilusbike::wattsFromResistance(double resistance) {
@@ -437,7 +437,7 @@ uint16_t nautilusbike::wattsFromResistance(double resistance) {
     return wattage;
 }
 
-resistance_t nautilusbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t nautilusbike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.average5s();
 
     if (Cadence.average5s() == 0)

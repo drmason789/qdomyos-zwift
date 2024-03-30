@@ -485,7 +485,7 @@ bool flywheelbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t flywheelbike::watts() {
+power_t flywheelbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

@@ -377,7 +377,7 @@ bool yesoulbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t yesoulbike::watts() {
+power_t yesoulbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

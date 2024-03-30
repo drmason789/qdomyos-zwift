@@ -293,7 +293,7 @@ bool eliterizer::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t eliterizer::watts() {
+power_t eliterizer::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

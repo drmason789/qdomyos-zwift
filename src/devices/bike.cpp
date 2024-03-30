@@ -40,7 +40,7 @@ void bike::changeInclination(double grade, double percentage) {
 }
 
 // originally made for renphobike, but i guess it could be very generic
-uint16_t bike::powerFromResistanceRequest(resistance_t requestResistance) {
+power_t bike::powerFromResistanceRequest(resistance_t requestResistance) {
     // this bike has resistance level to N.m so the formula is Power (kW) = Torque (N.m) x Speed (RPM) / 9.5488
     double cadence = RequestedCadence.value();
     if (cadence <= 0)
@@ -48,9 +48,9 @@ uint16_t bike::powerFromResistanceRequest(resistance_t requestResistance) {
     return (requestResistance * cadence) / 9.5488;
 }
 
-void bike::changeRequestedPelotonResistance(int8_t resistance) { RequestedPelotonResistance = resistance; }
-void bike::changeCadence(int16_t cadence) { RequestedCadence = cadence; }
-void bike::changePower(int32_t power) {
+void bike::changeRequestedPelotonResistance(peloton_t resistance) { RequestedPelotonResistance = resistance; }
+void bike::changeCadence(cadence_t cadence) { RequestedCadence = cadence; }
+void bike::changePower(power_t power) {
 
     RequestedPower = power; // in order to paint in any case the request power on the charts
 
@@ -101,12 +101,12 @@ metric bike::lastRequestedPower() { return RequestedPower; }
 metric bike::currentResistance() { return Resistance; }
 uint8_t bike::fanSpeed() { return FanSpeed; }
 bool bike::connected() { return false; }
-uint16_t bike::watts() { return 0; }
+power_t bike::watts() { return 0; }
 metric bike::pelotonResistance() { return m_pelotonResistance; }
-resistance_t bike::pelotonToBikeResistance(int pelotonResistance) { return pelotonResistance; }
-resistance_t bike::resistanceFromPowerRequest(uint16_t power) { return power / 10; } // in order to have something
-void bike::cadenceSensor(uint8_t cadence) { Cadence.setValue(cadence); }
-void bike::powerSensor(uint16_t power) { m_watt.setValue(power, false); }
+resistance_t bike::pelotonToBikeResistance(peloton_t pelotonResistance) { return pelotonResistance; }
+resistance_t bike::resistanceFromPowerRequest(power_t power) { return power / 10; } // in order to have something
+void bike::cadenceSensor(cadence_t cadence) { Cadence.setValue(cadence); }
+void bike::powerSensor(power_t power) { m_watt.setValue(power, false); }
 
 bluetoothdevice::BLUETOOTH_TYPE bike::deviceType() { return bluetoothdevice::BIKE; }
 
@@ -275,7 +275,7 @@ uint8_t bike::metrics_override_heartrate() {
 
 bool bike::inclinationAvailableByHardware() { return false; }
 
-uint16_t bike::wattFromHR(bool useSpeedAndCadence) {
+power_t bike::wattFromHR(bool useSpeedAndCadence) {
     QSettings settings;
     double watt = 0;
     if (currentCadence().value() == 0 && useSpeedAndCadence == true) {

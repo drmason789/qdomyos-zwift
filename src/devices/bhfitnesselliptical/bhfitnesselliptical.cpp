@@ -605,7 +605,7 @@ bool bhfitnesselliptical::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t bhfitnesselliptical::watts() {
+power_t bhfitnesselliptical::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

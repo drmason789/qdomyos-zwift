@@ -55,7 +55,7 @@ void proformbike::writeCharacteristic(uint8_t *data, uint8_t data_len, const QSt
     loop.exec();
 }
 
-resistance_t proformbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t proformbike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
     QSettings settings;
@@ -808,7 +808,7 @@ bool proformbike::inclinationAvailableByHardware() {
         return false;
 }
 
-resistance_t proformbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t proformbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     if (pelotonResistance <= 10) {
         return 1;
     }
@@ -1874,7 +1874,7 @@ bool proformbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t proformbike::watts() {
+power_t proformbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

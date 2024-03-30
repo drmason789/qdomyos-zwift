@@ -544,7 +544,7 @@ bool schwinnic4bike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t schwinnic4bike::watts() {
+power_t schwinnic4bike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }
@@ -562,7 +562,7 @@ void schwinnic4bike::controllerStateChanged(QLowEnergyController::ControllerStat
     }
 }
 
-resistance_t schwinnic4bike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t schwinnic4bike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     QSettings settings;
     bool schwinn_bike_resistance_v2 =
         settings.value(QZSettings::schwinn_bike_resistance_v2, QZSettings::default_schwinn_bike_resistance_v2).toBool();
@@ -625,7 +625,7 @@ void schwinnic4bike::resistanceFromFTMSAccessory(resistance_t res) {
 }
 
 /*
-uint8_t schwinnic4bike::resistanceFromPowerRequest(uint16_t power) {
+uint8_t schwinnic4bike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value() << power;
 
     if (Cadence.value() == 0)

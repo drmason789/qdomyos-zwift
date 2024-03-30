@@ -37,7 +37,7 @@ void elliptical::update_metrics(bool watt_calc, const double watts) {
     _firstUpdate = false;
 }
 
-uint16_t elliptical::watts() {
+power_t elliptical::watts() {
 
     QSettings settings;
     double weight = settings.value(QZSettings::weight, QZSettings::default_weight).toFloat();
@@ -160,9 +160,9 @@ void elliptical::setLap() {
     }
 }
 
-int elliptical::pelotonToEllipticalResistance(int pelotonResistance) { return pelotonResistance; }
-void elliptical::changeCadence(int16_t cadence) { RequestedCadence = cadence; }
-void elliptical::changeRequestedPelotonResistance(int8_t resistance) { RequestedPelotonResistance = resistance; }
+resistance_t elliptical::pelotonToEllipticalResistance(peloton_t pelotonResistance) { return pelotonResistance; }
+void elliptical::changeCadence(cadence_t cadence) { RequestedCadence = cadence; }
+void elliptical::changeRequestedPelotonResistance(peloton_t resistance) { RequestedPelotonResistance = resistance; }
 double elliptical::requestedSpeed() { return requestSpeed; }
 void elliptical::changeSpeed(double speed) {
     RequestedSpeed = speed;

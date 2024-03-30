@@ -394,7 +394,7 @@ void sportstechbike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
     }
 }
 
-uint16_t sportstechbike::watts() {
+power_t sportstechbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }
@@ -439,7 +439,7 @@ uint16_t sportstechbike::wattsFromResistance(double resistance) {
     return power;
 }
 
-resistance_t sportstechbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t sportstechbike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
     if (Cadence.value() == 0)

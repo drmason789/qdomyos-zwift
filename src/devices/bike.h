@@ -23,10 +23,10 @@ class bike : public bluetoothdevice {
     double currentCrankRevolutions() override;
     uint16_t lastCrankEventTime() override;
     bool connected() override;
-    virtual uint16_t watts();
-    virtual resistance_t pelotonToBikeResistance(int pelotonResistance);
-    virtual resistance_t resistanceFromPowerRequest(uint16_t power);
-    virtual uint16_t powerFromResistanceRequest(resistance_t requestResistance);
+    virtual power_t watts();
+    virtual resistance_t pelotonToBikeResistance(peloton_t pelotonResistance);
+    virtual resistance_t resistanceFromPowerRequest(power_t power);
+    virtual power_t powerFromResistanceRequest(resistance_t requestResistance);
     virtual bool ergManagedBySS2K() { return false; }
     bluetoothdevice::BLUETOOTH_TYPE deviceType() override;
     metric pelotonResistance();
@@ -50,11 +50,11 @@ class bike : public bluetoothdevice {
 
   public Q_SLOTS:
     void changeResistance(resistance_t res) override;
-    virtual void changeCadence(int16_t cad);
-    void changePower(int32_t power) override;
-    virtual void changeRequestedPelotonResistance(int8_t resistance);
-    void cadenceSensor(uint8_t cadence) override;
-    void powerSensor(uint16_t power) override;
+    virtual void changeCadence(cadence_t cad);
+    void changePower(power_t power) override;
+    virtual void changeRequestedPelotonResistance(peloton_t resistance);
+    void cadenceSensor(cadence_t cadence) override;
+    void powerSensor(power_t power) override;
     void changeInclination(double grade, double percentage) override;
     virtual void changeSteeringAngle(double angle) { m_steeringAngle = angle; }
     virtual void resistanceFromFTMSAccessory(resistance_t res) { Q_UNUSED(res); }
@@ -76,8 +76,8 @@ class bike : public bluetoothdevice {
     metric RequestedPower;
 
     resistance_t requestResistance = -1;
-    double requestInclination = -100;
-    int16_t requestPower = -1;
+    inclination_t requestInclination = -100;
+    power_t requestPower = -1;
 
     bool ergModeSupported = false; // if a bike has this mode supported, when from the virtual bike there is a power
                                    // request there is no need to translate in resistance levels
@@ -94,7 +94,7 @@ class bike : public bluetoothdevice {
 
     double m_speedLimit = 0;
 
-    uint16_t wattFromHR(bool useSpeedAndCadence);
+    power_t wattFromHR(bool useSpeedAndCadence);
 };
 
 #endif // BIKE_H

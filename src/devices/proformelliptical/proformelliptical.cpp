@@ -525,4 +525,4 @@ void proformelliptical::controllerStateChanged(QLowEnergyController::ControllerS
     }
 }
 
-uint16_t proformelliptical::watts() { return m_watt.value(); }
+power_t proformelliptical::watts() { return m_watt.value(); }

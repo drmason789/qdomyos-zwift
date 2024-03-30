@@ -53,7 +53,7 @@ class proformrower : public rower {
 
     QTimer *refresh;
     uint8_t counterPoll = 0;
-    uint16_t watts() override;
+    power_t watts() override;
 
     QLowEnergyService *gattCommunicationChannelService = nullptr;
     QLowEnergyCharacteristic gattWriteCharacteristic;

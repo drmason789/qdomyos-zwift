@@ -845,7 +845,7 @@ void proformrower::controllerStateChanged(QLowEnergyController::ControllerState 
     }
 }
 
-uint16_t proformrower::watts() {
+power_t proformrower::watts() {
     /*if (currentCadence().value() == 0) {
         return 0;
     }*/

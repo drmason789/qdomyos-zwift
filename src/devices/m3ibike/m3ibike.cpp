@@ -755,7 +755,7 @@ void m3ibike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
 
 bool m3ibike::connected() { return initDone; }
 
-uint16_t m3ibike::watts() {
+power_t m3ibike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

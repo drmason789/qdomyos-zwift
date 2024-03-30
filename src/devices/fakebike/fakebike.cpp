@@ -169,7 +169,7 @@ uint16_t fakebike::wattsFromResistance(double resistance) {
     return _ergTable.estimateWattage(Cadence.value(), resistance);
 }
 
-resistance_t fakebike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t fakebike::resistanceFromPowerRequest(power_t power) {
     //QSettings settings;
     //bool toorx_srx_3500 = settings.value(QZSettings::toorx_srx_3500, QZSettings::default_toorx_srx_3500).toBool();
     /*if(toorx_srx_3500)*/ {
@@ -195,5 +195,5 @@ resistance_t fakebike::resistanceFromPowerRequest(uint16_t power) {
 }
 
 
-uint16_t fakebike::watts() { return m_watt.value(); }
+power_t fakebike::watts() { return m_watt.value(); }
 bool fakebike::connected() { return true; }

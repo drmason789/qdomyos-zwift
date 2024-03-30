@@ -963,7 +963,7 @@ bool fitplusbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t fitplusbike::watts() {
+power_t fitplusbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }
@@ -1076,7 +1076,7 @@ uint16_t fitplusbike::wattsFromResistance(double resistance) {
     }
 }
 
-resistance_t fitplusbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t fitplusbike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
     if (Cadence.value() == 0)

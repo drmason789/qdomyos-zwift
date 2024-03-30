@@ -372,7 +372,7 @@ bool inspirebike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t inspirebike::watts() {
+power_t inspirebike::watts() {
     QSettings settings;
     if (currentCadence().value() == 0) {
         return 0;

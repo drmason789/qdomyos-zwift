@@ -687,7 +687,7 @@ void renphobike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
     }
 }
 
-resistance_t renphobike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t renphobike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     for (resistance_t i = 1; i < max_resistance - 1; i++) {
         if (bikeResistanceToPeloton(i) <= pelotonResistance && bikeResistanceToPeloton(i + 1) >= pelotonResistance)
             return i;
@@ -697,7 +697,7 @@ resistance_t renphobike::pelotonToBikeResistance(int pelotonResistance) {
 
 // todo, probably the best way is to use the SET_TARGET_POWER over FTMS
 /*
-uint8_t renphobike::resistanceFromPowerRequest(uint16_t power)
+uint8_t renphobike::resistanceFromPowerRequest(power_t power)
 {
     qDebug() << "resistanceFromPowerRequest" << Cadence.value();
 
@@ -745,7 +745,7 @@ bool renphobike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t renphobike::watts() {
+power_t renphobike::watts() {
     if (currentCadence().value() == 0)
         return 0;
 

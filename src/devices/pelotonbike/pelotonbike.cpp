@@ -144,7 +144,7 @@ void pelotonbike::update() {
     }
 }
 
-uint16_t pelotonbike::watts() { return m_watt.value(); }
+power_t pelotonbike::watts() { return m_watt.value(); }
 
 void pelotonbike::changeInclinationRequested(double grade, double percentage) {
     if (percentage < 0)

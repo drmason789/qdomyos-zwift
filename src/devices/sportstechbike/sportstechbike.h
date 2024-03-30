@@ -33,7 +33,7 @@ class sportstechbike : public bike {
     sportstechbike(bool noWriteResistance, bool noHeartService);
     bool connected() override;
     resistance_t maxResistance() override { return 24; }
-    resistance_t resistanceFromPowerRequest(uint16_t power) override;    
+    resistance_t resistanceFromPowerRequest(power_t power) override;    
 
   private:
     double GetSpeedFromPacket(const QByteArray &packet);
@@ -48,7 +48,7 @@ class sportstechbike : public bike {
     void writeCharacteristic(uint8_t *data, uint8_t data_len, const QString &info, bool disable_log,
                              bool wait_for_response);
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
     double GetWattFromPacket(const QByteArray &packet);
     double GetCadenceFromPacket(const QByteArray &packet);
 

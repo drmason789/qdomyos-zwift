@@ -377,7 +377,7 @@ bool chronobike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t chronobike::watts() {
+power_t chronobike::watts() {
     QSettings settings;
     if (currentCadence().value() == 0) {
         return 0;

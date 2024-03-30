@@ -611,7 +611,7 @@ bool soleelliptical::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t soleelliptical::watts() {
+power_t soleelliptical::watts() {
 
     QSettings settings;
 

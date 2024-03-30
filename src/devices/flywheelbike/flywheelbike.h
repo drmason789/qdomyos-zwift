@@ -135,7 +135,7 @@ class flywheelbike : public bike {
                              bool wait_for_response = false);
     void startDiscover();
     void sendPoll();
-    uint16_t watts() override;
+    power_t watts() override;
     void updateStats();
 
     QTimer *refresh;

@@ -70,15 +70,15 @@ class ftmsbike : public bike {
   public:
     ftmsbike(bool noWriteResistance, bool noHeartService, uint8_t bikeResistanceOffset, double bikeResistanceGain);
     bool connected() override;
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
     resistance_t maxResistance() override { return max_resistance; }
-    resistance_t resistanceFromPowerRequest(uint16_t power) override;
+    resistance_t resistanceFromPowerRequest(power_t power) override;
 
   private:
     void writeCharacteristic(uint8_t *data, uint8_t data_len, const QString &info, bool disable_log = false,
                              bool wait_for_response = false);
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
     void init();
     void forceResistance(resistance_t requestResistance);
     void forcePower(int16_t requestPower);

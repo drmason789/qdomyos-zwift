@@ -36,16 +36,16 @@ class bkoolbike : public bike {
     Q_OBJECT
   public:
     bkoolbike(bool noWriteResistance, bool noHeartService);
-    void changePower(int32_t power) override;
+    void changePower(power_t power) override;
     bool connected() override;
-    resistance_t pelotonToBikeResistance(int pelotonResistance);
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
 
   private:
     void writeCharacteristic(uint8_t *data, uint8_t data_len, const QString &info, bool disable_log = false,
                              bool wait_for_response = false);
     void startDiscover();
-    void forceInclination(double inclination);
-    uint16_t watts() override;
+    void forceInclination(inclination_t inclination);
+    power_t watts() override;
     double bikeResistanceToPeloton(double resistance);
 
     QTimer *refresh;

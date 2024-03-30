@@ -164,7 +164,7 @@ void keepbike::serviceDiscovered(const QBluetoothUuid &gatt) {
     qDebug() << QStringLiteral("serviceDiscovered ") + gatt.toString();
 }
 
-resistance_t keepbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t keepbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     for (resistance_t i = 1; i < max_resistance; i++) {
         if (bikeResistanceToPeloton(i) <= pelotonResistance && bikeResistanceToPeloton(i + 1) >= pelotonResistance) {
             return i;
@@ -493,7 +493,7 @@ bool keepbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t keepbike::watts() {
+power_t keepbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

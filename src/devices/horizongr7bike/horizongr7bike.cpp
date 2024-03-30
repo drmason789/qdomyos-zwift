@@ -657,7 +657,7 @@ bool horizongr7bike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t horizongr7bike::watts() {
+power_t horizongr7bike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

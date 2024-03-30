@@ -967,7 +967,7 @@ bool domyosrower::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t domyosrower::watts() {
+power_t domyosrower::watts() {
 
     QSettings settings;
 

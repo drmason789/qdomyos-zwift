@@ -47,8 +47,8 @@ class proformtelnetbike : public bike {
   public:
     proformtelnetbike(bool noWriteResistance, bool noHeartService, uint8_t bikeResistanceOffset,
                     double bikeResistanceGain);
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
-    resistance_t resistanceFromPowerRequest(uint16_t power) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
+    resistance_t resistanceFromPowerRequest(power_t power) override;
     resistance_t maxResistance() override { return max_resistance; }
     bool inclinationAvailableByHardware() override;
     bool connected() override;
@@ -67,7 +67,7 @@ class proformtelnetbike : public bike {
                              bool wait_for_response = false);
     void startDiscover();
     void sendPoll();
-    uint16_t watts() override;
+    power_t watts() override;
     void sendFrame(QByteArray frame);
 
     QTimer *refresh;

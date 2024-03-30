@@ -46,9 +46,9 @@ class ypooelliptical : public elliptical {
     void writeCharacteristic(QLowEnergyCharacteristic* characteristic, QLowEnergyService *service, uint8_t *data, uint8_t data_len, const QString &info, bool disable_log = false,
                              bool wait_for_response = false);
     void startDiscover();
-    uint16_t watts();
+    power_t watts();
     void forceResistance(resistance_t requestResistance);
-    void forceInclination(double inclination);
+    void forceInclination(inclination_t inclination);
 
     QTimer *refresh;
 

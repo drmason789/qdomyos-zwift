@@ -80,16 +80,12 @@ void schwinn170bike::update() {
         }
 
         if (requestResistance != -1) {
-            if (requestResistance > max_resistance)
-                requestResistance = max_resistance;
-            else if (requestResistance == 0) {
-                requestResistance = 1;
-            }
+            requestResistance= std::clamp(requestResistance, (resistance_t)1, max_resistance);
 
             if (requestResistance != currentResistance().value()) {
                 emit debug(QStringLiteral("writing resistance ") + QString::number(requestResistance));
 
-                // forceResistance(requestResistance);
+                // forceResistance(request(Inclination|Power|Resistance|PelotonResistance)([^\.]);
             }
             requestResistance = -1;
         }
@@ -486,7 +482,7 @@ bool schwinn170bike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t schwinn170bike::watts() {
+power_t schwinn170bike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }
@@ -504,7 +500,7 @@ void schwinn170bike::controllerStateChanged(QLowEnergyController::ControllerStat
     }
 }
 
-resistance_t schwinn170bike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t schwinn170bike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     QSettings settings;
     bool schwinn_bike_resistance_v2 =
         settings.value(QZSettings::schwinn_bike_resistance_v2, QZSettings::default_schwinn_bike_resistance_v2).toBool();
@@ -559,7 +555,7 @@ void schwinn170bike::resistanceFromFTMSAccessory(resistance_t res) {
 }
 
 /*
-uint8_t schwinn170bike::resistanceFromPowerRequest(uint16_t power) {
+uint8_t schwinn170bike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value() << power;
 
 if (Cadence.value() == 0)

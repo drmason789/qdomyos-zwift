@@ -499,7 +499,7 @@ bool concept2skierg::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t concept2skierg::watts() {
+power_t concept2skierg::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

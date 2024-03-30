@@ -51,7 +51,7 @@ uint16_t bluetoothdevice::lastCrankEventTime() { return 0; }
 
 virtualdevice *bluetoothdevice::VirtualDevice() { return this->virtualDevice; }
 void bluetoothdevice::changeResistance(resistance_t resistance) {}
-void bluetoothdevice::changePower(int32_t power) {}
+void bluetoothdevice::changePower(power_t power) {}
 void bluetoothdevice::changeInclination(double grade, double percentage) {}
 
 void bluetoothdevice::offsetElapsedTime(int offset) { elapsed += offset; }
@@ -146,8 +146,8 @@ void bluetoothdevice::setDifficultOffset(double d) { m_difficult_offset = d; }
 double bluetoothdevice::difficultOffset() { return m_difficult_offset; }
 void bluetoothdevice::setInclinationDifficultOffset(double d) { m_inclination_difficult_offset = d; }
 double bluetoothdevice::inclinationDifficultOffset() { return m_inclination_difficult_offset; }
-void bluetoothdevice::cadenceSensor(uint8_t cadence) { Q_UNUSED(cadence) }
-void bluetoothdevice::powerSensor(uint16_t power) { Q_UNUSED(power) }
+void bluetoothdevice::cadenceSensor(cadence_t cadence) { Q_UNUSED(cadence) }
+void bluetoothdevice::powerSensor(power_t power) { Q_UNUSED(power) }
 void bluetoothdevice::speedSensor(double speed) { Q_UNUSED(speed) }
 void bluetoothdevice::instantaneousStrideLengthSensor(double length) { Q_UNUSED(length); }
 void bluetoothdevice::groundContactSensor(double groundContact) { Q_UNUSED(groundContact); }

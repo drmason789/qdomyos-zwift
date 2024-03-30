@@ -34,7 +34,7 @@ class pelotonbike : public bike {
 
   private:
     void forceResistance(double resistance);
-    uint16_t watts() override;
+    power_t watts() override;
     double getDouble(QString v);
 
     QTimer *refresh;
@@ -43,7 +43,7 @@ class pelotonbike : public bike {
     QDateTime lastRefreshCharacteristicChanged = QDateTime::currentDateTime();
     QDateTime lastInclinationChanged = QDateTime::currentDateTime();
     uint8_t firstStateChanged = 0;
-    uint16_t m_watts = 0;
+    power_t m_watts = 0;
 
     bool initDone = false;
     bool initRequest = false;

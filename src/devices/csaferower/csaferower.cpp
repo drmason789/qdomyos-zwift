@@ -409,4 +409,4 @@ void csaferower::deviceDiscovered(const QBluetoothDeviceInfo &device) {
 
 void csaferower::newPacket(QByteArray p) {}
 
-uint16_t csaferower::watts() { return m_watt.value(); }
+power_t csaferower::watts() { return m_watt.value(); }

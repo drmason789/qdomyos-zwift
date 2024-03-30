@@ -38,8 +38,8 @@ class domyosbike : public bike {
   public:
     domyosbike(bool noWriteResistance = false, bool noHeartService = false, bool testResistance = false,
                uint8_t bikeResistanceOffset = 4, double bikeResistanceGain = 1.0);
-    resistance_t resistanceFromPowerRequest(uint16_t power) override;
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t resistanceFromPowerRequest(power_t power) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
     resistance_t maxResistance() override { return max_resistance; }
     ~domyosbike() override;
     bool connected() override;
@@ -57,7 +57,7 @@ class domyosbike : public bike {
     void writeCharacteristic(uint8_t *data, uint8_t data_len, const QString &info, bool disable_log = false,
                              bool wait_for_response = false);
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
 
     const resistance_t max_resistance = 15;
     QTimer *refresh;

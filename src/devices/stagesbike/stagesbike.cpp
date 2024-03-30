@@ -114,7 +114,7 @@ void stagesbike::serviceDiscovered(const QBluetoothUuid &gatt) {
     emit debug(QStringLiteral("serviceDiscovered ") + gatt.toString());
 }
 
-resistance_t stagesbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t stagesbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     QSettings settings;
     bool schwinn_bike_resistance_v2 =
         settings.value(QZSettings::schwinn_bike_resistance_v2, QZSettings::default_schwinn_bike_resistance_v2).toBool();
@@ -591,7 +591,7 @@ bool stagesbike::connected() {
 }
 
 
-uint16_t stagesbike::watts() {
+power_t stagesbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

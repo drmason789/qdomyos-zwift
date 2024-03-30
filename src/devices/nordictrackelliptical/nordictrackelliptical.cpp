@@ -1477,6 +1477,6 @@ void nordictrackelliptical::controllerStateChanged(QLowEnergyController::Control
     }
 }
 
-int nordictrackelliptical::pelotonToEllipticalResistance(int pelotonResistance) {
+resistance_t nordictrackelliptical::pelotonToEllipticalResistance(peloton_t pelotonResistance) {
     return ceil((pelotonResistance - 10.0) / 3.33);
 }

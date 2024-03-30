@@ -109,7 +109,7 @@ void proformtelnetbike::writeCharacteristic(uint8_t *data, uint8_t data_len, con
  loop.exec();
 }*/
 
-resistance_t proformtelnetbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t proformtelnetbike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
     QSettings settings;
@@ -244,7 +244,7 @@ void proformtelnetbike::update() {
 
 bool proformtelnetbike::inclinationAvailableByHardware() { return true; }
 
-resistance_t proformtelnetbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t proformtelnetbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     if (pelotonResistance <= 10) {
         return 1;
     }
@@ -484,4 +484,4 @@ void proformtelnetbike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
 
 bool proformtelnetbike::connected() { return telnet.isConnected(); }
 
-uint16_t proformtelnetbike::watts() { return m_watt.value(); }
+power_t proformtelnetbike::watts() { return m_watt.value(); }

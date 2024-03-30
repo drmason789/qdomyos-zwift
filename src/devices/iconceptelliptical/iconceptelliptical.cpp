@@ -287,7 +287,7 @@ void iconceptelliptical::onSocketErrorOccurred(QBluetoothSocket::SocketError err
     emit debug(QStringLiteral("onSocketErrorOccurred ") + QString::number(error));
 }
 
-uint16_t iconceptelliptical::watts() {
+power_t iconceptelliptical::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

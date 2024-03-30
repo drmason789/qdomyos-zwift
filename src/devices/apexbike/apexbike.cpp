@@ -387,7 +387,7 @@ bool apexbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t apexbike::watts() { return wattFromHR(true); }
+power_t apexbike::watts() { return wattFromHR(true); }
 
 void apexbike::controllerStateChanged(QLowEnergyController::ControllerState state) {
     qDebug() << QStringLiteral("controllerStateChanged") << state;

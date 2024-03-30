@@ -590,7 +590,7 @@ bool domyoselliptical::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t domyoselliptical::watts() {
+power_t domyoselliptical::watts() {
 
     QSettings settings;
 

@@ -19,7 +19,7 @@ void treadmill::changeSpeed(double speed) {
     if (autoResistanceEnable)
         requestSpeed = (speed * m_difficult) + m_difficult_offset;
 }
-void treadmill::changeInclination(double grade, double inclination) {
+void treadmill::changeInclination(double grade, double percentage) {
     QSettings settings;
     double treadmill_incline_min = settings.value(QZSettings::treadmill_incline_min, QZSettings::default_treadmill_incline_min).toDouble();
     double treadmill_incline_max = settings.value(QZSettings::treadmill_incline_max, QZSettings::default_treadmill_incline_max).toDouble();
@@ -33,7 +33,7 @@ void treadmill::changeInclination(double grade, double inclination) {
     }
 
     m_lastRawInclinationRequested = grade;
-    Q_UNUSED(inclination);
+    Q_UNUSED(percentage);
     qDebug() << "changeInclination" << grade << autoResistanceEnable << m_inclination_difficult
              << m_inclination_difficult_offset;
     RequestedInclination = (grade * m_inclination_difficult) + m_inclination_difficult_offset;
@@ -41,7 +41,7 @@ void treadmill::changeInclination(double grade, double inclination) {
         requestInclination = (grade * m_inclination_difficult) + m_inclination_difficult_offset;
     }
 }
-void treadmill::changeSpeedAndInclination(double speed, double inclination) {
+void treadmill::changeSpeedAndInclination(double speed, inclination_t inclination) {
     changeSpeed(speed);
     changeInclination(inclination, inclination);
 }
@@ -101,7 +101,7 @@ void treadmill::update_metrics(bool watt_calc, const double watts) {
     _firstUpdate = false;
 }
 
-uint16_t treadmill::wattsCalc(double weight, double speed, double inclination) {
+power_t treadmill::wattsCalc(double weight, double speed, inclination_t inclination) {
     uint16_t watts = 0;
     if (speed > 0) {
         // calc Watts ref. https://alancouzens.com/blog/Run_Power.html
@@ -115,7 +115,7 @@ uint16_t treadmill::wattsCalc(double weight, double speed, double inclination) {
     return watts;
 }
 
-uint16_t treadmill::watts(double weight) {
+power_t treadmill::watts(double weight) {
     if(!powerReceivedFromPowerSensor) {
         uint16_t watts = wattsCalc(weight, currentSpeed().value(), currentInclination().value());
         m_watt.setValue(watts);
@@ -189,17 +189,17 @@ void treadmill::setLap() {
 
 void treadmill::setLastSpeed(double speed) { lastSpeed = speed; }
 
-void treadmill::setLastInclination(double inclination) { lastInclination = inclination; }
+void treadmill::setLastInclination(inclination_t inclination) { lastInclination = inclination; }
 
 bool treadmill::autoPauseWhenSpeedIsZero() { return false; }
 bool treadmill::autoStartWhenSpeedIsGreaterThenZero() { return false; }
 
 double treadmill::requestedSpeed() { return requestSpeed; }
-double treadmill::requestedInclination() { return requestInclination; }
+inclination_t treadmill::requestedInclination() { return requestInclination; }
 double treadmill::currentTargetSpeed() { return targetSpeed; }
 
-void treadmill::cadenceSensor(uint8_t cadence) { Cadence.setValue(cadence); }
-void treadmill::powerSensor(uint16_t power) {
+void treadmill::cadenceSensor(cadence_t cadence) { Cadence.setValue(cadence); }
+void treadmill::powerSensor(power_t power) {
     if(power > 0) {
         powerReceivedFromPowerSensor = true;
         qDebug() << "powerReceivedFromPowerSensor" << powerReceivedFromPowerSensor << power;
@@ -213,7 +213,7 @@ void treadmill::verticalOscillationSensor(double verticalOscillation) {
     VerticalOscillationMM.setValue(verticalOscillation);
 }
 
-double treadmill::treadmillInclinationOverrideReverse(double Inclination) {
+inclination_t treadmill::treadmillInclinationOverrideReverse(inclination_t Inclination) {
     for (int i = 0; i <= 15 * 2; i++) {
         if (treadmillInclinationOverride(((double)(i)) / 2.0) <= Inclination &&
             treadmillInclinationOverride(((double)(i + 1)) / 2.0) > Inclination) {
@@ -229,7 +229,7 @@ double treadmill::treadmillInclinationOverrideReverse(double Inclination) {
         return 15;
 }
 
-double treadmill::treadmillInclinationOverride(double Inclination) {
+inclination_t treadmill::treadmillInclinationOverride(inclination_t Inclination) {
     QSettings settings;
 
     double treadmill_inclination_ovveride_gain = settings

@@ -36,8 +36,8 @@ class renphobike : public bike {
     Q_OBJECT
   public:
     renphobike(bool noWriteResistance, bool noHeartService);
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
-    // uint8_t resistanceFromPowerRequest(uint16_t power);
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
+    // uint8_t resistanceFromPowerRequest(power_t power);
     bool connected() override;
     resistance_t maxResistance() override { return max_resistance; }
 
@@ -48,7 +48,7 @@ class renphobike : public bike {
                              bool wait_for_response = false);
     void startDiscover();
     uint16_t ergModificator(uint16_t powerRequested);
-    uint16_t watts() override;
+    power_t watts() override;
     void forceResistance(resistance_t requestResistance);
     void forcePower(int16_t requestPower);
 

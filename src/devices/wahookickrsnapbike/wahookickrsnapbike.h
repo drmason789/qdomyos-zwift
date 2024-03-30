@@ -38,7 +38,7 @@ class wahookickrsnapbike : public bike {
   public:
     wahookickrsnapbike(bool noWriteResistance, bool noHeartService, uint8_t bikeResistanceOffset,
                        double bikeResistanceGain);
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
     bool connected() override;
     resistance_t maxResistance() override { return 100; }
     bool inclinationAvailableByHardware() override;
@@ -73,7 +73,7 @@ class wahookickrsnapbike : public bike {
     uint16_t wattsFromResistance(double resistance);
     metric ResistanceFromFTMSAccessory;
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
 
     QTimer *refresh;
     virtualbike *virtualBike = nullptr;

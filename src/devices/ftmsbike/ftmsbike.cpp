@@ -104,7 +104,7 @@ uint16_t ftmsbike::wattsFromResistance(double resistance) {
     return 1;
 }
 
-resistance_t ftmsbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t ftmsbike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
     if (Cadence.value() == 0)
@@ -893,7 +893,7 @@ void ftmsbike::error(QLowEnergyController::Error err) {
                m_control->errorString());
 }
 
-resistance_t ftmsbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t ftmsbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     return (pelotonResistance * max_resistance) / 100;
 }
 
@@ -954,7 +954,7 @@ bool ftmsbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t ftmsbike::watts() {
+power_t ftmsbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

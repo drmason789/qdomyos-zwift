@@ -46,7 +46,7 @@ class apexbike : public bike {
     void startDiscover();
     void forceResistance(resistance_t requestResistance);
     void sendPoll();
-    uint16_t watts() override;
+    power_t watts() override;
 
     QTimer *refresh;
 

@@ -53,7 +53,7 @@ class skandikawiribike : public bike {
     void writeCharacteristic(uint8_t *data, uint8_t data_len, const QString &info, bool disable_log = false,
                              bool wait_for_response = false);
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
 
     QTimer *refresh;
 

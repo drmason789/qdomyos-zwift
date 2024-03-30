@@ -38,7 +38,7 @@ class schwinnic4bike : public bike {
     Q_OBJECT
   public:
     schwinnic4bike(bool noWriteResistance, bool noHeartService);
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
     bool ergManagedBySS2K() override { return true; }
     resistance_t maxResistance() override { return max_resistance; }
     bool connected() override;
@@ -48,7 +48,7 @@ class schwinnic4bike : public bike {
                              bool wait_for_response = false);
     uint16_t wattsFromResistance(double resistance);
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
 
     QTimer *refresh;
 

@@ -32,7 +32,7 @@ class sportsplusbike : public bike {
     Q_OBJECT
   public:
     sportsplusbike(bool noWriteResistance, bool noHeartService);
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
     bool connected() override;
 
   private:
@@ -47,7 +47,7 @@ class sportsplusbike : public bike {
                              bool wait_for_response);
     uint16_t wattsFromResistance(double resistance);
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
     double GetWattFromPacket(const QByteArray &packet);
 
     QTimer *refresh;

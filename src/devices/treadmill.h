@@ -16,7 +16,7 @@ class treadmill : public bluetoothdevice {
     metric currentInclination() override;
     virtual double requestedSpeed();
     virtual double currentTargetSpeed();
-    virtual double requestedInclination();
+    virtual inclination_t requestedInclination();
     virtual double minStepInclination();
     virtual double minStepSpeed();
     virtual bool canStartStop() { return true; }
@@ -24,24 +24,21 @@ class treadmill : public bluetoothdevice {
     metric currentGroundContact() { return GroundContactMS; }
     metric currentVerticalOscillation() { return VerticalOscillationMM; }
     metric currentStepCount() { return StepCount; }
-    uint16_t watts(double weight);
-    static uint16_t wattsCalc(double weight, double speed, double inclination);
+    power_t watts(double weight);
+    static power_t wattsCalc(double weight, double speed, inclination_t inclination);
     bluetoothdevice::BLUETOOTH_TYPE deviceType() override;
     void clearStats() override;
     void setLap() override;
     void setPaused(bool p) override;
     double lastRawSpeedRequested() {
-        return (m_lastRawSpeedRequested != -1 ? m_lastRawSpeedRequested : currentSpeed().value());
-    }
-    double lastRawInclinationRequested() {
-        return (m_lastRawInclinationRequested != -100 ? m_lastRawInclinationRequested : currentInclination().value());
-    }
+        return (m_lastRawSpeedRequested != -1 ? m_lastRawSpeedRequested : currentSpeed().value());    }
+    double lastRawInclinationRequested() { return m_lastRawInclinationRequested != -100 ? m_lastRawInclinationRequested : currentInclination().value();  }
     virtual void setLastSpeed(double speed);
-    virtual void setLastInclination(double inclination);
+    virtual void setLastInclination(inclination_t inclination);
     virtual bool autoPauseWhenSpeedIsZero();
     virtual bool autoStartWhenSpeedIsGreaterThenZero();
-    static double treadmillInclinationOverride(double Inclination);
-    static double treadmillInclinationOverrideReverse(double Inclination);
+    static inclination_t treadmillInclinationOverride(inclination_t Inclination);
+    static inclination_t treadmillInclinationOverrideReverse(inclination_t Inclination);
     void cadenceFromAppleWatch();
     virtual bool canHandleSpeedChange() { return true; }
     virtual bool canHandleInclineChange() { return true; }
@@ -50,8 +47,8 @@ class treadmill : public bluetoothdevice {
     virtual void changeSpeed(double speed);
     void changeInclination(double grade, double percentage) override;
     virtual void changeSpeedAndInclination(double speed, double inclination);
-    void cadenceSensor(uint8_t cadence) override;
-    void powerSensor(uint16_t power) override;
+    void cadenceSensor(cadence_t cadence) override;
+    void powerSensor(power_t power) override;
     void speedSensor(double speed) override;
     void instantaneousStrideLengthSensor(double length) override;
     void groundContactSensor(double groundContact) override;
@@ -63,9 +60,9 @@ class treadmill : public bluetoothdevice {
   protected:
     volatile double requestSpeed = -1;
     double targetSpeed = -1;
-    double requestInclination = -100;
+    inclination_t requestInclination = -100;
     double lastSpeed = 0.0;
-    double lastInclination = 0;
+    inclination_t lastInclination = 0;
     metric RequestedSpeed;
     metric RequestedInclination;
     metric InstantaneousStrideLengthCM;
@@ -73,7 +70,7 @@ class treadmill : public bluetoothdevice {
     metric VerticalOscillationMM;
     metric StepCount;
     double m_lastRawSpeedRequested = -1;
-    double m_lastRawInclinationRequested = -100;
+    inclination_t m_lastRawInclinationRequested = -100;
     bool instantaneousStrideLengthCMAvailableFromDevice = false;
 
   private:

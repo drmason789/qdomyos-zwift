@@ -293,7 +293,7 @@ void nordictrackifitadbbike::processPendingDatagrams() {
         // only resistance
         if(proform_studio_NTEX71021) {
             if (nordictrack_ifit_adb_remote) {
-                if (requestResistance != -100) {
+                if (requestResistance != -1) {
                     if (requestResistance != currentResistance().value()) {
                         int x1 = 950;
                         int y2 = (int)(493 - (13.57 * (requestResistance - 1)));
@@ -330,7 +330,7 @@ void nordictrackifitadbbike::processPendingDatagrams() {
             lastInclinationChanged = QDateTime::currentDateTime();
             if (nordictrack_ifit_adb_remote) {
                 bool erg_mode = settings.value(QZSettings::zwift_erg, QZSettings::default_zwift_erg).toBool();
-                if (requestInclination != -100 && erg_mode && requestResistance != -100) {
+                if (requestInclination != -100 && erg_mode && requestResistance != -1) {
                     qDebug() << "forcing inclination based on the erg mode resistance request of" << requestResistance;
                     requestInclination = requestResistance;
                     requestResistance = -100;
@@ -478,7 +478,7 @@ void nordictrackifitadbbike::onHRM(int hrm) {
     }
 }
 
-resistance_t nordictrackifitadbbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t nordictrackifitadbbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     if (pelotonResistance <= 10) {
         return 1;
     }
@@ -562,7 +562,7 @@ void nordictrackifitadbbike::update() {
     }
 }
 
-uint16_t nordictrackifitadbbike::watts() { return m_watt.value(); }
+power_t nordictrackifitadbbike::watts() { return m_watt.value(); }
 
 void nordictrackifitadbbike::changeInclinationRequested(double grade, double percentage) {
     if (percentage < 0)
@@ -572,7 +572,7 @@ void nordictrackifitadbbike::changeInclinationRequested(double grade, double per
 
 bool nordictrackifitadbbike::connected() { return true; }
 
-resistance_t nordictrackifitadbbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t nordictrackifitadbbike::resistanceFromPowerRequest(power_t power) {
     // actually it's using inclination for the s22i
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 

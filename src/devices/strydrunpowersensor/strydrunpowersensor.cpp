@@ -678,7 +678,7 @@ bool strydrunpowersensor::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t strydrunpowersensor::watts() { return m_watt.value(); }
+power_t strydrunpowersensor::watts() { return m_watt.value(); }
 
 void strydrunpowersensor::controllerStateChanged(QLowEnergyController::ControllerState state) {
     qDebug() << QStringLiteral("controllerStateChanged") << state;

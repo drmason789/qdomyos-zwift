@@ -59,7 +59,7 @@ class proformwifitreadmill : public treadmill {
     void forceIncline(double requestIncline);
     void startDiscover();
     void sendPoll();
-    uint16_t watts();
+    power_t watts();
 
     QTimer *refresh;
     uint8_t counterPoll = 0;

@@ -40,7 +40,7 @@ class schwinn170bike : public bike {
   public:
     schwinn170bike(bool noWriteResistance, bool noHeartService, uint8_t bikeResistanceOffset,
                    double bikeResistanceGain);
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
     bool ergManagedBySS2K() override { return true; }
     resistance_t maxResistance() override { return max_resistance; }
     bool connected() override;
@@ -50,7 +50,7 @@ class schwinn170bike : public bike {
                              uint8_t data_len, QString info, bool disable_log = false, bool wait_for_response = false);
     uint16_t wattsFromResistance(double resistance);
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
 
     QTimer *refresh;
 

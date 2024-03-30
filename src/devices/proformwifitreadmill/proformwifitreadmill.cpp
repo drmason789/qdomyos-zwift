@@ -311,4 +311,4 @@ void proformwifitreadmill::deviceDiscovered(const QBluetoothDeviceInfo &device) 
 
 bool proformwifitreadmill::connected() { return websocket.state() == QAbstractSocket::ConnectedState; }
 
-uint16_t proformwifitreadmill::watts() { return m_watts; }
+power_t proformwifitreadmill::watts() { return m_watts; }

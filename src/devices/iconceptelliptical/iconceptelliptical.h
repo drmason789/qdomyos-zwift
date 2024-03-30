@@ -70,7 +70,7 @@ class iconceptelliptical : public elliptical {
 
     QDateTime lastRefreshCharacteristicChanged = QDateTime::currentDateTime();
 
-    uint16_t watts();
+    power_t watts();
 
 #ifdef Q_OS_IOS
     lockscreen *h = 0;

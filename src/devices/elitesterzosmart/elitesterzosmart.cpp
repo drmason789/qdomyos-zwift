@@ -241,7 +241,7 @@ bool elitesterzosmart::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t elitesterzosmart::watts() {
+power_t elitesterzosmart::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

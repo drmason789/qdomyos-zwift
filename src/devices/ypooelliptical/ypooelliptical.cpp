@@ -70,7 +70,7 @@ void ypooelliptical::writeCharacteristic(QLowEnergyCharacteristic* characteristi
     loop.exec();
 }
 
-void ypooelliptical::forceInclination(double inclination) {
+void ypooelliptical::forceInclination(inclination_t inclination) {
     uint8_t write[] = {FTMS_SET_TARGET_INCLINATION, 0x00, 0x00};
     write[1] = ((uint16_t)inclination * 10) & 0xFF;
     write[2] = ((uint16_t)inclination * 10) >> 8;
@@ -783,7 +783,7 @@ bool ypooelliptical::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t ypooelliptical::watts() {
+power_t ypooelliptical::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

@@ -471,7 +471,7 @@ bool skandikawiribike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t skandikawiribike::watts() {
+power_t skandikawiribike::watts() {
     QSettings settings;
     // double v = 0; // NOTE: unused variable v
     // const resistance_t max_resistance = 15;

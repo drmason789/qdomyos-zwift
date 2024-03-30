@@ -112,7 +112,7 @@ void proformwifibike::writeCharacteristic(uint8_t *data, uint8_t data_len, const
     loop.exec();
 }*/
 
-resistance_t proformwifibike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t proformwifibike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
     QSettings settings;
@@ -349,7 +349,7 @@ void proformwifibike::update() {
 
 bool proformwifibike::inclinationAvailableByHardware() { return max_incline_supported > 0; }
 
-resistance_t proformwifibike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t proformwifibike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     if (pelotonResistance <= 10) {
         return 1;
     }
@@ -627,4 +627,4 @@ void proformwifibike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
 
 bool proformwifibike::connected() { return websocket.state() == QAbstractSocket::ConnectedState; }
 
-uint16_t proformwifibike::watts() { return m_watt.value(); }
+power_t proformwifibike::watts() { return m_watt.value(); }

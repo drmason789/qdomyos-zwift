@@ -159,7 +159,7 @@ class m3ibike : public bike {
     void initScan();
     Q_INVOKABLE void processAdvertising(const QByteArray &data);
     Q_INVOKABLE void restartScan();
-    uint16_t watts() override;
+    power_t watts() override;
     QTimer *detectDisc = nullptr, *elapsedTimer = nullptr;
     KeiserM3iDeviceSimulator k3s;
     keiser_m3i_out_t k3;

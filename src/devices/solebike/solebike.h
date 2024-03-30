@@ -36,7 +36,7 @@ class solebike : public bike {
     Q_OBJECT
   public:
     solebike(bool noWriteResistance, bool noHeartService, uint8_t bikeResistanceOffset, double bikeResistanceGain);
-    resistance_t pelotonToBikeResistance(int pelotonResistance) override;
+    resistance_t pelotonToBikeResistance(peloton_t pelotonResistance) override;
     resistance_t maxResistance() override { return max_resistance; }
     bool connected() override;
 
@@ -54,7 +54,7 @@ class solebike : public bike {
     void startDiscover();
     void forceResistance(resistance_t requestResistance);
     void sendPoll();
-    uint16_t watts() override;
+    power_t watts() override;
 
     QTimer *refresh;
 

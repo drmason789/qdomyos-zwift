@@ -665,11 +665,11 @@ bool domyosbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-resistance_t domyosbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t domyosbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     return (pelotonResistance * max_resistance) / 100;
 }
 
-resistance_t domyosbike::resistanceFromPowerRequest(uint16_t power) {
+resistance_t domyosbike::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << currentCadence().value();
 
     for (resistance_t i = 1; i < max_resistance; i++) {
@@ -712,7 +712,7 @@ uint16_t domyosbike::wattsFromResistance(double resistance) {
     }
 }
 
-uint16_t domyosbike::watts() {
+power_t domyosbike::watts() {
     double v = 0;
     // const resistance_t max_resistance = 15;
     // ref

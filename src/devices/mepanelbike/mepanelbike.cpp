@@ -453,7 +453,7 @@ bool mepanelbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t mepanelbike::watts() {
+power_t mepanelbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

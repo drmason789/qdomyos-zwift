@@ -873,7 +873,7 @@ void virtualbike::characteristicChanged(const QLowEnergyCharacteristic &characte
     }
 }
 
-int virtualbike::iFit_pelotonToBikeResistance(int pelotonResistance) {
+int virtualbike::iFit_pelotonToBikeResistance(peloton_t pelotonResistance) {
     if (pelotonResistance <= 10) {
         return 2;
     }

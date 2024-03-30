@@ -70,7 +70,7 @@ void sportsplusbike::forceResistance(resistance_t requestResistance) {
     */
 }
 
-resistance_t sportsplusbike::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t sportsplusbike::pelotonToBikeResistance(peloton_t pelotonResistance) {
     return (pelotonResistance * max_resistance) / 100;
 }
 
@@ -497,7 +497,7 @@ void sportsplusbike::deviceDiscovered(const QBluetoothDeviceInfo &device) {
     }
 }
 
-uint16_t sportsplusbike::watts() {
+power_t sportsplusbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

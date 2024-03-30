@@ -540,7 +540,7 @@ bool cscbike::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t cscbike::watts() {
+power_t cscbike::watts() {
     if (currentCadence().value() == 0) {
         return 0;
     }

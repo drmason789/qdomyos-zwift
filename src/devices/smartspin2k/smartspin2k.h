@@ -49,7 +49,7 @@ class smartspin2k : public bike {
     void writeCharacteristicFTMS(uint8_t *data, uint8_t data_len, const QString &info, bool disable_log = false,
                                  bool wait_for_response = false);
     void startDiscover();
-    uint16_t watts() override;
+    power_t watts() override;
     void forceResistance(resistance_t requestResistance);
     void setShiftStep(uint16_t);
     void lowInit(resistance_t resistance);

@@ -153,7 +153,7 @@ void smartrowrower::serviceDiscovered(const QBluetoothUuid &gatt) {
     qDebug() << QStringLiteral("serviceDiscovered ") + gatt.toString();
 }
 
-resistance_t smartrowrower::pelotonToBikeResistance(int pelotonResistance) {
+resistance_t smartrowrower::pelotonToBikeResistance(peloton_t pelotonResistance) {
     for (int i = 1; i < max_resistance - 1; i++) {
         if (bikeResistanceToPeloton(i) <= pelotonResistance && bikeResistanceToPeloton(i + 1) >= pelotonResistance) {
             return i;
@@ -162,7 +162,7 @@ resistance_t smartrowrower::pelotonToBikeResistance(int pelotonResistance) {
     return Resistance.value();
 }
 
-resistance_t smartrowrower::resistanceFromPowerRequest(uint16_t power) {
+resistance_t smartrowrower::resistanceFromPowerRequest(power_t power) {
     qDebug() << QStringLiteral("resistanceFromPowerRequest") << Cadence.value();
 
     for (int i = 1; i < max_resistance - 1; i++) {
@@ -475,7 +475,7 @@ bool smartrowrower::connected() {
     return m_control->state() == QLowEnergyController::DiscoveredState;
 }
 
-uint16_t smartrowrower::watts() {
+power_t smartrowrower::watts() {
     if (currentCadence().value() == 0)
         return 0;
     return wattsFromResistance(Resistance.value());

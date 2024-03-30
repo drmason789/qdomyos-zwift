@@ -382,7 +382,7 @@ void trxappgateusbelliptical::controllerStateChanged(QLowEnergyController::Contr
     }
 }
 
-uint16_t trxappgateusbelliptical::watts() { return m_watt.value(); }
+power_t trxappgateusbelliptical::watts() { return m_watt.value(); }
 
 
 void trxappgateusbelliptical::searchingStop() { searchStopped = true; }
