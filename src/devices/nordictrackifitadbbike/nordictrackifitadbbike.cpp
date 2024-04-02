@@ -293,7 +293,7 @@ void nordictrackifitadbbike::processPendingDatagrams() {
         // only resistance
         if(proform_studio_NTEX71021) {
             if (nordictrack_ifit_adb_remote) {
-                if (requestResistance != -1) {
+                if (requestResistance != -100) {
                     if (requestResistance != currentResistance().value()) {
                         int x1 = 950;
                         int y2 = (int)(493 - (13.57 * (requestResistance - 1)));
@@ -330,7 +330,7 @@ void nordictrackifitadbbike::processPendingDatagrams() {
             lastInclinationChanged = QDateTime::currentDateTime();
             if (nordictrack_ifit_adb_remote) {
                 bool erg_mode = settings.value(QZSettings::zwift_erg, QZSettings::default_zwift_erg).toBool();
-                if (requestInclination != -100 && erg_mode && requestResistance != -1) {
+                if (requestInclination != -100 && erg_mode && requestResistance != -100) {
                     qDebug() << "forcing inclination based on the erg mode resistance request of" << requestResistance;
                     requestInclination = requestResistance;
                     requestResistance = -100;

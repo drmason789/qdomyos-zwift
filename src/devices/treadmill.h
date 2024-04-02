@@ -31,8 +31,11 @@ class treadmill : public bluetoothdevice {
     void setLap() override;
     void setPaused(bool p) override;
     double lastRawSpeedRequested() {
-        return (m_lastRawSpeedRequested != -1 ? m_lastRawSpeedRequested : currentSpeed().value());    }
-    double lastRawInclinationRequested() { return m_lastRawInclinationRequested != -100 ? m_lastRawInclinationRequested : currentInclination().value();  }
+        return (m_lastRawSpeedRequested != -1 ? m_lastRawSpeedRequested : currentSpeed().value());
+    }
+    inclination_t lastRawInclinationRequested() {
+        return (m_lastRawInclinationRequested != -100 ? m_lastRawInclinationRequested : currentInclination().value());
+    }
     virtual void setLastSpeed(double speed);
     virtual void setLastInclination(inclination_t inclination);
     virtual bool autoPauseWhenSpeedIsZero();

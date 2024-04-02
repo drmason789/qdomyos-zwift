@@ -80,12 +80,16 @@ void schwinn170bike::update() {
         }
 
         if (requestResistance != -1) {
-            requestResistance= std::clamp(requestResistance, (resistance_t)1, max_resistance);
+            if (requestResistance > max_resistance)
+                requestResistance = max_resistance;
+            else if (requestResistance == 0) {
+                requestResistance = 1;
+            }
 
             if (requestResistance != currentResistance().value()) {
                 emit debug(QStringLiteral("writing resistance ") + QString::number(requestResistance));
 
-                // forceResistance(request(Inclination|Power|Resistance|PelotonResistance)([^\.]);
+                // forceResistance(requestResistance);
             }
             requestResistance = -1;
         }

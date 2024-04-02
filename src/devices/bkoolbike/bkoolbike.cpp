@@ -138,14 +138,14 @@ void bkoolbike::update() {
         }
 
         if (requestResistance != -1) {
-            if (requestResistance!= currentResistance().value() || lastGearValue != gears()) {
+            if (requestResistance != currentResistance().value() || lastGearValue != gears()) {
                 emit debug(QStringLiteral("writing resistance ") + QString::number(requestResistance));
                 auto virtualBike = this->VirtualBike();
                 if (((virtualBike && !virtualBike->ftmsDeviceConnected()) || !virtualBike) &&
-                    (requestPower==-100 || requestPower==0)) {
-                    requestResistance = requestResistance / 10.0;
+                    (requestPower == 0 || requestPower == -1)) {
+                    requestInclination = requestResistance / 10.0;
                 }
-                // forceResistance(request(Inclination|Power|Resistance|PelotonResistance)([^\.]);;
+                // forceResistance(requestResistance);;
             }
             lastGearValue = gears();
             requestResistance = -1;
@@ -159,7 +159,7 @@ void bkoolbike::update() {
 
         if (requestPower != -1) {
             changePower(requestPower);
-            requestPower;
+            requestPower = -1;
         }
         if (requestStart != -1) {
             emit debug(QStringLiteral("starting..."));
