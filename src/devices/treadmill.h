@@ -42,6 +42,7 @@ class treadmill : public bluetoothdevice {
     void cadenceFromAppleWatch();
     virtual bool canHandleSpeedChange() { return true; }
     virtual bool canHandleInclineChange() { return true; }
+    double runningStressScore();
 
   public slots:
     virtual void changeSpeed(double speed);
