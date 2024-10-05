@@ -5,6 +5,12 @@ ProductTestDataBuilder::ProductTestDataBuilder(QString name) : ProductTestData()
     this->deviceNamePatternGroup = new DeviceNamePatternGroup();
 }
 
+ProductTestDataBuilder *ProductTestDataBuilder::acceptDeviceNames(const QStringList &deviceNames, DeviceNameComparison cmp)
+{
+    for(QString name : deviceNames)
+        this->acceptDeviceName(name, cmp);
+    return this;
+}
 
 ProductTestDataBuilder *ProductTestDataBuilder::acceptDeviceName(const QString &deviceName, DeviceNameComparison cmp, uint8_t length) {
     this->deviceNamePatternGroup->addDeviceName(deviceName, cmp, length);
@@ -65,8 +71,15 @@ ProductTestDataBuilder *ProductTestDataBuilder::excluding(std::initializer_list<
     return this;
 }
 
-ProductTestDataBuilder *ProductTestDataBuilder::disable() {
+ProductTestDataBuilder *ProductTestDataBuilder::disable(const QString& reason) {
     this->enabled = false;
+    this->disabledReason = reason;
+    return this;
+}
+
+ProductTestDataBuilder *ProductTestDataBuilder::skip(const QString &reason) {
+    this->skipped = true;
+    this->skippedReason = reason;
     return this;
 }
 

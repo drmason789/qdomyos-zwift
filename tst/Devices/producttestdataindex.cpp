@@ -116,7 +116,8 @@ void ProductTestDataIndex::Initialize() {
     // Computrainer Bike
     RegisterNewProductTestData(ProductIndex::ComputrainerBike)
         ->expectDevice<computrainerbike>()
-        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase);
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
+        ->disable("Unable to emulate serial port for testing");
 
     // Concept2 Ski Erg
     RegisterNewProductTestData(ProductIndex::Concept2SkiErg)
@@ -254,11 +255,11 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("ECH-SD-SPT", DeviceNameComparison::StartsWithIgnoreCase);
 
 
-    //// TODO: check if this is actually used
+    // TODO: check if this is actually used
     // Elite Sterzo Smart
     RegisterNewProductTestData(ProductIndex::EliteSterzoSmart)
         ->expectDevice<elitesterzosmart>()
-        ->disable(); // can't detect this with current logic
+        ->disable("Unable to detect with current logic");
 
 
     // ES Linker Treadmill
@@ -285,7 +286,7 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::FakeTreadmill)
         ->expectDevice<faketreadmill>()        
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith(QZSettings::fakedevice_elliptical);
+        ->configureSettingsWith(QZSettings::fakedevice_treadmill);
 
 
     // FitPlus F5
@@ -388,41 +389,101 @@ void ProductTestDataIndex::Initialize() {
         ->configureSettingsWith(QZSettings::hammer_racer_s)
         ->excluding(ftmsBikeConfigureExclusions);
 
+    // FTMS Bike Hammer 64123
+    RegisterNewProductTestData(ProductIndex::FTMSBikeHammer)
+        ->expectDevice<ftmsbike>()
+        ->acceptDeviceName("HAMMER ", DeviceNameComparison::StartsWith)
+        ->configureSettingsWith(
+            [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
+            {
+                DeviceDiscoveryInfo config(info);
+
+                if (enable) {
+                    config.setValue(QZSettings::power_sensor_as_bike, false);
+                    config.setValue(QZSettings::saris_trainer, false);
+                    configurations.push_back(config);
+                } else {
+                for(int x = 1; x<=3; x++) {
+                    config.setValue(QZSettings::power_sensor_as_bike, x & 1);
+                    config.setValue(QZSettings::saris_trainer, x & 2);
+                    configurations.push_back(config);
+                }
+
+            }})
+        ->excluding(ftmsBikeConfigureExclusions);
+
+    // FTMS Bike IConsole
+    RegisterNewProductTestData(ProductIndex::FTMSBikeIConsole)
+        ->expectDevice<ftmsbike>()
+        ->acceptDeviceName("ICONSOLE+", DeviceNameComparison::StartsWith)
+        ->configureSettingsWith(QZSettings::toorx_ftms)
+        ->excluding(ftmsBikeConfigureExclusions);
+
 
     // FTMS Bike
+    QStringList acceptableFTMSNames {
+        "DHZ-", // JK fitness 577
+        "MKSM", // MKSM3600036
+        "YS_C1_", // Yesoul C1H
+        "YS_G1_", // Yesoul S3
+        "YS_G1MPLUS", // Yesoul G1M Plus
+        "DS25-", // Bodytone DS25
+        "SCHWINN 510T",
+        "3G CARDIO ",
+        "ZWIFT HUB",
+        "FLXCY-", // Pro FlexBike
+        "QB-WC01", // Nexgim QB-C01 smart bike
+        "XBR55",
+        "ECHO_BIKE_",
+        "EW-JS-",
+        "MERACH-MR667-",
+        "DS60-",
+        "BIKE-",
+        "SPAX-BK-",
+        "YSV1",
+        "CECOTEC", // Cecotec DrumFit Indoor 10000 MagnoMotor Connected #2420
+        "WATTBIKE",
+        "ZYCLEZBIKE",
+        "WAVEFIT-",
+        "KETTLERBLE",
+        "JAS_C3",
+        "RAVE WHITE",
+        "DOMYOS-BIKING-",
+        "DU-30",
+        "BIKZU_",
+        "WLT8828",
+        "VANRYSEL-HT",
+        "HARISON-X15",
+        "FEIVON V2",
+        "FELVON V2",
+        "ZUMO",
+        "XS08-",
+        "B94",
+        "STAGES BIKE",
+        "SUITO",
+        "D2RIDE",
+        "DIRETO X",
+        "MERACH-667-"
+    };
     RegisterNewProductTestData(ProductIndex::FTMSBike)
-        ->expectDevice<ftmsbike>()        
-        ->acceptDeviceName("DHZ-", DeviceNameComparison::StartsWithIgnoreCase) // JK fitness 577
-        ->acceptDeviceName("MKSM", DeviceNameComparison::StartsWithIgnoreCase) // MKSM3600036
-        ->acceptDeviceName("YS_C1_", DeviceNameComparison::StartsWithIgnoreCase)// Yesoul C1H
-        ->acceptDeviceName("YS_G1_", DeviceNameComparison::StartsWithIgnoreCase)// Yesoul S3
-        ->acceptDeviceName("DS25-", DeviceNameComparison::StartsWithIgnoreCase) // Bodytone DS25
-        ->acceptDeviceName("SCHWINN 510T", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("ZWIFT HUB", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("MAGNUS ", DeviceNameComparison::StartsWithIgnoreCase) // Saris Trainer
-        ->acceptDeviceName("FLXCY-", DeviceNameComparison::StartsWithIgnoreCase) // Pro FlexBike
-        ->acceptDeviceName("B94", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("DBF135", DeviceNameComparison::IgnoreCase)
-        ->acceptDeviceName("STAGES BIKE", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("SUITO", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("D2RIDE", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("DIRETO XR", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("SMB1", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("INRIDE", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("XBR55", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("EW-JS-", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("HAMMER ", DeviceNameComparison::StartsWithIgnoreCase) // HAMMER 64123
-        ->acceptDeviceName("QB-WC01", DeviceNameComparison::StartsWithIgnoreCase)
-
+        ->expectDevice<ftmsbike>()
+        ->acceptDeviceNames(acceptableFTMSNames, DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceName("DI", DeviceNameComparison::StartsWithIgnoreCase, 2) // Elite smart trainer #1682)
+        ->acceptDeviceName("VSV", DeviceNameComparison::StartsWithIgnoreCase, 9) // YSV100783
+        ->acceptDeviceName("URSB", DeviceNameComparison::StartsWithIgnoreCase, 7) // URSB005
+        ->acceptDeviceName("DBF", DeviceNameComparison::StartsWithIgnoreCase, 6) // DBF135
+        ->acceptDeviceName("KSU", DeviceNameComparison::StartsWithIgnoreCase, 7) // KSU1102
+        ->acceptDeviceName("VOLT", DeviceNameComparison::StartsWithIgnoreCase, 4)
 
         // Starts with DT- and is 14+ characters long.
         // TODO: update once addDeviceName can generate valid and invalid names for variable length patterns
+
         ->acceptDeviceName("DT-0123456789A", DeviceNameComparison::IgnoreCase) // Sole SB700
         ->acceptDeviceName("DT-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", DeviceNameComparison::IgnoreCase) // Sole SB700
         ->rejectDeviceName("DT-0123456789", DeviceNameComparison::IgnoreCase) // too short for Sole SB700
         ->rejectDeviceName("DBF13", DeviceNameComparison::IgnoreCase) // too short for DBF135
         ->rejectDeviceName("DBF1355", DeviceNameComparison::IgnoreCase) // too long for DBF135
-        ->configureSettingsWith(QZSettings::hammer_racer_s)
+
         ->excluding(ftmsBikeConfigureExclusions);
 
 
@@ -493,7 +554,6 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("JFTM", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("CT800", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("MOBVOI TM", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("ESANGLINKER", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("DK202000725", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("CTM780102C6BB32D62", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("MX-TM ", DeviceNameComparison::StartsWithIgnoreCase)
@@ -623,13 +683,13 @@ void ProductTestDataIndex::Initialize() {
     // Life Fitness Treadmill
     RegisterNewProductTestData(ProductIndex::LifeFitnessTreadmill)
         ->expectDevice<lifefitnesstreadmill>()
-        ->acceptDeviceName("LF", DeviceNameComparison::StartsWith);
+        ->acceptDeviceName("LF", DeviceNameComparison::StartsWithIgnoreCase, 18);
 
 
     // M3I Bike
     RegisterNewProductTestData(ProductIndex::M3IBike)
         ->expectDevice<m3ibike>()
-        ->acceptDeviceName("M3", DeviceNameComparison::StartsWithIgnoreCase,18)
+        ->acceptDeviceName("M3", DeviceNameComparison::StartsWith)
         ->configureBluetoothInfoWith(
             [](const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos)->void
             {

@@ -39,6 +39,7 @@ void InitializeTrackedSettings()
     trackedSettings.insert(QZSettings::pafers_treadmill_bh_iboxster_plus, QZSettings::default_pafers_treadmill_bh_iboxster_plus);
     trackedSettings.insert(QZSettings::iconcept_elliptical, QZSettings::default_iconcept_elliptical);
     trackedSettings.insert(QZSettings::sole_treadmill_inclination, QZSettings::default_sole_treadmill_inclination);
+    trackedSettings.insert(QZSettings::saris_trainer, QZSettings::default_saris_trainer);
 };
 
 static void AssertKeyIsTracked(const QString& key) {

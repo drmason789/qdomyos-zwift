@@ -41,6 +41,8 @@ public:
     static const QString EliteSterzoSmart;
     static const QString FTMSAccessory;
     static const QString FTMSBikeHammerRacerS;
+    static const QString FTMSBikeHammer;
+    static const QString FTMSBikeIConsole;
     static const QString FTMSBike;
     static const QString FTMSKICKRCORE;
     static const QString FTMSRower;

@@ -22,6 +22,15 @@ public:
     }
 
     /**
+     * @brief Add a list of device names that should be identified as this device.
+     * If the comparison specified contains "starts with", then samples that start with the
+     * specified device name will be added. If a case sensitive comparison is specified,
+     * samples with invalid casing will be added to the invalid names list.
+     * @param deviceNames
+     */
+    ProductTestDataBuilder * acceptDeviceNames(const QStringList& deviceNames, DeviceNameComparison cmp);
+
+    /**
      * @brief Add a device name that should be identified as this device.
      * If the comparison specified contains "starts with", then samples that start with the
      * specified device name will be added. If a case sensitive comparison is specified,
@@ -59,6 +68,8 @@ public:
 
     ProductTestDataBuilder * excluding(std::initializer_list<QString> exclusions);
 
-    ProductTestDataBuilder * disable();
+    ProductTestDataBuilder * disable(const QString& reason=nullptr);
+
+    ProductTestDataBuilder * skip(const QString& reason=nullptr);
 
 };

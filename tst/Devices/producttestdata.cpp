@@ -4,6 +4,11 @@ QString ProductTestData::Name() const { return this->name; }
 
 bool ProductTestData::IsEnabled() const { return this->enabled; }
 
+
+const QString ProductTestData::DisabledReason() const  { return this->disabledReason; }
+
+const QString ProductTestData::SkippedReason() const  { return this->skippedReason; }
+
 bool ProductTestData::IsExpectedDevice(bluetoothdevice *device) const { return this->isExpectedDevice(device); }
 
 const QStringList ProductTestData::Exclusions() const { return this->exclusions; }

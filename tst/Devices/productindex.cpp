@@ -54,6 +54,8 @@ DEFINE_PRODUCT(EchelonRower, "Echelon Rower");
 DEFINE_PRODUCT(EchelonStrideTreadmill, "Echelon Stride Treadmill");
 DEFINE_PRODUCT(EliteSterzoSmart, "Elite Sterzo Smart");
 DEFINE_PRODUCT(FTMSAccessory, "FTMS Accessory");
+DEFINE_PRODUCT(FTMSBikeHammer, "FTMS Bike Hammer 64123");
+DEFINE_PRODUCT(FTMSBikeIConsole, "FTMS Bike IConsole");
 DEFINE_PRODUCT(FTMSBikeHammerRacerS, "FTMS Bike Hammer Racer S");
 DEFINE_PRODUCT(FTMSBike, "FTMS Bike");
 DEFINE_PRODUCT(FTMSKICKRCORE, "FTMS KICKR CORE");

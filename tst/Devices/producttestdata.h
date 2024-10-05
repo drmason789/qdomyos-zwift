@@ -18,6 +18,9 @@ class ProductTestData
 {
 protected:
     bool enabled = true;
+    bool skipped = false;
+    QString disabledReason = nullptr;
+    QString skippedReason = nullptr;
     QString name = nullptr;
     QStringList exclusions;
     DeviceNamePatternGroup * deviceNamePatternGroup=nullptr;
@@ -29,6 +32,9 @@ protected:
 public:
     QString Name() const;
     bool IsEnabled() const;
+    bool IsSkipped() const { return skipped; }
+    const QString DisabledReason() const;
+    const QString SkippedReason() const;
     bool IsExpectedDevice(bluetoothdevice * device) const;
     const QStringList Exclusions() const;
     const DeviceNamePatternGroup * NamePatternGroup() const;

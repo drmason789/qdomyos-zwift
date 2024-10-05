@@ -70,6 +70,7 @@ void ProductTestSuite::testDeviceDetection(const ProductTestData * testData, blu
 
     if(expectMatch) {
         std::string formattedFailMessage = this->formatString(failMessage, device);
+        EXPECT_NE(device, nullptr) << formattedFailMessage;
         EXPECT_TRUE(testData->IsExpectedDevice(device)) << formattedFailMessage;
 
         EXPECT_EQ(device, signalReceiver.get_device()) << "Connection signal not received";
@@ -91,8 +92,26 @@ void ProductTestSuite::SetUp() {
     if(!this->testParam)
         GTEST_FAIL() << "Failed to get test data for: " << testParam.toStdString();
 
+    QString skipMessage = nullptr;
     if(!this->testParam->IsEnabled())
-        GTEST_SKIP() << "Product is disabled for testing: " << testParam.toStdString();
+    {
+        QString reason = this->testParam->DisabledReason();
+        skipMessage = QString("Product %1s is disabled for testing.").arg(testParam);
+
+        if(reason!=nullptr && reason!="")
+            skipMessage = QString("%1s Reason: %2s").arg(skipMessage).arg(reason);
+    }
+    else if(this->testParam->IsSkipped())
+    {
+        QString reason = this->testParam->SkippedReason();
+        skipMessage = QString("Product %1s is skipped for testing.").arg(testParam);
+
+        if(reason!=nullptr && reason!="")
+            skipMessage = QString("%1s Reason: %2s").arg(skipMessage).arg(reason);
+    }
+
+    if(skipMessage!=nullptr)
+        GTEST_SKIP() << skipMessage.toStdString();
 
     DeviceDiscoveryInfo defaultDiscoveryInfo(true);
     this->enablingConfigurations = this->testParam->ApplyConfigurations(defaultDiscoveryInfo, true);
