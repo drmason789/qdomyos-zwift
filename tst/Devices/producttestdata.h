@@ -9,10 +9,10 @@
 #include "bluetoothdevice.h"
 #include "devicenamepatterngroup.h"
 #include "devicediscoveryinfo.h"
+#include "devicetypeid.h"
 
 typedef std::function<void(const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations)> ConfigurationApplicatorMultiple;
 typedef std::function<void(DeviceDiscoveryInfo &info, bool enable)> ConfigurationApplicatorSingle;
-typedef std::function<void()> ExclusionCollector;
 typedef std::function<void(const QBluetoothDeviceInfo &info, bool enable, std::vector<QBluetoothDeviceInfo> &bluetoothDeviceInfos)> BluetoothInfoApplicatorMultiple;
 typedef std::function<void(QBluetoothDeviceInfo &info, const QBluetoothUuid& uuid, bool enable)> BluetoothInfoApplicatorSingle;
 
@@ -25,18 +25,19 @@ protected:
     QString disabledReason = nullptr;
     QString skippedReason = nullptr;
     QString name = nullptr;
-    std::unordered_set<int> exclusions;
+
+    std::unordered_set<DeviceTypeId> exclusions;
     DeviceNamePatternGroup * deviceNamePatternGroup=nullptr;
     ConfigurationApplicatorMultiple configuratorMultiple=nullptr;
     ConfigurationApplicatorSingle configuratorSingle=nullptr;
     BluetoothInfoApplicatorMultiple bluetoothInfosConfigurator=nullptr;
     BluetoothInfoApplicatorSingle bluetoothInfoConfigurator=nullptr;
     std::function<bool(bluetoothdevice*)> isExpectedDevice=nullptr;
-    int expectedDeviceType = -1;
+    DeviceTypeId expectedDeviceType=-1;
     ProductTestData();
 public:
     QString Name() const;
-    int ExpectedDeviceType() const;
+    DeviceTypeId ExpectedDeviceType() const;
     bool IsEnabled() const;
     bool IsSkipped() const { return skipped; }
     const QString DisabledReason() const;

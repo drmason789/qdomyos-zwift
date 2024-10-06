@@ -9,7 +9,7 @@
 #include "qzsettings.h"
 
 
-int ProductTestDataIndex::TypeIdGenerator::count = 0;
+
 
 bool ProductTestDataIndex::isInitialized = false;
 
@@ -69,8 +69,8 @@ const ProductTestData *ProductTestDataIndex::GetProductTestData(const QString &n
 }
 
 
-QMultiMap<int, const ProductTestData*> ProductTestDataIndex::WhereExpects(const std::unordered_set<int> &typeIds) {
-    QMultiMap<int, const ProductTestData*> result;
+QMultiMap<DeviceTypeId, const ProductTestData*> ProductTestDataIndex::WhereExpects(const std::unordered_set<DeviceTypeId> &typeIds) {
+    QMultiMap<DeviceTypeId, const ProductTestData*> result;
 
     if(typeIds.empty())
         return result;
@@ -232,11 +232,7 @@ void ProductTestDataIndex::Initialize() {
         ->excluding<domyosrower>()
         ->excluding<horizontreadmill>()
         ->excluding<ftmsbike>()
-        ->configureSettingsWith(
-            [ftms_Treadmill](DeviceDiscoveryInfo& info, bool enable) -> void
-             {
-                 info.setValue(QZSettings::ftms_treadmill, enable? "NOT "+ftms_Treadmill:ftms_Treadmill);
-            })
+        ->configureSettingsWith(QZSettings::ftms_treadmill, "NOT "+ftms_Treadmill, ftms_Treadmill)
         ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826), false /*Should not be identified if it has 0x1826*/);
         // TODO: can't do BT config without settings config here
 
@@ -774,8 +770,7 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::NordictrackIFitADBTreadmill)
         ->expectDevice<nordictrackifitadbtreadmill>()        
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith( [testIP](DeviceDiscoveryInfo &info, bool enable)-> void { info.setValue(QZSettings::nordictrack_2950_ip, enable ? testIP:QString()); });
-
+        ->configureSettingsWith(QZSettings::nordictrack_2950_ip, testIP, "");
 
     // NPE Cable Bike
     RegisterNewProductTestData(ProductIndex::NPECableBike)
@@ -866,13 +861,13 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::ProFormWifiBike)
         ->expectDevice<proformwifibike>()        
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith( [testIP](DeviceDiscoveryInfo& info, bool enable)->void { info.setValue(QZSettings::proformtdf4ip, enable ? testIP:QString()); });
+        ->configureSettingsWith(QZSettings::proformtdf4ip, testIP, "");
 
     // ProForm Wifi Treadmill
     RegisterNewProductTestData(ProductIndex::ProFormWifiTreadmill)
         ->expectDevice<proformwifitreadmill>()        
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith( [testIP](DeviceDiscoveryInfo& info, bool enable)->void { info.setValue(QZSettings::proformtreadmillip, enable ? testIP:QString());});
+        ->configureSettingsWith(QZSettings::proformtreadmillip, testIP, "");
 
     // Renpho Bike General
     auto renphoBikeExclusions = {
@@ -1213,19 +1208,22 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::TrxAppGateUSBElliptical)
         ->expectDevice<trxappgateusbelliptical>()        
         ->acceptDeviceName("FAL-SPORTS", DeviceNameComparison::StartsWithIgnoreCase)
-        ->excluding(toorxAppGateUSBBikeExclusions);
-    /* // TODO
-             ->addConfigurator(
-               [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
+        // TODO: deal with I-CONSOLE+
+        ->excluding(toorxAppGateUSBBikeExclusions)
+        ->configureSettingsWith(
+            [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
             {
                 DeviceDiscoveryInfo config(info);
                 if(enable) {
-                    config.setValue(QZSettings::ftms_bike, "Disabled");
+                    config.setValue(QZSettings::ftms_bike, QZSettings::default_ftms_bike);
+                    configurations.push_back(config);
+                    config.setValue(QZSettings::ftms_bike, "X"+QZSettings::default_ftms_bike+"X");
                     configurations.push_back(config);
                 } else {
                     config.setValue(QZSettings::ftms_bike, "PLACEHOLDER");
                     configurations.push_back(config);
-                }) */
+                }
+            }) ;
 
 
     // Toorx AppGate USB Treadmill

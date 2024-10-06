@@ -42,10 +42,18 @@ ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(Configurat
 }
 
 ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(const QString &qzSettingsKey, bool enablingValue) {
+    return this->configureSettingsWith(qzSettingsKey, enablingValue, !enablingValue);
+}
+
+ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(const QString &qzSettingsKey, QVariant enablingValue, QVariant disablingValue) {
     if(this->configuratorMultiple || this->configuratorSingle)
         throw std::invalid_argument("Only 1 configurator is supported.");
-    this->configuratorSingle = [qzSettingsKey, enablingValue](DeviceDiscoveryInfo& info, bool enable) -> void {
-        info.setValue(qzSettingsKey, enable==enablingValue);
+
+    if(enablingValue==disablingValue)
+        throw std::invalid_argument("Enabling and disabling values must be different.");
+
+    this->configuratorSingle = [qzSettingsKey, enablingValue, disablingValue](DeviceDiscoveryInfo& info, bool enable) -> void {
+        info.setValue(qzSettingsKey, enable ? enablingValue:disablingValue);
     };
     return this;
 }
@@ -92,7 +100,7 @@ ProductTestDataBuilder *ProductTestDataBuilder::excluding(std::initializer_list<
     return this;
 }
 */
-ProductTestDataBuilder *ProductTestDataBuilder::excluding(std::initializer_list<int> exclusions) {
+ProductTestDataBuilder *ProductTestDataBuilder::excluding(std::initializer_list<DeviceTypeId> exclusions) {
     this->exclusions.insert(exclusions);
     return this;
 }

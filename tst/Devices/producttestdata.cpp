@@ -3,8 +3,8 @@
 
 QString ProductTestData::Name() const { return this->name; }
 
-int ProductTestData::ExpectedDeviceType() const {
-    if(this->expectedDeviceType < 0)
+DeviceTypeId ProductTestData::ExpectedDeviceType() const {
+    if(this->expectedDeviceType<0)
         throw std::domain_error("Expected device not set");
     return this->expectedDeviceType;
 }

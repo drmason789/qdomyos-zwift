@@ -19,6 +19,7 @@ SOURCES += \
         Devices/producttestdatabuilder.cpp \
         Devices/producttestdataindex.cpp \
         Devices/producttestsuite.cpp \
+        Devices/typeidgenerator.cpp \
         Erg/ergtabletestsuite.cpp \
         ToolTests/testsettingstestsuite.cpp \
         Tools/testsettings.cpp \
@@ -45,11 +46,13 @@ HEADERS += \
     Devices/bluetoothsignalreceiver.h \
     Devices/devicediscoveryinfo.h \
     Devices/devicenamepatterngroup.h \
+    Devices/devicetypeid.h \
     Devices/productindex.h \
     Devices/producttestdata.h \
     Devices/producttestdatabuilder.h \
     Devices/producttestdataindex.h \
     Devices/producttestsuite.h \
+    Devices/typeidgenerator.h \
     Erg/ergtabletestsuite.h \
     ToolTests/testsettingstestsuite.h \
     Tools/testsettings.h

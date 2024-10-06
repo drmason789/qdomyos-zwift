@@ -78,14 +78,17 @@ public:
      */
     ProductTestDataBuilder * configureSettingsWith(const QString& qzSettingsKey, bool enabledValue=true);
 
+    ProductTestDataBuilder * configureSettingsWith(const QString &qzSettingsKey, QVariant enablingValue, QVariant disablingValue);
+
     ProductTestDataBuilder * configureBluetoothInfoWith(const BluetoothInfoApplicatorMultiple& configurator);
     ProductTestDataBuilder * configureBluetoothInfoWith(const BluetoothInfoApplicatorSingle& configurator);
     ProductTestDataBuilder * configureBluetoothInfoWith(const QBluetoothUuid &uuid, bool enablingValue=true);
 
+
     //ProductTestDataBuilder * excluding(const QString& exclusion);
     //ProductTestDataBuilder * excluding(const QStringList& exclusions);
     //ProductTestDataBuilder * excluding(std::initializer_list<QString> exclusions);
-    ProductTestDataBuilder * excluding(std::initializer_list<int> exclusions);
+    ProductTestDataBuilder * excluding(std::initializer_list<DeviceTypeId> exclusions);
 
     template<class T>
     ProductTestDataBuilder * excluding() { return excluding({ProductTestDataIndex::GetTypeId<T>()}); }
@@ -93,6 +96,7 @@ public:
     ProductTestDataBuilder * disable(const QString& reason=nullptr);
 
     ProductTestDataBuilder * skip(const QString& reason=nullptr);
+
 
 
 };

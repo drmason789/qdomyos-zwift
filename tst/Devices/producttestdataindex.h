@@ -4,24 +4,10 @@
 #include <qstringlist.h>
 
 #include "producttestdata.h"
-
+#include "typeidgenerator.h"
 
 class ProductTestDataIndex {
 private:
-
-    class TypeIdGenerator
-    {
-    private:
-        static int count;
-    public:
-        template<class T>
-        static int GetTypeId()
-        {
-            static const int idCounter = count++;
-            return idCounter;
-        }
-    };
-
     static QMap<QString,const ProductTestData*> testData;
     static bool isInitialized;
 
@@ -33,9 +19,9 @@ public:
     static const ProductTestData * GetProductTestData(const QString& name);
 
     template <class T>
-    static int GetTypeId() { return TypeIdGenerator::GetTypeId<T>(); }
+    static DeviceTypeId GetTypeId() { return TypeIdGenerator::GetTypeId<T>(); }
 
-    static QMultiMap<int, const ProductTestData*> WhereExpects(const std::unordered_set<int> &typeIds);
+    static QMultiMap<DeviceTypeId, const ProductTestData*> WhereExpects(const std::unordered_set<DeviceTypeId> &typeIds);
 
     static void Initialize();
 };
