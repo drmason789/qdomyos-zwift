@@ -40,6 +40,7 @@ void InitializeTrackedSettings()
     trackedSettings.insert(QZSettings::iconcept_elliptical, QZSettings::default_iconcept_elliptical);
     trackedSettings.insert(QZSettings::sole_treadmill_inclination, QZSettings::default_sole_treadmill_inclination);
     trackedSettings.insert(QZSettings::saris_trainer, QZSettings::default_saris_trainer);
+    trackedSettings.insert(QZSettings::ftms_treadmill, QZSettings::default_ftms_treadmill);
 };
 
 static void AssertKeyIsTracked(const QString& key) {

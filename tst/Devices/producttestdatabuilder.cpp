@@ -27,35 +27,56 @@ ProductTestDataBuilder *ProductTestDataBuilder::rejectDeviceName(const QString &
     return this;
 }
 
-ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(DeviceDiscoveryInfosCollector configurator) {
+ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(ConfigurationApplicatorMultiple configurator) {
     if(this->configuratorMultiple || this->configuratorSingle)
         throw std::invalid_argument("Only 1 configurator is supported.");
     this->configuratorMultiple = configurator;
     return this;
 }
 
-ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(DeviceDiscoveryInfoCollector configurator) {
+ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(ConfigurationApplicatorSingle configurator) {
     if(this->configuratorMultiple || this->configuratorSingle)
         throw std::invalid_argument("Only 1 configurator is supported.");
     this->configuratorSingle = configurator;
     return this;
 }
 
-ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(const QString &qzSettingsKey) {
+ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(const QString &qzSettingsKey, bool enablingValue) {
     if(this->configuratorMultiple || this->configuratorSingle)
         throw std::invalid_argument("Only 1 configurator is supported.");
-    this->configuratorSingle = [qzSettingsKey](DeviceDiscoveryInfo& info, bool enable) -> void { info.setValue(qzSettingsKey, enable);};
+    this->configuratorSingle = [qzSettingsKey, enablingValue](DeviceDiscoveryInfo& info, bool enable) -> void {
+        info.setValue(qzSettingsKey, enable==enablingValue);
+    };
     return this;
-
 }
 
-ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const BluetoothDeviceInfoCollector &configurator) {
-    if(this->bluetoothInfoConfigurator)
+ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const BluetoothInfoApplicatorMultiple &configurator) {
+    if(this->bluetoothInfosConfigurator || this->bluetoothInfoConfigurator)
+        throw std::invalid_argument("Only 1 bluetooth information configurator is supported.");
+    this->bluetoothInfosConfigurator = configurator;
+    return this;
+}
+
+ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const BluetoothInfoApplicatorSingle &configurator) {
+    if(this->bluetoothInfosConfigurator || this->bluetoothInfoConfigurator)
         throw std::invalid_argument("Only 1 bluetooth information configurator is supported.");
     this->bluetoothInfoConfigurator = configurator;
     return this;
 }
 
+ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const QBluetoothUuid& uuid, bool enablingValue) {
+
+    this->bluetoothInfoConfigurator =
+        [enablingValue](QBluetoothDeviceInfo &info, const QBluetoothUuid& uuid, bool enable) -> void {
+            if(enable==enablingValue) {
+                info.setServiceUuids(QVector<QBluetoothUuid>({uuid}));
+            } else {
+                info.setServiceUuids(QVector<QBluetoothUuid>({}));
+            }
+        };
+    return this;
+}
+/*
 ProductTestDataBuilder *ProductTestDataBuilder::excluding(const QString &exclusion) {
     this->exclusions.append(exclusion);
     return this;
@@ -68,6 +89,11 @@ ProductTestDataBuilder *ProductTestDataBuilder::excluding(const QStringList &exc
 
 ProductTestDataBuilder *ProductTestDataBuilder::excluding(std::initializer_list<QString> exclusions) {
     this->exclusions.append(exclusions);
+    return this;
+}
+*/
+ProductTestDataBuilder *ProductTestDataBuilder::excluding(std::initializer_list<int> exclusions) {
+    this->exclusions.insert(exclusions);
     return this;
 }
 

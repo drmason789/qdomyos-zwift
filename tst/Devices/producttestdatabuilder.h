@@ -3,6 +3,7 @@
 
 #include "bluetoothdevice.h"
 #include "producttestdata.h"
+#include "producttestdataindex.h"
 
 class ProductTestDataBuilder : public virtual ProductTestData
 {
@@ -10,14 +11,14 @@ class ProductTestDataBuilder : public virtual ProductTestData
 public:
     ProductTestDataBuilder(QString name);
 
-    template <typename T>
+    template <class T>
     ProductTestDataBuilder * expectDevice()
     {
         if(this->isExpectedDevice)
             throw std::invalid_argument("Expected device already set.");
 
         this->isExpectedDevice= [](bluetoothdevice * detectedDevice) -> bool { return dynamic_cast<T*>(detectedDevice)!=nullptr; };
-
+        this->expectedDeviceType = ProductTestDataIndex::GetTypeId<T>();
         return this;
     }
 
@@ -54,22 +55,44 @@ public:
      */
     ProductTestDataBuilder * rejectDeviceName(const QString& deviceName, const DeviceNameComparison cmp);
 
-    ProductTestDataBuilder * configureSettingsWith(DeviceDiscoveryInfosCollector configurator);
+    /**
+     * @brief Sets a generator for multiple enabling or disabling settings configurations.
+     * @param configurator
+     * @return
+     */
+    ProductTestDataBuilder * configureSettingsWith(ConfigurationApplicatorMultiple configurator);
 
-    ProductTestDataBuilder * configureSettingsWith(DeviceDiscoveryInfoCollector configurator);
+    /**
+     * @brief Sets a functor to produce the single enabling or disabling settings configuration.
+     * @param configurator
+     * @return
+     */
+    ProductTestDataBuilder * configureSettingsWith(ConfigurationApplicatorSingle configurator);
 
-    ProductTestDataBuilder * configureSettingsWith(const QString& qzSettingsKey);
+    /**
+     * @brief Specifies that a single boolean setting is used to generate an enabling or
+     *  disabling configuration.
+     * @param qzSettingsKey The settings key to alter.
+     * @param enabledValue The value of the setting that indicates an enabling configuration.
+     * @return
+     */
+    ProductTestDataBuilder * configureSettingsWith(const QString& qzSettingsKey, bool enabledValue=true);
 
-    ProductTestDataBuilder * configureBluetoothInfoWith(const BluetoothDeviceInfoCollector& configurator);
+    ProductTestDataBuilder * configureBluetoothInfoWith(const BluetoothInfoApplicatorMultiple& configurator);
+    ProductTestDataBuilder * configureBluetoothInfoWith(const BluetoothInfoApplicatorSingle& configurator);
+    ProductTestDataBuilder * configureBluetoothInfoWith(const QBluetoothUuid &uuid, bool enablingValue=true);
 
-    ProductTestDataBuilder * excluding(const QString& exclusion);
+    //ProductTestDataBuilder * excluding(const QString& exclusion);
+    //ProductTestDataBuilder * excluding(const QStringList& exclusions);
+    //ProductTestDataBuilder * excluding(std::initializer_list<QString> exclusions);
+    ProductTestDataBuilder * excluding(std::initializer_list<int> exclusions);
 
-    ProductTestDataBuilder * excluding(const QStringList& exclusions);
-
-    ProductTestDataBuilder * excluding(std::initializer_list<QString> exclusions);
+    template<class T>
+    ProductTestDataBuilder * excluding() { return excluding({ProductTestDataIndex::GetTypeId<T>()}); }
 
     ProductTestDataBuilder * disable(const QString& reason=nullptr);
 
     ProductTestDataBuilder * skip(const QString& reason=nullptr);
+
 
 };

@@ -234,10 +234,17 @@ void ProductTestSuite::test_deviceDetection_exclusions() {
     if(exclusionNames.size()==0)
         GTEST_SKIP() << "No exclusions defined for this device: " << testData->Name().toStdString();
 
+    // Only take the first for each type of exclusion
     std::vector<const ProductTestData*> exclusions;
-
+    std::unordered_set<int> exclusionTypeIds;
     for(auto exclusionName : exclusionNames)
-        exclusions.push_back(ProductTestDataIndex::GetProductTestData(exclusionName));
+    {
+        auto productTestData = ProductTestDataIndex::GetProductTestData(exclusionName);
+        if(exclusionTypeIds.count(productTestData->ExpectedDeviceType()))
+            continue;
+        exclusions.push_back(productTestData);
+        exclusionTypeIds.insert(productTestData->ExpectedDeviceType());
+    }
 
     bluetooth bt(this->defaultDiscoveryOptions);
 

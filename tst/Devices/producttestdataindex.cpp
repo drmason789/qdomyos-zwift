@@ -8,6 +8,9 @@
 #include "devicediscoveryinfo.h"
 #include "qzsettings.h"
 
+
+int ProductTestDataIndex::TypeIdGenerator::count = 0;
+
 bool ProductTestDataIndex::isInitialized = false;
 
 /**
@@ -65,6 +68,21 @@ const ProductTestData *ProductTestDataIndex::GetProductTestData(const QString &n
     return testData.value(name, nullptr);
 }
 
+
+QMultiMap<int, const ProductTestData*> ProductTestDataIndex::WhereExpects(const std::unordered_set<int> &typeIds) {
+    QMultiMap<int, const ProductTestData*> result;
+
+    if(typeIds.empty())
+        return result;
+
+    for(auto item : qAsConst(testData)) {
+        if(typeIds.count(item->ExpectedDeviceType()))
+            result.insert(item->ExpectedDeviceType(), item);
+    }
+
+    return result;
+}
+
 void ProductTestDataIndex::Initialize() {
 
     if(isInitialized)
@@ -76,7 +94,6 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::ActivioTreadmill)
         ->expectDevice<activiotreadmill>()
         ->acceptDeviceName("RUNNERT", DeviceNameComparison::StartsWithIgnoreCase);
-
 
     // Apex Bike
     RegisterNewProductTestData(ProductIndex::ApexBike)
@@ -203,41 +220,32 @@ void ProductTestDataIndex::Initialize() {
 
 
     // Domyos Treadmill
+    QString ftms_Treadmill = "wattsItCalled?"; // deliberately not all uppercase
     RegisterNewProductTestData(ProductIndex::DomyosTreadmill)
         ->expectDevice<domyostreadmill>()        
         ->acceptDeviceName("Domyos", DeviceNameComparison::StartsWith)
         ->rejectDeviceName("DomyosBr", DeviceNameComparison::StartsWith)
-        ->excluding(
-            {
-                ProductIndex::DomyosElliptical,
-                ProductIndex::DomyosBike,
-                ProductIndex::DomyosRower,
-                ProductIndex::HorizonTreadmill,
-                ProductIndex::HorizonTreadmill_Toorx,
-                ProductIndex::HorizonTreadmill_Bodytone,
-                ProductIndex::HorizonTreadmill_DomyosTC,
-                ProductIndex::FTMSBike,
-                ProductIndex::FTMSBikeHammerRacerS,
-                ProductIndex::FTMSAccessory,
-                ProductIndex::FTMSKICKRCORE
+        ->rejectDeviceName("DOMYOS-BIKING-", DeviceNameComparison::StartsWith)
+        ->rejectDeviceName(ftms_Treadmill.toUpper(), DeviceNameComparison::Exact)
+        ->excluding<domyoselliptical>()
+        ->excluding<domyosbike>()
+        ->excluding<domyosrower>()
+        ->excluding<horizontreadmill>()
+        ->excluding<ftmsbike>()
+        ->configureSettingsWith(
+            [ftms_Treadmill](DeviceDiscoveryInfo& info, bool enable) -> void
+             {
+                 info.setValue(QZSettings::ftms_treadmill, enable? "NOT "+ftms_Treadmill:ftms_Treadmill);
             })
-        ->configureBluetoothInfoWith(
-            [](const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos)->void {
-                if(enable) return;
-                // Should not be identified if it has 0x1826
-                auto result = info;
-                result.setServiceUuids(QVector<QBluetoothUuid>({QBluetoothUuid((quint16)0x1826)}));
-                bluetoothDeviceInfos.push_back(result);
-            });
-
+        ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826), false /*Should not be identified if it has 0x1826*/);
+        // TODO: can't do BT config without settings config here
 
     // Echelon Connect Sport Bike
     RegisterNewProductTestData(ProductIndex::EchelonConnectSportBike)
         ->expectDevice<echelonconnectsport>()        
         ->acceptDeviceName("ECH", DeviceNameComparison::StartsWith)
-        ->excluding(ProductIndex::EchelonRower)
-        ->excluding(ProductIndex::EchelonStrideTreadmill);
-
+        ->excluding<echelonrower>()
+        ->excluding<echelonstride>();
 
     // Echelon Rower
     RegisterNewProductTestData(ProductIndex::EchelonRower)
@@ -299,13 +307,9 @@ void ProductTestDataIndex::Initialize() {
     // FitPlus MRK
     RegisterNewProductTestData(ProductIndex::FitPlusBike_MRK_NoSettings)
         ->expectDevice<fitplusbike>()
-
         ->acceptDeviceName("MRK-", DeviceNameComparison::StartsWith)
-        ->excluding(ProductIndex::FTMSBike)
-        ->excluding(ProductIndex::FTMSBikeHammerRacerS)
-        ->excluding(ProductIndex::SnodeBikeFS)
-        ->excluding(ProductIndex::SnodeBikeTF);
-
+        ->excluding<ftmsbike>()
+        ->excluding<snodebike>();
 
     // FitShow FS
     RegisterNewProductTestData(ProductIndex::FitShowFS)
@@ -328,8 +332,7 @@ void ProductTestDataIndex::Initialize() {
                     }
                 }
             })
-        ->excluding(ProductIndex::FTMSBike)
-        ->excluding(ProductIndex::FTMSBikeHammerRacerS);
+        ->excluding<ftmsbike>();
 
 
     // FitShow SW
@@ -365,21 +368,16 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("BIKE", DeviceNameComparison::StartsWithIgnoreCase, 6)
         ->configureSettingsWith(QZSettings::flywheel_life_fitness_ic8);
 
-
     // Focus Treadmill
     RegisterNewProductTestData(ProductIndex::FocusTreadmill)
         ->expectDevice<focustreadmill>()
         ->acceptDeviceName("EW-TM-", DeviceNameComparison::StartsWithIgnoreCase);
 
-
     // FTMS Bike general
-    QStringList ftmsBikeConfigureExclusions = {
-        ProductIndex::SnodeBikeFS,
-        ProductIndex::SnodeBikeTF,
-        ProductIndex::FitPlusBike_MRK_NoSettings,
-        ProductIndex::FitPlusF5,
-        ProductIndex::StagesBike,
-        ProductIndex::StagesBike_Assioma_PowerSensorDisabled
+    auto ftmsBikeConfigureExclusions = {
+        ProductTestDataIndex::GetTypeId<snodebike>(),
+        ProductTestDataIndex::GetTypeId<fitplusbike>(),
+        ProductTestDataIndex::GetTypeId<stagesbike>()
     };
 
     // FTMS Bike Hammer Racer S
@@ -449,7 +447,7 @@ void ProductTestDataIndex::Initialize() {
         "JAS_C3",
         "RAVE WHITE",
         "DOMYOS-BIKING-",
-        "DU-30",
+        "DU30-",
         "BIKZU_",
         "WLT8828",
         "VANRYSEL-HT",
@@ -474,6 +472,11 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("DBF", DeviceNameComparison::StartsWithIgnoreCase, 6) // DBF135
         ->acceptDeviceName("KSU", DeviceNameComparison::StartsWithIgnoreCase, 7) // KSU1102
         ->acceptDeviceName("VOLT", DeviceNameComparison::StartsWithIgnoreCase, 4)
+        ->acceptDeviceName("F","ARROW",DeviceNameComparison::Exact) // FI9110 Arrow, https://www.fitnessdigital.it/bicicletta-smart-bike-ion-fitness-arrow-connect/p/10022863/ IO Fitness Arrow
+        ->acceptDeviceName("ICSE", DeviceNameComparison::StartsWithIgnoreCase, 4)
+        ->acceptDeviceName("FLX", DeviceNameComparison::StartsWithIgnoreCase, 10)
+        ->acceptDeviceName("CSRB", DeviceNameComparison::StartsWithIgnoreCase, 11)
+
 
         // Starts with DT- and is 14+ characters long.
         // TODO: update once addDeviceName can generate valid and invalid names for variable length patterns
@@ -485,7 +488,6 @@ void ProductTestDataIndex::Initialize() {
         ->rejectDeviceName("DBF1355", DeviceNameComparison::IgnoreCase) // too long for DBF135
 
         ->excluding(ftmsBikeConfigureExclusions);
-
 
     // FTMS Accessory
     QString ftmsAccessoryName = "accessory";
@@ -506,17 +508,16 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<ftmsbike>()        
         ->acceptDeviceName("KICKR CORE", DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding(ftmsBikeConfigureExclusions)
-        ->configureBluetoothInfoWith([](const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos)->void
-                                     {
-                                         auto result = info;
-                                         if(enable) {
-                                             result.setServiceUuids(QVector<QBluetoothUuid>({QBluetoothUuid((quint16)0x1826)}));
-                                         }
+        ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826));
 
-                                         bluetoothDeviceInfos.push_back(result);
-                                     }
-                                     );
-
+    // FTMS Bike 2
+    RegisterNewProductTestData(ProductIndex::FTMSBike2)
+        ->expectDevice<ftmsbike>()
+        ->acceptDeviceNames({"GLT",
+                             "SPORT01-"}, // Labgrey Magnetic Exercise Bike https://www.amazon.co.uk/dp/B0CXMF1NPY?_encoding=UTF8&psc=1&ref=cm_sw_r_cp_ud_dp_PE420HA7RD7WJBZPN075&ref_=cm_sw_r_cp_ud_dp_PE420HA7RD7WJBZPN075&social_share=cm_sw_r_cp_ud_dp_PE420HA7RD7WJBZPN075&skipTwisterOG=1,
+                            DeviceNameComparison::StartsWithIgnoreCase)
+        ->excluding(ftmsBikeConfigureExclusions)
+        ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826));
 
     // FTMS Rower
     RegisterNewProductTestData(ProductIndex::FTMSRower)
@@ -602,29 +603,17 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("TF-", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::horizon_treadmill_force_ftms);
 
-
     // Horizon Treadmill (Domyos TC)
     RegisterNewProductTestData(ProductIndex::HorizonTreadmill_DomyosTC)
         ->expectDevice<horizontreadmill>()        
         ->acceptDeviceName("DOMYOS-TC", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureBluetoothInfoWith(
-            [](const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos)->void {
-                auto result = info;
-                if(enable) {
-                    result.setServiceUuids(QVector<QBluetoothUuid>({QBluetoothUuid((quint16)0x1826)}));
-                }
-
-                bluetoothDeviceInfos.push_back(result);
-            });
-
-
+        ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826));
 
     // iConcept Bike
     RegisterNewProductTestData(ProductIndex::iConceptBike)
         ->expectDevice<iconceptbike>()
         ->acceptDeviceName("BH DUALKIT", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith([](DeviceDiscoveryInfo &info, bool enable)->void { info.setValue(QZSettings::iconcept_elliptical, !enable); });
-
+        ->configureSettingsWith(QZSettings::iconcept_elliptical, false);
 
     // iConcept Elliptical
     RegisterNewProductTestData(ProductIndex::iConceptElliptical)
@@ -637,8 +626,6 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::InspireBike)
         ->expectDevice<inspirebike>()
         ->acceptDeviceName("IC", DeviceNameComparison::StartsWithIgnoreCase, 8);
-
-
 
     // Keep Bike
     RegisterNewProductTestData(ProductIndex::KeepBike)
@@ -656,7 +643,7 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("DYNAMAX", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("WALKINGPAD", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("KS-BLR", DeviceNameComparison::StartsWithIgnoreCase)
-        ->excluding(ProductIndex::KingsmithR2Treadmill);
+        ->excluding<kingsmithr2treadmill>();
 
 
     // Kingsmith R2 Treadmill
@@ -679,7 +666,6 @@ void ProductTestDataIndex::Initialize() {
         // KingSmith Walking Pad G1
         ->acceptDeviceName("KS-NGCH-G1C", DeviceNameComparison::StartsWithIgnoreCase);
 
-
     // Life Fitness Treadmill
     RegisterNewProductTestData(ProductIndex::LifeFitnessTreadmill)
         ->expectDevice<lifefitnesstreadmill>()
@@ -693,9 +679,7 @@ void ProductTestDataIndex::Initialize() {
         ->configureBluetoothInfoWith(
             [](const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos)->void
             {
-
                 // The M3I bike detector looks into the manufacturer data.
-
                 QBluetoothDeviceInfo result = info;
 
                 if(!enable) {
@@ -796,7 +780,6 @@ void ProductTestDataIndex::Initialize() {
     // NPE Cable Bike
     RegisterNewProductTestData(ProductIndex::NPECableBike)
         ->expectDevice<npecablebike>()
-
         ->acceptDeviceName(">CABLE", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("MD", DeviceNameComparison::StartsWithIgnoreCase, 7);
 
@@ -811,11 +794,7 @@ void ProductTestDataIndex::Initialize() {
         // put in a name that's too long.
         ->rejectDeviceName("BIKE567", DeviceNameComparison::IgnoreCase)
 
-        ->configureSettingsWith( [](DeviceDiscoveryInfo& info, bool enable)->void {
-            // don't allow this device if the Flywheel bike is enabled.
-            info.setValue(QZSettings::flywheel_life_fitness_ic8, !enable);
-        });
-
+        ->configureSettingsWith(QZSettings::flywheel_life_fitness_ic8, false /* don't allow this device if the Flywheel bike is enabled. */);
 
     // Octane Elliptical
     RegisterNewProductTestData(ProductIndex::OctaneElliptical)
@@ -834,14 +813,11 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::PafersBike)
         ->expectDevice<pafersbike>()
         ->acceptDeviceName("PAFERS_", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith([](DeviceDiscoveryInfo& info, bool enable)->void { info.setValue(QZSettings::pafers_treadmill, !enable); }
-                                );
-
+        ->configureSettingsWith(QZSettings::pafers_treadmill,false);
 
     // Pafers Treadmill
     RegisterNewProductTestData(ProductIndex::PafersTreadmill)
         ->expectDevice<paferstreadmill>()
-
         ->acceptDeviceName("PAFERS_", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith( [](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo>& configurations)->void {
             DeviceDiscoveryInfo config(info);
@@ -866,31 +842,25 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("I_EB", DeviceNameComparison::StartsWith)
         ->acceptDeviceName("I_SB", DeviceNameComparison::StartsWith);
 
-
     // Proform Elliptical
     RegisterNewProductTestData(ProductIndex::ProformElliptical)
         ->expectDevice<proformelliptical>()
         ->acceptDeviceName("I_FS", DeviceNameComparison::StartsWithIgnoreCase);
-
 
     // Proform Elliptical Trainer
     RegisterNewProductTestData(ProductIndex::ProformEllipticalTrainer)
         ->expectDevice<proformellipticaltrainer>()
         ->acceptDeviceName("I_VE", DeviceNameComparison::StartsWithIgnoreCase);
 
-
     // Proform Rower
     RegisterNewProductTestData(ProductIndex::ProFormRower)
         ->expectDevice<proformrower>()
         ->acceptDeviceName("I_RW", DeviceNameComparison::StartsWithIgnoreCase);
 
-
     // Proform Treadmill
     RegisterNewProductTestData(ProductIndex::ProFormTreadmill)
         ->expectDevice<proformtreadmill>()
         ->acceptDeviceName("I_TL", DeviceNameComparison::StartsWith);
-
-
 
     // ProForm Wifi Bike
     RegisterNewProductTestData(ProductIndex::ProFormWifiBike)
@@ -898,30 +868,34 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith( [testIP](DeviceDiscoveryInfo& info, bool enable)->void { info.setValue(QZSettings::proformtdf4ip, enable ? testIP:QString()); });
 
-
     // ProForm Wifi Treadmill
     RegisterNewProductTestData(ProductIndex::ProFormWifiTreadmill)
         ->expectDevice<proformwifitreadmill>()        
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith( [testIP](DeviceDiscoveryInfo& info, bool enable)->void { info.setValue(QZSettings::proformtreadmillip, enable ? testIP:QString());});
 
-
     // Renpho Bike General
-    QStringList renphoBikeExclusions = {
-                                        ProductIndex::FitPlusF5,
-                                        ProductIndex::FitPlusBike_MRK_NoSettings,
-                                        ProductIndex::SnodeBikeFS,
-                                        ProductIndex::SnodeBikeTF
-                                       };
+    auto renphoBikeExclusions = {
+        GetTypeId<fitplusbike>(),
+        GetTypeId<snodebike>()
+    };
 
     // Renpho Bike
     RegisterNewProductTestData(ProductIndex::RenphoBike)
         ->expectDevice<renphobike>()
-
         ->acceptDeviceName("RQ", DeviceNameComparison::StartsWithIgnoreCase, 5)
         ->acceptDeviceName("SCH130", DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding(renphoBikeExclusions);
 
+    // Renpho Bike
+    RegisterNewProductTestData(ProductIndex::RenphoBike2)
+        ->expectDevice<renphobike>()
+        // TODO: generate valid/invalid names for a minimum length
+        ->acceptDeviceName("R-Q", DeviceNameComparison::StartsWithIgnoreCase,7)
+        ->acceptDeviceName("R-Q12345678910", DeviceNameComparison::StartsWithIgnoreCase)
+        ->rejectDeviceName("R-Q123", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::power_sensor_as_bike, false)
+        ->excluding(renphoBikeExclusions);
 
     // Renpho Bike (Toorx FTMS)
     RegisterNewProductTestData(ProductIndex::RenphoBike_ToorxFTMS)
@@ -976,15 +950,11 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<smartrowrower>()        
         ->acceptDeviceName("SMARTROW", DeviceNameComparison::StartsWithIgnoreCase);
 
-
-
     // Snode Bike General
-    QStringList snodeBikeExclusions = {
-                                       ProductIndex::FitPlusBike_MRK_NoSettings,
-                                       ProductIndex::FitPlusF5,
-                                       ProductIndex::FTMSBike,
-                                       ProductIndex::FTMSBikeHammerRacerS
-                                    };
+    auto snodeBikeExclusions = {
+        GetTypeId<fitplusbike>(),
+        GetTypeId<ftmsbike>()
+    };
 
     // Snode Bike FS
     RegisterNewProductTestData(ProductIndex::SnodeBikeFS)
@@ -993,12 +963,11 @@ void ProductTestDataIndex::Initialize() {
         ->configureSettingsWith(QZSettings::snode_bike)
         ->excluding(snodeBikeExclusions);
 
-
     // Snode Bike TF
     RegisterNewProductTestData(ProductIndex::SnodeBikeTF)
         ->expectDevice<snodebike>()        
         ->acceptDeviceName("TF-", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith([](DeviceDiscoveryInfo &info, bool enable)->void { info.setValue(QZSettings::horizon_treadmill_force_ftms, !enable);})
+        ->configureSettingsWith(QZSettings::horizon_treadmill_force_ftms)
         ->excluding(snodeBikeExclusions);
 
 
@@ -1063,7 +1032,7 @@ void ProductTestDataIndex::Initialize() {
 
 
     // Stages Bike General
-    QStringList stagesBikeExclusions = { ProductIndex::FTMSBike, ProductIndex::FTMSBikeHammerRacerS };
+    auto stagesBikeExclusions = { GetTypeId<ftmsbike>() };
 
     // Stages Bike
     RegisterNewProductTestData(ProductIndex::StagesBike)
@@ -1079,7 +1048,6 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<stagesbike>()        
         ->acceptDeviceName("ASSIOMA", DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding( stagesBikeExclusions);
-
 
     // Stages Bike (KICKR CORE)
     RegisterNewProductTestData(ProductIndex::StagesBike_KICKRCORE)
@@ -1158,7 +1126,7 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<technogymmyruntreadmill>()        
         ->acceptDeviceName("MYRUN ", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("MERACH-U3", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith([](DeviceDiscoveryInfo &info, bool enable)->bool { info.setValue(QZSettings::technogym_myrun_treadmill_experimental, !enable); return true;});
+        ->configureSettingsWith(QZSettings::technogym_myrun_treadmill_experimental, false);
 
 
     // TechnoGym MyRun Treadmill RF Comm
@@ -1185,7 +1153,7 @@ void ProductTestDataIndex::Initialize() {
 
 
     // Toorx AppGate USB Bike General
-    QStringList toorxAppGateUSBBikeExclusions ={ ProductIndex::ToorxAppGateUSBTreadmill };
+    auto toorxAppGateUSBBikeExclusions ={ GetTypeId<trxappgateusbtreadmill>() };
 
     // Toorx AppGate USB Bike
     RegisterNewProductTestData(ProductIndex::ToorxAppGateUSBBike)
@@ -1287,9 +1255,7 @@ void ProductTestDataIndex::Initialize() {
                                         }
                                     }
                                 })
-        ->excluding(ProductIndex::ToorxAppGateUSBBike)
-        ->excluding(ProductIndex::ToorxAppGateUSBBike_EnabledInSettings);
-
+        ->excluding<trxappgateusbbike>();
 
     // Ultrasport Bike
     RegisterNewProductTestData(ProductIndex::UltrasportBike)
@@ -1367,6 +1333,23 @@ void ProductTestDataIndex::Initialize() {
 
 
     isInitialized = true;
+
+    // Debug log the type ids
+    for(auto productTestData : testData) {
+        qDebug() << "Product: " << productTestData->Name() << " expected device type id: " << productTestData->ExpectedDeviceType();
+    }
+
+   // // Validate the test data
+   // for(auto productTestData : testData) {
+
+   //     try {
+   //         auto exclusions = productTestData->Exclusions();
+   //     } catch(std::domain_error) {
+   //         qDebug() << "Product: " << productTestData->Name() << " specifies at least 1 exclusion for which no product test data was found.";
+   //     }
+
+
+   // }
 }
 
 

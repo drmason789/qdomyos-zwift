@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+#include <unordered_set>
 
 #include <QString>
 #include <QBluetoothDeviceInfo>
@@ -8,10 +10,11 @@
 #include "devicenamepatterngroup.h"
 #include "devicediscoveryinfo.h"
 
-typedef std::function<void(const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations)> DeviceDiscoveryInfosCollector;
-typedef std::function<void(DeviceDiscoveryInfo &info, bool enable)> DeviceDiscoveryInfoCollector;
+typedef std::function<void(const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations)> ConfigurationApplicatorMultiple;
+typedef std::function<void(DeviceDiscoveryInfo &info, bool enable)> ConfigurationApplicatorSingle;
 typedef std::function<void()> ExclusionCollector;
-typedef std::function<void(const QBluetoothDeviceInfo &info, bool enable, std::vector<QBluetoothDeviceInfo> &bluetoothDeviceInfos)> BluetoothDeviceInfoCollector;
+typedef std::function<void(const QBluetoothDeviceInfo &info, bool enable, std::vector<QBluetoothDeviceInfo> &bluetoothDeviceInfos)> BluetoothInfoApplicatorMultiple;
+typedef std::function<void(QBluetoothDeviceInfo &info, const QBluetoothUuid& uuid, bool enable)> BluetoothInfoApplicatorSingle;
 
 
 class ProductTestData
@@ -22,15 +25,18 @@ protected:
     QString disabledReason = nullptr;
     QString skippedReason = nullptr;
     QString name = nullptr;
-    QStringList exclusions;
+    std::unordered_set<int> exclusions;
     DeviceNamePatternGroup * deviceNamePatternGroup=nullptr;
-    DeviceDiscoveryInfosCollector configuratorMultiple=nullptr;
-    DeviceDiscoveryInfoCollector configuratorSingle=nullptr;
-    BluetoothDeviceInfoCollector bluetoothInfoConfigurator=nullptr;
+    ConfigurationApplicatorMultiple configuratorMultiple=nullptr;
+    ConfigurationApplicatorSingle configuratorSingle=nullptr;
+    BluetoothInfoApplicatorMultiple bluetoothInfosConfigurator=nullptr;
+    BluetoothInfoApplicatorSingle bluetoothInfoConfigurator=nullptr;
     std::function<bool(bluetoothdevice*)> isExpectedDevice=nullptr;
+    int expectedDeviceType = -1;
     ProductTestData();
 public:
     QString Name() const;
+    int ExpectedDeviceType() const;
     bool IsEnabled() const;
     bool IsSkipped() const { return skipped; }
     const QString DisabledReason() const;
