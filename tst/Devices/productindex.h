@@ -21,6 +21,7 @@ public:
     static const QString Identifier(const QString& productName);
 
     static const QString ActivioTreadmill;
+    static const QString AntBike;
     static const QString ApexBike;
     static const QString BHFitnessElliptical;
     static const QString BKoolBike;
@@ -28,6 +29,7 @@ public:
     static const QString Chronobike;
     static const QString ComputrainerBike;
     static const QString Concept2SkiErg;
+    static const QString Crossrope;
     static const QString CSCBike;
     static const QString CSCBike_Named;
     static const QString DomyosBike;

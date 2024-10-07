@@ -96,18 +96,18 @@ void ProductTestSuite::SetUp() {
     if(!this->testParam->IsEnabled())
     {
         QString reason = this->testParam->DisabledReason();
-        skipMessage = QString("Product %1s is disabled for testing.").arg(testParam);
+        skipMessage = QString("Product %1 is disabled for testing.").arg(testParam);
 
         if(reason!=nullptr && reason!="")
-            skipMessage = QString("%1s Reason: %2s").arg(skipMessage).arg(reason);
+            skipMessage = QString("%1 Reason: %2").arg(skipMessage).arg(reason);
     }
     else if(this->testParam->IsSkipped())
     {
         QString reason = this->testParam->SkippedReason();
-        skipMessage = QString("Product %1s is skipped for testing.").arg(testParam);
+        skipMessage = QString("Product %1 is skipped for testing.").arg(testParam);
 
         if(reason!=nullptr && reason!="")
-            skipMessage = QString("%1s Reason: %2s").arg(skipMessage).arg(reason);
+            skipMessage = QString("%1 Reason: %2").arg(skipMessage).arg(reason);
     }
 
     if(skipMessage!=nullptr)
@@ -146,7 +146,7 @@ void ProductTestSuite::test_deviceDetection_validNames_enabled() {
             for(size_t i=0; i<enablingBluetoothDeviceInfo.size();i++) {
                 const QBluetoothDeviceInfo& deviceInfo = enablingBluetoothDeviceInfo[i];
 
-                QString failMessage = QString("Failed to detect device for %1s using name: %2s and valid bluetooth device info: %3, got a {typeName} instead")
+                QString failMessage = QString("Failed to detect device for %1 using name: %2 and valid bluetooth device info: %3, got a {typeName} instead")
                                           .arg(testData->Name()).arg(deviceName).arg(i);
                 this->testDeviceDetection(testData, bt, deviceInfo, true, true, failMessage);
             }

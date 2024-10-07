@@ -100,6 +100,11 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<apexbike>()
         ->acceptDeviceName("WLT8266BM", DeviceNameComparison::StartsWithIgnoreCase);
 
+    // Ant Bike
+    RegisterNewProductTestData(ProductIndex::AntBike)
+        ->expectDevice<antbike>()
+        ->acceptDeviceName("", DeviceNameComparison::Exact)
+        ->configureSettingsWith(QZSettings::antbike);
 
     // BH Fitness Elliptical
     RegisterNewProductTestData(ProductIndex::BHFitnessElliptical)
@@ -142,7 +147,10 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("PM5", "SKI", DeviceNameComparison::IgnoreCase)
         ->acceptDeviceName("PM5", DeviceNameComparison::IgnoreCase);
 
-
+    // Crossrope
+    RegisterNewProductTestData(ProductIndex::Crossrope)
+        ->expectDevice<crossrope>()
+        ->acceptDeviceName("CROSSROPE", DeviceNameComparison::StartsWithIgnoreCase);
 
     // CSC Bike (Named)
     QString cscBikeName = "CyclingSpeedCadenceBike-";
@@ -220,7 +228,7 @@ void ProductTestDataIndex::Initialize() {
 
 
     // Domyos Treadmill
-    QString ftms_Treadmill = "wattsItCalled?"; // deliberately not all uppercase
+    QString ftms_Treadmill = "Domyos-Treadmill?"; // deliberately not all uppercase
     RegisterNewProductTestData(ProductIndex::DomyosTreadmill)
         ->expectDevice<domyostreadmill>()        
         ->acceptDeviceName("Domyos", DeviceNameComparison::StartsWith)
@@ -232,7 +240,7 @@ void ProductTestDataIndex::Initialize() {
         ->excluding<domyosrower>()
         ->excluding<horizontreadmill>()
         ->excluding<ftmsbike>()
-        ->configureSettingsWith(QZSettings::ftms_treadmill, "NOT "+ftms_Treadmill, ftms_Treadmill)
+        ->configureSettingsWith(QZSettings::ftms_treadmill, ftms_Treadmill,  "NOT "+ftms_Treadmill)
         ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826), false /*Should not be identified if it has 0x1826*/);
         // TODO: can't do BT config without settings config here
 
@@ -457,13 +465,16 @@ void ProductTestDataIndex::Initialize() {
         "SUITO",
         "D2RIDE",
         "DIRETO X",
-        "MERACH-667-"
+        "MERACH-667-",
+        "SMB1",
+        "UBIKE FTMS",
+        "INRIDE"
     };
     RegisterNewProductTestData(ProductIndex::FTMSBike)
         ->expectDevice<ftmsbike>()
         ->acceptDeviceNames(acceptableFTMSNames, DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("DI", DeviceNameComparison::StartsWithIgnoreCase, 2) // Elite smart trainer #1682)
-        ->acceptDeviceName("VSV", DeviceNameComparison::StartsWithIgnoreCase, 9) // YSV100783
+        ->acceptDeviceName("YSV", DeviceNameComparison::StartsWithIgnoreCase, 9) // YSV100783
         ->acceptDeviceName("URSB", DeviceNameComparison::StartsWithIgnoreCase, 7) // URSB005
         ->acceptDeviceName("DBF", DeviceNameComparison::StartsWithIgnoreCase, 6) // DBF135
         ->acceptDeviceName("KSU", DeviceNameComparison::StartsWithIgnoreCase, 7) // KSU1102
@@ -603,6 +614,7 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::HorizonTreadmill_DomyosTC)
         ->expectDevice<horizontreadmill>()        
         ->acceptDeviceName("DOMYOS-TC", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::domyostreadmill_notfmts, false)
         ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826));
 
     // iConcept Bike
@@ -776,6 +788,13 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::NPECableBike)
         ->expectDevice<npecablebike>()
         ->acceptDeviceName(">CABLE", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceName("MD", DeviceNameComparison::StartsWithIgnoreCase, 7)
+        ->configureSettingsWith(QZSettings::flywheel_life_fitness_ic8, false);
+
+    // NPE Cable Bike
+    RegisterNewProductTestData(ProductIndex::NPECableBike)
+        ->expectDevice<npecablebike>()
+        ->acceptDeviceName(">CABLE", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("MD", DeviceNameComparison::StartsWithIgnoreCase, 7);
 
 
@@ -930,7 +949,7 @@ void ProductTestDataIndex::Initialize() {
 
     // Shuaa5 Treadmill
     RegisterNewProductTestData(ProductIndex::Shuaa5Treadmill)
-        ->expectDevice<shuaa5treadmill>()        
+        ->expectDevice<shuaa5treadmill>()
         ->acceptDeviceName("ZW-", DeviceNameComparison::StartsWithIgnoreCase);
 
 
@@ -962,7 +981,7 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::SnodeBikeTF)
         ->expectDevice<snodebike>()        
         ->acceptDeviceName("TF-", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith(QZSettings::horizon_treadmill_force_ftms)
+        ->configureSettingsWith(QZSettings::horizon_treadmill_force_ftms, false)
         ->excluding(snodeBikeExclusions);
 
 
@@ -1267,8 +1286,8 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("KICKR SNAP", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("KICKR BIKE", DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("KICKR ROLLR", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("WAHOO KICKR", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->acceptDeviceName("WAHOO KICKR", DeviceNameComparison::StartsWithIgnoreCase)
+        ->excluding<ftmsbike>();
 
     // Yesoul Bike
     RegisterNewProductTestData(ProductIndex::YesoulBike)

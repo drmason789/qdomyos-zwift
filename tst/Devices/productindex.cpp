@@ -36,9 +36,11 @@ const QString ProductIndex::Identifier(const QString &productName) { return allI
 
 DEFINE_PRODUCT(ActivioTreadmill, "Activio Treadmill");
 DEFINE_PRODUCT(ApexBike, "Apex Bike");
+DEFINE_PRODUCT(AntBike, "Ant Bike");
 DEFINE_PRODUCT(BHFitnessElliptical, "BH Fitness Elliptical");
 DEFINE_PRODUCT(BKoolBike, "BKool Bike");
 DEFINE_PRODUCT(BowflexT216Treadmill, "Bowflex T216 Treadmill");
+DEFINE_PRODUCT(Crossrope, "Crossrope");
 DEFINE_PRODUCT(CSCBike_Named, "CSC Bike (Named)");
 DEFINE_PRODUCT(CSCBike, "CSC Bike");
 DEFINE_PRODUCT(Chronobike, "Chronobike");
