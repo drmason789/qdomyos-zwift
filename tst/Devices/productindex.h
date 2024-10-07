@@ -55,6 +55,7 @@ public:
     static const QString FTMSAccessory;
     static const QString FTMSBike;
     static const QString FTMSBike2;
+    static const QString FTMSBike3;
     static const QString FTMSBikeHammer;
     static const QString FTMSBikeHammerRacerS;
     static const QString FTMSBikeIConsole;

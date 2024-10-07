@@ -440,7 +440,6 @@ void ProductTestDataIndex::Initialize() {
         "EW-JS-",
         "MERACH-MR667-",
         "DS60-",
-        "BIKE-",
         "SPAX-BK-",
         "YSV1",
         "CECOTEC", // Cecotec DrumFit Indoor 10000 MagnoMotor Connected #2420
@@ -509,6 +508,13 @@ void ProductTestDataIndex::Initialize() {
             })
         ->excluding(ftmsBikeConfigureExclusions);
 
+
+    // FTMS "BIKE-"
+    RegisterNewProductTestData(ProductIndex::FTMSBike3)
+        ->expectDevice<ftmsbike>()
+        ->acceptDeviceName("BIKE-", DeviceNameComparison::StartsWithIgnoreCase)
+        ->excluding(ftmsBikeConfigureExclusions)
+        ->configureSettingsWith(QZSettings::flywheel_life_fitness_ic8); // distinguish from npecablebike
 
     // FTMS KICKR CORE
     RegisterNewProductTestData(ProductIndex::FTMSKICKRCORE)
