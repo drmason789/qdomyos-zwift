@@ -75,7 +75,7 @@ ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const
 ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const QBluetoothUuid& uuid, bool enablingValue) {
 
     this->bluetoothInfoConfigurator =
-        [enablingValue](QBluetoothDeviceInfo &info, const QBluetoothUuid& uuid, bool enable) -> void {
+        [enablingValue, uuid](QBluetoothDeviceInfo &info, bool enable) -> void {
             if(enable==enablingValue) {
                 info.setServiceUuids(QVector<QBluetoothUuid>({uuid}));
             } else {
