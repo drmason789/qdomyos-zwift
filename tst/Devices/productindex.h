@@ -32,6 +32,7 @@ public:
     static const QString Crossrope;
     static const QString CSCBike;
     static const QString CSCBike_Named;
+    static const QString DeerRunTreadmill;
     static const QString DomyosBike;
     static const QString DomyosElliptical;
     static const QString DomyosRower;
@@ -55,6 +56,7 @@ public:
     static const QString FTMSAccessory;
     static const QString FTMSBike;
     static const QString FTMSBike2;
+    static const QString FTMSBike3;
     static const QString FTMSBikeHammer;
     static const QString FTMSBikeHammerRacerS;
     static const QString FTMSBikeIConsole;

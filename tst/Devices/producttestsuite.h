@@ -128,14 +128,18 @@ public:
 
 };
 
+#define ALLPRODUCTS
+
+#ifdef ALLPRODUCTS
 
 INSTANTIATE_TEST_SUITE_P(AllProductsDetection, ProductTestSuite,
                          testing::ValuesIn(ProductTestDataIndex::Names()),
                          [](const testing::TestParamInfo<QString>& item) {return ProductIndex::Identifier(item.param).toStdString(); });
-
-//INSTANTIATE_TEST_SUITE_P(SelectedProductsDetection, ProductTestSuite,
-//                         testing::Values(ProductIndex::M3IBike),
-//                         [](const testing::TestParamInfo<QString>& item) {return ProductIndex::Identifier(item.param).toStdString(); });
+#else
+INSTANTIATE_TEST_SUITE_P(SelectedProductsDetection, ProductTestSuite,
+                         testing::Values(ProductIndex::FTMSKICKRCORE),
+                         [](const testing::TestParamInfo<QString>& item) {return ProductIndex::Identifier(item.param).toStdString(); });
+#endif
 
 TEST_P(ProductTestSuite, TestDeviceNotDetectedDueToExclusions) {
     this->test_deviceDetection_exclusions();

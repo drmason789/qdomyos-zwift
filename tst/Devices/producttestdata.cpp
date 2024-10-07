@@ -61,7 +61,7 @@ std::vector<QBluetoothDeviceInfo> ProductTestData::ApplyBluetoothDeviceInfo(cons
 
     if(this->bluetoothInfoConfigurator) {
         info = QBluetoothDeviceInfo(uuid, name, 0);
-        this->bluetoothInfoConfigurator(info, uuid, valid);
+        this->bluetoothInfoConfigurator(info, valid);
         result.push_back(info);
     }
 
