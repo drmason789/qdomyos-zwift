@@ -32,6 +32,7 @@ public:
     static const QString Crossrope;
     static const QString CSCBike;
     static const QString CSCBike_Named;
+    static const QString DeerRunTreadmill;
     static const QString DomyosBike;
     static const QString DomyosElliptical;
     static const QString DomyosRower;

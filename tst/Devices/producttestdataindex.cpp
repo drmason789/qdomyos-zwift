@@ -205,6 +205,11 @@ void ProductTestDataIndex::Initialize() {
                 }
             });
 
+    // DeerRun Treadmill
+    RegisterNewProductTestData(ProductIndex::DeerRunTreadmill)
+        ->expectDevice<deerruntreadmill>()
+        ->acceptDeviceName("PitPat-T", DeviceNameComparison::StartsWithIgnoreCase)
+        ->skip("Detection not implemented");
 
     // Domyos bike
     RegisterNewProductTestData(ProductIndex::DomyosBike)
@@ -394,7 +399,7 @@ void ProductTestDataIndex::Initialize() {
     // FTMS Bike Hammer 64123
     RegisterNewProductTestData(ProductIndex::FTMSBikeHammer)
         ->expectDevice<ftmsbike>()
-        ->acceptDeviceName("HAMMER ", DeviceNameComparison::StartsWith)
+        ->acceptDeviceName("HAMMER ", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(
             [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
             {
@@ -417,7 +422,7 @@ void ProductTestDataIndex::Initialize() {
     // FTMS Bike IConsole
     RegisterNewProductTestData(ProductIndex::FTMSBikeIConsole)
         ->expectDevice<ftmsbike>()
-        ->acceptDeviceName("ICONSOLE+", DeviceNameComparison::StartsWith)
+        ->acceptDeviceName("ICONSOLE+", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::toorx_ftms)
         ->excluding(ftmsBikeConfigureExclusions);
 
@@ -478,7 +483,7 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("DBF", DeviceNameComparison::StartsWithIgnoreCase, 6) // DBF135
         ->acceptDeviceName("KSU", DeviceNameComparison::StartsWithIgnoreCase, 7) // KSU1102
         ->acceptDeviceName("VOLT", DeviceNameComparison::StartsWithIgnoreCase, 4)
-        ->acceptDeviceName("F","ARROW",DeviceNameComparison::Exact) // FI9110 Arrow, https://www.fitnessdigital.it/bicicletta-smart-bike-ion-fitness-arrow-connect/p/10022863/ IO Fitness Arrow
+        ->acceptDeviceName("F","ARROW",DeviceNameComparison::IgnoreCase) // FI9110 Arrow, https://www.fitnessdigital.it/bicicletta-smart-bike-ion-fitness-arrow-connect/p/10022863/ IO Fitness Arrow
         ->acceptDeviceName("ICSE", DeviceNameComparison::StartsWithIgnoreCase, 4)
         ->acceptDeviceName("FLX", DeviceNameComparison::StartsWithIgnoreCase, 10)
         ->acceptDeviceName("CSRB", DeviceNameComparison::StartsWithIgnoreCase, 11)
@@ -535,16 +540,8 @@ void ProductTestDataIndex::Initialize() {
     // FTMS Rower
     RegisterNewProductTestData(ProductIndex::FTMSRower)
         ->expectDevice<ftmsrower>()        
-        ->acceptDeviceName("CR 00", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KAYAKPRO", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("WHIPR", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-WLT", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("I-ROWER", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("PM5ROW", DeviceNameComparison::IgnoreCase)
-        ->acceptDeviceName("PM5XROW", DeviceNameComparison::IgnoreCase)
-        ->acceptDeviceName("SF-RW", DeviceNameComparison::IgnoreCase)
-        ->acceptDeviceName("S4 COMMS", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->acceptDeviceNames({"CR 00","KAYAKPRO","WHIPR", "KS-WLT", "I-ROWER", "S4 COMMS"}, DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"PM5ROW","PM5XROW","SF-RW"}, DeviceNameComparison::IgnoreCase);
 
     // Horizon GR7 Bike
     RegisterNewProductTestData(ProductIndex::HorizonGR7Bike)
@@ -555,26 +552,12 @@ void ProductTestDataIndex::Initialize() {
     // Horizon Treadmill
     RegisterNewProductTestData(ProductIndex::HorizonTreadmill)
         ->expectDevice<horizontreadmill>()        
-        ->acceptDeviceName("HORIZON", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("AFG SPORT", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("WLT2541", DeviceNameComparison::StartsWithIgnoreCase)
-
-        // FTMS
-        ->acceptDeviceName("T318_", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("T218_", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("TRX3500", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("JFTMPARAGON", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("PARAGON X", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("JFTM", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("CT800", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("MOBVOI TM", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("DK202000725", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("CTM780102C6BB32D62", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("MX-TM ", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("MATRIXTF50", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("MOBVOI TM", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KETTLER TREADMILL", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("ASSAULTRUNNER", DeviceNameComparison::StartsWithIgnoreCase);
+        ->acceptDeviceNames({"HORIZON","AFG SPORT","WLT2541"}, DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames(
+            // FTMS
+            {"T318_", "T218_", "TRX3500", "JFTMPARAGON", "PARAGON X", "JFTM", "CT800",
+             "MOBVOI TM", "DK202000725", "CTM780102C6BB32D62", "MX-TM ", "MATRIXTF50", "MOBVOI TM",
+             "KETTLER TREADMILL", "ASSAULTRUNNER"}, DeviceNameComparison::StartsWithIgnoreCase);
 
 
     // Horizon Treadmill (Toorx)
@@ -649,16 +632,10 @@ void ProductTestDataIndex::Initialize() {
 
     // Kingsmith R1 Pro Treadmill
     RegisterNewProductTestData(ProductIndex::KingsmithR1ProTreadmill)
-        ->expectDevice<kingsmithr1protreadmill>()        
-        ->acceptDeviceName("R1 PRO", DeviceNameComparison::StartsWithIgnoreCase)
+        ->expectDevice<kingsmithr1protreadmill>()
         ->acceptDeviceName("RE", DeviceNameComparison::IgnoreCase)
-        ->acceptDeviceName("KINGSMITH", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-H", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("DYNAMAX", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("WALKINGPAD", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-BLR", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"R1 PRO","KINGSMITH","KS-H","DYNAMAX","WALKINGPAD","KS-BLR"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding<kingsmithr2treadmill>();
-
 
     // Kingsmith R2 Treadmill
     RegisterNewProductTestData(ProductIndex::KingsmithR2Treadmill)
@@ -666,16 +643,10 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceName("KS-ST-K12PRO", DeviceNameComparison::StartsWithIgnoreCase)
 
         // KingSmith Walking Pad R2
-        ->acceptDeviceName("KS-R1AC", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-HC-R1AA", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-HC-R1AC", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"KS-R1AC","KS-HC-R1AA","KS-HC-R1AC"}, DeviceNameComparison::StartsWithIgnoreCase)
 
         // KingSmith Walking Pad X21
-        ->acceptDeviceName("KS-X21", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-HDSC-X21C", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-HDSY-X21C", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-NGCH-X21C", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KS-NACH-X21C", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"KS-X21", "KS-HDSC-X21C","KS-HDSY-X21C","KS-NGCH-X21C","KS-NACH-X21C"}, DeviceNameComparison::StartsWithIgnoreCase)
 
         // KingSmith Walking Pad G1
         ->acceptDeviceName("KS-NGCH-G1C", DeviceNameComparison::StartsWithIgnoreCase);
@@ -684,7 +655,6 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::LifeFitnessTreadmill)
         ->expectDevice<lifefitnesstreadmill>()
         ->acceptDeviceName("LF", DeviceNameComparison::StartsWithIgnoreCase, 18);
-
 
     // M3I Bike
     RegisterNewProductTestData(ProductIndex::M3IBike)
@@ -821,13 +791,10 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<octaneelliptical>()
         ->acceptDeviceName("Q37", DeviceNameComparison::StartsWithIgnoreCase);
 
-
     // Octane Elliptical
     RegisterNewProductTestData(ProductIndex::OctaneTreadmill)
-        ->expectDevice<octanetreadmill>()        
-        ->acceptDeviceName("ZR7", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("ZR8", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->expectDevice<octanetreadmill>()
+        ->acceptDeviceNames({"ZR7", "ZR8"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // Pafers Bike
     RegisterNewProductTestData(ProductIndex::PafersBike)
@@ -859,8 +826,7 @@ void ProductTestDataIndex::Initialize() {
     // Proform Bike
     RegisterNewProductTestData(ProductIndex::ProformBike)
         ->expectDevice<proformbike>()        
-        ->acceptDeviceName("I_EB", DeviceNameComparison::StartsWith)
-        ->acceptDeviceName("I_SB", DeviceNameComparison::StartsWith);
+        ->acceptDeviceNames({"I_EB", "I_SB"}, DeviceNameComparison::StartsWith);
 
     // Proform Elliptical
     RegisterNewProductTestData(ProductIndex::ProformElliptical)
@@ -913,7 +879,7 @@ void ProductTestDataIndex::Initialize() {
         // TODO: generate valid/invalid names for a minimum length
         ->acceptDeviceName("R-Q", DeviceNameComparison::StartsWithIgnoreCase,7)
         ->acceptDeviceName("R-Q12345678910", DeviceNameComparison::StartsWithIgnoreCase)
-        ->rejectDeviceName("R-Q123", DeviceNameComparison::StartsWithIgnoreCase)
+        ->rejectDeviceName("R-Q123", DeviceNameComparison::IgnoreCase) // too short
         ->configureSettingsWith(QZSettings::power_sensor_as_bike, false)
         ->excluding(renphoBikeExclusions);
 
@@ -945,9 +911,7 @@ void ProductTestDataIndex::Initialize() {
     // Schwinn IC4 Bike
     RegisterNewProductTestData(ProductIndex::SchwinnIC4Bike)
         ->expectDevice<schwinnic4bike>()        
-        ->acceptDeviceName("IC BIKE", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("C7-", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("C9/C10", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"IC BIKE", "C7-", "C9/C10"}, DeviceNameComparison::StartsWithIgnoreCase)
 
         // 17 characters, beginning with C7-
         ->rejectDeviceName("C7-45678901234567", DeviceNameComparison::IgnoreCase);;
@@ -993,57 +957,34 @@ void ProductTestDataIndex::Initialize() {
 
     // Sole Bike
     RegisterNewProductTestData(ProductIndex::SoleBike)
-        ->expectDevice<solebike>()        
-        ->acceptDeviceName("LCB", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("R92", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->expectDevice<solebike>()
+        ->acceptDeviceNames({"LCB", "R92"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // Sole Elliptical
     RegisterNewProductTestData(ProductIndex::SoleElliptical)
         ->expectDevice<soleelliptical>()        
-        ->acceptDeviceName("E95S", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("E25", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("E35", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("E55", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("E95", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("E98", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("XG400", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("E98S", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->acceptDeviceNames({"E95S","E25","E35","E55","E95","E98","XG400","E98S"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // Sole F80 Treadmill
     RegisterNewProductTestData(ProductIndex::SoleF80Treadmill)
         ->expectDevice<solef80treadmill>()        
-        ->acceptDeviceName("F65", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("S77", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("TT8", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("F63", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("ST90", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->acceptDeviceNames({"F65","S77","TT8","F63","ST90"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // Sole F85 Treadmill
     RegisterNewProductTestData(ProductIndex::SoleF85Treadmill)
         ->expectDevice<solef80treadmill>()        
-        ->acceptDeviceName("F85", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("F89", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("F80", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"F85","F89","F80"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::sole_treadmill_inclination);
-
 
     // Spirit Treadmill
     RegisterNewProductTestData(ProductIndex::SpiritTreadmill)
-        ->expectDevice<spirittreadmill>()        
-        ->acceptDeviceName("XT385", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("XT485", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("XT800", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("XT900", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->expectDevice<spirittreadmill>()
+        ->acceptDeviceNames({"XT385","XT485","XT800","XT900"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // Sports Plus Bike
     RegisterNewProductTestData(ProductIndex::SportsPlusBike)
         ->expectDevice<sportsplusbike>()        
         ->acceptDeviceName("CARDIOFIT", DeviceNameComparison::StartsWithIgnoreCase);
-
 
     // Sports Tech Bike
     RegisterNewProductTestData(ProductIndex::SportsTechBike)
@@ -1057,11 +998,9 @@ void ProductTestDataIndex::Initialize() {
     // Stages Bike
     RegisterNewProductTestData(ProductIndex::StagesBike)
         ->expectDevice<stagesbike>()        
-        ->acceptDeviceName("STAGES ", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("TACX SATORI", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"STAGES ", "TACX SATORI"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("QD", DeviceNameComparison::IgnoreCase)
         ->excluding(stagesBikeExclusions);
-
 
     // Stages Bike Stages Bike (Assioma / Power Sensor disabled
     RegisterNewProductTestData(ProductIndex::StagesBike_Assioma_PowerSensorDisabled)
@@ -1135,25 +1074,18 @@ void ProductTestDataIndex::Initialize() {
     // Tacx Neo 2 Bike
     RegisterNewProductTestData(ProductIndex::TacxNeo2Bike)
         ->expectDevice<tacxneo2>()        
-        ->acceptDeviceName("TACX NEO", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("TACX FLOW", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("TACX SMART BIKE", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("THINK X", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->acceptDeviceNames({"TACX NEO","TACX FLOW","TACX SMART BIKE","THINK X"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // TechnoGym MyRun Treadmill
     RegisterNewProductTestData(ProductIndex::TechnoGymMyRunTreadmill)
         ->expectDevice<technogymmyruntreadmill>()        
-        ->acceptDeviceName("MYRUN ", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("MERACH-U3", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"MYRUN ","MERACH-U3"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::technogym_myrun_treadmill_experimental, false);
-
 
     // TechnoGym MyRun Treadmill RF Comm
     RegisterNewProductTestData(ProductIndex::TechnoGymMyRunTreadmillRFComm)
         ->expectDevice<technogymmyruntreadmillrfcomm>()        
-        ->acceptDeviceName("MYRUN ", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("MERACH-U3", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"MYRUN ","MERACH-U3"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::technogym_myrun_treadmill_experimental);
 
 
@@ -1165,12 +1097,8 @@ void ProductTestDataIndex::Initialize() {
 
     // True Treadmill
     RegisterNewProductTestData(ProductIndex::TrueTreadmill)
-        ->expectDevice<truetreadmill>()        
-        ->acceptDeviceName("TRUE", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("TREADMILL", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("ASSAULT TREADMILL ", DeviceNameComparison::StartsWithIgnoreCase);
-
-
+        ->expectDevice<truetreadmill>()
+        ->acceptDeviceNames({"TRUE","TREADMILL", "ASSAULT TREADMILL "}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // Toorx AppGate USB Bike General
     auto toorxAppGateUSBBikeExclusions ={ GetTypeId<trxappgateusbtreadmill>() };
@@ -1178,8 +1106,7 @@ void ProductTestDataIndex::Initialize() {
     // Toorx AppGate USB Bike
     RegisterNewProductTestData(ProductIndex::ToorxAppGateUSBBike)
         ->expectDevice<trxappgateusbbike>()        
-        ->acceptDeviceName("TUN ", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("PASYOU-", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"TUN ","PASYOU-"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(
             [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
             {
@@ -1201,12 +1128,7 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::ToorxAppGateUSBBike_EnabledInSettings)
         ->expectDevice<trxappgateusbbike>()        
         ->acceptDeviceName("TOORX", DeviceNameComparison::StartsWith)
-        ->acceptDeviceName("I-CONSOIE+", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("I-CONSOLE+", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("IBIKING+", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("ICONSOLE+", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("VIFHTR2.1", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("DKN MOTION", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"I-CONSOIE+", "I-CONSOLE+", "IBIKING+", "ICONSOLE+", "VIFHTR2.1", "DKN MOTION"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->acceptDeviceName("CR011R", DeviceNameComparison::IgnoreCase)
         ->configureSettingsWith(
             [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
@@ -1254,14 +1176,9 @@ void ProductTestDataIndex::Initialize() {
     // Toorx AppGate USB Treadmill
     RegisterNewProductTestData(ProductIndex::ToorxAppGateUSBTreadmill)
         ->expectDevice<trxappgateusbtreadmill>()        
-        ->acceptDeviceName("TOORX", DeviceNameComparison::StartsWith)
-        ->acceptDeviceName("V-RUN", DeviceNameComparison::StartsWith)
+        ->acceptDeviceNames({"TOORX", "V-RUN"}, DeviceNameComparison::StartsWith)
         ->acceptDeviceName("K80_", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("I-CONSOLE+", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("ICONSOLE+", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("I-RUNNING", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("DKN RUN", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("REEBOK", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"I-CONSOLE+","ICONSOLE+","I-RUNNING","DKN RUN","REEBOK"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith([](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
                                 {
                                     DeviceDiscoveryInfo config(info);
@@ -1285,14 +1202,10 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<ultrasportbike>()
         ->acceptDeviceName("X-BIKE", DeviceNameComparison::StartsWithIgnoreCase);
 
-
     // Wahoo Kickr Snap Bike
     RegisterNewProductTestData(ProductIndex::WahooKickrSnapBike)
         ->expectDevice<wahookickrsnapbike>()        
-        ->acceptDeviceName("KICKR SNAP", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KICKR BIKE", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("KICKR ROLLR", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("WAHOO KICKR", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"KICKR SNAP","KICKR BIKE", "KICKR ROLLR","WAHOO KICKR"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding<ftmsbike>();
 
     // Yesoul Bike
@@ -1304,8 +1217,7 @@ void ProductTestDataIndex::Initialize() {
     // Ypoo Elliptical
     RegisterNewProductTestData(ProductIndex::YpooElliptical)
         ->expectDevice<ypooelliptical>()        
-        ->acceptDeviceName("YPOO-U3-", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("SCH_590E", DeviceNameComparison::StartsWithIgnoreCase);
+        ->acceptDeviceName("YPOO-U3-", "SCH_590E", DeviceNameComparison::StartsWithIgnoreCase);
 
 
     // Zipro Treadmill

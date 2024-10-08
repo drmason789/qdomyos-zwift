@@ -46,6 +46,7 @@ DEFINE_PRODUCT(CSCBike, "CSC Bike");
 DEFINE_PRODUCT(Chronobike, "Chronobike");
 DEFINE_PRODUCT(ComputrainerBike, "Computrainer Bike");
 DEFINE_PRODUCT(Concept2SkiErg, "Concept2 Ski Erg");
+DEFINE_PRODUCT(DeerRunTreadmill, "DeerRun Treadmill");
 DEFINE_PRODUCT(DomyosBike, "Domyos Bike");
 DEFINE_PRODUCT(DomyosElliptical, "Domyos Elliptical");
 DEFINE_PRODUCT(DomyosRower, "Domyos Rower");
