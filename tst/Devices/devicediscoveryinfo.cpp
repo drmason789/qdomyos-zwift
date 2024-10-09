@@ -59,10 +59,43 @@ DeviceDiscoveryInfo::DeviceDiscoveryInfo(bool loadDefaults){
         this->loadDefaultValues();
 }
 
+DeviceDiscoveryInfo::DeviceDiscoveryInfo(const QBluetoothDeviceInfo &deviceInfo, bool loadDefaults) : DeviceDiscoveryInfo(loadDefaults) {
+    this->bluetoothDeviceInfo = deviceInfo;
+}
+
+
+
+QBluetoothDeviceInfo *DeviceDiscoveryInfo::DeviceInfo() { return &this->bluetoothDeviceInfo; }
+
+
+
+void DeviceDiscoveryInfo::includeBluetoothService(const QBluetoothUuid &serviceUuid, bool include) {
+    if(include)
+        this->addBluetoothService(serviceUuid);
+    else
+        this->removeBluetoothService(serviceUuid);
+}
+
+void DeviceDiscoveryInfo::addBluetoothService(const QBluetoothUuid &serviceUuid) {
+    auto services = bluetoothDeviceInfo.serviceUuids();
+
+    if(!services.contains(serviceUuid)) {
+        services.push_back(serviceUuid);
+        bluetoothDeviceInfo.setServiceUuids(services.toVector());
+    }
+}
+
+void DeviceDiscoveryInfo::removeBluetoothService(const QBluetoothUuid &serviceUuid) {
+    auto services = bluetoothDeviceInfo.serviceUuids();
+    services.removeAll(serviceUuid);
+
+    bluetoothDeviceInfo.setServiceUuids(services.toVector());
+}
+
 void DeviceDiscoveryInfo::setValues(QSettings &settings, bool clear) const {
     if(clear) settings.clear();
 
-    for(auto key : trackedSettings.keys()) {
+    for(const QString& key : trackedSettings.keys()) {
         settings.setValue(key, this->Value(key));
     }
 
@@ -70,7 +103,7 @@ void DeviceDiscoveryInfo::setValues(QSettings &settings, bool clear) const {
 
 void DeviceDiscoveryInfo::getValues(QSettings &settings){
 
-    for(auto key : trackedSettings.keys())  {
+    for(const QString& key : trackedSettings.keys())  {
         this->setValue(key, settings.value(key, trackedSettings[key]));
     }
 

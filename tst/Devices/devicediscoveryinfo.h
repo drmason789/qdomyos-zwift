@@ -1,6 +1,7 @@
-#ifndef DEVICEDISCOVERYINFO_H
-#define DEVICEDISCOVERYINFO_H
+#pragma once
 
+#include <QBluetoothDeviceInfo>
+#include <QBluetoothUuid>
 #include <QSettings>
 #include <QString>
 #include <QMap>
@@ -10,12 +11,47 @@
  */
 class DeviceDiscoveryInfo {
     QMap<QString, QVariant> values;
+    QBluetoothDeviceInfo bluetoothDeviceInfo;
 public :
     /**
      * @brief Constructor.
      * @param loadDefaults Indicates if the default values should be loaded.
      */
     explicit DeviceDiscoveryInfo(bool loadDefaults=true);
+
+    /**
+     * @brief Constructor that configures with a specific bluetooth device info object.
+     * @param deviceInfo
+     * @param loadDefaults Indicates if the default values should be loaded.
+     */
+    DeviceDiscoveryInfo(const QBluetoothDeviceInfo& deviceInfo, bool loadDefaults=true);
+
+
+    /**
+     * @brief Gets a pointer to the bluetooth device information object.
+     * @return
+     */
+    QBluetoothDeviceInfo * DeviceInfo();
+
+
+    /**
+     * @brief Utility to include/exclude a service from the blutooth device info.
+     * @param serviceUuid
+     * @param include True includes, False excludes
+     */
+    void includeBluetoothService(const QBluetoothUuid& serviceUuid, bool include);
+
+    /**
+     * @brief Adds a specific service if it's not already present.
+     * @param serviceUuid
+     */
+    void addBluetoothService(const QBluetoothUuid& serviceUuid);
+
+    /**
+     * @brief Removes a specific service if it's present.
+     * @param serviceUuid
+     */
+    void removeBluetoothService(const QBluetoothUuid& serviceUuid);
 
     /**
      * @brief Configures the QSettings object.
@@ -58,5 +94,3 @@ public :
     void setValue(const QString& key, const QVariant& value);
 
 };
-
-#endif // DEVICEDISCOVERYINFO_H

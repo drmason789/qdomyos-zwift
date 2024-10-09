@@ -29,6 +29,7 @@ const QString ProductIndex::AddProduct(const QString &name, const QString& ident
 
 ProductIndex::ProductIndex() {}
 
+
 const QString ProductIndex::Identifier(const QString &productName) { return allIdentifiers[productName]; }
 
 #define DEFINE_PRODUCT(ProductKey, ProductName) \

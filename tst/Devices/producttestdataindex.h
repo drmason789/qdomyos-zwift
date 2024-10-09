@@ -4,7 +4,7 @@
 #include <qstringlist.h>
 
 #include "producttestdata.h"
-#include "typeidgenerator.h"
+#include "Tools/typeidgenerator.h"
 
 class ProductTestDataIndex {
 private:

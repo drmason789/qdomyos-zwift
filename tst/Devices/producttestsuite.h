@@ -16,16 +16,6 @@ protected:
     const ProductTestData *testParam;
 
     /**
-     * @brief Configurations that enable, or at least not prevent, the device from be detected.
-     */
-    std::vector<DeviceDiscoveryInfo> enablingConfigurations;
-
-    /**
-     * @brief Configurations that should prevent the device from being detected.
-     */
-    std::vector<DeviceDiscoveryInfo> disablingConfigurations;
-
-    /**
      * @brief A sample of valid bluetooth names for the device.
      */
     QStringList names;
@@ -86,6 +76,15 @@ protected:
      * @return
      */
     std::string formatString(std::string format, bluetoothdevice *b) const;
+
+    /**
+     * @brief Generic method for testing device detection.
+     * @param validNames Indicates if valid names should be used.
+     * @param enablingConfigs Indicates if enabling configurations should be used.
+     */
+    void test_deviceDetection(const bool validNames, const bool enablingConfigs);
+
+    std::vector<DeviceDiscoveryInfo> getConfigurations(const ProductTestData* testData, const QString& deviceName, bool enabled) const;
 public:
     ProductTestSuite() : testSettings("Roberto Viola", "QDomyos-Zwift Testing") {}
 
@@ -112,12 +111,6 @@ public:
      * the device under test will NOT be created if a valid bluetooth name is provided.
      */
     void test_deviceDetection_validNames_disabled();
-
-    /**
-     * @brief Test that for devices whose detected depends on valid bluetooth device info data,
-     * invalid bluetooth device info prevents detection.
-     */
-    void test_deviceDetection_validNames_invalidBluetoothDeviceInfo();
 
     /**
      * @brief Test that if a device is enabled in the settings, and no excluding devices have already been detected,
@@ -157,6 +150,3 @@ TEST_P(ProductTestSuite, TestDeviceNotDetectedInvalidNamesSettingsEnabled) {
     this->test_deviceDetection_invalidNames_enabled();
 }
 
-TEST_P(ProductTestSuite, TestDeviceNotDetectedValidNamesInvalidBluetoothDeviceInfo) {
-    this->test_deviceDetection_validNames_invalidBluetoothDeviceInfo();
-}

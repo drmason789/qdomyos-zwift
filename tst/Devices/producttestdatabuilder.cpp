@@ -58,48 +58,16 @@ ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(const QStr
     return this;
 }
 
-ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const BluetoothInfoApplicatorMultiple &configurator) {
-    if(this->bluetoothInfosConfigurator || this->bluetoothInfoConfigurator)
-        throw std::invalid_argument("Only 1 bluetooth information configurator is supported.");
-    this->bluetoothInfosConfigurator = configurator;
+ProductTestDataBuilder *ProductTestDataBuilder::configureSettingsWith(const QBluetoothUuid &uuid, bool addedIsEnabled) {
+    this->configuratorSingle = [uuid,addedIsEnabled](DeviceDiscoveryInfo& info, bool enable) -> void {
+        if(enable==addedIsEnabled)
+            info.addBluetoothService(uuid);
+        else
+            info.removeBluetoothService(uuid);
+    };
     return this;
 }
 
-ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const BluetoothInfoApplicatorSingle &configurator) {
-    if(this->bluetoothInfosConfigurator || this->bluetoothInfoConfigurator)
-        throw std::invalid_argument("Only 1 bluetooth information configurator is supported.");
-    this->bluetoothInfoConfigurator = configurator;
-    return this;
-}
-
-ProductTestDataBuilder *ProductTestDataBuilder::configureBluetoothInfoWith(const QBluetoothUuid& uuid, bool enablingValue) {
-
-    this->bluetoothInfoConfigurator =
-        [enablingValue, uuid](QBluetoothDeviceInfo &info, bool enable) -> void {
-            if(enable==enablingValue) {
-                info.setServiceUuids(QVector<QBluetoothUuid>({uuid}));
-            } else {
-                info.setServiceUuids(QVector<QBluetoothUuid>({}));
-            }
-        };
-    return this;
-}
-/*
-ProductTestDataBuilder *ProductTestDataBuilder::excluding(const QString &exclusion) {
-    this->exclusions.append(exclusion);
-    return this;
-}
-
-ProductTestDataBuilder *ProductTestDataBuilder::excluding(const QStringList &exclusions) {
-    this->exclusions.append(exclusions);
-    return this;
-}
-
-ProductTestDataBuilder *ProductTestDataBuilder::excluding(std::initializer_list<QString> exclusions) {
-    this->exclusions.append(exclusions);
-    return this;
-}
-*/
 ProductTestDataBuilder *ProductTestDataBuilder::excluding(std::initializer_list<DeviceTypeId> exclusions) {
     this->exclusions.insert(exclusions);
     return this;

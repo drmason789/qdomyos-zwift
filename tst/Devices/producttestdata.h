@@ -9,13 +9,10 @@
 #include "bluetoothdevice.h"
 #include "devicenamepatterngroup.h"
 #include "devicediscoveryinfo.h"
-#include "devicetypeid.h"
+#include "Tools/devicetypeid.h"
 
 typedef std::function<void(const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations)> ConfigurationApplicatorMultiple;
 typedef std::function<void(DeviceDiscoveryInfo &info, bool enable)> ConfigurationApplicatorSingle;
-typedef std::function<void(const QBluetoothDeviceInfo &info, bool enable, std::vector<QBluetoothDeviceInfo> &bluetoothDeviceInfos)> BluetoothInfoApplicatorMultiple;
-typedef std::function<void(QBluetoothDeviceInfo &info, bool enable)> BluetoothInfoApplicatorSingle;
-
 
 class ProductTestData
 {
@@ -30,8 +27,6 @@ protected:
     DeviceNamePatternGroup * deviceNamePatternGroup=nullptr;
     ConfigurationApplicatorMultiple configuratorMultiple=nullptr;
     ConfigurationApplicatorSingle configuratorSingle=nullptr;
-    BluetoothInfoApplicatorMultiple bluetoothInfosConfigurator=nullptr;
-    BluetoothInfoApplicatorSingle bluetoothInfoConfigurator=nullptr;
     std::function<bool(bluetoothdevice*)> isExpectedDevice=nullptr;
     DeviceTypeId expectedDeviceType=-1;
     ProductTestData();
@@ -51,15 +46,6 @@ public:
      * @param info
      */
     std::vector<DeviceDiscoveryInfo> ApplyConfigurations(const DeviceDiscoveryInfo& info, bool enable) const;
-
-    /**
-     * @brief Gets a vector of QBluetoothDeviceInfo objects for the specified name and UUID. Can be used to
-     * generate valid and invalid objects where device identification relies on more than just the name.
-     * @param uuid
-     * @param name
-     * @param valid
-     */
-    std::vector<QBluetoothDeviceInfo> ApplyBluetoothDeviceInfo(const QBluetoothUuid& uuid, const QString& name, bool valid=true) const;
 
     virtual ~ProductTestData();
 };

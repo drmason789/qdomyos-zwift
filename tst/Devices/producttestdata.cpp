@@ -50,28 +50,6 @@ ProductTestData::~ProductTestData(){
 ProductTestData::ProductTestData() {}
 
 
-std::vector<QBluetoothDeviceInfo> ProductTestData::ApplyBluetoothDeviceInfo(const QBluetoothUuid &uuid, const QString &name, bool valid) const {
-    std::vector<QBluetoothDeviceInfo> result;
-
-    QBluetoothDeviceInfo info(uuid, name, 0);
-
-    if(this->bluetoothInfosConfigurator)
-        this->bluetoothInfosConfigurator(info, valid, result);
-
-
-    if(this->bluetoothInfoConfigurator) {
-        info = QBluetoothDeviceInfo(uuid, name, 0);
-        this->bluetoothInfoConfigurator(info, valid);
-        result.push_back(info);
-    }
-
-    // make sure there is always a valid item
-    if(valid && result.empty())
-        result.push_back(info);
-
-    return result;
-}
-
 std::vector<DeviceDiscoveryInfo> ProductTestData::ApplyConfigurations(const DeviceDiscoveryInfo &info, bool enable) const {
     std::vector<DeviceDiscoveryInfo> result;
 

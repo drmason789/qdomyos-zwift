@@ -233,21 +233,51 @@ void ProductTestDataIndex::Initialize() {
 
 
     // Domyos Treadmill
-    QString ftms_Treadmill = "Domyos-Treadmill?"; // deliberately not all uppercase
     RegisterNewProductTestData(ProductIndex::DomyosTreadmill)
         ->expectDevice<domyostreadmill>()        
         ->acceptDeviceName("Domyos", DeviceNameComparison::StartsWith)
         ->rejectDeviceName("DomyosBr", DeviceNameComparison::StartsWith)
         ->rejectDeviceName("DOMYOS-BIKING-", DeviceNameComparison::StartsWith)
-        ->rejectDeviceName(ftms_Treadmill.toUpper(), DeviceNameComparison::Exact)
         ->excluding<domyoselliptical>()
         ->excluding<domyosbike>()
         ->excluding<domyosrower>()
         ->excluding<horizontreadmill>()
         ->excluding<ftmsbike>()
-        ->configureSettingsWith(QZSettings::ftms_treadmill, ftms_Treadmill,  "NOT "+ftms_Treadmill)
-        ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826), false /*Should not be identified if it has 0x1826*/);
-        // TODO: can't do BT config without settings config here
+        ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations) {
+            DeviceDiscoveryInfo result(info);
+            auto service = QBluetoothUuid((quint16)0x1826);
+
+            // Enabled means the device name isn't that set for ftms_treadmill
+            result.setValue(QZSettings::ftms_treadmill, "NOT " + result.DeviceInfo()->name());
+
+            // Doesn't have 0x1826 but domyostreadmill_notfmts is default
+            result.removeBluetoothService(service);
+            result.setValue(QZSettings::domyostreadmill_notfmts, QZSettings::default_domyostreadmill_notfmts);
+            configurations.push_back(result);
+
+            // Does have 0x1826 and domyostreadmill_notfmts is default
+            result.addBluetoothService(service);
+            result.setValue(QZSettings::domyostreadmill_notfmts, QZSettings::default_domyostreadmill_notfmts);
+            result.setValue(QZSettings::ftms_treadmill, "NOT " + result.DeviceInfo()->name());
+            configurations.push_back(result);
+
+            if(!enable) {
+                // Disable the "enabling" configurations using the name
+                for(auto& config : configurations)
+                    config.setValue(QZSettings::ftms_treadmill, config.DeviceInfo()->name()); // TODO: do something to check case insensitivity
+
+                // Has 0x1826 and domyostreadmill_notfmts is not default
+                result.addBluetoothService(service);
+                result.setValue(QZSettings::domyostreadmill_notfmts, !QZSettings::default_domyostreadmill_notfmts);
+                result.setValue(QZSettings::ftms_treadmill, result.DeviceInfo()->name());
+                configurations.push_back(result);
+
+                result.addBluetoothService(service);
+                result.setValue(QZSettings::domyostreadmill_notfmts, !QZSettings::default_domyostreadmill_notfmts);
+                result.setValue(QZSettings::ftms_treadmill, "NOT " + result.DeviceInfo()->name());
+                configurations.push_back(result);
+            }
+        });
 
     // Echelon Connect Sport Bike
     RegisterNewProductTestData(ProductIndex::EchelonConnectSportBike)
@@ -519,14 +549,22 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<ftmsbike>()
         ->acceptDeviceName("BIKE-", DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding(ftmsBikeConfigureExclusions)
-        ->configureSettingsWith(QZSettings::flywheel_life_fitness_ic8); // distinguish from npecablebike
+        ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations) -> void {
+            if(!enable) return; // no disabling configuration
+
+            DeviceDiscoveryInfo config(info);
+            // distinguish from npecablebike
+            config.setValue(QZSettings::flywheel_life_fitness_ic8, true);
+            configurations.push_back(config);
+        });
+
 
     // FTMS KICKR CORE
     RegisterNewProductTestData(ProductIndex::FTMSKICKRCORE)
         ->expectDevice<ftmsbike>()        
         ->acceptDeviceName("KICKR CORE", DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding(ftmsBikeConfigureExclusions)
-        ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826));
+        ->configureSettingsWith(QBluetoothUuid((quint16)0x1826));
 
     // FTMS Bike 2
     RegisterNewProductTestData(ProductIndex::FTMSBike2)
@@ -535,7 +573,7 @@ void ProductTestDataIndex::Initialize() {
                              "SPORT01-"}, // Labgrey Magnetic Exercise Bike https://www.amazon.co.uk/dp/B0CXMF1NPY?_encoding=UTF8&psc=1&ref=cm_sw_r_cp_ud_dp_PE420HA7RD7WJBZPN075&ref_=cm_sw_r_cp_ud_dp_PE420HA7RD7WJBZPN075&social_share=cm_sw_r_cp_ud_dp_PE420HA7RD7WJBZPN075&skipTwisterOG=1,
                             DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding(ftmsBikeConfigureExclusions)
-        ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826));
+        ->configureSettingsWith(QBluetoothUuid((quint16)0x1826));
 
     // FTMS Rower
     RegisterNewProductTestData(ProductIndex::FTMSRower)
@@ -603,8 +641,11 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::HorizonTreadmill_DomyosTC)
         ->expectDevice<horizontreadmill>()        
         ->acceptDeviceName("DOMYOS-TC", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith(QZSettings::domyostreadmill_notfmts, false)
-        ->configureBluetoothInfoWith(QBluetoothUuid((quint16)0x1826));
+        ->configureSettingsWith([](DeviceDiscoveryInfo& info, bool enable) -> void {
+            info.setValue(QZSettings::domyostreadmill_notfmts, !enable);
+            info.includeBluetoothService(QBluetoothUuid((quint16)0x1826), enable);
+        });
+
 
     // iConcept Bike
     RegisterNewProductTestData(ProductIndex::iConceptBike)
@@ -660,21 +701,17 @@ void ProductTestDataIndex::Initialize() {
     RegisterNewProductTestData(ProductIndex::M3IBike)
         ->expectDevice<m3ibike>()
         ->acceptDeviceName("M3", DeviceNameComparison::StartsWith)
-        ->configureBluetoothInfoWith(
-            [](const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos)->void
+        ->configureSettingsWith(
+            [](DeviceDiscoveryInfo& info,  bool enable)->void
             {
                 // The M3I bike detector looks into the manufacturer data.
-                QBluetoothDeviceInfo result = info;
-
                 if(!enable) {
-                    result.setManufacturerData(1, QByteArray("Invalid manufacturer data."));
-                    bluetoothDeviceInfos.push_back(result);
-
+                    info.DeviceInfo()->setManufacturerData(1, QByteArray("Invalid manufacturer data."));
                     return;
                 }
 
                 int key=0;
-                result.setManufacturerData(key++, hex2bytes("02010639009F00000000000000000014008001"));
+                info.DeviceInfo()->setManufacturerData(key++, hex2bytes("02010639009F00000000000000000014008001"));
 
                 /*
     // more data that has been supplied
@@ -714,7 +751,6 @@ void ProductTestDataIndex::Initialize() {
     result.setManufacturerData(key++, hex2bytes("02010639009FD3000000030000000000000001"));
     */
 
-                bluetoothDeviceInfos.push_back(result);
             });
 
 
@@ -1013,25 +1049,31 @@ void ProductTestDataIndex::Initialize() {
         ->expectDevice<stagesbike>()        
         ->acceptDeviceName("KICKR CORE", DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding(stagesBikeExclusions)
-        ->configureBluetoothInfoWith(
-            [](const QBluetoothDeviceInfo& info,  bool enable, std::vector<QBluetoothDeviceInfo>& bluetoothDeviceInfos)->void
+        ->configureSettingsWith(
+            [](const DeviceDiscoveryInfo& info,  bool enable, std::vector<DeviceDiscoveryInfo>& configurations)->void
             {
                 // The condition, if the name is acceptable, is:
                 // !deviceHasService(b, QBluetoothUuid((quint16)0x1826)) && deviceHasService(b, QBluetoothUuid((quint16)0x1818)))
 
                 if(enable) {
-                    QBluetoothDeviceInfo result = info;
-                    result.setServiceUuids(QVector<QBluetoothUuid>({QBluetoothUuid((quint16)0x1818)}));
-                    bluetoothDeviceInfos.push_back(result);
+                    DeviceDiscoveryInfo result = info;
+                    result.addBluetoothService(QBluetoothUuid((quint16)0x1818));
+                    result.removeBluetoothService(QBluetoothUuid((quint16)0x1826));
+                    configurations.push_back(result);
                 } else {
-                    QBluetoothDeviceInfo hasInvalid = info;
-                    hasInvalid.setServiceUuids(QVector<QBluetoothUuid>({QBluetoothUuid((quint16)0x1826)}));
-                    QBluetoothDeviceInfo hasBoth = hasInvalid;
-                    hasBoth.setServiceUuids(QVector<QBluetoothUuid>({QBluetoothUuid((quint16)0x1818),QBluetoothUuid((quint16)0x1826)}));
+                    DeviceDiscoveryInfo hasNeither = info;
+                    hasNeither.removeBluetoothService(QBluetoothUuid((quint16)0x1818));
+                    hasNeither.removeBluetoothService(QBluetoothUuid((quint16)0x1826));
 
-                    bluetoothDeviceInfos.push_back(info); // has neither
-                    bluetoothDeviceInfos.push_back(hasInvalid);
-                    bluetoothDeviceInfos.push_back(hasBoth);
+                    DeviceDiscoveryInfo hasInvalid = info;
+                    hasInvalid.addBluetoothService(QBluetoothUuid((quint16)0x1826));
+                    DeviceDiscoveryInfo hasBoth = hasInvalid;
+                    hasBoth.addBluetoothService(QBluetoothUuid((quint16)0x1818));
+                    hasBoth.addBluetoothService(QBluetoothUuid((quint16)0x1826));
+
+                    configurations.push_back(info); // has neither
+                    configurations.push_back(hasInvalid);
+                    configurations.push_back(hasBoth);
                 }
             });
 
