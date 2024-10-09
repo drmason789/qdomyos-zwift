@@ -208,8 +208,7 @@ void ProductTestDataIndex::Initialize() {
     // DeerRun Treadmill
     RegisterNewProductTestData(ProductIndex::DeerRunTreadmill)
         ->expectDevice<deerruntreadmill>()
-        ->acceptDeviceName("PitPat-T", DeviceNameComparison::StartsWithIgnoreCase)
-        ->skip("Detection not implemented");
+        ->acceptDeviceName("PITPAT", DeviceNameComparison::StartsWithIgnoreCase);
 
     // Domyos bike
     RegisterNewProductTestData(ProductIndex::DomyosBike)
@@ -477,6 +476,7 @@ void ProductTestDataIndex::Initialize() {
         "DS60-",
         "SPAX-BK-",
         "YSV1",
+        "VICTORY",
         "CECOTEC", // Cecotec DrumFit Indoor 10000 MagnoMotor Connected #2420
         "WATTBIKE",
         "ZYCLEZBIKE",
@@ -1130,12 +1130,11 @@ void ProductTestDataIndex::Initialize() {
         ->acceptDeviceNames({"MYRUN ","MERACH-U3"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::technogym_myrun_treadmill_experimental);
 
-
     // Toorx Treadmill
     RegisterNewProductTestData(ProductIndex::ToorxTreadmill)
         ->expectDevice<toorxtreadmill>()        
-        ->acceptDeviceName("TRX ROUTE KEY", DeviceNameComparison::StartsWith);
-
+        ->acceptDeviceName("TRX ROUTE KEY", DeviceNameComparison::StartsWith)
+        ->acceptDeviceNames({"BH DUALKIT TREAD", "BH-TR-", "MASTERT40-"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // True Treadmill
     RegisterNewProductTestData(ProductIndex::TrueTreadmill)

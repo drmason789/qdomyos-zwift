@@ -26,6 +26,11 @@ public:
 
         this->isExpectedDevice= [](bluetoothdevice * detectedDevice) -> bool { return dynamic_cast<T*>(detectedDevice)!=nullptr; };
         this->expectedDeviceType = ProductTestDataIndex::GetTypeId<T>();
+
+        // TODO enhance exclusion test to be able to distinguish instances rather than just type.
+        // // Exclude this type, i.e. don't redetect and recreate.
+        // this->excluding<T>();
+
         return this;
     }
 
