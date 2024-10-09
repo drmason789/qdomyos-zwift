@@ -1515,6 +1515,7 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                         (b.name().toUpper().startsWith("SPAX-BK-")) ||
                         (b.name().toUpper().startsWith("YSV1")) ||
                         (b.name().toUpper().startsWith("VOLT") && b.name().length() == 4) ||
+                        (b.name().toUpper().startsWith("VICTORY")) ||
                         (b.name().toUpper().startsWith("CECOTEC")) ||       // Cecotec DrumFit Indoor 10000 MagnoMotor Connected #2420
                         (b.name().toUpper().startsWith("WATTBIKE")) ||
                         (b.name().toUpper().startsWith("ZYCLEZBIKE")) ||
@@ -1940,6 +1941,21 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                 // SLOT(inclinationChanged(double)));
                 eslinkerTreadmill->deviceDiscovered(b);
                 this->signalBluetoothDeviceConnected(eslinkerTreadmill);
+            } else if (b.name().toUpper().startsWith(QStringLiteral("PITPAT")) && !deerrunTreadmill && filter) {
+                this->setLastBluetoothDevice(b);
+                this->stopDiscovery();
+                deerrunTreadmill = new deerruntreadmill(this->pollDeviceTime, noConsole, noHeartService);
+                // stateFileRead();
+                emit deviceConnected(b);
+                connect(deerrunTreadmill, &bluetoothdevice::connectedAndDiscovered, this,
+                        &bluetooth::connectedAndDiscovered);
+                // connect(proformtreadmill, SIGNAL(disconnected()), this, SLOT(restart()));
+                connect(deerrunTreadmill, &deerruntreadmill::debug, this, &bluetooth::debug);
+                // connect(proformtreadmill, SIGNAL(speedChanged(double)), this, SLOT(speedChanged(double)));
+                // connect(proformtreadmill, SIGNAL(inclinationChanged(double)), this,
+                // SLOT(inclinationChanged(double)));
+                deerrunTreadmill->deviceDiscovered(b);
+                this->signalBluetoothDeviceConnected(deerrunTreadmill);
             } else if (b.name().toUpper().startsWith(QStringLiteral("PAFERS_")) && !pafersTreadmill &&
                        (pafers_treadmill || pafers_treadmill_bh_iboxster_plus) && filter) {
                 this->setLastBluetoothDevice(b);
@@ -2035,6 +2051,7 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                 mcfBike->deviceDiscovered(b);
                 this->signalBluetoothDeviceConnected(mcfBike);
             } else if ((b.name().startsWith(QStringLiteral("TRX ROUTE KEY")) ||
+                        b.name().toUpper().startsWith(QStringLiteral("MASTERT40-")) ||
                         b.name().toUpper().startsWith(QStringLiteral("BH DUALKIT TREAD")) ||
                         b.name().toUpper().startsWith(QStringLiteral("BH-TR-"))) && !toorx && filter) {
                 this->setLastBluetoothDevice(b);
@@ -3101,6 +3118,11 @@ void bluetooth::restart() {
         delete eslinkerTreadmill;
         eslinkerTreadmill = nullptr;
     }
+    if (deerrunTreadmill) {
+
+        delete deerrunTreadmill;
+        deerrunTreadmill = nullptr;
+    }
     if (crossRope) {
 
         delete crossRope;
@@ -3437,6 +3459,8 @@ bluetoothdevice *bluetooth::device() {
         return proformRower;
     } else if (eslinkerTreadmill) {
         return eslinkerTreadmill;
+    } else if (deerrunTreadmill) {
+        return deerrunTreadmill;
     } else if (crossRope) {
         return crossRope;
     } else if (bowflexTreadmill) {
