@@ -139,7 +139,8 @@ void DeviceTestDataIndex::Initialize() {
     RegisterNewDeviceTestData(DeviceIndex::ComputrainerBike)
         ->expectDevice<computrainerbike>()
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->disable("Unable to emulate serial port for testing");
+        ->configureSettingsWith(QZSettings::computrainer_serialport, "COMX", "");
+
 
     // Concept2 Ski Erg
     RegisterNewDeviceTestData(DeviceIndex::Concept2SkiErg)
@@ -1042,6 +1043,7 @@ void DeviceTestDataIndex::Initialize() {
     RegisterNewDeviceTestData(DeviceIndex::StagesBike_Assioma_PowerSensorDisabled)
         ->expectDevice<stagesbike>()        
         ->acceptDeviceName("ASSIOMA", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::power_sensor_name, "DisabledX", "XDisabled")
         ->excluding( stagesBikeExclusions);
 
     // Stages Bike (KICKR CORE)
