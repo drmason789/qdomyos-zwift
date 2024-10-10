@@ -5,15 +5,15 @@
 #include "bluetooth.h"
 
 #include "Tools/testsettings.h"
-#include "productindex.h"
-#include "producttestdata.h"
-#include "producttestdataindex.h"
+#include "deviceindex.h"
+#include "bluetoothdevicetestdata.h"
+#include "devicetestdataindex.h"
 
 
-class ProductTestSuite : public testing::Test, public testing::WithParamInterface<QString> {
+class BluetoothDeviceTestSuite : public testing::Test, public testing::WithParamInterface<QString> {
 
 protected:
-    const ProductTestData *testParam;
+    const BluetoothDeviceTestData *testParam;
 
     /**
      * @brief A sample of valid bluetooth names for the device.
@@ -48,7 +48,7 @@ protected:
      * @param restart Indicates if the bluetooth (bt) object should be restarted.
      * @param failMessage The failure message if the device is not detected when expected to be, or detected when not expected to be.
      */
-    void testDeviceDetection(const ProductTestData * testData, bluetooth& bt, const QBluetoothDeviceInfo& deviceInfo, bool expectMatch, bool restart, const QString& failMessage) const;
+    void testDeviceDetection(const BluetoothDeviceTestData * testData, bluetooth& bt, const QBluetoothDeviceInfo& deviceInfo, bool expectMatch, bool restart, const QString& failMessage) const;
 
     /**
      * @brief Tests device detection.
@@ -59,7 +59,7 @@ protected:
      * @param restart Indicates if the bluetooth (bt) object should be restarted.
      * @param failMessage The failure message if the device is not detected when expected to be, or detected when not expected to be.
      */
-    void testDeviceDetection(const ProductTestData * testData, bluetooth& bt, const QBluetoothDeviceInfo& deviceInfo, bool expectMatch, bool restart, const std::string& failMessage) const;
+    void testDeviceDetection(const BluetoothDeviceTestData * testData, bluetooth& bt, const QBluetoothDeviceInfo& deviceInfo, bool expectMatch, bool restart, const std::string& failMessage) const;
 
 
     /**
@@ -84,9 +84,9 @@ protected:
      */
     void test_deviceDetection(const bool validNames, const bool enablingConfigs);
 
-    std::vector<DeviceDiscoveryInfo> getConfigurations(const ProductTestData* testData, const QString& deviceName, bool enabled) const;
+    std::vector<DeviceDiscoveryInfo> getConfigurations(const BluetoothDeviceTestData* testData, const QString& deviceName, bool enabled) const;
 public:
-    ProductTestSuite() : testSettings("Roberto Viola", "QDomyos-Zwift Testing") {}
+    BluetoothDeviceTestSuite() : testSettings("Roberto Viola", "QDomyos-Zwift Testing") {}
 
     // Sets up the test fixture.
     void SetUp() override;
@@ -121,32 +121,32 @@ public:
 
 };
 
-#define ALLPRODUCTS
+#define ALLDEVICES
 
-#ifdef ALLPRODUCTS
+#ifdef ALLDEVICES
 
-INSTANTIATE_TEST_SUITE_P(AllProductsDetection, ProductTestSuite,
-                         testing::ValuesIn(ProductTestDataIndex::Names()),
-                         [](const testing::TestParamInfo<QString>& item) {return ProductIndex::Identifier(item.param).toStdString(); });
+INSTANTIATE_TEST_SUITE_P(AllDevicesDetection, BluetoothDeviceTestSuite,
+                         testing::ValuesIn(DeviceTestDataIndex::Names()),
+                         [](const testing::TestParamInfo<QString>& item) {return DeviceIndex::Identifier(item.param).toStdString(); });
 #else
-INSTANTIATE_TEST_SUITE_P(SelectedProductsDetection, ProductTestSuite,
-                         testing::Values(ProductIndex::FTMSKICKRCORE),
-                         [](const testing::TestParamInfo<QString>& item) {return ProductIndex::Identifier(item.param).toStdString(); });
+INSTANTIATE_TEST_SUITE_P(SelectedDevicesDetection, BluetoothDeviceTestSuite,
+                         testing::Values(DeviceIndex::FTMSKICKRCORE),
+                         [](const testing::TestParamInfo<QString>& item) {return DeviceIndex::Identifier(item.param).toStdString(); });
 #endif
 
-TEST_P(ProductTestSuite, TestDeviceNotDetectedDueToExclusions) {
+TEST_P(BluetoothDeviceTestSuite, TestDeviceNotDetectedDueToExclusions) {
     this->test_deviceDetection_exclusions();
 }
 
-TEST_P(ProductTestSuite, TestDeviceDetectedValidNamesSettingsEnabled) {
+TEST_P(BluetoothDeviceTestSuite, TestDeviceDetectedValidNamesSettingsEnabled) {
     this->test_deviceDetection_validNames_enabled();
 }
 
-TEST_P(ProductTestSuite, TestDeviceNotDetectedValidNamesSettingsDisabled) {
+TEST_P(BluetoothDeviceTestSuite, TestDeviceNotDetectedValidNamesSettingsDisabled) {
     this->test_deviceDetection_validNames_disabled();
 }
 
-TEST_P(ProductTestSuite, TestDeviceNotDetectedInvalidNamesSettingsEnabled) {
+TEST_P(BluetoothDeviceTestSuite, TestDeviceNotDetectedInvalidNamesSettingsEnabled) {
     this->test_deviceDetection_invalidNames_enabled();
 }
 

@@ -1,14 +1,14 @@
-#include "producttestsuite.h"
+#include "bluetoothdevicetestsuite.h"
 #include "discoveryoptions.h"
 #include "bluetooth.h"
 #include "bluetoothsignalreceiver.h"
-#include "producttestdataindex.h"
+#include "devicetestdataindex.h"
 
 const QString testUUID = QStringLiteral("b8f79bac-32e5-11ed-a261-0242ac120002");
 QBluetoothUuid uuid{testUUID};
 
 
-void ProductTestSuite::tryDetectDevice(bluetooth &bt,
+void BluetoothDeviceTestSuite::tryDetectDevice(bluetooth &bt,
                                                   const QBluetoothDeviceInfo &deviceInfo) const {
     try {
         // It is possible to use an EXPECT_NO_THROW here, but this
@@ -20,7 +20,7 @@ void ProductTestSuite::tryDetectDevice(bluetooth &bt,
     }
 }
 
-std::string ProductTestSuite::getTypeName(bluetoothdevice *b) const {
+std::string BluetoothDeviceTestSuite::getTypeName(bluetoothdevice *b) const {
     if(!b) return "nullptr";
     QString name = typeid(*b).name();
 
@@ -38,14 +38,14 @@ std::string ProductTestSuite::getTypeName(bluetoothdevice *b) const {
 }
 
 
-std::string ProductTestSuite::formatString(std::string format, bluetoothdevice *b) const {
+std::string BluetoothDeviceTestSuite::formatString(std::string format, bluetoothdevice *b) const {
 
     QString qs = QString(format.c_str());
     QString typeName = this->getTypeName(b).c_str();
     return qs.replace("{typeName}", typeName).toStdString();
 }
 
-void ProductTestSuite::testDeviceDetection(const ProductTestData * testData, bluetooth &bt,
+void BluetoothDeviceTestSuite::testDeviceDetection(const BluetoothDeviceTestData * testData, bluetooth &bt,
                                                       const QBluetoothDeviceInfo &deviceInfo,
                                                   bool expectMatch,
                                                   bool restart,
@@ -55,7 +55,7 @@ void ProductTestSuite::testDeviceDetection(const ProductTestData * testData, blu
 
 
 
-void ProductTestSuite::testDeviceDetection(const ProductTestData * testData, bluetooth &bt,
+void BluetoothDeviceTestSuite::testDeviceDetection(const BluetoothDeviceTestData * testData, bluetooth &bt,
                                                   const QBluetoothDeviceInfo &deviceInfo,
                                                   bool expectMatch,
                                                   bool restart,
@@ -83,10 +83,10 @@ void ProductTestSuite::testDeviceDetection(const ProductTestData * testData, blu
     }
 }
 
-void ProductTestSuite::SetUp() {
+void BluetoothDeviceTestSuite::SetUp() {
     auto testParam = this->GetParam();
 
-    this->testParam = ProductTestDataIndex::GetProductTestData(testParam);
+    this->testParam = DeviceTestDataIndex::GetTestData(testParam);
 
     if(!this->testParam)
         GTEST_FAIL() << "Failed to get test data for: " << testParam.toStdString();
@@ -95,7 +95,7 @@ void ProductTestSuite::SetUp() {
     if(!this->testParam->IsEnabled())
     {
         QString reason = this->testParam->DisabledReason();
-        skipMessage = QString("Product %1 is disabled for testing.").arg(testParam);
+        skipMessage = QString("Device %1 is disabled for testing.").arg(testParam);
 
         if(reason!=nullptr && reason!="")
             skipMessage = QString("%1 Reason: %2").arg(skipMessage).arg(reason);
@@ -103,7 +103,7 @@ void ProductTestSuite::SetUp() {
     else if(this->testParam->IsSkipped())
     {
         QString reason = this->testParam->SkippedReason();
-        skipMessage = QString("Product %1 is skipped for testing.").arg(testParam);
+        skipMessage = QString("Device %1 is skipped for testing.").arg(testParam);
 
         if(reason!=nullptr && reason!="")
             skipMessage = QString("%1 Reason: %2").arg(skipMessage).arg(reason);
@@ -123,7 +123,7 @@ void ProductTestSuite::SetUp() {
     this->testSettings.activate();
 }
 
-void ProductTestSuite::test_deviceDetection(const bool validNames, const bool enablingConfigs) {
+void BluetoothDeviceTestSuite::test_deviceDetection(const bool validNames, const bool enablingConfigs) {
     auto testData = this->testParam;
 
     bluetooth bt(this->defaultDiscoveryOptions);
@@ -137,7 +137,7 @@ void ProductTestSuite::test_deviceDetection(const bool validNames, const bool en
 
         auto configurations = testData->ApplyConfigurations(info, enablingConfigs);
 
-        for(int i=0; i<configurations.size(); i++){
+        for(size_t i=0; i<configurations.size(); i++){
 
             DeviceDiscoveryInfo discoveryInfo = configurations[i];
             this->testSettings.loadFrom(discoveryInfo);
@@ -157,26 +157,26 @@ void ProductTestSuite::test_deviceDetection(const bool validNames, const bool en
     }
 }
 
-std::vector<DeviceDiscoveryInfo> ProductTestSuite::getConfigurations(const ProductTestData *testData, const QString& deviceName, bool enabled) const {
+std::vector<DeviceDiscoveryInfo> BluetoothDeviceTestSuite::getConfigurations(const BluetoothDeviceTestData *testData, const QString& deviceName, bool enabled) const {
     QBluetoothDeviceInfo btdi(uuid, deviceName,0);
     DeviceDiscoveryInfo info(btdi);
     return testData->ApplyConfigurations(info, enabled);
 }
 
-void ProductTestSuite::test_deviceDetection_validNames_enabled() {
+void BluetoothDeviceTestSuite::test_deviceDetection_validNames_enabled() {
     this->test_deviceDetection(true, true);
 }
 
-void ProductTestSuite::test_deviceDetection_validNames_disabled() {
+void BluetoothDeviceTestSuite::test_deviceDetection_validNames_disabled() {
     this->test_deviceDetection(true, false);
 }
 
-void ProductTestSuite::test_deviceDetection_invalidNames_enabled()
+void BluetoothDeviceTestSuite::test_deviceDetection_invalidNames_enabled()
 {
     this->test_deviceDetection(false, true);
 }
 
-void ProductTestSuite::test_deviceDetection_exclusions() {
+void BluetoothDeviceTestSuite::test_deviceDetection_exclusions() {
     auto testData = this->testParam;
 
     auto exclusionNames = testData->Exclusions();
@@ -185,15 +185,15 @@ void ProductTestSuite::test_deviceDetection_exclusions() {
         GTEST_SKIP() << "No exclusions defined for this device: " << testData->Name().toStdString();
 
     // Only take the first for each type of exclusion
-    std::vector<const ProductTestData*> exclusions;
+    std::vector<const BluetoothDeviceTestData*> exclusions;
     std::unordered_set<int> exclusionTypeIds;
     for(auto exclusionName : exclusionNames)
     {
-        auto productTestData = ProductTestDataIndex::GetProductTestData(exclusionName);
-        if(exclusionTypeIds.count(productTestData->ExpectedDeviceType()))
+        auto deviceTestData = DeviceTestDataIndex::GetTestData(exclusionName);
+        if(exclusionTypeIds.count(deviceTestData->ExpectedDeviceType()))
             continue;
-        exclusions.push_back(productTestData);
-        exclusionTypeIds.insert(productTestData->ExpectedDeviceType());
+        exclusions.push_back(deviceTestData);
+        exclusionTypeIds.insert(deviceTestData->ExpectedDeviceType());
     }
 
     bluetooth bt(this->defaultDiscoveryOptions);

@@ -1,0 +1,69 @@
+#include "bluetoothdevicetestdata.h"
+#include "devicetestdataindex.h"
+
+QString BluetoothDeviceTestData::Name() const { return this->name; }
+
+DeviceTypeId BluetoothDeviceTestData::ExpectedDeviceType() const {
+    if(this->expectedDeviceType<0)
+        throw std::domain_error("Expected device not set");
+    return this->expectedDeviceType;
+}
+
+bool BluetoothDeviceTestData::IsEnabled() const { return this->enabled; }
+
+
+const QString BluetoothDeviceTestData::DisabledReason() const  { return this->disabledReason; }
+
+const QString BluetoothDeviceTestData::SkippedReason() const  { return this->skippedReason; }
+
+bool BluetoothDeviceTestData::IsExpectedDevice(bluetoothdevice *device) const { return this->isExpectedDevice(device); }
+
+const QStringList BluetoothDeviceTestData::Exclusions() const {
+    auto testData = DeviceTestDataIndex::WhereExpects(this->exclusions);
+
+    QString missing = "";
+
+    // first check that all the test data is there
+    for(const auto key : this->exclusions) {
+        if(!testData.contains(key))
+            missing += QString("%1 ").arg(key);
+    }
+
+    if(missing.length()>0) {
+        QString message = QString("Failed to find test data for excluded ids: ")+missing;
+        throw std::domain_error(message.toStdString());
+    }
+
+    QStringList result;
+    for(const auto deviceTestData : testData.values())
+        result.append(deviceTestData->Name());
+
+    return result;
+}
+
+const DeviceNamePatternGroup *BluetoothDeviceTestData::NamePatternGroup() const { return this->deviceNamePatternGroup; }
+
+BluetoothDeviceTestData::~BluetoothDeviceTestData(){
+
+}
+
+BluetoothDeviceTestData::BluetoothDeviceTestData() {}
+
+
+std::vector<DeviceDiscoveryInfo> BluetoothDeviceTestData::ApplyConfigurations(const DeviceDiscoveryInfo &info, bool enable) const {
+    std::vector<DeviceDiscoveryInfo> result;
+
+    if(this->configuratorSingle)
+    {
+        DeviceDiscoveryInfo newInfo(info);
+        this->configuratorSingle(newInfo, enable);
+        result.push_back(newInfo);
+    }
+
+    if(this->configuratorMultiple)
+        this->configuratorMultiple(info, enable, result);
+
+    return result;
+}
+
+

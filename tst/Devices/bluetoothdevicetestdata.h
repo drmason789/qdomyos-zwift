@@ -14,7 +14,7 @@
 typedef std::function<void(const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations)> ConfigurationApplicatorMultiple;
 typedef std::function<void(DeviceDiscoveryInfo &info, bool enable)> ConfigurationApplicatorSingle;
 
-class ProductTestData
+class BluetoothDeviceTestData
 {
 protected:
     bool enabled = true;
@@ -29,7 +29,7 @@ protected:
     ConfigurationApplicatorSingle configuratorSingle=nullptr;
     std::function<bool(bluetoothdevice*)> isExpectedDevice=nullptr;
     DeviceTypeId expectedDeviceType=-1;
-    ProductTestData();
+    BluetoothDeviceTestData();
 public:
     QString Name() const;
     DeviceTypeId ExpectedDeviceType() const;
@@ -47,5 +47,5 @@ public:
      */
     std::vector<DeviceDiscoveryInfo> ApplyConfigurations(const DeviceDiscoveryInfo& info, bool enable) const;
 
-    virtual ~ProductTestData();
+    virtual ~BluetoothDeviceTestData();
 };

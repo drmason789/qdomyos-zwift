@@ -11,14 +11,14 @@ CONFIG += thread
 CONFIG += androidextras
 
 SOURCES += \
+        Devices/bluetoothdevicetestdata.cpp \
+        Devices/bluetoothdevicetestdatabuilder.cpp \
+        Devices/bluetoothdevicetestsuite.cpp \
         Devices/bluetoothsignalreceiver.cpp \
         Devices/devicediscoveryinfo.cpp \
+        Devices/deviceindex.cpp \
         Devices/devicenamepatterngroup.cpp \
-        Devices/productindex.cpp \
-        Devices/producttestdata.cpp \
-        Devices/producttestdatabuilder.cpp \
-        Devices/producttestdataindex.cpp \
-        Devices/producttestsuite.cpp \
+        Devices/devicetestdataindex.cpp \
         Erg/ergtabletestsuite.cpp \
         ToolTests/testsettingstestsuite.cpp \
         Tools/testsettings.cpp \
@@ -43,14 +43,14 @@ else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../src/libqdomyos-zwift.a
 
 HEADERS += \
+    Devices/bluetoothdevicetestdata.h \
+    Devices/bluetoothdevicetestdatabuilder.h \
+    Devices/bluetoothdevicetestsuite.h \
     Devices/bluetoothsignalreceiver.h \
     Devices/devicediscoveryinfo.h \
+    Devices/deviceindex.h \
     Devices/devicenamepatterngroup.h \
-    Devices/productindex.h \
-    Devices/producttestdata.h \
-    Devices/producttestdatabuilder.h \
-    Devices/producttestdataindex.h \
-    Devices/producttestsuite.h \
+    Devices/devicetestdataindex.h \
     Erg/ergtabletestsuite.h \
     ToolTests/testsettingstestsuite.h \
     Tools/testsettings.h \

@@ -7,9 +7,9 @@
 /**
  * @brief Provides an index of test data for supported devices.
  */
-class ProductIndex
+class DeviceIndex
 {
-    static std::vector<QString> allProducts;
+    static std::vector<QString> allDevices;
     static QMap<QString, QString> allIdentifiers;
 
     /**
@@ -18,25 +18,25 @@ class ProductIndex
      * @param identifier The programmatic identifier of the device variant. This should be a valid C++ variable name.
      * @return
      */
-    static const QString AddProduct(const QString& name, const QString& identifier);
+    static const QString AddDevice(const QString& name, const QString& identifier);
 
-    ProductIndex();
+    DeviceIndex();
 public:
 
     /**
      * @brief Returns a vector of the device friendly name constants.
      * @return
      */
-    static const std::vector<QString> Products() {
-        return allProducts;
+    static const std::vector<QString> DeviceNames() {
+        return allDevices;
     }
 
     /**
      * @brief Gets the identifier for the specified friendly name.
-     * @param productName
+     * @param deviceName
      * @return
      */
-    static const QString Identifier(const QString& productName);
+    static const QString Identifier(const QString& deviceName);
 
     static const QString ActivioTreadmill;
     static const QString AntBike;

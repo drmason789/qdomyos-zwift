@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <QApplication>
 #include <QTimer>
-#include "Devices/producttestdataindex.h"
+#include "Devices/devicetestdataindex.h"
 
 // https://forum.qt.io/topic/84229/is-there-a-canonical-way-to-set-up-qapplication-and-google-test-together/2
 
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication app{argc, argv};
 
-    ProductTestDataIndex::Initialize();
+    DeviceTestDataIndex::Initialize();
 
     QTimer::singleShot(0, [&]()
                        {
