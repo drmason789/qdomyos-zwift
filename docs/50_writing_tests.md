@@ -13,7 +13,7 @@ At minimum, each device has a corresponding BluetoothDeviceTestData object const
 In the test project
 * add a new device name constant to the DeviceIndex class.
 * locate the implementation of DeviceTestDataindex::Initialize and build the test data from a call to DeviceTestDataIndex::RegisterNewDeviceTestData(...)
-* pass the device name constant defined in ProductIndex to the call to DeviceTestDataIndex::RegisterNewDeviceTestData(...).
+* pass the device name constant defined in the DeviceIndex class  to the call to DeviceTestDataIndex::RegisterNewDeviceTestData(...).
 
 The tests are not organised around real devices that are handled, but the bluetoothdevice subclass that handles them - the "driver" of sorts.
 
@@ -22,7 +22,7 @@ You need to provide the following:
 - invalid names to ensure the device is not identified when the name is invalid
 - configuration settings that are required for the device to be detected, including bluetooth device information configuration
 - invalid configurations to test that the device is not detected, e.g. when it's disabled in the settings, but the name is correct
-- exclusion devices: if a device with the same name but of a higher priority type is detected, this device should not be detected
+- exclusion devices: for example if a device with the same name but of a higher priority type is detected, this device should not be detected
 
 ## Tools in the Test Framework
 
@@ -37,7 +37,7 @@ i.e. a test will
 
 ### DeviceDiscoveryInfo
 
-This class@
+This class:
 * stores values for a specific subset of the QZSettings keys.
 * provides methods to read and write the values it knows about from and to a QSettings object.
 * provides a QBluetoothDeviceInfo object configured with the device name currently being tested.
@@ -92,16 +92,16 @@ RegisterNewDeviceTestData(DeviceIndex::DomyosBike)
 	->rejectDeviceName("DomyosBridge", DeviceNameComparison::StartsWith);
 ```
 
-This set of instructions adds a valid device name, and an invalid one. Various overloads of these methods, other methods, and other members of the comparison enumeration provide other capabilities for specifying test data. If you add a valid device name that says the name should start with a value, additional names will be added automatically to the valid list with additional characters to test that it is in fact a "starts with" relationship. Also, valid and invalid names will be generated base on whether the comparison is case sensitive or not.
+This set of instructions adds a valid device name, and an invalid one. Various overloads of these methods, other methods, and other members of the comparison enumeration provide other capabilities for specifying test data. If you add a valid device name that says the name should start with a value, additional names will be added automatically to the valid list with additional characters to test that it is in fact a "starts with" relationship. Also, valid and invalid names will be generated based on whether the comparison is case sensitive or not.
 
 ### Configuration Settings
 
 Consider the CompuTrainer bike. This device is not detected by name, but only by whether or not it is enabled in the settings.
-To specify this in the test data, we use one of the BluetoothDeviceTestData::configureSettingsWith methods, the one for the simple case where there is a single valid and a single invalid configuration. 
+To specify this in the test data, we use one of the BluetoothDeviceTestData::configureSettingsWith(...) methods, the one for the simple case where there is a single QZSetting with a specific enabling and disabling value.
 
 Settings from QSettings that contribute to tests should be put into the DeviceDiscoveryInfo class.
 
-For example, for the Computrainer Bike, the "computrainer_serial_port" value from the QSettings determines if the bike should be detected or not.
+For example, for the Computrainer Bike, the "computrainer_serialport" value from the QSettings determines if the bike should be detected or not.
 
 The computrainer_serialport QZSettings key should be registered in devicediscoveryinfo.cpp
 
@@ -162,7 +162,7 @@ bool pafers_treadmill_bh_iboxster_plus =
 ```
 
 Here the device could be activated due to a name match and various combinations of settings.
-For this, the configureSettingsWith function that takes a lambda function which consumes a vector of DeviceDiscoveryInfo objects which is populated with configurations that lead to the specified result (enable = detected, !enable=not detected).
+For this, the configureSettingsWith(...) function that takes a lambda function which consumes a vector of DeviceDiscoveryInfo objects which is populated with configurations that lead to the specified result (enable = detected, !enable=not detected).
 
 ```
 // Pafers Treadmill
@@ -316,7 +316,7 @@ This presents 3 scenarios for the current test framework.
 2. Match the name "KICKR CORE", presence and absence of specific service ids
 3. Match the name "ASSIOMA" and the power sensor name setting starts with "Disabled"
 					   
-The framework is not currently capable of specifying all these scenarios in a single test data object. 
+The framework is not currently capable of specifying all these scenarios in a single test data object, without checking the name of the supplied QBluetoothDeviceInfo object against name conditions specified and constructing extra configurations based on that.
 The generated test data is approximately the combinations of these lists: names * settings * exclusions.
 If a combination should not exist, separate test data objects should be used.
 
@@ -337,7 +337,6 @@ RegisterNewDeviceTestData(DeviceIndex::StagesBike)
 	->acceptDeviceNames({"STAGES ", "TACX SATORI"}, DeviceNameComparison::StartsWithIgnoreCase)
 	->acceptDeviceName("QD", DeviceNameComparison::IgnoreCase)
 	->excluding(stagesBikeExclusions);
-
 ```
 
 The name and setting match in another instance:
