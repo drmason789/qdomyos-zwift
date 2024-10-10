@@ -1114,6 +1114,7 @@ void DeviceTestDataIndex::Initialize() {
     // Power (Stages) Bike
     RegisterNewDeviceTestData(DeviceIndex::StagesPowerBike)
         ->expectDevice<stagesbike>()
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations) -> void {
             DeviceDiscoveryInfo config(info);
 

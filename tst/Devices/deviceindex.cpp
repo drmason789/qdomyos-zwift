@@ -98,7 +98,7 @@ DEFINE_DEVICE(NPECableBike_Excluding_FlywheelLifeFitnessIC8, "NPECable Bike (exc
 DEFINE_DEVICE(NautilusBike, "Nautilus Bike");
 DEFINE_DEVICE(NautilusElliptical, "Nautilus Elliptical");
 DEFINE_DEVICE(NautilusTreadmill, "Nautilus Treadmill");
-DEFINE_DEVICE(NordictrackIFitADBBike, "Nordictrack IFit ADB Treadmill");
+DEFINE_DEVICE(NordictrackIFitADBBike, "Nordictrack IFit ADB Bike");
 DEFINE_DEVICE(NordictrackIFitADBElliptical, "Nordictrack IFit ADB Elliptical");
 DEFINE_DEVICE(NordictrackIFitADBTreadmill, "Nordictrack IFit ADB Treadmill");
 DEFINE_DEVICE(NorditrackElliptical, "Norditrack Elliptical");
