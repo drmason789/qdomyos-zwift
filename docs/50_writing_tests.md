@@ -105,7 +105,7 @@ For example, for the Computrainer Bike, the "computrainer_serialport" value from
 
 The computrainer_serialport QZSettings key should be registered in devicediscoveryinfo.cpp
 
-devicediscoveryinfo.cpp
+In devicediscoveryinfo.cpp:
 ```
 void InitializeTrackedSettings() {
 

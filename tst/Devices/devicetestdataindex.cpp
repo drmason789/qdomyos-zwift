@@ -164,6 +164,11 @@ void DeviceTestDataIndex::Initialize() {
             info.setValue(QZSettings::cadence_sensor_as_bike, enable);
         });
 
+    // CSafe Rower
+    RegisterNewDeviceTestData(DeviceIndex::CSafeRower)
+        ->expectDevice<csaferower>()
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::csafe_rower, "COMX", "");
 
     cscBikeName = "CyclingSpeedCadenceBike-";
     RegisterNewDeviceTestData(DeviceIndex::CSCBike)
@@ -215,7 +220,24 @@ void DeviceTestDataIndex::Initialize() {
     RegisterNewDeviceTestData(DeviceIndex::DomyosBike)
         ->expectDevice<domyosbike>()        
         ->acceptDeviceName("Domyos-Bike", DeviceNameComparison::StartsWith)
-        ->rejectDeviceName("DomyosBridge", DeviceNameComparison::StartsWith);
+        ->rejectDeviceName("DomyosBridge", DeviceNameComparison::StartsWith)
+        ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations)->void{
+            DeviceDiscoveryInfo config(info);
+
+            if(enable) {
+                // has service and both values of domyosbike_notftms
+                config.includeBluetoothService(QBluetoothUuid((quint16)0x1826), false);
+                config.setValue(QZSettings::domyosbike_notfmts, true);
+                configurations.push_back(config);
+
+                config.setValue(QZSettings::domyosbike_notfmts, false);
+                configurations.push_back(config);
+            } else {
+                config.includeBluetoothService(QBluetoothUuid((quint16)0x1826), true);
+                config.setValue(QZSettings::domyosbike_notfmts, true);
+                configurations.push_back(config);
+            }
+        });
 
 
     // DomyosElliptical
@@ -328,6 +350,11 @@ void DeviceTestDataIndex::Initialize() {
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::fakedevice_elliptical);
 
+    // Fake Rower
+    RegisterNewDeviceTestData(DeviceIndex::FakeRower)
+        ->expectDevice<fakerower>()
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::fakedevice_rower);
 
     // Fake Treadmill
     RegisterNewDeviceTestData(DeviceIndex::FakeTreadmill)
@@ -588,6 +615,8 @@ void DeviceTestDataIndex::Initialize() {
         ->acceptDeviceName("JFIC", DeviceNameComparison::StartsWithIgnoreCase);
 
 
+    // TODO: revisit
+
     // Horizon Treadmill
     RegisterNewDeviceTestData(DeviceIndex::HorizonTreadmill)
         ->expectDevice<horizontreadmill>()        
@@ -676,7 +705,20 @@ void DeviceTestDataIndex::Initialize() {
     RegisterNewDeviceTestData(DeviceIndex::KingsmithR1ProTreadmill)
         ->expectDevice<kingsmithr1protreadmill>()
         ->acceptDeviceName("RE", DeviceNameComparison::IgnoreCase)
-        ->acceptDeviceNames({"R1 PRO","KINGSMITH","KS-H","DYNAMAX","WALKINGPAD","KS-BLR"}, DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"R1 PRO",
+                             "KINGSMITH",
+                             "KS-H",
+                             "KS-BLC", // Walkingpad C2 #1672
+                             "DYNAMAX",
+                             "WALKINGPAD",
+                             "KS-BLR", // Treadmill KingSmith WalkingPad R2 Pro KS-HCR1AA
+                             "KS-ST-A1P", // KingSmith Walkingpad A1 Pro #2041
+
+                            // Poland-distributed WalkingPad R2 TRR2FB
+                            "KS-SC-BLR2C",
+
+                            }, DeviceNameComparison::StartsWithIgnoreCase)
+        ->rejectDeviceName("KS-HD-Z1D", DeviceNameComparison::StartsWithIgnoreCase) // it's an FTMS one
         ->excluding<kingsmithr2treadmill>();
 
     // Kingsmith R2 Treadmill
@@ -776,8 +818,7 @@ void DeviceTestDataIndex::Initialize() {
     // Nautilus Elliptical
     RegisterNewDeviceTestData(DeviceIndex::NautilusElliptical)
         ->expectDevice<nautiluselliptical>()
-        ->acceptDeviceName("NAUTILUS E", DeviceNameComparison::StartsWithIgnoreCase);
-
+        ->acceptDeviceNames({"NAUTILUS E", "NAUTILUS M"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // Nautilus Treadmill
     RegisterNewDeviceTestData(DeviceIndex::NautilusTreadmill)
@@ -790,6 +831,18 @@ void DeviceTestDataIndex::Initialize() {
         ->expectDevice<nordictrackelliptical>()
         ->acceptDeviceName("I_EL", DeviceNameComparison::StartsWithIgnoreCase);
 
+
+    // Nordictrack IFit ADB Bike
+    RegisterNewDeviceTestData(DeviceIndex::NordictrackIFitADBBike)
+        ->expectDevice<nordictrackifitadbbike>()
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::tdf_10_ip, testIP, "");
+
+    // Nordictrack IFit ADB Elliptical
+    RegisterNewDeviceTestData(DeviceIndex::NordictrackIFitADBElliptical)
+        ->expectDevice<nordictrackifitadbelliptical>()
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::proform_elliptical_ip, testIP, "");
 
     // Nordictrack IFit ADB Treadmill
     RegisterNewDeviceTestData(DeviceIndex::NordictrackIFitADBTreadmill)
@@ -891,6 +944,12 @@ void DeviceTestDataIndex::Initialize() {
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::proformtdf4ip, testIP, "");
 
+    // ProForm Wifi Bike
+    RegisterNewDeviceTestData(DeviceIndex::ProFormTelnetBike)
+        ->expectDevice<proformtelnetbike>()
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::proformtdf1ip, testIP, "");
+
     // ProForm Wifi Treadmill
     RegisterNewDeviceTestData(DeviceIndex::ProFormWifiTreadmill)
         ->expectDevice<proformwifitreadmill>()        
@@ -957,7 +1016,8 @@ void DeviceTestDataIndex::Initialize() {
     // Shuaa5 Treadmill
     RegisterNewDeviceTestData(DeviceIndex::Shuaa5Treadmill)
         ->expectDevice<shuaa5treadmill>()
-        ->acceptDeviceName("ZW-", DeviceNameComparison::StartsWithIgnoreCase);
+        ->acceptDeviceName("ZW-", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::ftms_bike, "X"+QZSettings::default_ftms_bike+"X", "XX");
 
 
     // Skandika Wiry Bike
@@ -1000,12 +1060,24 @@ void DeviceTestDataIndex::Initialize() {
     // Sole Elliptical
     RegisterNewDeviceTestData(DeviceIndex::SoleElliptical)
         ->expectDevice<soleelliptical>()        
-        ->acceptDeviceNames({"E95S","E25","E35","E55","E95","E98","XG400","E98S"}, DeviceNameComparison::StartsWithIgnoreCase);
+        ->acceptDeviceNames({"E95S","E25","E55","E95","E98","XG400","E98S"}, DeviceNameComparison::StartsWithIgnoreCase);
+
+    // Sole Elliptical 2
+    RegisterNewDeviceTestData(DeviceIndex::SoleElliptical2)
+        ->expectDevice<soleelliptical>()
+        ->acceptDeviceName("E35", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QBluetoothUuid((quint16)0x1826), false);
 
     // Sole F80 Treadmill
     RegisterNewDeviceTestData(DeviceIndex::SoleF80Treadmill)
         ->expectDevice<solef80treadmill>()        
         ->acceptDeviceNames({"F65","S77","TT8","F63","ST90"}, DeviceNameComparison::StartsWithIgnoreCase);
+
+    // Sole F80 Treadmill 2
+    RegisterNewDeviceTestData(DeviceIndex::SoleF80Treadmill2)
+        ->expectDevice<solef80treadmill>()
+        ->acceptDeviceNames({"TT8","ST90"}, DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QBluetoothUuid((quint16)0x1826), false);
 
     // Sole F85 Treadmill
     RegisterNewDeviceTestData(DeviceIndex::SoleF85Treadmill)
@@ -1035,8 +1107,37 @@ void DeviceTestDataIndex::Initialize() {
     // Stages Bike
     RegisterNewDeviceTestData(DeviceIndex::StagesBike)
         ->expectDevice<stagesbike>()        
-        ->acceptDeviceNames({"STAGES ", "TACX SATORI"}, DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceName("QD", DeviceNameComparison::IgnoreCase)
+        ->acceptDeviceNames({"STAGES ", "TACX SATORI", "RACER S", "ELITE TRAINER"}, DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"QD","DFC"}, DeviceNameComparison::IgnoreCase)
+        ->excluding(stagesBikeExclusions);
+
+    // Power (Stages) Bike
+    RegisterNewDeviceTestData(DeviceIndex::StagesPowerBike)
+        ->expectDevice<stagesbike>()
+        ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations) -> void {
+            DeviceDiscoveryInfo config(info);
+
+            if(enable) {
+                config.setValue(QZSettings::power_sensor_as_bike, true);
+                config.setValue(QZSettings::power_sensor_name, config.DeviceInfo()->name());
+                configurations.push_back(config);
+            } else {
+                // enabled but wrong name
+                config.setValue(QZSettings::power_sensor_as_bike, true);
+                config.setValue(QZSettings::power_sensor_name, "NOT "+config.DeviceInfo()->name());
+                configurations.push_back(config);
+
+                // disabled but right name
+                config.setValue(QZSettings::power_sensor_as_bike, false);
+                config.setValue(QZSettings::power_sensor_name, config.DeviceInfo()->name());
+                configurations.push_back(config);
+
+                // disabled and wrong name
+                config.setValue(QZSettings::power_sensor_as_bike, false);
+                config.setValue(QZSettings::power_sensor_name, "NOT "+config.DeviceInfo()->name());
+                configurations.push_back(config);
+            }
+        })
         ->excluding(stagesBikeExclusions);
 
     // Stages Bike Stages Bike (Assioma / Power Sensor disabled
@@ -1082,43 +1183,58 @@ void DeviceTestDataIndex::Initialize() {
 
 
     // StrydeRun Power Sensor
-    QString powerSensorName = "WattsItCalled";
     RegisterNewDeviceTestData(DeviceIndex::StrydeRunTreadmill_PowerSensor)
         ->expectDevice<strydrunpowersensor>()        
-        ->acceptDeviceName(powerSensorName, DeviceNameComparison::StartsWith)
+        ->acceptDeviceName("WattsItCalled", DeviceNameComparison::StartsWith)
         ->configureSettingsWith(
-            [powerSensorName](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
+            [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
             {
+                DeviceDiscoveryInfo config(info);
+                QString name = config.DeviceInfo()->name();
                 if(enable) {
                     // power_as_treadmill enabled and powerSensorName in settings matches device name
-                    DeviceDiscoveryInfo config(info);
                     config.setValue(QZSettings::power_sensor_as_treadmill, true);
-                    config.setValue(QZSettings::power_sensor_name, powerSensorName);
+                    config.setValue(QZSettings::power_sensor_name, name);
                     configurations.push_back(config);
                 } else {
                     // enabled but powerSensorName in settings does not match device name
-                    DeviceDiscoveryInfo config(info);
                     config.setValue(QZSettings::power_sensor_as_treadmill, true);
-                    config.setValue(QZSettings::power_sensor_name, "NOT " + powerSensorName);
+                    config.setValue(QZSettings::power_sensor_name, "NOT " + name);
                     configurations.push_back(config);
 
                     // disabled with non-matching name
                     config.setValue(QZSettings::power_sensor_as_treadmill, false);
-                    config.setValue(QZSettings::power_sensor_name, "NOT " + powerSensorName);
+                    config.setValue(QZSettings::power_sensor_name, "NOT " + name);
                     configurations.push_back(config);
 
                     // disabled with matching name
                     config.setValue(QZSettings::power_sensor_as_treadmill, false);
-                    config.setValue(QZSettings::power_sensor_name, powerSensorName);
+                    config.setValue(QZSettings::power_sensor_name, name);
                     configurations.push_back(config);
                 }
             });
 
+    RegisterNewDeviceTestData(DeviceIndex::StrydeRunTreadmill_PowerSensor2)
+        ->expectDevice<strydrunpowersensor>()
+        ->acceptDeviceNames({"TREADMILL", "S10"}, DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QBluetoothUuid((quint16)0x1814));
+
+    // Tacx Neo Bike
+    RegisterNewDeviceTestData(DeviceIndex::TacxNeoBike)
+        ->expectDevice<tacxneo2>()        
+        ->acceptDeviceNames({"TACX ", "TACX SMART BIKE","THINK X"}, DeviceNameComparison::StartsWithIgnoreCase);
 
     // Tacx Neo 2 Bike
     RegisterNewDeviceTestData(DeviceIndex::TacxNeo2Bike)
-        ->expectDevice<tacxneo2>()        
-        ->acceptDeviceNames({"TACX NEO","TACX FLOW","TACX SMART BIKE","THINK X"}, DeviceNameComparison::StartsWithIgnoreCase);
+        ->expectDevice<tacxneo2>()
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations)->void {
+            auto address = QBluetoothAddress(enable ? "C1:14:D9:9C:FB:01":"00:00:00:00:00:00");
+            auto newDevice = QBluetoothDeviceInfo(address, info.DeviceName(), 0);
+            auto config = DeviceDiscoveryInfo(info, newDevice);
+            configurations.push_back(config);
+
+        });
 
     // TechnoGym MyRun Treadmill
     RegisterNewDeviceTestData(DeviceIndex::TechnoGymMyRunTreadmill)
@@ -1141,7 +1257,28 @@ void DeviceTestDataIndex::Initialize() {
     // True Treadmill
     RegisterNewDeviceTestData(DeviceIndex::TrueTreadmill)
         ->expectDevice<truetreadmill>()
-        ->acceptDeviceNames({"TRUE","TREADMILL", "ASSAULT TREADMILL "}, DeviceNameComparison::StartsWithIgnoreCase);
+        ->acceptDeviceNames({"TRUE", "ASSAULT TREADMILL "}, DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceName("WDWAY", DeviceNameComparison::StartsWithIgnoreCase, 8); // WdWay179
+
+    // True Treadmill 2
+    RegisterNewDeviceTestData(DeviceIndex::TrueTreadmill2)
+        ->expectDevice<truetreadmill>()
+        ->acceptDeviceName("TREADMILL", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations)-> void{
+            DeviceDiscoveryInfo config(info);
+            config.setValue(QZSettings::gem_module_inclination, !enable);
+
+            auto bt = std::vector<QBluetoothUuid>{QBluetoothUuid((quint16)0x1814),QBluetoothUuid((quint16)0x1826)};
+
+            for(size_t i=enable ? 0:1,
+                 limit = enable ? 0:3;
+                 i<=limit; i++) {
+                config.includeBluetoothService(bt[0], i&1);
+                config.includeBluetoothService(bt[1], i&2);
+                configurations.push_back(config);
+            }
+
+});
 
     // Toorx AppGate USB Bike General
     auto toorxAppGateUSBBikeExclusions ={ GetTypeId<trxappgateusbtreadmill>() };
@@ -1194,27 +1331,43 @@ void DeviceTestDataIndex::Initialize() {
         ->excluding(toorxAppGateUSBBikeExclusions);
 
 
+    auto trxAppGateUSBEllipticalSettingsApplicator =
+        [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
+    {
+        DeviceDiscoveryInfo config(info);
+        if(enable) {
+            config.setValue(QZSettings::ftms_bike, QZSettings::default_ftms_bike);
+            configurations.push_back(config);
+            config.setValue(QZSettings::ftms_bike, "X"+QZSettings::default_ftms_bike+"X");
+            configurations.push_back(config);
+        } else {
+            config.setValue(QZSettings::ftms_bike, "PLACEHOLDER");
+            configurations.push_back(config);
+        }
+    };
     // TrxAppGateUSB Elliptical
     RegisterNewDeviceTestData(DeviceIndex::TrxAppGateUSBElliptical)
         ->expectDevice<trxappgateusbelliptical>()        
         ->acceptDeviceName("FAL-SPORTS", DeviceNameComparison::StartsWithIgnoreCase)
         // TODO: deal with I-CONSOLE+
         ->excluding(toorxAppGateUSBBikeExclusions)
-        ->configureSettingsWith(
-            [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
-            {
-                DeviceDiscoveryInfo config(info);
-                if(enable) {
-                    config.setValue(QZSettings::ftms_bike, QZSettings::default_ftms_bike);
-                    configurations.push_back(config);
-                    config.setValue(QZSettings::ftms_bike, "X"+QZSettings::default_ftms_bike+"X");
-                    configurations.push_back(config);
-                } else {
-                    config.setValue(QZSettings::ftms_bike, "PLACEHOLDER");
-                    configurations.push_back(config);
-                }
-            }) ;
+        ->configureSettingsWith(trxAppGateUSBEllipticalSettingsApplicator) ;
 
+
+    // TrxAppGateUSB Elliptical (I-CONSOLE+)
+    RegisterNewDeviceTestData(DeviceIndex::TrxAppGateUSBEllipticalIConsole)
+        ->expectDevice<trxappgateusbelliptical>()
+        ->acceptDeviceName("I-CONSOLE+", DeviceNameComparison::StartsWithIgnoreCase)
+        ->excluding(toorxAppGateUSBBikeExclusions)
+        ->configureSettingsWith([trxAppGateUSBEllipticalSettingsApplicator](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
+                                {
+                                    trxAppGateUSBEllipticalSettingsApplicator(info, true, configurations);
+
+                                    for(auto config : configurations)
+                                        config.setValue(QZSettings::iconcept_elliptical, enable);
+
+                                    trxAppGateUSBEllipticalSettingsApplicator(info, false, configurations);
+                                }) ;
 
     // Toorx AppGate USB Treadmill
     RegisterNewDeviceTestData(DeviceIndex::ToorxAppGateUSBTreadmill)
@@ -1260,7 +1413,20 @@ void DeviceTestDataIndex::Initialize() {
     // Ypoo Elliptical
     RegisterNewDeviceTestData(DeviceIndex::YpooElliptical)
         ->expectDevice<ypooelliptical>()        
-        ->acceptDeviceName("YPOO-U3-", "SCH_590E", DeviceNameComparison::StartsWithIgnoreCase);
+        ->acceptDeviceNames({"YPOO-U3-", "SCH_590E"}, DeviceNameComparison::StartsWithIgnoreCase);
+
+    // Ypoo Elliptical 2
+    RegisterNewDeviceTestData(DeviceIndex::YpooElliptical2)
+        ->expectDevice<ypooelliptical>()
+        ->acceptDeviceName("E35-", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QBluetoothUuid((quint16)0x1826));
+
+    // Ypoo Elliptical 3
+    RegisterNewDeviceTestData(DeviceIndex::YpooElliptical3)
+        ->expectDevice<ypooelliptical>()
+        ->acceptDeviceName("FS-", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::iconsole_elliptical);
+
 
 
     // Zipro Treadmill
@@ -1269,6 +1435,7 @@ void DeviceTestDataIndex::Initialize() {
         ->acceptDeviceName("RZ_TREADMIL", DeviceNameComparison::StartsWithIgnoreCase);
 
 
+    // TODO: revisit
     // Zwift Runpod
     QString zwiftRunPodPowerSensorName = "WattsItCalled";
     RegisterNewDeviceTestData(DeviceIndex::ZwiftRunpod)

@@ -35,6 +35,7 @@ const QString DeviceIndex::Identifier(const QString &deviceName) { return allIde
 #define DEFINE_DEVICE(DeviceKey, DeviceName) \
         const QString DeviceIndex::DeviceKey = AddDevice(QStringLiteral(DeviceName), QStringLiteral(#DeviceKey));
 
+
 DEFINE_DEVICE(ActivioTreadmill, "Activio Treadmill");
 DEFINE_DEVICE(ApexBike, "Apex Bike");
 DEFINE_DEVICE(AntBike, "Ant Bike");
@@ -42,6 +43,7 @@ DEFINE_DEVICE(BHFitnessElliptical, "BH Fitness Elliptical");
 DEFINE_DEVICE(BKoolBike, "BKool Bike");
 DEFINE_DEVICE(BowflexT216Treadmill, "Bowflex T216 Treadmill");
 DEFINE_DEVICE(Crossrope, "Crossrope");
+DEFINE_DEVICE(CSafeRower, "CSafe Rower");
 DEFINE_DEVICE(CSCBike_Named, "CSC Bike (Named)");
 DEFINE_DEVICE(CSCBike, "CSC Bike");
 DEFINE_DEVICE(Chronobike, "Chronobike");
@@ -68,6 +70,7 @@ DEFINE_DEVICE(FTMSKICKRCORE, "FTMS KICKR CORE");
 DEFINE_DEVICE(FTMSRower, "FTMS Rower");
 DEFINE_DEVICE(FakeBike, "Fake Bike");
 DEFINE_DEVICE(FakeElliptical, "Fake Elliptical");
+DEFINE_DEVICE(FakeRower, "Fake Rower");
 DEFINE_DEVICE(FakeTreadmill, "Fake Treadmill");
 DEFINE_DEVICE(FitPlusBike_MRK_NoSettings, "FitPlus Bike (MRK, no settings)");
 DEFINE_DEVICE(FitPlusF5, "FitPlus F5");
@@ -95,6 +98,8 @@ DEFINE_DEVICE(NPECableBike_Excluding_FlywheelLifeFitnessIC8, "NPECable Bike (exc
 DEFINE_DEVICE(NautilusBike, "Nautilus Bike");
 DEFINE_DEVICE(NautilusElliptical, "Nautilus Elliptical");
 DEFINE_DEVICE(NautilusTreadmill, "Nautilus Treadmill");
+DEFINE_DEVICE(NordictrackIFitADBBike, "Nordictrack IFit ADB Treadmill");
+DEFINE_DEVICE(NordictrackIFitADBElliptical, "Nordictrack IFit ADB Elliptical");
 DEFINE_DEVICE(NordictrackIFitADBTreadmill, "Nordictrack IFit ADB Treadmill");
 DEFINE_DEVICE(NorditrackElliptical, "Norditrack Elliptical");
 DEFINE_DEVICE(OctaneElliptical, "Octane Elliptical");
@@ -104,6 +109,7 @@ DEFINE_DEVICE(PafersTreadmill, "Pafers Treadmill");
 DEFINE_DEVICE(ProFormRower, "ProForm Rower");
 DEFINE_DEVICE(ProFormTreadmill, "ProForm Treadmill");
 DEFINE_DEVICE(ProFormWifiBike, "ProForm Wifi Bike");
+DEFINE_DEVICE(ProFormTelnetBike, "ProForm Telnet Bike");
 DEFINE_DEVICE(ProFormWifiTreadmill, "ProForm Wifi Treadmill");
 DEFINE_DEVICE(ProformBike, "Proform Bike");
 DEFINE_DEVICE(ProformEllipticalTrainer, "Proform Elliptical Trainer");
@@ -119,7 +125,9 @@ DEFINE_DEVICE(SmartRowRower, "Smart Row Rower");
 DEFINE_DEVICE(SnodeBikeFS, "Snode Bike FS");
 DEFINE_DEVICE(SoleBike, "Sole Bike");
 DEFINE_DEVICE(SoleElliptical, "Sole Elliptical");
+DEFINE_DEVICE(SoleElliptical2, "Sole Elliptical 2");
 DEFINE_DEVICE(SoleF80Treadmill, "Sole F80 Treadmill");
+DEFINE_DEVICE(SoleF80Treadmill2, "Sole F80 Treadmill 2");
 DEFINE_DEVICE(SoleF85Treadmill, "Sole F85 Treadmill");
 DEFINE_DEVICE(SpiritTreadmill, "Spirit Treadmill");
 DEFINE_DEVICE(SportsPlusBike, "Sports Plus Bike");
@@ -127,23 +135,33 @@ DEFINE_DEVICE(SportsTechBike, "Sports Tech Bike");
 DEFINE_DEVICE(StagesBike_Assioma_PowerSensorDisabled, "Stages Bike (Assioma / Power Sensor disabled)");
 DEFINE_DEVICE(StagesBike_KICKRCORE, "Stages Bike (KICKR CORE)");
 DEFINE_DEVICE(StagesBike, "Stages Bike");
+DEFINE_DEVICE(StagesPowerBike, "Stages Power Bike");
 DEFINE_DEVICE(StrydeRunTreadmill_PowerSensor, "StrydeRun Treadmill / Power Sensor");
+DEFINE_DEVICE(StrydeRunTreadmill_PowerSensor2, "StrydeRun Treadmill / Power Sensor 2");
+DEFINE_DEVICE(TacxNeoBike, "Tacx Neo Bike");
 DEFINE_DEVICE(TacxNeo2Bike, "Tacx Neo 2 Bike");
 DEFINE_DEVICE(TechnoGymMyRunTreadmillRFComm, "TechnoGym MyRun Treadmill RF Comm");
 DEFINE_DEVICE(TechnoGymMyRunTreadmill, "TechnoGym MyRun Treadmill");
 DEFINE_DEVICE(ToorxAppGateUSBBike_EnabledInSettings, "Toorx AppGate USB Bike (Enabled in settings)");
 DEFINE_DEVICE(ToorxAppGateUSBBike, "Toorx AppGate USB Bike");
 DEFINE_DEVICE(ToorxAppGateUSBTreadmill, "Toorx AppGate USB Treadmill");
+DEFINE_DEVICE(TrxAppGateUSBEllipticalIConsole, "Toorx AppGate USB Elliptical IConsole+");
 DEFINE_DEVICE(ToorxTreadmill, "Toorx Treadmill");
 DEFINE_DEVICE(TrueTreadmill, "True Treadmill");
+DEFINE_DEVICE(TrueTreadmill2, "True Treadmill 2");
 DEFINE_DEVICE(TrxAppGateUSBElliptical, "TrxAppGateUSB Elliptical");
 DEFINE_DEVICE(UltrasportBike, "Ultrasport Bike");
 DEFINE_DEVICE(WahooKickrSnapBike, "Wahoo Kickr Snap Bike");
 DEFINE_DEVICE(YesoulBike, "Yesoul Bike");
 DEFINE_DEVICE(YpooElliptical, "Ypoo Elliptical");
+DEFINE_DEVICE(YpooElliptical2, "Ypoo Elliptical 2");
+DEFINE_DEVICE(YpooElliptical3, "Ypoo Elliptical 3");
 DEFINE_DEVICE(ZwiftRunpod, "Zwift Runpod");
 DEFINE_DEVICE(iConceptBike, "iConcept Bike");
 DEFINE_DEVICE(iConceptElliptical, "iConcept Elliptical");
 DEFINE_DEVICE(SnodeBikeTF, "Snode Bike TF");
 DEFINE_DEVICE(ZiproTreadmill, "Zipro Treadmill");
 
+
+
+#undef DEFINE_DEVICE

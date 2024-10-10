@@ -63,11 +63,14 @@ DeviceDiscoveryInfo::DeviceDiscoveryInfo(const QBluetoothDeviceInfo &deviceInfo,
     this->bluetoothDeviceInfo = deviceInfo;
 }
 
+DeviceDiscoveryInfo::DeviceDiscoveryInfo(const DeviceDiscoveryInfo &other, const QBluetoothDeviceInfo &deviceInfo)
+    : DeviceDiscoveryInfo(other) {
+    this->bluetoothDeviceInfo = deviceInfo;
+}
 
+ QBluetoothDeviceInfo *DeviceDiscoveryInfo::DeviceInfo()  { return &this->bluetoothDeviceInfo; }
 
-QBluetoothDeviceInfo *DeviceDiscoveryInfo::DeviceInfo() { return &this->bluetoothDeviceInfo; }
-
-
+ const QString DeviceDiscoveryInfo::DeviceName() const { return this->bluetoothDeviceInfo.name(); }
 
 void DeviceDiscoveryInfo::includeBluetoothService(const QBluetoothUuid &serviceUuid, bool include) {
     if(include)

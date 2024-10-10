@@ -27,12 +27,27 @@ public :
     DeviceDiscoveryInfo(const QBluetoothDeviceInfo& deviceInfo, bool loadDefaults=true);
 
 
+
+    /**
+     * @brief Constructor that configures with a specific bluetooth device info object, copying other values
+     * from a DeviceDiscoveryInfo object.
+     * @param other The configuration to copy.
+     * @param deviceInfo
+     * @param loadDefaults Indicates if the default values should be loaded.
+     */
+    DeviceDiscoveryInfo(const DeviceDiscoveryInfo& other, const QBluetoothDeviceInfo& deviceInfo);
+
     /**
      * @brief Gets a pointer to the bluetooth device information object.
      * @return
      */
     QBluetoothDeviceInfo * DeviceInfo();
 
+    /**
+     * @brief Constant function to get the bluetooth device name.
+     * @return
+     */
+    const QString DeviceName() const;
 
     /**
      * @brief Utility to include/exclude a service from the blutooth device info.
