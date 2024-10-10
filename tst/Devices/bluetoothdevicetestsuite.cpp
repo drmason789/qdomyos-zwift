@@ -222,7 +222,7 @@ void BluetoothDeviceTestSuite::test_deviceDetection_exclusions() {
                     exclusionDiscoveryInfo = configurationsEnablingTheExclusion[0];
                 }
                 else
-                    GTEST_FAIL() << "There are no enabling configurations for exclusion: " << exclusion->Name().toStdString();
+                    GTEST_FAIL() << "There are no enabling configurations for exclusion device \"" << exclusion->Name().toStdString() << "\" using BT name \"" << exclusionDeviceName.toStdString() << "\"";
 
                 this->testSettings.loadFrom(exclusionDiscoveryInfo);
 
