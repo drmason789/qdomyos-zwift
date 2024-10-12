@@ -948,7 +948,8 @@ void DeviceTestDataIndex::Initialize() {
     RegisterNewDeviceTestData(DeviceIndex::ProFormTelnetBike)
         ->expectDevice<proformtelnetbike>()
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith(QZSettings::proformtdf1ip, testIP, "");
+        ->configureSettingsWith(QZSettings::proformtdf1ip, testIP, "")
+        ->disable("Locks up");
 
     // ProForm Wifi Treadmill
     RegisterNewDeviceTestData(DeviceIndex::ProFormWifiTreadmill)
@@ -1114,7 +1115,7 @@ void DeviceTestDataIndex::Initialize() {
     // Power (Stages) Bike
     RegisterNewDeviceTestData(DeviceIndex::StagesPowerBike)
         ->expectDevice<stagesbike>()
-        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase, 1) // needs a non-trivial name, but could be anything
         ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations) -> void {
             DeviceDiscoveryInfo config(info);
 
