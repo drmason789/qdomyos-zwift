@@ -30,6 +30,7 @@ static QByteArray hex2bytes(const std::string& s)
     return v;
 }
 
+
 QMap<QString,const BluetoothDeviceTestData*> DeviceTestDataIndex::testData;
 
 
@@ -1113,30 +1114,31 @@ void DeviceTestDataIndex::Initialize() {
         ->excluding(stagesBikeExclusions);
 
     // Power (Stages) Bike
+    QString powerSensorName = "WattsItCalled";
     RegisterNewDeviceTestData(DeviceIndex::StagesPowerBike)
         ->expectDevice<stagesbike>()
-        ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase, 1) // needs a non-trivial name, but could be anything
-        ->configureSettingsWith([](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations) -> void {
+        ->acceptDeviceName(powerSensorName+"Suffix", DeviceNameComparison::Exact) // needs a non-trivial name, but could be anything
+        ->configureSettingsWith([powerSensorName](const DeviceDiscoveryInfo& info, bool enable, std::vector<DeviceDiscoveryInfo> configurations) -> void {
             DeviceDiscoveryInfo config(info);
 
             if(enable) {
                 config.setValue(QZSettings::power_sensor_as_bike, true);
-                config.setValue(QZSettings::power_sensor_name, config.DeviceInfo()->name());
+                config.setValue(QZSettings::power_sensor_name, powerSensorName);
                 configurations.push_back(config);
             } else {
                 // enabled but wrong name
                 config.setValue(QZSettings::power_sensor_as_bike, true);
-                config.setValue(QZSettings::power_sensor_name, "NOT "+config.DeviceInfo()->name());
+                config.setValue(QZSettings::power_sensor_name, "NOT "+ powerSensorName);
                 configurations.push_back(config);
 
-                // disabled but right name
+                // disabled but acceptable name
                 config.setValue(QZSettings::power_sensor_as_bike, false);
-                config.setValue(QZSettings::power_sensor_name, config.DeviceInfo()->name());
+                config.setValue(QZSettings::power_sensor_name, powerSensorName);
                 configurations.push_back(config);
 
                 // disabled and wrong name
                 config.setValue(QZSettings::power_sensor_as_bike, false);
-                config.setValue(QZSettings::power_sensor_name, "NOT "+config.DeviceInfo()->name());
+                config.setValue(QZSettings::power_sensor_name, "NOT "+powerSensorName);
                 configurations.push_back(config);
             }
         })
@@ -1187,7 +1189,7 @@ void DeviceTestDataIndex::Initialize() {
     // StrydeRun Power Sensor
     RegisterNewDeviceTestData(DeviceIndex::StrydeRunTreadmill_PowerSensor)
         ->expectDevice<strydrunpowersensor>()        
-        ->acceptDeviceName("WattsItCalled", DeviceNameComparison::StartsWith)
+        ->acceptDeviceName("", DeviceNameComparison::StartsWith,1) // accept any name
         ->configureSettingsWith(
             [](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
             {
@@ -1365,7 +1367,7 @@ void DeviceTestDataIndex::Initialize() {
                                 {
                                     trxAppGateUSBEllipticalSettingsApplicator(info, true, configurations);
 
-                                    for(auto config : configurations)
+                                    for(auto &config : configurations)
                                         config.setValue(QZSettings::iconcept_elliptical, enable);
 
                                     trxAppGateUSBEllipticalSettingsApplicator(info, false, configurations);
@@ -1376,19 +1378,25 @@ void DeviceTestDataIndex::Initialize() {
         ->expectDevice<trxappgateusbtreadmill>()        
         ->acceptDeviceNames({"TOORX", "V-RUN"}, DeviceNameComparison::StartsWith)
         ->acceptDeviceName("K80_", DeviceNameComparison::StartsWithIgnoreCase)
-        ->acceptDeviceNames({"I-CONSOLE+","ICONSOLE+","I-RUNNING","DKN RUN","REEBOK"}, DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceNames({"I-CONSOLE+","ICONSOLE+","I-RUNNING","DKN RUN","ADIDAS ","REEBOK"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith([](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations) -> void
                                 {
                                     DeviceDiscoveryInfo config(info);
 
+                                    // TODO: revist because of all the settings this one needs to consider
+
                                     if(enable) {
-                                        config.setValue(QZSettings::toorx_bike, false);
+                                        config.setValue(QZSettings::toorx_bike, false); // 1 of many possible
                                         config.setValue(QZSettings::toorx_ftms_treadmill, false);
+                                        config.setValue(QZSettings::toorx_ftms, false);
+                                        config.setValue(QZSettings::iconsole_elliptical, false);
                                         configurations.push_back(config);
                                     } else {
-                                        for(int i=1; i<4; i++) {
+                                        for(int i=1; i<16; i++) {
                                             config.setValue(QZSettings::toorx_bike, i&1);
                                             config.setValue(QZSettings::toorx_ftms_treadmill, i&2);
+                                            config.setValue(QZSettings::toorx_ftms, i&4);
+                                            config.setValue(QZSettings::iconsole_elliptical, i&8);
                                             configurations.push_back(config);
                                         }
                                     }
@@ -1406,11 +1414,18 @@ void DeviceTestDataIndex::Initialize() {
         ->acceptDeviceNames({"KICKR SNAP","KICKR BIKE", "KICKR ROLLR","WAHOO KICKR"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->excluding<ftmsbike>();
 
+    // Wahoo Kickr Snap Bike (Saris Trainer)
+    RegisterNewDeviceTestData(DeviceIndex::WahooKickrSarisTrainer)
+        ->expectDevice<wahookickrsnapbike>()
+        ->acceptDeviceName("HAMMER ", DeviceNameComparison::StartsWithIgnoreCase)
+        ->configureSettingsWith(QZSettings::saris_trainer)
+        ->excluding<ftmsbike>();
+
     // Yesoul Bike
     RegisterNewDeviceTestData(DeviceIndex::YesoulBike)
         ->expectDevice<yesoulbike>()        
-        ->acceptDeviceName(yesoulbike::bluetoothName, DeviceNameComparison::StartsWith);
-
+        ->acceptDeviceName(yesoulbike::bluetoothName, DeviceNameComparison::StartsWith)
+        ->acceptDeviceName("YS_G1M_", DeviceNameComparison::StartsWithIgnoreCase);
 
     // Ypoo Elliptical
     RegisterNewDeviceTestData(DeviceIndex::YpooElliptical)
@@ -1426,10 +1441,8 @@ void DeviceTestDataIndex::Initialize() {
     // Ypoo Elliptical 3
     RegisterNewDeviceTestData(DeviceIndex::YpooElliptical3)
         ->expectDevice<ypooelliptical>()
-        ->acceptDeviceName("FS-", DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceName("FS-", DeviceNameComparison::StartsWith)
         ->configureSettingsWith(QZSettings::iconsole_elliptical);
-
-
 
     // Zipro Treadmill
     RegisterNewDeviceTestData(DeviceIndex::ZiproTreadmill)

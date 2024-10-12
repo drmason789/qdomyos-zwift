@@ -19,10 +19,15 @@ DeviceNamePatternGroup * DeviceNamePatternGroup::addDeviceName(const QString& de
 
     this->deviceNames.append(newNames);
 
-    if(cmp & DeviceNameComparison::IgnoreCase) {
-        this->addDifferentCasings(newNames, this->deviceNames);
-    } else {
-        this->addDifferentCasings(newNames, this->invalidDeviceNames);
+    if(deviceName!="") {
+        // Only do this if the supplied device name is not empty
+        // because the additional padded values in newNames represent the entire name
+        // without any prefix with case to be sensitive to.
+        if (cmp & DeviceNameComparison::IgnoreCase) {
+            this->addDifferentCasings(newNames, this->deviceNames);
+        } else {
+            this->addDifferentCasings(newNames, this->invalidDeviceNames);
+        }
     }
 
     return this;
