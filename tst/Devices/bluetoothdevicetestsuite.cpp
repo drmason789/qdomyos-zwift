@@ -115,6 +115,7 @@ void BluetoothDeviceTestSuite::SetUp() {
 
     this->defaultDiscoveryOptions = discoveryoptions{};
     this->defaultDiscoveryOptions.startDiscovery = false;
+    this->defaultDiscoveryOptions.logs = false;
 
     this->names = this->testParam->NamePatternGroup()->DeviceNames();
 
@@ -160,7 +161,13 @@ void BluetoothDeviceTestSuite::test_deviceDetection(const bool validNames, const
 std::vector<DeviceDiscoveryInfo> BluetoothDeviceTestSuite::getConfigurations(const BluetoothDeviceTestData *testData, const QString& deviceName, bool enabled) const {
     QBluetoothDeviceInfo btdi(uuid, deviceName,0);
     DeviceDiscoveryInfo info(btdi);
-    return testData->ApplyConfigurations(info, enabled);
+    auto result = testData->ApplyConfigurations(info, enabled);
+
+    if(enabled && result.empty()) {
+        result.push_back(DeviceDiscoveryInfo(info));
+    }
+
+    return result;
 }
 
 void BluetoothDeviceTestSuite::test_deviceDetection_validNames_enabled() {

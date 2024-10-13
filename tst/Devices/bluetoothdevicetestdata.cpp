@@ -53,6 +53,8 @@ BluetoothDeviceTestData::BluetoothDeviceTestData() {}
 std::vector<DeviceDiscoveryInfo> BluetoothDeviceTestData::ApplyConfigurations(const DeviceDiscoveryInfo &info, bool enable) const {
     std::vector<DeviceDiscoveryInfo> result;
 
+    auto name = info.DeviceName();
+
     if(this->configuratorSingle)
     {
         DeviceDiscoveryInfo newInfo(info);
@@ -60,8 +62,18 @@ std::vector<DeviceDiscoveryInfo> BluetoothDeviceTestData::ApplyConfigurations(co
         result.push_back(newInfo);
     }
 
-    if(this->configuratorMultiple)
+    if(this->configuratorMultiple) {
+        auto count = result.size();
         this->configuratorMultiple(info, enable, result);
+
+        //if(result.size()<=count)
+        //    throw std::domain_error("No configurations added. Please check the lambda is accepting the vector by address.");
+    }
+
+    for(auto config : result) {
+        if(config.DeviceName()!=name)
+            throw std::domain_error("Settings applicator changed the BT name.");
+    }
 
     return result;
 }

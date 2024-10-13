@@ -130,7 +130,7 @@ INSTANTIATE_TEST_SUITE_P(AllDevicesDetection, BluetoothDeviceTestSuite,
                          [](const testing::TestParamInfo<QString>& item) {return DeviceIndex::Identifier(item.param).toStdString(); });
 #else
 INSTANTIATE_TEST_SUITE_P(SelectedDevicesDetection, BluetoothDeviceTestSuite,
-                         testing::Values(DeviceIndex::FTMSKICKRCORE),
+                         testing::Values(DeviceIndex::TacxNeo2Bike),
                          [](const testing::TestParamInfo<QString>& item) {return DeviceIndex::Identifier(item.param).toStdString(); });
 #endif
 
