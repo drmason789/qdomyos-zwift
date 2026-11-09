@@ -70,6 +70,37 @@
     </message>
 </context>
 <context>
+    <name>HeartRateSuggestion</name>
+    <message>
+        <source>Heart rate sensor found: %1</source>
+        <translation>Pulsmåler fundet: %1</translation>
+    </message>
+    <message>
+        <source>Heart rate sensors found: %1</source>
+        <translation>Pulsmålere fundet: %1</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>Tilslut</translation>
+    </message>
+    <message>
+        <source>Choose</source>
+        <translation>Vælg</translation>
+    </message>
+    <message>
+        <source>Not now</source>
+        <translation>Ikke nu</translation>
+    </message>
+    <message>
+        <source>Don&apos;t ask again</source>
+        <translation>Spørg ikke igen</translation>
+    </message>
+    <message>
+        <source>Choose a heart rate sensor</source>
+        <translation>Vælg en pulsmåler</translation>
+    </message>
+</context>
+<context>
     <name>Home</name>
     <message>
         <source>Peloton Workout in progress</source>
@@ -533,6 +564,14 @@ Vil du aktivere de nødvendige tjenester?</translation>
     <message>
         <source>Zwift Play/Ride Connected!</source>
         <translation>Zwift Play/Ride tilsluttet!</translation>
+    </message>
+    <message>
+        <source>Searching for heart rate sensors...</source>
+        <translation>Søger efter pulsmålere...</translation>
+    </message>
+    <message>
+        <source>No heart rate sensor found nearby. Make sure it is on and broadcasting heart rate.</source>
+        <translation>Ingen pulsmåler fundet i nærheden. Kontroller, at den er tændt og sender puls.</translation>
     </message>
     <message>
         <source>%1 connected!</source>
@@ -1010,6 +1049,18 @@ Vil du opdatere QZ-indstillingerne?</translation>
         <source>YPOO M5 initialization failed; reconnect required</source>
         <translation>Klargøringen af YPOO M5 mislykkedes. Opret forbindelse igen.</translation>
     </message>
+    <message>
+        <source>%1 (HR sensor): no heart rate. Make sure it is broadcasting heart rate.</source>
+        <translation>%1 (pulssensor): ingen puls. Sørg for, at sensoren udsender pulsmålinger.</translation>
+    </message>
+    <message>
+        <source>Searching for %1 (HR sensor)...</source>
+        <translation>Søger efter %1 (pulssensor)...</translation>
+    </message>
+    <message>
+        <source>%1 (HR sensor) not found. Make sure it is on and broadcasting heart rate.</source>
+        <translation>%1 (pulssensor) blev ikke fundet. Sørg for, at den er tændt og udsender pulsmålinger.</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1152,6 +1203,69 @@ Vil du opdatere QZ-indstillingerne?</translation>
     </message>
 </context>
 <context>
+    <name>SupportHelpButton</name>
+    <message>
+        <source>Contact QZ support</source>
+        <translation>Kontakt QZ-support</translation>
+    </message>
+    <message>
+        <source>Prepare a support email with diagnostics</source>
+        <translation>Klargør en supportmail med diagnosticeringsoplysninger</translation>
+    </message>
+    <message>
+        <source>No device connected</source>
+        <translation>Ingen enhed tilsluttet</translation>
+    </message>
+    <message>
+        <source>Speed and power at zero</source>
+        <translation>Hastighed og effekt er nul</translation>
+    </message>
+    <message>
+        <source>QZ Support</source>
+        <translation>QZ-support</translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <translation>Færdig</translation>
+    </message>
+    <message>
+        <source>Hide keyboard</source>
+        <translation>Skjul tastatur</translation>
+    </message>
+    <message>
+        <source>Close support request</source>
+        <translation>Luk supportanmodning</translation>
+    </message>
+    <message>
+        <source>Tell us what is not working. QZ will add your device and app information.</source>
+        <translation>Fortæl os, hvad der ikke virker. QZ tilføjer oplysninger om din enhed og app.</translation>
+    </message>
+    <message>
+        <source>Describe the problem...</source>
+        <translation>Beskriv problemet...</translation>
+    </message>
+    <message>
+        <source>Describe the problem</source>
+        <translation>Beskriv problemet</translation>
+    </message>
+    <message>
+        <source>Attach debug log if available</source>
+        <translation>Vedhæft fejlfindingslog, hvis den findes</translation>
+    </message>
+    <message>
+        <source>You can review or edit the email before sending it. Nothing is sent automatically.</source>
+        <translation>Du kan gennemse eller redigere mailen, før du sender den. Intet sendes automatisk.</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Annuller</translation>
+    </message>
+    <message>
+        <source>Open email</source>
+        <translation>Åbn mail</translation>
+    </message>
+</context>
+<context>
     <name>SwagBagView</name>
     <message>
         <source>Hi! Do you know that QZ is just an Open Source Indie App?&lt;br&gt;&lt;br&gt;No Big Companies are running this!&lt;br&gt;The &quot;Swag Bag&quot; is a way to support the ongoing development, maintenance and support of QZ Fitness!</source>
@@ -1268,6 +1382,10 @@ Vil du opdatere QZ-indstillingerne?</translation>
     <message>
         <source>Other folders</source>
         <translation>Andre mapper</translation>
+    </message>
+    <message>
+        <source>Restore programs</source>
+        <translation>Gendan programmer</translation>
     </message>
     <message>
         <source>← Back</source>
@@ -2714,6 +2832,10 @@ Det kan tage et øjeblik ved første start.</translation>
         <translation>Alle filer (*)</translation>
     </message>
     <message>
+        <source>Share FIT file</source>
+        <translation>Del FIT-fil</translation>
+    </message>
+    <message>
         <source>Upload to Strava</source>
         <translation>Upload til Strava</translation>
     </message>
@@ -3465,6 +3587,18 @@ Det kan tage et øjeblik ved første start.</translation>
         <translation>Importerede træningspas: %1.</translation>
     </message>
     <message>
+        <source>The file could not be copied to the QZ folder.</source>
+        <translation>Filen kunne ikke kopieres til QZ-mappen.</translation>
+    </message>
+    <message>
+        <source>Training programs restored: %1.</source>
+        <translation>Gendannede træningsprogrammer: %1.</translation>
+    </message>
+    <message>
+        <source>No training programs of a previous installation were found.</source>
+        <translation>Der blev ikke fundet træningsprogrammer fra en tidligere installation.</translation>
+    </message>
+    <message>
         <source>Already in the history: %1.</source>
         <translation>Findes allerede i historikken: %1.</translation>
     </message>
@@ -3609,6 +3743,14 @@ Det kan tage et øjeblik ved første start.</translation>
     <message>
         <source>W </source>
         <translation>W </translation>
+    </message>
+    <message>
+        <source>Share FIT file</source>
+        <translation>Del FIT-fil</translation>
+    </message>
+    <message>
+        <source>The FIT file of this workout could not be shared</source>
+        <translation>FIT-filen for denne træning kunne ikke deles</translation>
     </message>
     <message>
         <source>meters</source>
@@ -3757,6 +3899,131 @@ Det kan tage et øjeblik ved første start.</translation>
     <message>
         <source>Spotify songs:</source>
         <translation>Spotify-sange:</translation>
+    </message>
+    <message>
+        <source>Support request</source>
+        <translation>Supportanmodning</translation>
+    </message>
+    <message>
+        <source>QZ issue | %1 | %2 | %3</source>
+        <translation>QZ-problem | %1 | %2 | %3</translation>
+    </message>
+    <message>
+        <source>Hi Roberto,</source>
+        <translation>Hej Roberto,</translation>
+    </message>
+    <message>
+        <source>I need help with QZ.</source>
+        <translation>Jeg har brug for hjælp til QZ.</translation>
+    </message>
+    <message>
+        <source>Problem:</source>
+        <translation>Problem:</translation>
+    </message>
+    <message>
+        <source>[Please describe the issue]</source>
+        <translation>[Beskriv problemet]</translation>
+    </message>
+    <message>
+        <source>Expected behavior:</source>
+        <translation>Forventet adfærd:</translation>
+    </message>
+    <message>
+        <source>[Please describe what should happen]</source>
+        <translation>[Beskriv, hvad der burde ske]</translation>
+    </message>
+    <message>
+        <source>--- QZ diagnostics ---</source>
+        <translation>--- QZ-diagnosticering ---</translation>
+    </message>
+    <message>
+        <source>QZ version: %1</source>
+        <translation>QZ-version: %1</translation>
+    </message>
+    <message>
+        <source>Platform: %1 (%2)</source>
+        <translation>Platform: %1 (%2)</translation>
+    </message>
+    <message>
+        <source>Profile: %1</source>
+        <translation>Profil: %1</translation>
+    </message>
+    <message>
+        <source>Device: %1</source>
+        <translation>Enhed: %1</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation>Tilsluttet</translation>
+    </message>
+    <message>
+        <source>Not connected</source>
+        <translation>Ikke tilsluttet</translation>
+    </message>
+    <message>
+        <source>Connection: %1</source>
+        <translation>Forbindelse: %1</translation>
+    </message>
+    <message>
+        <source>Speed: %1 km/h</source>
+        <translation>Hastighed: %1 km/t</translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation>Ikke tilgængelig</translation>
+    </message>
+    <message>
+        <source>Power: %1 W</source>
+        <translation>Effekt: %1 W</translation>
+    </message>
+    <message>
+        <source>Detected situation: %1</source>
+        <translation>Registreret situation: %1</translation>
+    </message>
+    <message>
+        <source>Debug log not requested.</source>
+        <translation>Fejlfindingsloggen blev ikke valgt.</translation>
+    </message>
+    <message>
+        <source>Debug log disabled. Enable debug logging and restart QZ before reproducing.</source>
+        <translation>Fejlfindingslog er deaktiveret. Aktivér logning, og genstart QZ, før problemet genskabes.</translation>
+    </message>
+    <message>
+        <source>Debug log not found.</source>
+        <translation>Fejlfindingslog blev ikke fundet.</translation>
+    </message>
+    <message>
+        <source>Debug log unavailable or too large to prepare.</source>
+        <translation>Fejlfindingsloggen er utilgængelig eller for stor til at klargøre.</translation>
+    </message>
+    <message>
+        <source>Debug log attached (gzip).</source>
+        <translation>Fejlfindingslog vedhæftet (gzip).</translation>
+    </message>
+    <message>
+        <source>Could not write debug log attachment.</source>
+        <translation>Kunne ikke skrive fejlfindingsloggen som vedhæftning.</translation>
+    </message>
+    <message>
+        <source>Could not compress debug log or attachment exceeds 10 MB.</source>
+        <translation>Fejlfindingsloggen kunne ikke komprimeres, eller vedhæftningen er over 10 MB.</translation>
+    </message>
+    <message>
+        <source>Please attach the generated debug log manually</source>
+        <translation>Vedhæft den genererede fejlfindingslog manuelt</translation>
+    </message>
+    <message>
+        <source>No device detected</source>
+        <translation>Ingen enhed registreret</translation>
+    </message>
+    <message>
+        <source>Unable to open an email application</source>
+        <translation>Kunne ikke åbne et e-mailprogram</translation>
+    </message>
+    <message>
+        <source>QZ is running</source>
+        <extracomment>Android notification: title shown while QZ works in the background.</extracomment>
+        <translation>QZ kører</translation>
     </message>
 </context>
 <context>
@@ -3914,6 +4181,10 @@ Vil du starte det nu?</translation>
         <translation>Søg i indstillinger</translation>
     </message>
     <message>
+        <source>Share FIT file</source>
+        <translation>Del FIT-fil</translation>
+    </message>
+    <message>
         <source>Profile: </source>
         <translation>Profil: </translation>
     </message>
@@ -4013,6 +4284,20 @@ Do you want to look for them?
 
 In the next window, allow access to the QZ folder.</source>
         <translation>Træningspas fra en tidligere installation ligger muligvis stadig i QZ-mappen.
+Vil du søge efter dem?
+
+Tillad adgang til QZ-mappen i det næste vindue.</translation>
+    </message>
+    <message>
+        <source>Training Programs</source>
+        <translation>Træningsprogrammer</translation>
+    </message>
+    <message>
+        <source>Training programs of a previous installation may still be in the QZ folder.
+Do you want to look for them?
+
+In the next window, allow access to the QZ folder.</source>
+        <translation>Træningsprogrammer fra en tidligere installation ligger muligvis stadig i QZ-mappen.
 Vil du søge efter dem?
 
 Tillad adgang til QZ-mappen i det næste vindue.</translation>
@@ -4390,7 +4675,7 @@ Vil du skifte til den klassiske virtuelle Bluetooth-enhed i denne session?</tran
     </message>
     <message>
         <source>Open</source>
-        <translation>Åbn</translation>
+        <translation type="vanished">Åbn</translation>
     </message>
     <message>
         <source>General Options</source>
@@ -4407,6 +4692,74 @@ Vil du skifte til den klassiske virtuelle Bluetooth-enhed i denne session?</tran
     <message>
         <source>App Language:</source>
         <translation>Appsprog:</translation>
+    </message>
+    <message>
+        <source>This setting was not found on the settings pages</source>
+        <translation>Denne indstilling blev ikke fundet på indstillingssiderne</translation>
+    </message>
+    <message>
+        <source>Configure how virtual-app inclination maps to bike resistance.</source>
+        <translation>Indstil, hvordan hældningen fra den virtuelle app omsættes til cyklens modstand.</translation>
+    </message>
+    <message>
+        <source>Use a custom mapping when QZ converts virtual-app inclination into resistance.</source>
+        <translation>Brug en egen omregning, når QZ omsætter hældningen fra den virtuelle app til modstand.</translation>
+    </message>
+    <message>
+        <source>One inclination|resistance pair per line. QZ interpolates between points and clamps outside the configured range.</source>
+        <translation>Ét par hældning|modstand pr. linje. QZ beregner værdierne mellem punkterne og bruger endepunktet uden for det angivne område.</translation>
+    </message>
+    <message>
+        <source>Life Fitness account username used for the service sign-in. Stored locally and never written to debug logs.</source>
+        <translation>Brugernavn til Life Fitness-kontoen, der bruges til at logge ind på tjenesten. Gemmes kun lokalt og skrives aldrig i fejlfindingslogge.</translation>
+    </message>
+    <message>
+        <source>Life Fitness account password used for the service sign-in. Stored locally and never written to debug logs.</source>
+        <translation>Adgangskode til Life Fitness-kontoen, der bruges til at logge ind på tjenesten. Gemmes kun lokalt og skrives aldrig i fejlfindingslogge.</translation>
+    </message>
+    <message>
+        <source>Camera Action</source>
+        <translation>Aktuel kameravinkel</translation>
+    </message>
+    <message>
+        <source>Emote Action</source>
+        <translation>Aktuel emote</translation>
+    </message>
+    <message>
+        <source>Wattbike Emulator</source>
+        <translation>Wattbike-emulator</translation>
+    </message>
+    <message>
+        <source>Power Chart Position</source>
+        <translation>Placering af effektgraf</translation>
+    </message>
+    <message>
+        <source>Heart Rate Chart Position</source>
+        <translation>Placering af pulsgraf</translation>
+    </message>
+    <message>
+        <source>Resistance vs Target Resistance Chart Position</source>
+        <translation>Placering af graf for modstand og målmodstand</translation>
+    </message>
+    <message>
+        <source>Peloton Resistance Chart Position</source>
+        <translation>Placering af Peloton-modstandsgraf</translation>
+    </message>
+    <message>
+        <source>Cadence Chart Position</source>
+        <translation>Placering af kadencegraf</translation>
+    </message>
+    <message>
+        <source>Power Distribution Chart Position</source>
+        <translation>Placering af effektfordelingsgraf</translation>
+    </message>
+    <message>
+        <source>Speed and Inclination Chart Position</source>
+        <translation>Placering af graf for hastighed og hældning</translation>
+    </message>
+    <message>
+        <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
+        <translation>Grafens plads i rækkefølgen i træningshistorikken. Rækkefølgen ændres med op- og ned-knapperne i Generelle indstillinger for brugerflade.</translation>
     </message>
     <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
@@ -4567,6 +4920,14 @@ Vil du skifte til den klassiske virtuelle Bluetooth-enhed i denne session?</tran
     <message>
         <source>Refresh Devices List</source>
         <translation>Opdater enhedsliste</translation>
+    </message>
+    <message>
+        <source>Search for a Heart Rate Sensor at Start</source>
+        <translation>Søg efter en pulsmåler ved start</translation>
+    </message>
+    <message>
+        <source>During the first 5 minutes after the fitness machine connects, while no heart rate comes, QZ searches for a heart rate sensor once a minute: it connects the chosen heart belt as soon as it is found or, with none chosen, offers one found nearby. A tap on the heart rate tile or the Bluetooth icon on the home page searches at any time.</source>
+        <translation>I de første 5 minutter efter, at træningsmaskinen er tilsluttet, og så længe der ikke modtages puls, søger QZ efter en pulsmåler én gang i minuttet: det valgte pulsbælte tilsluttes, så snart det findes, og er intet valgt, tilbydes en pulsmåler fundet i nærheden. Et tryk på pulsfeltet eller Bluetooth-ikonet på startsiden søger når som helst.</translation>
     </message>
     <message>
         <source>Heart Rate Zone Options</source>
@@ -7226,7 +7587,15 @@ Standard: A = -0.96, B = 1.33</translation>
     </message>
     <message>
         <source>Hidden on its page right now: change it here</source>
-        <translation>Skjult på sin egen side lige nu: skift den her</translation>
+        <translation type="vanished">Skjult på sin egen side lige nu: skift den her</translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation>Til</translation>
+    </message>
+    <message>
+        <source>Hidden on its page with the current settings</source>
+        <translation>Skjult på sin side med de aktuelle indstillinger</translation>
     </message>
     <message>
         <source>Turn on “%1” to change this setting</source>
@@ -7851,6 +8220,30 @@ Standard: A = -0.96, B = 1.33</translation>
     <message>
         <source>iOS only. Keeps QZ running when the screen is off or QZ is in background, so that the Bluetooth connections and the session timers don&apos;t freeze. It uses a silent audio track mixed with your music, so nothing you&apos;re listening to is interrupted. Enable it if you need to train with the screen locked or with QZ in background. Default is off.</source>
         <translation>Kun iOS. Holder QZ kørende, når skærmen er slukket, eller QZ er i baggrunden, så Bluetooth-forbindelserne og træningstimerne ikke fryser. QZ bruger et lydløst lydspor, der blandes med din musik, så det, du lytter til, ikke bliver afbrudt. Slå til, hvis du skal træne med låst skærm eller med QZ i baggrunden. Standard: fra.</translation>
+    </message>
+    <message>
+        <source>Daum Bike Options</source>
+        <translation>Indstillinger for Daum-cykel</translation>
+    </message>
+    <message>
+        <source>Serial port used by classic Daum ergometers such as the 8008 TRS 3. On Android with a USB-to-serial adapter use &apos;usb&apos;. COM1, COM2, etc. are accepted on Android as aliases for the USB-adapter scan, but they are not Android port names. On Windows use COM1 or COM3; on Linux/macOS use the serial device path, for example /dev/ttyUSB0.</source>
+        <translation>Seriel port til klassiske Daum-ergometre såsom 8008 TRS 3. På Android med en USB-til-seriel-adapter skal du bruge &apos;usb&apos;. COM1, COM2 osv. accepteres på Android som aliaser for søgning efter USB-adapteren, men er ikke Android-portnavne. På Windows bruges COM1 eller COM3; på Linux/macOS bruges stien til den serielle enhed, f.eks. /dev/ttyUSB0.</translation>
+    </message>
+    <message>
+        <source>Resistance Polling Delay:</source>
+        <translation>Forsinkelse mellem modstandsforespørgsler:</translation>
+    </message>
+    <message>
+        <source>Uses the Inclination Delay setting to limit how often QZ sends Daum resistance and power updates. Default: 0 seconds.</source>
+        <translation>Bruger indstillingen Forsinkelse for hældning til at begrænse, hvor ofte QZ sender opdateringer om modstand og effekt til Daum. Standard: 0 sekunder.</translation>
+    </message>
+    <message>
+        <source>Inclination Filter (%):</source>
+        <translation>Filter for hældning (%):</translation>
+    </message>
+    <message>
+        <source>For GPX workouts, ignore inclination changes smaller than this value and send a new inclination command only when the change from the last sent value reaches the configured threshold. Default: 0 (disabled).</source>
+        <translation>Ved GPX-træning ignoreres ændringer i hældning under denne værdi, og en ny kommando sendes først, når forskellen fra den sidst sendte værdi når den angivne grænse. Standard: 0 (deaktiveret).</translation>
     </message>
 </context>
 <context>

@@ -245,6 +245,104 @@ ApplicationWindow {
         property bool android_landscape_cutout_prompt_shown: false
         property int ui_text_scale: 100
         property bool ui_text_scale_system: true
+        property bool ui_modern: false
+        property string ui_theme: "graphite"
+        property string ui_accent: "violet"
+        property string ui_theme_mode: "auto"
+    }
+
+    // Modern look (settings.ui_modern, off by default). Pages and Ui* components read the palette
+    // and the text sizes through window.ui; with ui.modern off every page keeps its classic look,
+    // and nothing here asks the system for its theme
+    readonly property QtObject ui: QtObject {
+        readonly property bool modern: settings.ui_modern
+
+        // Appearance: "auto" follows the night mode of the phone (dark on Android before 10 and
+        // iOS before 13, which have no dark theme), "dark" and "light" are fixed. The classic look
+        // is always dark.
+        readonly property string themeMode: settings.ui_theme_mode
+        property bool systemDark: true
+        readonly property bool dark: !modern || themeMode === "dark" || (themeMode !== "light" && systemDark)
+
+        readonly property var themes: ({
+            "graphite": { bg: "#111318", surface: "#1B1E24", surfaceHigh: "#23272E", surfaceHighest: "#2D323A",
+                          outline: "#3B414B", textMain: "#E4E6EB", textMuted: "#A2A8B3" },
+            "oled":     { bg: "#000000", surface: "#101215", surfaceHigh: "#181B1F", surfaceHighest: "#22262B",
+                          outline: "#30353C", textMain: "#E6E7EA", textMuted: "#9CA2AC" },
+            "midnight": { bg: "#0B1220", surface: "#131C2D", surfaceHigh: "#1B2639", surfaceHighest: "#243148",
+                          outline: "#35445F", textMain: "#E3E9F4", textMuted: "#99A6BE" }
+        })
+        readonly property var accents: ({
+            "violet": "#B69DF8", "blue": "#7AB8FF", "teal": "#4FD8C4",
+            "green": "#7EDC8A", "orange": "#FFB36B", "pink": "#F7A1C4"
+        })
+        readonly property var lightThemes: ({
+            "graphite": { bg: "#F4F5F7", surface: "#FFFFFF", surfaceHigh: "#ECEEF1", surfaceHighest: "#E1E4E8",
+                          outline: "#C4C8CF", textMain: "#1A1C20", textMuted: "#5B616B" },
+            "oled":     { bg: "#FFFFFF", surface: "#F3F4F6", surfaceHigh: "#E9EBEE", surfaceHighest: "#DDE0E4",
+                          outline: "#C8CCD2", textMain: "#111214", textMuted: "#5A5F68" },
+            "midnight": { bg: "#EEF2F9", surface: "#FFFFFF", surfaceHigh: "#E3E9F4", surfaceHighest: "#D6DFEE",
+                          outline: "#B8C4D9", textMain: "#162033", textMuted: "#55627A" }
+        })
+        // At least 5:1 as text on every light surface (WCAG AA asks 4.5), and white on them as fill
+        readonly property var lightAccents: ({
+            "violet": "#6444BE", "blue": "#1B59B3", "teal": "#00675B",
+            "green": "#26682A", "orange": "#984200", "pink": "#A32C62"
+        })
+        readonly property var t: dark ? (themes[settings.ui_theme] || themes["graphite"])
+                                      : (lightThemes[settings.ui_theme] || lightThemes["graphite"])
+        readonly property var a: dark ? accents : lightAccents
+
+        // The system is asked only while the modern look is on
+        function refreshSystemTheme() {
+            if (modern)
+                systemDark = AndroidStatusBar.systemDarkMode()
+        }
+        onModernChanged: refreshSystemTheme()
+        Component.onCompleted: refreshSystemTheme()
+
+        readonly property color bg: t.bg
+        readonly property color surface: t.surface
+        readonly property color surfaceHigh: t.surfaceHigh
+        readonly property color surfaceHighest: t.surfaceHighest
+        readonly property color outline: t.outline
+        readonly property color textMain: t.textMain
+        readonly property color textMuted: t.textMuted
+        readonly property color accent: a[settings.ui_accent] || a["violet"]
+        readonly property color accentInk: dark ? "#12101A" : "#FFFFFF"
+        readonly property color danger: dark ? "#FF8A80" : "#C62828"
+        // Dimming behind a modal popup
+        readonly property color scrim: Qt.rgba(0, 0, 0, dark ? 0.6 : 0.4)
+
+        // Type scale: the role sizes at 100 %, times the text size of the app (window.textScale).
+        // Pages and Ui* components take a role, not a number, so the text of the modern look grows as one
+        function fontPx(base) { return window.fontPx(base) }
+        // The font f with another size (and weight): Qt.font() alone keeps nothing but what it is given
+        function fontOf(f, px, weight) {
+            return Qt.font({ family: f.family, pixelSize: px, weight: weight === undefined ? f.weight : weight,
+                             italic: f.italic, capitalization: f.capitalization, letterSpacing: f.letterSpacing,
+                             hintingPreference: f.hintingPreference })
+        }
+        readonly property int fontHeadline: fontPx(22) // page titles
+        readonly property int fontTitle: fontPx(20)    // dialog titles, empty states
+        readonly property int fontBody: fontPx(16)     // dialog text, list titles, fields
+        readonly property int fontLabel: fontPx(15)    // drawer entries, group titles
+        readonly property int fontCaption: fontPx(13)  // secondary lines, chips, captions
+
+        function alpha(c, a) { return Qt.rgba(c.r, c.g, c.b, a) }
+    }
+
+    // Classic look: undefined resets them to the style (qtquickcontrols2.conf), as without these lines
+    Material.theme: ui.modern ? (ui.dark ? Material.Dark : Material.Light) : undefined
+    Material.accent: ui.modern ? ui.accent : undefined
+    Material.background: ui.modern ? ui.bg : undefined
+
+    // The phone can switch its night mode while the app runs (by schedule or from the quick
+    // settings): Android reports it as a configuration change, iOS through the return to the
+    // foreground (onStateChanged below)
+    Connections {
+        target: AndroidStatusBar
+        function onSystemThemeChanged() { window.ui.refreshSystemTheme() }
     }
 
     // Text size of the app (not the tiles, they follow ui_zoom). On Android and iOS it follows the
@@ -310,8 +408,10 @@ ApplicationWindow {
     Connections {
         target: Qt.application
         function onStateChanged() {
-            if (Qt.application.state === Qt.ApplicationActive)
+            if (Qt.application.state === Qt.ApplicationActive) {
                 window.systemTextScale = AndroidStatusBar.systemFontScale()
+                window.ui.refreshSystemTheme()
+            }
         }
     }
 
@@ -360,6 +460,8 @@ ApplicationWindow {
     ToastManager {
         id: toast
     }
+
+    HeartRateSuggestion {}
 
     property bool lapPromptVisible: false
     property string lapPromptText: ""
@@ -490,8 +592,11 @@ ApplicationWindow {
         }
 
         stackView.pop()
-        toolButtonLoadSettings.visible = false;
-        toolButtonSaveSettings.visible = false;
+        // Back from a page opened out of the settings (Tiles Options...) the settings keep their
+        // load and save buttons, and with them the tile lock, map, video and chart stay hidden
+        var backOnSettings = stackView.depth > 1 && headerToolbar.settingsPageActive
+        toolButtonLoadSettings.visible = backOnSettings;
+        toolButtonSaveSettings.visible = backOnSettings;
         rootItem.sortTiles()
         if (remindToSaveProfile) {
             toast.show(qsTr("Remember to save profile \"%1\" if you want to keep these changes in this profile.").arg(activeProfileName))
@@ -977,6 +1082,21 @@ ApplicationWindow {
         function onHistoryRecoveryOfferRequested() {
             popupHistoryRecovery.visible = true
         }
+        function onTrainingRestoreOfferRequested() {
+            popupTrainingRestore.visible = true
+        }
+    }
+
+    // after a reinstall the training programs of the previous install are hidden in the
+    // training folder: with access to the QZ folder QZ copies them back as its own
+    MessageDialog {
+        id: popupTrainingRestore
+        text: qsTr("Training Programs")
+        informativeText: qsTr("Training programs of a previous installation may still be in the QZ folder.\nDo you want to look for them?\n\nIn the next window, allow access to the QZ folder.")
+        buttons: (MessageDialog.Yes | MessageDialog.No)
+        onYesClicked: rootItem.restoreTrainingPrograms()
+        onNoClicked: this.visible = false
+        visible: false
     }
 
     // a device changed a setting on its own (auto-detection): the message says what QZ found and why it must restart
@@ -1493,7 +1613,9 @@ ApplicationWindow {
             onClicked: { loadMaps(); }
             anchors.right: toolButtonChart.left
             anchors.verticalCenter: parent.verticalCenter
-            visible: rootItem.mapsVisible
+            // Hidden where load and save are shown (settings, profiles), as the tile lock: there the
+            // map, video and chart buttons lie over search, load and the title
+            visible: rootItem.mapsVisible && !toolButtonSaveSettings.visible
         }      
 
         ToolButton {
@@ -1511,7 +1633,7 @@ ApplicationWindow {
             onClicked: { loadVideo(); }
             anchors.right: toolButtonMaps.left
             anchors.verticalCenter: parent.verticalCenter
-            visible: rootItem.videoIconVisible
+            visible: rootItem.videoIconVisible && !toolButtonSaveSettings.visible
         }
 
         ToolButton {
@@ -1520,7 +1642,52 @@ ApplicationWindow {
             onClicked: { rootItem.chartFooterVisible = !rootItem.chartFooterVisible }
             anchors.right: toolButtonLockTiles.left
             anchors.verticalCenter: parent.verticalCenter
-            visible: rootItem.chartIconVisible
+            visible: rootItem.chartIconVisible && !toolButtonSaveSettings.visible
+        }
+
+        // Share the workout file of the page (PreviewChart.qml opened from the workout history)
+        ToolButton {
+            id: toolButtonShareFit
+            readonly property string filePath: stackView.currentItem && stackView.currentItem.fitFilePath ? stackView.currentItem.fitFilePath : ""
+            Accessible.name: qsTr("Share FIT file")
+            // drawn as the search button: no image file, sharp at any density
+            Canvas {
+                property color color: toolButtonShareFit.Material.foreground
+                anchors.centerIn: parent
+                width: 24 * Screen.devicePixelRatio
+                height: 24 * Screen.devicePixelRatio
+                scale: 1 / Screen.devicePixelRatio
+                onColorChanged: requestPaint()
+                onPaint: {
+                    var ctx = getContext("2d")
+                    ctx.reset()
+                    // three dots joined by two lines, on a 24 x 24 grid
+                    ctx.scale(width / 24, height / 24)
+                    ctx.strokeStyle = color
+                    ctx.fillStyle = color
+                    ctx.lineWidth = 1.6
+                    ctx.beginPath()
+                    ctx.moveTo(18, 5)
+                    ctx.lineTo(6, 12)
+                    ctx.lineTo(18, 19)
+                    ctx.stroke()
+                    var dots = [[18, 5], [6, 12], [18, 19]]
+                    for (var i = 0; i < dots.length; i++) {
+                        ctx.beginPath()
+                        ctx.arc(dots[i][0], dots[i][1], 3, 0, 2 * Math.PI)
+                        ctx.fill()
+                    }
+                }
+            }
+            onClicked: rootItem.shareWorkoutFile(filePath)
+            // left of the leftmost shown button of the chain video - maps - chart - lock
+            anchors.right: toolButtonVideo.visible ? toolButtonVideo.left :
+                           toolButtonMaps.visible ? toolButtonMaps.left :
+                           toolButtonChart.visible ? toolButtonChart.left : toolButtonLockTiles.left
+            anchors.verticalCenter: parent.verticalCenter
+            visible: filePath !== ""
+            ToolTip.visible: hovered
+            ToolTip.text: qsTr("Share FIT file")
         }
 
         ToolButton {
@@ -1558,7 +1725,7 @@ ApplicationWindow {
                 var c = parent.width / 2, room = c
                 var left = [toolButton, toolButtonFloating]
                 var right = [toolButtonSettingsSearch, toolButtonLoadSettings, toolButtonSaveSettings, toolButtonMaps,
-                             toolButtonVideo, toolButtonChart, toolButtonLockTiles, toolButtonAutoResistance]
+                             toolButtonVideo, toolButtonChart, toolButtonShareFit, toolButtonLockTiles, toolButtonAutoResistance]
                 for (var i = 0; i < left.length; i++)
                     if (left[i].visible && left[i].opacity > 0 && left[i].width > 0)
                         room = Math.min(room, c - (left[i].x + left[i].width))
@@ -1901,6 +2068,14 @@ ApplicationWindow {
         StackView {
             id: stackView
             initialItem: "Home.qml"
+            // The home page has no load and save buttons, whichever way it is reached (a profile
+            // saved, a settings file loaded): with them shown the lock, map, video and chart hide
+            onDepthChanged: {
+                if (depth === 1) {
+                    toolButtonLoadSettings.visible = false;
+                    toolButtonSaveSettings.visible = false;
+                }
+            }
             anchors.fill: parent
             // Below the toolbar, which hangs over the pages (headerToolbar)
             anchors.topMargin: headerToolbar.contentHeight
@@ -2005,6 +2180,14 @@ ApplicationWindow {
             Shortcut { context: Qt.WindowShortcut; sequence: settings.shortcut_lap; enabled: shortcutReady(sequence); onActivated: rootItem.keyboardLap() }
             Shortcut { context: Qt.WindowShortcut; sequence: settings.shortcut_start_stop; enabled: shortcutReady(sequence); onActivated: rootItem.keyboardStartStop() }
             Shortcut { context: Qt.WindowShortcut; sequence: settings.shortcut_stop; enabled: shortcutReady(sequence); onActivated: rootItem.keyboardStop() }
+        }
+
+        SupportHelpButton {
+            activeOnHome: window.rootReady && stackView.depth === 1 && !window.lockTiles
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: 16 + window.getRightPadding()
+            anchors.bottomMargin: 16 + window.getBottomPadding()
         }
     }
 }

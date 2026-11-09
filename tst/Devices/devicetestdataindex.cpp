@@ -170,20 +170,19 @@ void DeviceTestDataIndex::Initialize() {
     RegisterNewDeviceTestData(DeviceIndex::CSafeRower)
         ->expectDevice<csaferower>()
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith(QZSettings::csafe_rower, "COMX", "")
-        ->skip("Not supported for testing");
+        ->configureSettingsWith(QZSettings::csafe_rower, "COMX", "");
 
     // CSafe Elliptical
     RegisterNewDeviceTestData(DeviceIndex::CSafeElliptical)
         ->expectDevice<csafeelliptical>()
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith(QZSettings::csafe_elliptical_port, "COMX", "")
-        ->skip("Not supported for testing");
+        ->configureSettingsWith(QZSettings::csafe_elliptical_port, "COMX", "");
 
     cscBikeName = "CyclingSpeedCadenceBike-";
     RegisterNewDeviceTestData(DeviceIndex::CSCBike)
         ->expectDevice<cscbike>()
         ->acceptDeviceName(QStringLiteral("JOROTO-BK-"), DeviceNameComparison::StartsWithIgnoreCase)
+        ->acceptDeviceName(QStringLiteral("BGYM"), DeviceNameComparison::StartsWithIgnoreCase, 8) // 8-character BGYM CSC bike
         ->configureSettingsWith(
             [cscBikeName](const DeviceDiscoveryInfo &info, bool enable, std::vector<DeviceDiscoveryInfo> &configurations)->void
             {
@@ -655,6 +654,10 @@ void DeviceTestDataIndex::Initialize() {
         ->acceptDeviceName("ICSE", DeviceNameComparison::StartsWithIgnoreCase, 4)
         ->acceptDeviceName("FLX", DeviceNameComparison::StartsWithIgnoreCase, 10)
         ->acceptDeviceName("CSRB", DeviceNameComparison::StartsWithIgnoreCase, 11)
+        ->acceptDeviceName("07250DrumFit", DeviceNameComparison::IgnoreCase)
+        ->acceptDeviceName("1234DrumFit", DeviceNameComparison::IgnoreCase)
+        ->rejectDeviceName("ABCDDrumFit", DeviceNameComparison::IgnoreCase)
+        ->rejectDeviceName("07250DrumFitX", DeviceNameComparison::IgnoreCase)
         // Hammer Speed Race S (BLE): numeric prefix must not change plain Kettler RACER S routing.
         ->acceptDeviceName("4864 RACER S", DeviceNameComparison::IgnoreCase)
         ->acceptDeviceName("1234 racer s", DeviceNameComparison::IgnoreCase)
@@ -1114,12 +1117,12 @@ void DeviceTestDataIndex::Initialize() {
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::proformtdf4ip, testIP, "");
 
-    // ProForm Telnet Bike
+    // ProForm Wifi Bike
     RegisterNewDeviceTestData(DeviceIndex::ProFormTelnetBike)
         ->expectDevice<proformtelnetbike>()
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
         ->configureSettingsWith(QZSettings::proformtdf1ip, testIP, "")
-        ->skip("Can take over 60s and device isn't faked.");
+        ->disable("Locks up");
 
     // ProForm Wifi Treadmill
     RegisterNewDeviceTestData(DeviceIndex::ProFormWifiTreadmill)
@@ -1369,7 +1372,6 @@ void DeviceTestDataIndex::Initialize() {
         ->acceptDeviceNames({"TACX ", "TACX SMART BIKE","THINK X"}, DeviceNameComparison::StartsWithIgnoreCase)
         ->rejectDeviceName("TACX SATORI", DeviceNameComparison::StartsWithIgnoreCase);
 
-
     // Tacx Neo 2 Bike
     RegisterNewDeviceTestData(DeviceIndex::TacxNeo2Bike)
         ->expectDevice<tacxneo2>()
@@ -1380,6 +1382,7 @@ void DeviceTestDataIndex::Initialize() {
             auto newDevice = QBluetoothDeviceInfo(address, info.DeviceName(), 0);
             auto config = DeviceDiscoveryInfo(info, newDevice);
             configurations.push_back(config);
+
         });
 
     // TechnoGym MyRun Treadmill
@@ -1408,8 +1411,7 @@ void DeviceTestDataIndex::Initialize() {
             trixterxdreamserial::serialDataSourceFactory = TrixterXDreamBikeStub::create;
         })
         ->acceptDeviceName("", DeviceNameComparison::StartsWithIgnoreCase)
-        ->configureSettingsWith(QZSettings::trixter_xdream_bike_enabled)
-        ->useNonBluetoothDiscovery();
+        ->configureSettingsWith(QZSettings::trixter_xdream_bike_enabled);
 
     // True Treadmill
     RegisterNewDeviceTestData(DeviceIndex::TrueTreadmill)
@@ -1685,7 +1687,7 @@ void DeviceTestDataIndex::Initialize() {
 
         try {
             auto exclusions = deviceTestData->Exclusions();
-        } catch(const std::domain_error&) {
+        } catch(std::domain_error&) {
             qDebug() << "Device: " << deviceTestData->Name() << " specifies at least 1 exclusion for which no test data was found.";
         }
 

@@ -947,6 +947,7 @@ const QString QZSettings::default_peloton_date_format = QStringLiteral("MM/dd/yy
 const QString QZSettings::force_resistance_instead_inclination = QStringLiteral("force_resistance_instead_inclination");
 const QString QZSettings::proform_treadmill_575i = QStringLiteral("proform_treadmill_575i");
 const QString QZSettings::proform_treadmill_sport_55 = QStringLiteral("proform_treadmill_sport_55");
+const QString QZSettings::proform_treadmill_sport_6_0 = QStringLiteral("proform_treadmill_sport_6_0");
 const QString QZSettings::zwift_play_emulator = QStringLiteral("zwift_play_emulator");
 const QString QZSettings::gear_configuration = QStringLiteral("gear_configuration");
 const QString QZSettings::default_gear_configuration = QStringLiteral("1|38|44|true\n2|38|38|true\n3|38|32|true\n4|38|28|true\n5|38|24|true\n6|38|21|true\n7|38|19|true\n8|38|17|true\n9|38|15|true\n10|38|13|true\n11|38|11|true\n12|38|10|true");
@@ -1360,8 +1361,19 @@ const QString QZSettings::history_chart_power_distribution_order = QStringLitera
 const QString QZSettings::history_chart_speed_inclination_order = QStringLiteral("history_chart_speed_inclination_order");
 
 const QString QZSettings::moovio_lynx_konect_2_0 = QStringLiteral("moovio_lynx_konect_2_0");
+const QString QZSettings::heart_rate_belt_suggest = QStringLiteral("heart_rate_belt_suggest");
+const QString QZSettings::log_debug_first_setup = QStringLiteral("log_debug_first_setup");
+const QString QZSettings::log_debug_first_setup_since = QStringLiteral("log_debug_first_setup_since");
+const QString QZSettings::default_log_debug_first_setup_since = QStringLiteral("");
+const QString QZSettings::ui_modern = QStringLiteral("ui_modern");
+const QString QZSettings::ui_theme = QStringLiteral("ui_theme");
+const QString QZSettings::default_ui_theme = QStringLiteral("graphite");
+const QString QZSettings::ui_accent = QStringLiteral("ui_accent");
+const QString QZSettings::default_ui_accent = QStringLiteral("violet");
+const QString QZSettings::ui_theme_mode = QStringLiteral("ui_theme_mode");
+const QString QZSettings::default_ui_theme_mode = QStringLiteral("auto");
 
-const uint32_t allSettingsCount = 1045;
+const uint32_t allSettingsCount = 1053;
 
 QVariant allSettings[allSettingsCount][2] = {
     {QZSettings::cryptoKeySettingsProfiles, QZSettings::default_cryptoKeySettingsProfiles},
@@ -1980,7 +1992,8 @@ QVariant allSettings[allSettingsCount][2] = {
     {QZSettings::zwift_ocr, QZSettings::default_zwift_ocr},
     {QZSettings::fit_file_saved_on_quit, QZSettings::default_fit_file_saved_on_quit},
     {QZSettings::gem_module_inclination, QZSettings::default_gem_module_inclination},
-    {QZSettings::treadmill_simulate_inclination_with_speed, QZSettings::default_treadmill_simulate_inclination_with_speed},
+    {QZSettings::treadmill_simulate_inclination_with_speed,
+     QZSettings::default_treadmill_simulate_inclination_with_speed},
     {QZSettings::garmin_companion, QZSettings::default_garmin_companion},
     {QZSettings::peloton_companion_workout_ocr, QZSettings::default_companion_peloton_workout_ocr},
     {QZSettings::iconcept_elliptical, QZSettings::default_iconcept_elliptical},
@@ -2019,13 +2032,13 @@ QVariant allSettings[allSettingsCount][2] = {
     {QZSettings::saris_trainer, QZSettings::default_saris_trainer},
     {QZSettings::proform_studio_NTEX71021, QZSettings::default_proform_studio_NTEX71021},
     {QZSettings::nordictrack_x22i, QZSettings::default_nordictrack_x22i},
-    {QZSettings::iconsole_elliptical, QZSettings::default_iconsole_elliptical},    
+    {QZSettings::iconsole_elliptical, QZSettings::default_iconsole_elliptical},
     {QZSettings::autolap_distance, QZSettings::default_autolap_distance},
     {QZSettings::nordictrack_s20_treadmill, QZSettings::default_nordictrack_s20_treadmill},
     {QZSettings::freemotion_coachbike_b22_7, QZSettings::default_freemotion_coachbike_b22_7},
     {QZSettings::proform_cycle_trainer_300_ci, QZSettings::default_proform_cycle_trainer_300_ci},
     {QZSettings::nordictrack_gx_4_5_pro, QZSettings::default_nordictrack_gx_4_5_pro},
-    {QZSettings::kingsmith_encrypt_g1_walking_pad, QZSettings::default_kingsmith_encrypt_g1_walking_pad},    
+    {QZSettings::kingsmith_encrypt_g1_walking_pad, QZSettings::default_kingsmith_encrypt_g1_walking_pad},
     {QZSettings::proform_bike_225_csx, QZSettings::default_proform_bike_225_csx},
     {QZSettings::proform_treadmill_l6_0s, QZSettings::default_proform_treadmill_l6_0s},
     {QZSettings::proformtdf1ip, QZSettings::default_proformtdf1ip},
@@ -2052,7 +2065,7 @@ QVariant allSettings[allSettingsCount][2] = {
     {QZSettings::domyos_treadmill_sync_start, QZSettings::default_domyos_treadmill_sync_start},
     {QZSettings::enerfit_SPX_9500, QZSettings::default_enerfit_SPX_9500},
     {QZSettings::proform_treadmill_505_cst, QZSettings::default_proform_treadmill_505_cst},
-    {QZSettings::nordictrack_treadmill_t8_5s, QZSettings::default_nordictrack_treadmill_t8_5s},    
+    {QZSettings::nordictrack_treadmill_t8_5s, QZSettings::default_nordictrack_treadmill_t8_5s},
     {QZSettings::proform_treadmill_705_cst, QZSettings::default_proform_treadmill_705_cst},
     {QZSettings::zwift_click, QZSettings::default_zwift_click},
     {QZSettings::thinkrider_controller, QZSettings::default_thinkrider_controller},
@@ -2124,6 +2137,7 @@ QVariant allSettings[allSettingsCount][2] = {
     {QZSettings::force_resistance_instead_inclination, QZSettings::default_force_resistance_instead_inclination},
     {QZSettings::proform_treadmill_575i, QZSettings::default_proform_treadmill_575i},
     {QZSettings::proform_treadmill_sport_55, QZSettings::default_proform_treadmill_sport_55},
+    {QZSettings::proform_treadmill_sport_6_0, QZSettings::default_proform_treadmill_sport_6_0},
     {QZSettings::zwift_play_emulator, QZSettings::default_zwift_play_emulator},
     {QZSettings::gear_configuration, QZSettings::default_gear_configuration},
     {QZSettings::gear_crankset_size, QZSettings::default_gear_crankset_size},
@@ -2183,7 +2197,7 @@ QVariant allSettings[allSettingsCount][2] = {
 
     {QZSettings::tile_preset_powerzone_3_enabled, QZSettings::default_tile_preset_powerzone_3_enabled},
     {QZSettings::tile_preset_powerzone_3_order, QZSettings::default_tile_preset_powerzone_3_order},
-    {QZSettings::tile_preset_powerzone_3_value, QZSettings::default_tile_preset_powerzone_3_value}, 
+    {QZSettings::tile_preset_powerzone_3_value, QZSettings::default_tile_preset_powerzone_3_value},
     {QZSettings::tile_preset_powerzone_3_label, QZSettings::default_tile_preset_powerzone_3_label},
     {QZSettings::tile_preset_powerzone_3_color, QZSettings::default_tile_preset_powerzone_3_color},
 
@@ -2202,14 +2216,14 @@ QVariant allSettings[allSettingsCount][2] = {
     {QZSettings::tile_preset_powerzone_6_enabled, QZSettings::default_tile_preset_powerzone_6_enabled},
     {QZSettings::tile_preset_powerzone_6_order, QZSettings::default_tile_preset_powerzone_6_order},
     {QZSettings::tile_preset_powerzone_6_value, QZSettings::default_tile_preset_powerzone_6_value},
-    {QZSettings::tile_preset_powerzone_6_label, QZSettings::default_tile_preset_powerzone_6_label}, 
+    {QZSettings::tile_preset_powerzone_6_label, QZSettings::default_tile_preset_powerzone_6_label},
     {QZSettings::tile_preset_powerzone_6_color, QZSettings::default_tile_preset_powerzone_6_color},
 
     {QZSettings::tile_preset_powerzone_7_enabled, QZSettings::default_tile_preset_powerzone_7_enabled},
     {QZSettings::tile_preset_powerzone_7_order, QZSettings::default_tile_preset_powerzone_7_order},
     {QZSettings::tile_preset_powerzone_7_value, QZSettings::default_tile_preset_powerzone_7_value},
     {QZSettings::tile_preset_powerzone_7_label, QZSettings::default_tile_preset_powerzone_7_label},
-    {QZSettings::tile_preset_powerzone_7_color, QZSettings::default_tile_preset_powerzone_7_color},    
+    {QZSettings::tile_preset_powerzone_7_color, QZSettings::default_tile_preset_powerzone_7_color},
 
     {QZSettings::proform_bike_PFEVEX71316_0, QZSettings::default_proform_bike_PFEVEX71316_0},
     {QZSettings::real_inclination_to_virtual_treamill_bridge, QZSettings::default_real_inclination_to_virtual_treamill_bridge},
@@ -2432,6 +2446,13 @@ QVariant allSettings[allSettingsCount][2] = {
     {QZSettings::moovio_lynx_konect_2_0, QZSettings::default_moovio_lynx_konect_2_0},
     {QZSettings::virtual_device_rower_cadence_gain, QZSettings::default_virtual_device_rower_cadence_gain},
     {QZSettings::virtual_device_rower_cadence_offset, QZSettings::default_virtual_device_rower_cadence_offset},
+    {QZSettings::heart_rate_belt_suggest, QZSettings::default_heart_rate_belt_suggest},
+    {QZSettings::log_debug_first_setup, QZSettings::default_log_debug_first_setup},
+    {QZSettings::log_debug_first_setup_since, QZSettings::default_log_debug_first_setup_since},
+    {QZSettings::ui_modern, QZSettings::default_ui_modern},
+    {QZSettings::ui_theme, QZSettings::default_ui_theme},
+    {QZSettings::ui_accent, QZSettings::default_ui_accent},
+    {QZSettings::ui_theme_mode, QZSettings::default_ui_theme_mode},
 };
 
 void QZSettings::qDebugAllSettings(bool showDefaults) {
