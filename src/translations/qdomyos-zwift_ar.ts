@@ -68,6 +68,26 @@
         <source>Other folders</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Parent folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No GPX files here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 km</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 m</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HeartRateSuggestion</name>
@@ -1167,6 +1187,18 @@ Do you want to update QZ settings?</source>
         <source>Other folders</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Tap a file to select it, then Load.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No saved settings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsNumberField</name>
@@ -1390,6 +1422,63 @@ Do you want to update QZ settings?</source>
     </message>
     <message>
         <source>Start Workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parent folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No workouts found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No workouts here</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiMessageDialog</name>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">إلغاء</translation>
+    </message>
+</context>
+<context>
+    <name>UiSectionHeader</name>
+    <message>
+        <source>Expanded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collapsed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiTextField</name>
+    <message>
+        <source>hours</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>min</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>sec</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2356,6 +2445,16 @@ Do you want to update QZ settings?</source>
     </message>
     <message>
         <source>Interval {number}, {field}: {error}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HR PID actuator</source>
+        <extracomment>Workout editor field (treadmill): what the machine changes to keep the heart rate in the target zone during this interval.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <extracomment>Workout editor, &quot;HR PID actuator&quot; option: use the global &quot;PID HR actuator&quot; setting.</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4354,11 +4453,11 @@ Do you want to switch to the classic Bluetooth bridge for this session?</source>
     </message>
     <message>
         <source>Not now</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ليس الآن</translation>
     </message>
     <message>
         <source>Don&apos;t ask again</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">لا تسأل مرة أخرى</translation>
     </message>
     <message>
         <source>Auto Resistance enabled</source>
@@ -4370,6 +4469,114 @@ Do you want to switch to the classic Bluetooth bridge for this session?</source>
     </message>
     <message>
         <source>Please choose a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saved! Look in the Files app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saved! Look in the app&apos;s private folder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wahoo Virtual Gears</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To simulate virtual gears, QZ changes the wheel circumference stored in your trainer. This value may stay in the trainer after you close QZ and affect it in other apps.
+
+Allow QZ to change it?
+
+No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt; Wahoo Options), and virtual gears work through the grade. With Yes you can undo it later there: turn on that option and, with the trainer connected, tap Restore Default Setting to the Trainer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Floating window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock tiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlock tiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable auto resistance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable auto resistance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnect from Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect with Strava</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnect from Peloton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect with Peloton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Garmin Connect settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnect from Intervals.icu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect with Intervals.icu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Workout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>App</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Services</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4452,6 +4659,30 @@ Do you want to switch to the classic Bluetooth bridge for this session?</source>
     </message>
     <message>
         <source>Other folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saved profiles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tap a profile to select it, then Load. Long press to delete it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8162,6 +8393,10 @@ Default: A = -0.96, B = 1.33</source>
         <source>For GPX workouts, ignore inclination changes smaller than this value and send a new inclination command only when the change from the last sent value reaches the configured threshold. Default: 0 (disabled).</source>
         <translation>في تمارين GPX، تجاهل تغيرات الميل الأصغر من هذه القيمة، ولا تُرسل أمر ميل جديدًا إلا عندما يبلغ الفرق عن آخر قيمة مُرسلة الحد المحدد. الافتراضي: 0 (معطّل).</translation>
     </message>
+    <message>
+        <source>This setting was not found on the settings pages</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>settings-shortcuts</name>
@@ -8972,6 +9207,10 @@ Default: A = -0.96, B = 1.33</source>
     </message>
     <message>
         <source>km/h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tiles Options</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
