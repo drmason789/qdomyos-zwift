@@ -1192,7 +1192,7 @@ Vil du opdatere QZ-indstillingerne?</translation>
     </message>
     <message>
         <source>Tap a file to select it, then Load.</source>
-        <translation>Tryk på en fil for at vælge den, og tryk derefter på "Indlæs".</translation>
+        <translation>Tryk på en fil for at vælge den, og tryk derefter på &quot;Indlæs&quot;.</translation>
     </message>
     <message>
         <source>Load</source>
@@ -4719,7 +4719,7 @@ Må QZ ændre værdien?
     </message>
     <message>
         <source>Tap a profile to select it, then Load. Long press to delete it.</source>
-        <translation>Tryk på en profil for at vælge den, og tryk derefter på "Indlæs". Hold nede for at slette den.</translation>
+        <translation>Tryk på en profil for at vælge den, og tryk derefter på &quot;Indlæs&quot;. Hold nede for at slette den.</translation>
     </message>
     <message>
         <source>Active</source>
