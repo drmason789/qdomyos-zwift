@@ -2034,6 +2034,11 @@ Do you want to update QZ settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation type="unfinished"></translation>
@@ -3039,6 +3044,22 @@ This may take a few moments on first startup.</source>
     </message>
     <message>
         <source>Import workouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4629,6 +4650,26 @@ Dacă alegi Nu, QZ activează Without Wheel Diameter Protocol (Setări &gt; Opț
     <message>
         <source>Services</source>
         <translation>Servicii</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Dispozitivul simulat (%1) este activ. Dacă acest lucru nu a fost intenționat, dezactivează-l din Setări.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Bicicletă</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Bandă de alergare</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Eliptică</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Aparat de vâslit</translation>
     </message>
 </context>
 <context>
@@ -6917,6 +6958,14 @@ Please enter it below:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Traseu GPS sintetic Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Adaugă un traseu GPS sintetic activităților virtuale fără GPS. Strava poate afișa diferența de nivel, dar traseul nu este real.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7037,6 +7086,14 @@ IMPORTANT NOTES:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Compatibilitatea rezistenței</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Activează dacă modificarea rezistenței în QZ setează bicicleta doar la nivelul 1 sau la maxim. Trimite valoarea rezistenței FTMS înmulțită cu 10. Implicit: dezactivat.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

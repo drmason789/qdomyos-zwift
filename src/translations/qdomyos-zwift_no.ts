@@ -2079,6 +2079,11 @@ Vil du oppdatere QZ-innstillingene?</translation>
         <translation>Stigning (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>I ett diagram:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>Snitteffekt</translation>
@@ -2631,6 +2636,18 @@ De neste spørsmålene tilpasser QZ til utstyret og målene dine.</translation>
         <translation>Neste</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>Treningsapparat, måleenheter og profil, trinn for trinn</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>Velg et emne, og gå rett til innstillingene for det</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>Lukk veiviseren</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>Tilpassede innstillinger</translation>
     </message>
@@ -2957,12 +2974,12 @@ De neste spørsmålene tilpasser QZ til utstyret og målene dine.</translation>
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>Importerer treningsøkter …</translation>
+        <translation type="vanished">Importerer treningsøkter …</translation>
     </message>
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>Behandler treningsfiler …
+        <translation type="vanished">Behandler treningsfiler …
 Dette kan ta litt tid ved første oppstart.</translation>
     </message>
     <message>
@@ -3086,8 +3103,40 @@ Dette kan ta litt tid ved første oppstart.</translation>
         <translation>Filtrer etter dato</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>Kalender</translation>
+    </message>
+    <message>
         <source>Import workouts</source>
         <translation>Importer treningsøkter</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation>Legger til treningsøkter i historikken</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>Kopierer treningsfiler</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>Legger til treningsøkter i historikken: %1 av %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>Kopierer treningsfiler: %1 av %2</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>Ingen treningsøkter denne dagen</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>Ingen treningsøkter ennå</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>Fullførte treningsøkter vises her. Åpne en av dem for å se diagrammene.</translation>
     </message>
     <message>
         <source>Open on Peloton</source>
@@ -3179,9 +3228,25 @@ Dette kan ta litt tid ved første oppstart.</translation>
         <source>Offset</source>
         <translation>Justering</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>Reduser justering for gir %1</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>Øk justering for gir %1</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>Reduser: %1</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>Øk: %1</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>Slå på egen tabell for stigning til motstand</translation>
@@ -3197,6 +3262,10 @@ Dette kan ta litt tid ved første oppstart.</translation>
     <message>
         <source>Resistance</source>
         <translation>Motstand</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>Fjern punktet ved stigning %1</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4731,6 +4800,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 Skal QZ få endre denne verdien?
 
 «Nei»: QZ slår på «Uten hjuldiameterprotokoll» (Innstillinger &gt; Sykkelalternativer &gt; Alternativer for Wahoo), og virtuelle gir virker via stigningen. Med «Ja» kan du angre dette senere samme sted: slå på dette alternativet og trykk på «Gjenopprett standardinnstilling på sykkelrullen» mens sykkelrullen er tilkoblet.</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Den simulerte enheten (%1) er aktiv. Hvis dette ikke var tilsiktet, deaktiver den i Innstillinger.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Sykkel</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Tredemølle</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Ellipsemaskin</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Romaskin</translation>
     </message>
 </context>
 <context>
@@ -7102,6 +7191,14 @@ Skriv den inn nedenfor:</translation>
         <translation>Strava-merke for virtuell aktivitet</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Syntetisk GPS-spor for Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Legger til et syntetisk GPS-spor i virtuelle aktiviteter uten GPS. Strava kan da vise høydestigning, men ruten er ikke ekte.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Legger til merket for virtuell aktivitet på Strava-aktiviteten.</translation>
     </message>
@@ -7228,6 +7325,14 @@ VIKTIG:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>For smartruller: Bruk motstand i stedet for stigning. Dette hjelper hvis du ikke vil at Wahoo Climb eller lignende skal endre stigningen når du skifter gir. Standard: av.</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Motstandskompatibilitet</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Aktiver hvis endring av motstand i QZ bare setter sykkelen til nivå 1 eller maksimum. Sender FTMS-motstandsverdien multiplisert med 10. Standard: deaktivert.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

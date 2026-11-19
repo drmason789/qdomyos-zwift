@@ -2095,6 +2095,11 @@ QZ ayarları güncellensin mi?</translation>
         <translation>Eğim (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>Tek grafikte:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>Ort. güç</translation>
@@ -2647,6 +2652,18 @@ Aşağıdaki sorular QZ&apos;yi ekipmanınıza ve hedeflerinize göre özelleşt
         <translation>İleri</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>Cihazınız, birimleriniz ve profiliniz, adım adım</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>Bir konu seçin ve doğrudan ayarlarına gidin</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>Sihirbazı kapat</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>Özel yapılandırmalar</translation>
     </message>
@@ -2973,12 +2990,12 @@ Aşağıdaki sorular QZ&apos;yi ekipmanınıza ve hedeflerinize göre özelleşt
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>Antrenmanlar içe aktarılıyor…</translation>
+        <translation type="vanished">Antrenmanlar içe aktarılıyor…</translation>
     </message>
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>Antrenman dosyaları işleniyor…
+        <translation type="vanished">Antrenman dosyaları işleniyor…
 İlk açılışta bu biraz zaman alabilir.</translation>
     </message>
     <message>
@@ -3102,8 +3119,40 @@ This may take a few moments on first startup.</source>
         <translation>Tarihe göre filtrele</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>Takvim</translation>
+    </message>
+    <message>
         <source>Import workouts</source>
         <translation>Antrenmanları içe aktar</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation>Antrenmanlar geçmişe ekleniyor</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>Antrenman dosyaları kopyalanıyor</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>Antrenmanlar geçmişe ekleniyor: %1 / %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>Antrenman dosyaları kopyalanıyor: %1 / %2</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>Bu gün antrenman yok</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>Henüz antrenman yok</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>Tamamlanan antrenmanlar burada görünür: grafiklerini görmek için birini açın.</translation>
     </message>
     <message>
         <source>Open on Peloton</source>
@@ -3195,9 +3244,25 @@ This may take a few moments on first startup.</source>
         <source>Offset</source>
         <translation>Ofset</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>%1. vitesin ofsetini azalt</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>%1. vitesin ofsetini artır</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>Azalt: %1</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>Artır: %1</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>Özel eğim/direnç tablosunu etkinleştir</translation>
@@ -3213,6 +3278,10 @@ This may take a few moments on first startup.</source>
     <message>
         <source>Resistance</source>
         <translation>Direnç</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>Eğimi %1 olan noktayı sil</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4747,6 +4816,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 QZ&apos;nin bu değeri değiştirmesine izin verilsin mi?
 
 “Hayır”: QZ, “Tekerlek çapı protokolü olmadan” seçeneğini açar (Ayarlar &gt; Bisiklet seçenekleri &gt; Wahoo seçenekleri) ve sanal vitesler eğim üzerinden çalışır. “Evet” derseniz bunu daha sonra aynı yerden geri alabilirsiniz: bu seçeneği açın ve cihaz bağlıyken “Antrenman cihazının varsayılan ayarını geri yükle” düğmesine dokunun.</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Sanal cihaz (%1) etkin. Bunu istemediyseniz Ayarlar'dan devre dışı bırakın.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Bisiklet</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Koşu bandı</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Eliptik bisiklet</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Kürek makinesi</translation>
     </message>
 </context>
 <context>
@@ -7150,6 +7239,14 @@ Kodu aşağıya girin:</translation>
         <translation>Strava sanal aktivite etiketi</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Strava Sentetik GPS Rotası</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>GPS verisi olmayan sanal etkinliklere sentetik bir GPS rotası ekler. Strava irtifa kazanımını gösterebilir, ancak rota gerçek değildir.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Strava aktivitesine sanal aktivite etiketi eklenir</translation>
     </message>
@@ -7276,6 +7373,14 @@ IMPORTANT NOTES:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>Akıllı antrenman cihazlarında eğim yerine direnç kullanılır. Vites değiştirdiğinizde Wahoo Climb veya benzeri bir cihazın eğimi değiştirmesini istemiyorsanız bu işe yarar. Varsayılan: kapalı</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Direnç Uyumluluğu</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>QZ'de direnç değiştirildiğinde bisiklet yalnızca 1. seviyeye veya en yüksek seviyeye geçiyorsa etkinleştirin. FTMS direnç değerini 10 ile çarparak gönderir. Varsayılan: kapalı.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

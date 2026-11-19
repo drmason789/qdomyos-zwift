@@ -2079,6 +2079,11 @@ Vil du opdatere QZ-indstillingerne?</translation>
         <translation>Hældning (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>I én graf:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>Gns. effekt</translation>
@@ -2631,6 +2636,18 @@ De følgende spørgsmål tilpasser QZ til dit udstyr og dine mål.</translation>
         <translation>Næste</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>Træningsudstyr, måleenheder og profil – trin for trin</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>Vælg et emne, og gå direkte til dets indstillinger</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>Luk guiden</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>Tilpassede indstillinger</translation>
     </message>
@@ -2957,12 +2974,12 @@ De følgende spørgsmål tilpasser QZ til dit udstyr og dine mål.</translation>
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>Importerer træningspas...</translation>
+        <translation type="vanished">Importerer træningspas...</translation>
     </message>
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>Behandler træningsfiler...
+        <translation type="vanished">Behandler træningsfiler...
 Det kan tage et øjeblik ved første start.</translation>
     </message>
     <message>
@@ -3086,8 +3103,40 @@ Det kan tage et øjeblik ved første start.</translation>
         <translation>Filtrer efter dato</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>Kalender</translation>
+    </message>
+    <message>
         <source>Import workouts</source>
         <translation>Importér træningspas</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation>Tilføjer træningspas til historikken</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>Kopierer træningsfiler</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>Tilføjer træningspas til historikken: %1 af %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>Kopierer træningsfiler: %1 af %2</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>Ingen træningspas denne dag</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>Ingen træningspas endnu</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>Afsluttede træningspas vises her: åbn et for at se graferne.</translation>
     </message>
     <message>
         <source>Open on Peloton</source>
@@ -3179,9 +3228,25 @@ Det kan tage et øjeblik ved første start.</translation>
         <source>Offset</source>
         <translation>Justering</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>Formindsk justering for gear %1</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>Øg justering for gear %1</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>Formindsk: %1</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>Øg: %1</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>Aktivér egen tabel for hældning til modstand</translation>
@@ -3197,6 +3262,10 @@ Det kan tage et øjeblik ved første start.</translation>
     <message>
         <source>Resistance</source>
         <translation>Modstand</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>Fjern punktet ved hældning %1</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4731,6 +4800,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 Må QZ ændre værdien?
 
 »Nej«: QZ slår »Uden hjuldiameterprotokol« til (Indstillinger &gt; Cykelindstillinger &gt; Wahoo-indstillinger), og virtuelle gear virker via stigningen. Med »Ja« kan du senere fortryde det samme sted: slå denne indstilling til, og tryk, mens hometraineren er forbundet, på »Gendan hometrainerens standardindstilling«.</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Den simulerede enhed (%1) er aktiv. Hvis det ikke var meningen, skal du deaktivere den under Indstillinger.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Cykel</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Løbebånd</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Crosstrainer</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Romaskine</translation>
     </message>
 </context>
 <context>
@@ -7102,6 +7191,14 @@ Indtast den herunder:</translation>
         <translation>Strava-mærke for virtuel aktivitet</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Syntetisk GPS-spor til Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Tilføjer et syntetisk GPS-spor til virtuelle aktiviteter uden GPS. Strava kan derefter vise højdemeter, men ruten er ikke ægte.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Føjer mærket for virtuel aktivitet til Strava-aktiviteten.</translation>
     </message>
@@ -7228,6 +7325,14 @@ VIGTIGT:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>Bruger modstand i stedet for hældning på smart-hometrainere. Det hjælper, hvis du ikke vil have, at Wahoo Climb eller lignende ændrer hældningen, når du skifter gear. Standard: deaktiveret.</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Modstandskompatibilitet</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Aktivér dette, hvis ændring af modstand i QZ kun sætter cyklen til niveau 1 eller maksimum. Sender FTMS-modstand ganget med 10. Standard: deaktiveret.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

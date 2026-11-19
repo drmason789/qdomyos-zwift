@@ -2095,6 +2095,11 @@ Zaktualizować ustawienia QZ?</translation>
         <translation>Nachylenie (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>Na jednym wykresie:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>Średnia moc</translation>
@@ -2647,6 +2652,18 @@ Odpowiedzi na poniższe pytania pozwolą dostosować QZ do Twojego sprzętu i ce
         <translation>Dalej</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>Sprzęt, jednostki i profil – krok po kroku</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>Wybierz temat i przejdź prosto do jego ustawień</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>Zamknij kreator</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>Ustawienia niestandardowe</translation>
     </message>
@@ -2973,12 +2990,12 @@ Odpowiedzi na poniższe pytania pozwolą dostosować QZ do Twojego sprzętu i ce
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>Importowanie treningów…</translation>
+        <translation type="vanished">Importowanie treningów…</translation>
     </message>
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>Przetwarzanie plików treningów…
+        <translation type="vanished">Przetwarzanie plików treningów…
 Przy pierwszym uruchomieniu może to chwilę potrwać.</translation>
     </message>
     <message>
@@ -3102,8 +3119,40 @@ Przy pierwszym uruchomieniu może to chwilę potrwać.</translation>
         <translation>Filtruj według daty</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>Kalendarz</translation>
+    </message>
+    <message>
         <source>Import workouts</source>
         <translation>Importuj treningi</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation>Dodawanie treningów do historii</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>Kopiowanie plików treningów</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>Dodawanie treningów do historii: %1 z %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>Kopiowanie plików treningów: %1 z %2</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>Brak treningów tego dnia</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>Nie ma jeszcze treningów</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>Tu pojawią się ukończone treningi: otwórz dowolny, aby zobaczyć jego wykresy.</translation>
     </message>
     <message>
         <source>Open on Peloton</source>
@@ -3195,9 +3244,25 @@ Przy pierwszym uruchomieniu może to chwilę potrwać.</translation>
         <source>Offset</source>
         <translation>Przesunięcie</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>Zmniejsz przesunięcie biegu %1</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>Zwiększ przesunięcie biegu %1</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>Zmniejsz: %1</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>Zwiększ: %1</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>Włącz niestandardową tabelę przeliczania nachylenia na opór</translation>
@@ -3213,6 +3278,10 @@ Przy pierwszym uruchomieniu może to chwilę potrwać.</translation>
     <message>
         <source>Resistance</source>
         <translation>Opór</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>Usuń punkt o nachyleniu %1</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4747,6 +4816,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 Zezwolić QZ na zmianę tej wartości?
 
 „Nie”: QZ włączy „Protokół bez zmiany średnicy koła” (Ustawienia &gt; Opcje roweru &gt; Opcje Wahoo), a wirtualne biegi będą działać przez nachylenie. Po wybraniu „Tak” możesz to później cofnąć w tym samym miejscu: włącz tę opcję i przy podłączonym trenażerze dotknij „Przywróć domyślne ustawienia trenażera”.</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Symulowane urządzenie (%1) jest aktywne. Jeśli nie było to zamierzone, wyłącz je w Ustawieniach.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Rower</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Bieżnia</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Orbitrek</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Wioślarz</translation>
     </message>
 </context>
 <context>
@@ -7150,6 +7239,14 @@ Wprowadź go poniżej:</translation>
         <translation>Tag aktywności wirtualnej Strava</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Syntetyczna trasa GPS Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Dodaje syntetyczny ślad GPS do aktywności wirtualnych bez GPS. Strava może wtedy pokazać przewyższenie, ale trasa nie jest rzeczywista.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Oznaczaj aktywność Strava jako wirtualną</translation>
     </message>
@@ -7276,6 +7373,14 @@ WAŻNE UWAGI:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>W przypadku inteligentnych trenażerów używaj oporu zamiast nachylenia. To powinno pomóc, jeśli nie chcesz, aby Wahoo Climb lub podobne urządzenie zmieniało nachylenie podczas zmiany biegów. Domyślnie: wyłączone</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Zgodność sterowania oporem</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Włącz, jeśli zmiana oporu w QZ ustawia rower wyłącznie na poziom 1 lub maksimum. Wysyła wartość oporu FTMS pomnożoną przez 10. Domyślnie: wyłączone.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

@@ -1,5 +1,12 @@
 # Device compatibility
 
+
+## Can a HOUSEFIT SPIRO 80 iRun connect to QZ and Zwift on Apple TV?
+
+Yes. A rider confirmed that a HOUSEFIT SPIRO 80 iRun worked with QZ and a Zwift setup. Run **QZ on a phone** to connect to the bike, and run **Zwift on Apple TV** as the training app. Pair Zwift to the virtual fitness device advertised by QZ rather than trying to pair Zwift directly to the bike.
+
+When checking whether the bike is discoverable, disconnect any existing iConsole connection first so the bike is free for QZ or a Bluetooth scanning app. The confirmed case establishes that the setup worked; it does not establish support for every HOUSEFIT model or firmware revision.
+
 ## Is the BH Fitness Nexor Dual / i-Nexor compatible with QZ?
 
 Yes. QZ has current support for BH Fitness bikes that use the iConcept/BH DUALKIT Bluetooth protocol, including the Nexor-specific handling used by devices advertising with a `BH-` name.
@@ -187,3 +194,9 @@ A **Trinfit T5 Pro** owner confirmed that QZ connected and communicated with the
 If QZ does not discover the treadmill, close Kinomap and any other app using its Bluetooth connection, check that the treadmill is advertising, and retry QZ's scan. To use QZ as a bridge, connect the treadmill to QZ first, then pair QZ's **virtual treadmill** in Kinomap on a **second device**.
 
 **Scope of confirmation:** QZ communication and direct Kinomap incline control were reported; automatic incline control *through the QZ-to-Kinomap bridge*, and Garmin export for this model, were not separately confirmed.
+
+## My NordicTrack T 6.5 S appears as a ProForm 525 CT and QZ cannot find it. Which Bluetooth device should I look for?
+
+On a **NordicTrack T 6.5 S / ProForm 525 CT with a basic console**, the Bluetooth device can advertise as **I_TL** rather than using the treadmill's retail model name. Turn on the treadmill and Bluetooth on the phone, close any other app connected to the treadmill, and look for **I_TL** in QZ's device discovery. Check that live treadmill metrics appear in QZ before pairing any other fitness app.
+
+An Android rider whose treadmill appeared as a ProForm 525 CT in iFIT explicitly confirmed that the treadmill connected after being directed to the **I_TL** Bluetooth name. This confirms connectivity for that basic-console variant, not every T 6.5 S revision or automatic incline-control behavior.

@@ -2034,6 +2034,11 @@ Do you want to update QZ settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation type="unfinished"></translation>
@@ -3039,6 +3044,22 @@ This may take a few moments on first startup.</source>
     </message>
     <message>
         <source>Import workouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4629,6 +4650,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
     <message>
         <source>Services</source>
         <translation>Υπηρεσίες</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Η εικονική συσκευή (%1) είναι ενεργή. Αν αυτό δεν ήταν σκόπιμο, απενεργοποιήστε την στις Ρυθμίσεις.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Ποδήλατο</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Διάδρομος</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Ελλειπτικό</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Κωπηλατικό</translation>
     </message>
 </context>
 <context>
@@ -6917,6 +6958,14 @@ Please enter it below:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Συνθετική διαδρομή GPS για Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Προσθέτει συνθετική διαδρομή GPS σε εικονικές δραστηριότητες χωρίς GPS. Το Strava μπορεί να εμφανίσει την υψομετρική άνοδο, αλλά η διαδρομή δεν είναι πραγματική.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7037,6 +7086,14 @@ IMPORTANT NOTES:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Συμβατότητα αντίστασης</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Ενεργοποιήστε το αν η αλλαγή αντίστασης στο QZ ρυθμίζει το ποδήλατο μόνο στο επίπεδο 1 ή στο μέγιστο. Στέλνει την αντίσταση FTMS πολλαπλασιασμένη επί 10. Προεπιλογή: ανενεργό.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

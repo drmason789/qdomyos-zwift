@@ -2147,6 +2147,11 @@ Do you want to update QZ settings?</source>
         <translation>Inclinación (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>En un gráfico:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>Potencia promedio</translation>
@@ -2683,6 +2688,18 @@ Las siguientes preguntas personalizarán QZ para tu equipo y tus objetivos.</tra
         <translation>Siguiente</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>Tu equipo, unidades y perfil, paso a paso</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>Elige un tema y ve directamente a su configuración</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>Cerrar el asistente</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>Configuraciones personalizadas</translation>
     </message>
@@ -2974,7 +2991,7 @@ Las siguientes preguntas personalizarán QZ para tu equipo y tus objetivos.</tra
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>Procesando archivos de entrenamiento...
+        <translation type="vanished">Procesando archivos de entrenamiento...
 Esto puede tardar un poco en el primer inicio.</translation>
     </message>
     <message>
@@ -3066,6 +3083,22 @@ Esto puede tardar un poco en el primer inicio.</translation>
         <translation>Racha de %1 día</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>Calendario</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>No hay entrenamientos este día</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>Aún no hay entrenamientos</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>Los entrenamientos terminados aparecen aquí: abre uno para ver sus gráficos.</translation>
+    </message>
+    <message>
         <source>Personal best: %1 days</source>
         <translation>Mejor marca: %1 días</translation>
     </message>
@@ -3107,7 +3140,7 @@ Esto puede tardar un poco en el primer inicio.</translation>
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>Importando entrenamientos...</translation>
+        <translation type="vanished">Importando entrenamientos...</translation>
     </message>
     <message>
         <source>Filter by date</source>
@@ -3124,6 +3157,22 @@ Esto puede tardar un poco en el primer inicio.</translation>
     <message>
         <source>Open on Peloton</source>
         <translation>Abrir en Peloton</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation>Añadiendo entrenamientos al historial</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>Copiando archivos de entrenamiento</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>Añadiendo entrenamientos al historial: %1 de %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>Copiando archivos de entrenamiento: %1 de %2</translation>
     </message>
     <message>
         <source>Previous month</source>
@@ -3195,9 +3244,25 @@ Esto puede tardar un poco en el primer inicio.</translation>
         <source>Offset</source>
         <translation>Desfase</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>Reducir el desfase de la marcha %1</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>Aumentar el desfase de la marcha %1</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>Reducir: %1</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>Aumentar: %1</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>Activar tabla personalizada de inclinación a resistencia</translation>
@@ -3213,6 +3278,10 @@ Esto puede tardar un poco en el primer inicio.</translation>
     <message>
         <source>Resistance</source>
         <translation>Resistencia</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>Eliminar el punto con inclinación %1</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4755,6 +4824,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 ¿Permitir que QZ cambie este valor?
 
 «No»: QZ activa «Sin cambio de diámetro de rueda» (Ajustes &gt; Opciones de bicicleta &gt; Opciones de Wahoo) y las marchas virtuales funcionan a través de la pendiente. Con «Sí» puedes deshacerlo más tarde allí mismo: activa esa opción y, con el rodillo conectado, pulsa «Restaurar la configuración predeterminada del rodillo».</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>El dispositivo simulado (%1) está activo. Si no era tu intención, desactívalo en Ajustes.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Bicicleta</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Cinta de correr</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Elíptica</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Máquina de remo</translation>
     </message>
 </context>
 <context>
@@ -7554,6 +7643,14 @@ Por favor, ingrésalo a continuación:</translation>
         <translation>Etiqueta de actividad virtual de Strava</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Ruta GPS sintética de Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Escribe un recorrido GPS sintético para actividades virtuales sin GPS. Strava podría mostrar el desnivel, pero la ruta no es real.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Añadir la etiqueta virtual a la actividad de Strava</translation>
     </message>
@@ -7692,6 +7789,14 @@ NOTAS IMPORTANTES:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>Para los rodillos inteligentes, usa resistencia en lugar de inclinación. Esto debería ayudar si no quieres que Wahoo Climb o similar cambie la inclinación al cambiar de marchas. Predeterminado: deshabilitado</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Compatibilidad de resistencia</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Actívalo si al cambiar la resistencia en QZ la bicicleta solo pasa al nivel 1 o al máximo. Envía la resistencia FTMS multiplicada por 10. Predeterminado: desactivado.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

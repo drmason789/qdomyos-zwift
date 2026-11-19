@@ -2079,6 +2079,11 @@ Vill du uppdatera QZ-inställningarna?</translation>
         <translation>Lutning (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>I ett diagram:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>Medeleffekt</translation>
@@ -2631,6 +2636,18 @@ Med följande frågor anpassas QZ efter din utrustning och dina mål.</translati
         <translation>Nästa</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>Träningsredskap, måttenheter och profil, steg för steg</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>Välj ett ämne och gå direkt till dess inställningar</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>Stäng guiden</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>Anpassade inställningar</translation>
     </message>
@@ -2957,12 +2974,12 @@ Med följande frågor anpassas QZ efter din utrustning och dina mål.</translati
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>Importerar träningspass…</translation>
+        <translation type="vanished">Importerar träningspass…</translation>
     </message>
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>Bearbetar träningsfiler…
+        <translation type="vanished">Bearbetar träningsfiler…
 Det kan ta en stund vid första starten.</translation>
     </message>
     <message>
@@ -3086,8 +3103,40 @@ Det kan ta en stund vid första starten.</translation>
         <translation>Filtrera efter datum</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>Kalender</translation>
+    </message>
+    <message>
         <source>Import workouts</source>
         <translation>Importera träningspass</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation>Lägger till träningspass i historiken</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>Kopierar träningsfiler</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>Lägger till träningspass i historiken: %1 av %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>Kopierar träningsfiler: %1 av %2</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>Inga träningspass den här dagen</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>Inga träningspass ännu</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>Avslutade träningspass visas här: öppna ett om du vill se diagrammen.</translation>
     </message>
     <message>
         <source>Open on Peloton</source>
@@ -3179,9 +3228,25 @@ Det kan ta en stund vid första starten.</translation>
         <source>Offset</source>
         <translation>Justering</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>Minska justering för växel %1</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>Öka justering för växel %1</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>Minska: %1</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>Öka: %1</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>Aktivera egen tabell för lutning till motstånd</translation>
@@ -3197,6 +3262,10 @@ Det kan ta en stund vid första starten.</translation>
     <message>
         <source>Resistance</source>
         <translation>Motstånd</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>Ta bort punkten vid lutning %1</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4731,6 +4800,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 Vill du tillåta att QZ ändrar värdet?
 
 ”Nej”: QZ slår på ”Utan hjuldiameterprotokoll” (Inställningar &gt; Cykelalternativ &gt; Wahoo-alternativ), och virtuella växlar fungerar via lutningen. Med ”Ja” kan du ångra det senare på samma ställe: slå på det alternativet och tryck, med din smart trainer ansluten, på ”Återställ standardinställning på smart trainer”.</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Den simulerade enheten (%1) är aktiv. Om det inte var avsiktligt, inaktivera den i Inställningar.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Cykel</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Löpband</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Crosstrainer</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Roddmaskin</translation>
     </message>
 </context>
 <context>
@@ -7102,6 +7191,14 @@ Ange den nedan:</translation>
         <translation>Strava-tagg för virtuell aktivitet</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Syntetiskt GPS-spår för Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Lägger till ett syntetiskt GPS-spår i virtuella aktiviteter utan GPS. Strava kan då visa höjdstigning, men rutten är inte verklig.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Lägger till taggen för virtuell aktivitet i Strava-aktiviteten.</translation>
     </message>
@@ -7228,6 +7325,14 @@ VIKTIGT:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>För smart trainers: använd motstånd i stället för lutning. Det hjälper om du inte vill att Wahoo Climb eller liknande ändrar lutningen när du växlar. Standard: av.</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Motståndskompatibilitet</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Aktivera om ändring av motstånd i QZ bara ställer in cykeln på nivå 1 eller max. Skickar FTMS-motståndet multiplicerat med 10. Standard: avaktiverad.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

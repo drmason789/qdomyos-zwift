@@ -2095,6 +2095,11 @@ Wil je de QZ-instellingen bijwerken?</translation>
         <translation>Hellingsgraad (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>In één grafiek:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>Gem. vermogen</translation>
@@ -2647,6 +2652,18 @@ Met de volgende vragen stem je QZ af op je apparatuur en doelen.</translation>
         <translation>Volgende</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>Je apparaat, eenheden en profiel, stap voor stap</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>Kies een onderwerp en ga meteen naar de instellingen ervan</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>Wizard sluiten</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>Aangepaste instellingen</translation>
     </message>
@@ -2973,12 +2990,12 @@ Met de volgende vragen stem je QZ af op je apparatuur en doelen.</translation>
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>Trainingen importeren…</translation>
+        <translation type="vanished">Trainingen importeren…</translation>
     </message>
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>Trainingsbestanden verwerken…
+        <translation type="vanished">Trainingsbestanden verwerken…
 Bij de eerste start kan dit even duren.</translation>
     </message>
     <message>
@@ -3102,8 +3119,40 @@ Bij de eerste start kan dit even duren.</translation>
         <translation>Filteren op datum</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>Kalender</translation>
+    </message>
+    <message>
         <source>Import workouts</source>
         <translation>Trainingen importeren</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation>Trainingen worden aan de geschiedenis toegevoegd</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>Trainingsbestanden worden gekopieerd</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>Trainingen worden aan de geschiedenis toegevoegd: %1 van %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>Trainingsbestanden worden gekopieerd: %1 van %2</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>Geen trainingen op deze dag</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>Nog geen trainingen</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>Afgeronde trainingen verschijnen hier: open er een om de grafieken te bekijken.</translation>
     </message>
     <message>
         <source>Open on Peloton</source>
@@ -3195,9 +3244,25 @@ Bij de eerste start kan dit even duren.</translation>
         <source>Offset</source>
         <translation>Correctie</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>Correctie van versnelling %1 verlagen</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>Correctie van versnelling %1 verhogen</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>Verlagen: %1</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>Verhogen: %1</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>Eigen tabel voor helling naar weerstand inschakelen</translation>
@@ -3213,6 +3278,10 @@ Bij de eerste start kan dit even duren.</translation>
     <message>
         <source>Resistance</source>
         <translation>Weerstand</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>Punt bij hellingsgraad %1 verwijderen</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4747,6 +4816,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 Mag QZ deze waarde wijzigen?
 
 ‘Nee’: QZ schakelt ‘Zonder wieldiameterprotocol’ in (Instellingen &gt; Fietsopties &gt; Wahoo-opties) en virtuele versnellingen werken via het hellingspercentage. Met ‘Ja’ kun je dit later daar ongedaan maken: schakel die optie in en tik, terwijl de trainer verbonden is, op ‘Standaardinstelling van de trainer herstellen’.</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Het gesimuleerde apparaat (%1) is actief. Schakel het uit in Instellingen als dit niet de bedoeling is.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Fiets</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Loopband</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Crosstrainer</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Roeimachine</translation>
     </message>
 </context>
 <context>
@@ -7150,6 +7239,14 @@ Voer de code hieronder in:</translation>
         <translation>Strava-label virtuele activiteit</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Synthetisch GPS-traject voor Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Voegt een synthetisch GPS-traject toe aan virtuele activiteiten zonder GPS. Strava kan dan hoogtemeters tonen, maar de route is niet echt.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Voegt het label voor virtuele activiteit toe aan de Strava-activiteit</translation>
     </message>
@@ -7276,6 +7373,14 @@ BELANGRIJK:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>Gebruik bij smart trainers weerstand in plaats van helling. Dit helpt als je niet wilt dat de Wahoo Climb of iets vergelijkbaars de helling wijzigt wanneer je schakelt. Standaard: uit</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Weerstandscompatibiliteit</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Schakel dit in als het wijzigen van de weerstand in QZ de fiets alleen op niveau 1 of maximaal zet. Verzendt de FTMS-weerstand vermenigvuldigd met 10. Standaard: uitgeschakeld.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

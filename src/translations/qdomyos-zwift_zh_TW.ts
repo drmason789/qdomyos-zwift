@@ -2034,6 +2034,11 @@ Do you want to update QZ settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation type="unfinished"></translation>
@@ -3039,6 +3044,22 @@ This may take a few moments on first startup.</source>
     </message>
     <message>
         <source>Import workouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4629,6 +4650,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
     <message>
         <source>Services</source>
         <translation>服務</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>模擬裝置（%1）已啟用。如果不是刻意啟用，請在設定中關閉。</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>健身車</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>跑步機</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>橢圓機</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>划船機</translation>
     </message>
 </context>
 <context>
@@ -6917,6 +6958,14 @@ Please enter it below:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Strava 模擬 GPS 軌跡</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>為沒有 GPS 的虛擬活動寫入模擬 GPS 軌跡。Strava 可能因此顯示爬升高度，但路線並非真實路線。</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7037,6 +7086,14 @@ IMPORTANT NOTES:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>阻力相容模式</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>如果在 QZ 中調整阻力時，單車只能跳到第 1 級或最大級別，請啟用此選項。FTMS 阻力值將乘以 10 後傳送。預設：關閉。</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

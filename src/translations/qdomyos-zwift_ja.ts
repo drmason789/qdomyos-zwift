@@ -2147,6 +2147,11 @@ QZの設定を更新しますか?</translation>
         <translation>傾斜度 (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>1つのグラフに:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>平均出力</translation>
@@ -2683,6 +2688,18 @@ The following questions will customize QZ for your equipment and goals.</source>
         <translation>次へ</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>機器、単位、プロフィールを順番に設定</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>トピックを選んで、その設定に直接移動</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>ウィザードを閉じる</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>カスタム設定</translation>
     </message>
@@ -2974,7 +2991,7 @@ The following questions will customize QZ for your equipment and goals.</source>
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>ワークアウトファイルを処理しています...
+        <translation type="vanished">ワークアウトファイルを処理しています...
 初回起動時はしばらく時間がかかる場合があります。</translation>
     </message>
     <message>
@@ -3066,6 +3083,22 @@ This may take a few moments on first startup.</source>
         <translation>%1日連続</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>カレンダー</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>この日のワークアウトはありません</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>まだワークアウトはありません</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>完了したワークアウトがここに表示されます。開くとグラフを確認できます。</translation>
+    </message>
+    <message>
         <source>Personal best: %1 days</source>
         <translation>自己ベスト: %1日</translation>
     </message>
@@ -3107,7 +3140,7 @@ This may take a few moments on first startup.</source>
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>ワークアウトをインポート中...</translation>
+        <translation type="vanished">ワークアウトをインポート中...</translation>
     </message>
     <message>
         <source>Filter by date</source>
@@ -3124,6 +3157,22 @@ This may take a few moments on first startup.</source>
     <message>
         <source>Open on Peloton</source>
         <translation>Pelotonで開く</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation>ワークアウトを履歴に追加中</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>ワークアウトファイルをコピー中</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>ワークアウトを履歴に追加中: %1 / %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>ワークアウトファイルをコピー中: %1 / %2</translation>
     </message>
     <message>
         <source>Previous month</source>
@@ -3195,9 +3244,25 @@ This may take a few moments on first startup.</source>
         <source>Offset</source>
         <translation>オフセット</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>ギア %1 のオフセットを下げる</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>ギア %1 のオフセットを上げる</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>%1を下げる</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>%1を上げる</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>傾斜-負荷カスタムテーブルを有効にする</translation>
@@ -3213,6 +3278,10 @@ This may take a few moments on first startup.</source>
     <message>
         <source>Resistance</source>
         <translation>負荷レベル</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>傾斜度 %1 のポイントを削除</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4759,6 +4828,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 QZ がこの値を変更することを許可しますか？
 
 「いいえ」：QZ が「簡易Wahoo互換プロトコルを使用」をオンにし（設定 &gt; バイク設定 &gt; Wahooスマートトレーナー連携設定）、バーチャルギアは勾配を通じて動作します。「はい」を選んだ場合は、後で同じ場所で元に戻せます：この設定をオンにし、トレーナーを接続した状態で「トレーナーをデフォルト設定に戻す」をタップしてください。</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>仮想デバイス（%1）が有効です。意図した設定でない場合は、設定から無効にしてください。</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>バイク</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>トレッドミル</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>エリプティカル</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>ローイングマシン</translation>
     </message>
 </context>
 <context>
@@ -7586,6 +7675,14 @@ Please enter it below:</source>
         <translation>Strava バーチャルアクティビティタグ</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Strava 用の合成 GPS トラック</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>GPS のないバーチャルアクティビティに合成 GPS トラックを書き込みます。Strava で獲得標高が表示される可能性がありますが、ルートは実在しません。</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Stravaアクティビティにバーチャルタグを追加</translation>
     </message>
@@ -7724,6 +7821,14 @@ IMPORTANT NOTES:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>スマートトレーナーの場合、傾斜ではなく負荷を使用してください。これにより、ギアを変更した際にWahoo Climbや類似の機能が傾斜を変更するのを防ぐことができます。デフォルト: 無効</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>負荷互換性</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>QZで負荷を変更すると、バイクがレベル1または最大値にしか設定されない場合に有効にします。FTMSの負荷値を10倍にして送信します。初期設定：無効。</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

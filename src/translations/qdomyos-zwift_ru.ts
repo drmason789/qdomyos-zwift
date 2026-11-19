@@ -2147,6 +2147,11 @@ Do you want to update QZ settings?</source>
         <translation>Наклон (%)</translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation>На одном графике:</translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation>Ср. мощность</translation>
@@ -2683,6 +2688,18 @@ The following questions will customize QZ for your equipment and goals.</source>
         <translation>Далее</translation>
     </message>
     <message>
+        <source>Your equipment, units and profile, step by step</source>
+        <translation>Тренажёр, единицы измерения и профиль – по шагам</translation>
+    </message>
+    <message>
+        <source>Pick a topic and go straight to its settings</source>
+        <translation>Выберите тему и сразу перейдите к её настройкам</translation>
+    </message>
+    <message>
+        <source>Close the wizard</source>
+        <translation>Закрыть мастер</translation>
+    </message>
+    <message>
         <source>Custom Configurations</source>
         <translation>Индивидуальные настройки</translation>
     </message>
@@ -2974,7 +2991,7 @@ The following questions will customize QZ for your equipment and goals.</source>
     <message>
         <source>Processing workout files...
 This may take a few moments on first startup.</source>
-        <translation>Обработка файлов тренировок...
+        <translation type="vanished">Обработка файлов тренировок...
 При первом запуске это может занять некоторое время.</translation>
     </message>
     <message>
@@ -3046,6 +3063,22 @@ This may take a few moments on first startup.</source>
         <translation>Серия: %1 дн.</translation>
     </message>
     <message>
+        <source>Calendar</source>
+        <translation>Календарь</translation>
+    </message>
+    <message>
+        <source>No workouts on this day</source>
+        <translation>В этот день тренировок нет</translation>
+    </message>
+    <message>
+        <source>No workouts yet</source>
+        <translation>Тренировок пока нет</translation>
+    </message>
+    <message>
+        <source>Finished workouts appear here: open one to see its charts.</source>
+        <translation>Здесь появятся завершённые тренировки: откройте любую, чтобы посмотреть графики.</translation>
+    </message>
+    <message>
         <source>Personal best: %1 days</source>
         <translation>Рекорд: %1 дн.</translation>
     </message>
@@ -3090,6 +3123,22 @@ This may take a few moments on first startup.</source>
         <translation>Импортировать файл FIT...</translation>
     </message>
     <message>
+        <source>Adding workouts to the history</source>
+        <translation>Добавление тренировок в историю</translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation>Копирование файлов тренировок</translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation>Добавление тренировок в историю: %1 из %2</translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
+        <translation>Копирование файлов тренировок: %1 из %2</translation>
+    </message>
+    <message>
         <source>Import from QZ Folder...</source>
         <translation>Импортировать из папки QZ...</translation>
     </message>
@@ -3107,7 +3156,7 @@ This may take a few moments on first startup.</source>
     </message>
     <message>
         <source>Importing workouts...</source>
-        <translation>Импорт тренировок...</translation>
+        <translation type="vanished">Импорт тренировок...</translation>
     </message>
     <message>
         <source>Filter by date</source>
@@ -3195,9 +3244,25 @@ This may take a few moments on first startup.</source>
         <source>Offset</source>
         <translation>Смещение</translation>
     </message>
+    <message>
+        <source>Decrease the offset of gear %1</source>
+        <translation>Уменьшить смещение передачи %1</translation>
+    </message>
+    <message>
+        <source>Increase the offset of gear %1</source>
+        <translation>Увеличить смещение передачи %1</translation>
+    </message>
 </context>
 <context>
     <name>custominclinationresistance</name>
+    <message>
+        <source>Decrease %1</source>
+        <translation>Уменьшить: %1</translation>
+    </message>
+    <message>
+        <source>Increase %1</source>
+        <translation>Увеличить: %1</translation>
+    </message>
     <message>
         <source>Enable Custom Inclination to Resistance Table</source>
         <translation>Включить свою таблицу «наклон – сопротивление»</translation>
@@ -3213,6 +3278,10 @@ This may take a few moments on first startup.</source>
     <message>
         <source>Resistance</source>
         <translation>Сопротивление</translation>
+    </message>
+    <message>
+        <source>Remove the point at inclination %1</source>
+        <translation>Удалить точку с наклоном %1</translation>
     </message>
     <message>
         <source>Add Point</source>
@@ -4747,6 +4816,26 @@ No: QZ turns on Without Wheel Diameter Protocol (Settings &gt; Bike Options &gt;
 Разрешить QZ менять это значение?
 
 «Нет»: QZ включит «Без протокола диаметра колеса» (Настройки &gt; Параметры велотренажёра &gt; Параметры Wahoo), и виртуальные передачи будут работать через уклон. Если выбрать «Да», это можно позже отменить там же: включите эту настройку и при подключённом тренажёре нажмите «Восстановить настройки тренажёра по умолчанию».</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Виртуальное устройство (%1) активно. Если вы включили его случайно, отключите его в настройках.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Велотренажёр</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Беговая дорожка</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Эллиптический тренажёр</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Гребной тренажёр</translation>
     </message>
 </context>
 <context>
@@ -7534,6 +7623,14 @@ Please enter it below:</source>
         <translation>Метка виртуальной активности Strava</translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Синтетический GPS-трек для Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Добавляет синтетический GPS-трек к виртуальным тренировкам без GPS. Strava может показать набор высоты, но маршрут не настоящий.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation>Добавлять к активности Strava метку виртуальной активности</translation>
     </message>
@@ -7672,6 +7769,14 @@ IMPORTANT NOTES:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation>Для смарт-тренажёров: использовать сопротивление вместо наклона. Помогает, если вы не хотите, чтобы Wahoo Climb или аналог менял наклон при переключении передач. По умолчанию: выключено</translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Совместимость сопротивления</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Включите, если при изменении сопротивления в QZ велосипед устанавливает только уровень 1 или максимум. Передаёт значение сопротивления FTMS, умноженное на 10. По умолчанию: выключено.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>

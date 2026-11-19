@@ -2034,6 +2034,11 @@ Do you want to update QZ settings?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>On one chart:</source>
+        <extracomment>Workout charts: before the chips that put the selected metrics together on one chart.</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Avg Output</source>
         <extracomment>Chart summary: average power during the workout, in watts.</extracomment>
         <translation type="unfinished"></translation>
@@ -3039,6 +3044,22 @@ This may take a few moments on first startup.</source>
     </message>
     <message>
         <source>Import workouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying workout files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding workouts to the history: %1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copying workout files: %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4629,6 +4650,26 @@ Nếu chọn Không, QZ sẽ bật Without Wheel Diameter Protocol (Cài đặt 
     <message>
         <source>Services</source>
         <translation>Dịch vụ</translation>
+    </message>
+    <message>
+        <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
+        <translation>Thiết bị mô phỏng (%1) đang hoạt động. Nếu không cố ý bật, hãy tắt trong Cài đặt.</translation>
+    </message>
+    <message>
+        <source>Bike</source>
+        <translation>Xe đạp</translation>
+    </message>
+    <message>
+        <source>Treadmill</source>
+        <translation>Máy chạy bộ</translation>
+    </message>
+    <message>
+        <source>Elliptical</source>
+        <translation>Máy tập toàn thân</translation>
+    </message>
+    <message>
+        <source>Rower</source>
+        <translation>Máy chèo thuyền</translation>
     </message>
 </context>
 <context>
@@ -6917,6 +6958,14 @@ Please enter it below:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Strava Synthetic GPS Track</source>
+        <translation>Lộ trình GPS giả lập cho Strava</translation>
+    </message>
+    <message>
+        <source>Write a synthetic GPS track to virtual activities without GPS. Strava may then show elevation, but the route is not real.</source>
+        <translation>Thêm lộ trình GPS giả lập vào hoạt động ảo không có GPS. Strava có thể hiển thị độ cao tăng thêm, nhưng lộ trình này không có thật.</translation>
+    </message>
+    <message>
         <source>Append the Virtual Tag to the Strava Activity</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7037,6 +7086,14 @@ IMPORTANT NOTES:
     <message>
         <source>For the smart trainers, use resistance instead of inclination. This should help if you don&apos;t want to have the Wahoo Climb or similar to change inclination when you change gears. Default: disabled</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resistance Compatibility</source>
+        <translation>Tương thích lực cản</translation>
+    </message>
+    <message>
+        <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
+        <translation>Bật nếu việc thay đổi lực cản trong QZ chỉ đặt xe ở mức 1 hoặc mức tối đa. Gửi giá trị lực cản FTMS nhân với 10. Mặc định: tắt.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>
