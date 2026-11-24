@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="cs_CZ">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>Zavřít</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -382,6 +389,14 @@ Chcete zapnout požadované služby?</translation>
     <message>
         <source>Not connecting?</source>
         <translation>Nedaří se připojit?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>Trenažér nenalezen</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>Zapněte kolo, běžecký pás nebo veslovací trenažér a klepnutím na ikonu Bluetooth nahoře hledejte znovu.</translation>
     </message>
 </context>
 <context>
@@ -1145,6 +1160,10 @@ Aktualizovat nastavení QZ?</translation>
         <source>YPOO M5 initialization failed; reconnect required</source>
         <translation>Inicializace YPOO M5 se nezdařila; je nutné se znovu připojit</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S připojen!</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1363,6 +1382,21 @@ Aktualizovat nastavení QZ?</translation>
     <message>
         <source>Open email</source>
         <translation>Otevřít e-mail</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>Probíhá nákup...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>Nákup proběhl úspěšně</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>Nákup se nezdařil</translation>
     </message>
 </context>
 <context>
@@ -3370,6 +3404,10 @@ Při prvním spuštění to může chvíli trvat.</translation>
 <context>
     <name>homeform</name>
     <message>
+        <source>No enabled metrics</source>
+        <translation>Žádné zapnuté metriky</translation>
+    </message>
+    <message>
         <source>Speed (%1/h)</source>
         <translation>Rychlost (%1/h)</translation>
     </message>
@@ -3940,6 +3978,10 @@ Při prvním spuštění to může chvíli trvat.</translation>
         <translation>Hledání zařízení…</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>Připojování k %1…</translation>
+    </message>
+    <message>
         <source>%1 found</source>
         <translation>Nalezeno: %1</translation>
     </message>
@@ -4292,9 +4334,17 @@ Při prvním spuštění to může chvíli trvat.</translation>
         <source>Unable to open an email application</source>
         <translation>Nepodařilo se otevřít e-mailovou aplikaci</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>Bluetooth je vypnuté</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>Plovoucí metriky (obraz v obraze)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -5209,6 +5259,42 @@ Povolit QZ tuto hodnotu měnit?
     <message>
         <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
         <translation>Pořadí tohoto grafu v historii tréninků. Pořadí změníte tlačítky nahoru a dolů v Obecných možnostech rozhraní.</translation>
+    </message>
+    <message>
+        <source>Setting reset</source>
+        <translation>Nastavení obnoveno</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>Obnovená nastavení: %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>Obnovit vše</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>Obnovit změněná nastavení?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>Změněná nastavení (%1) se vrátí na výchozí hodnoty.</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Obnovit</translation>
+    </message>
+    <message>
+        <source>Reset section?</source>
+        <translation>Obnovit sekci?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>Nastavení v sekci „%2“ (%1) se vrátí na výchozí hodnoty.</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>Obnovit sekci</translation>
     </message>
     <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
@@ -8581,6 +8667,75 @@ Výchozí: A = -0.96, B = 1.33</translation>
     <message>
         <source>Experimental: gradually correct QZ-controlled treadmill speed using Runn/Stryd feedback, when the driver provides independent machine speed measurements. Requires &apos;Use speed from the power sensor&apos;. Disabled by default.</source>
         <translation>Experimentální: QZ postupně upravuje rychlost běžeckého pásu, kterou řídí, podle údajů z Runn/Stryd, pokud ovladač pásu poskytuje vlastní měření rychlosti. Vyžaduje nastavení „Rychlost ze snímače výkonu“. Výchozí: vypnuto.</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>Moderní rozhraní</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>Nový vzhled hlavní obrazovky, postranní nabídky, nastavení a průvodce. Vypnutím se vrátí klasický vzhled.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Vzhled</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>Podle telefonu</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Tmavý</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>Světlý</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>Motiv</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>Grafit</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>Černá / bílá</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>Půlnoční modř</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Barva zvýraznění</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>Fialová</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>Modrá</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>Modrozelená</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Zelená</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>Oranžová</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>Růžová</translation>
     </message>
     <message>
         <source>Tile size:</source>

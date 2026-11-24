@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="tr_TR">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>Kapat</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -382,6 +389,14 @@ Gerekli hizmetleri açmak ister misiniz?</translation>
     <message>
         <source>Not connecting?</source>
         <translation>Bağlanmıyor mu?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>Cihaz bulunamadı</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>Bisikletinizi, koşu bandınızı veya kürek makinenizi açın, ardından yeniden aramak için üstteki Bluetooth simgesine dokunun.</translation>
     </message>
 </context>
 <context>
@@ -1145,6 +1160,10 @@ QZ ayarları güncellensin mi?</translation>
         <source>YPOO M5 initialization failed; reconnect required</source>
         <translation>YPOO M5 başlatılamadı; yeniden bağlanmak gerekiyor</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S bağlandı!</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1363,6 +1382,21 @@ QZ ayarları güncellensin mi?</translation>
     <message>
         <source>Open email</source>
         <translation>E-postayı aç</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>Satın alınıyor...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>Satın alma başarılı</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>Satın alma başarısız</translation>
     </message>
 </context>
 <context>
@@ -3370,6 +3404,10 @@ This may take a few moments on first startup.</source>
 <context>
     <name>homeform</name>
     <message>
+        <source>No enabled metrics</source>
+        <translation>Etkin ölçüm yok</translation>
+    </message>
+    <message>
         <source>Speed (%1/h)</source>
         <translation>Hız (%1/h)</translation>
     </message>
@@ -3940,6 +3978,10 @@ This may take a few moments on first startup.</source>
         <translation>Cihaz aranıyor…</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>%1 cihazına bağlanılıyor…</translation>
+    </message>
+    <message>
         <source>%1 found</source>
         <translation>Bulundu: %1</translation>
     </message>
@@ -4292,9 +4334,17 @@ This may take a few moments on first startup.</source>
         <source>Unable to open an email application</source>
         <translation>Bir e-posta uygulaması açılamadı</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>Bluetooth kapalı</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>Yüzen ölçümler (resim içinde resim)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -4819,7 +4869,7 @@ QZ&apos;nin bu değeri değiştirmesine izin verilsin mi?
     </message>
     <message>
         <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
-        <translation>Sanal cihaz (%1) etkin. Bunu istemediyseniz Ayarlar'dan devre dışı bırakın.</translation>
+        <translation>Sanal cihaz (%1) etkin. Bunu istemediyseniz Ayarlar&apos;dan devre dışı bırakın.</translation>
     </message>
     <message>
         <source>Bike</source>
@@ -5209,6 +5259,42 @@ QZ&apos;nin bu değeri değiştirmesine izin verilsin mi?
     <message>
         <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
         <translation>Bu grafiğin antrenman geçmişindeki sırası. Sıra, Genel arayüz seçeneklerindeki yukarı ve aşağı düğmeleriyle değiştirilir.</translation>
+    </message>
+    <message>
+        <source>Setting reset</source>
+        <translation>Ayar sıfırlandı</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>Sıfırlanan ayarlar: %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>Tümünü sıfırla</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>Değiştirilmiş ayarlar sıfırlansın mı?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>Varsayılan değerlerine dönecek ayarlar: %1</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Sıfırla</translation>
+    </message>
+    <message>
+        <source>Reset section?</source>
+        <translation>Bölüm sıfırlansın mı?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>&quot;%2&quot; bölümündeki %1 ayar varsayılan değerlerine döner.</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>Bölümü sıfırla</translation>
     </message>
     <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
@@ -7380,7 +7466,7 @@ IMPORTANT NOTES:
     </message>
     <message>
         <source>Enable this if changing resistance in QZ only sets the bike to level 1 or maximum. Sends FTMS resistance multiplied by 10. Default: disabled.</source>
-        <translation>QZ'de direnç değiştirildiğinde bisiklet yalnızca 1. seviyeye veya en yüksek seviyeye geçiyorsa etkinleştirin. FTMS direnç değerini 10 ile çarparak gönderir. Varsayılan: kapalı.</translation>
+        <translation>QZ&apos;de direnç değiştirildiğinde bisiklet yalnızca 1. seviyeye veya en yüksek seviyeye geçiyorsa etkinleştirin. FTMS direnç değerini 10 ile çarparak gönderir. Varsayılan: kapalı.</translation>
     </message>
     <message>
         <source>AutoLap on Distance:</source>
@@ -8581,6 +8667,75 @@ Varsayılan: A = -0.96, B = 1.33</translation>
     <message>
         <source>Experimental: gradually correct QZ-controlled treadmill speed using Runn/Stryd feedback, when the driver provides independent machine speed measurements. Requires &apos;Use speed from the power sensor&apos;. Disabled by default.</source>
         <translation>Deneysel: QZ&apos;deki koşu bandı sürücüsü cihazın kendi hız ölçümlerini veriyorsa, QZ&apos;nin kontrol ettiği koşu bandı hızı Runn/Stryd verilerine göre kademeli olarak düzeltilir. &quot;Hızı güç sensöründen al&quot; ayarı gerekir. Varsayılan: kapalı.</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>Modern arayüz</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>Ana ekranın, yan menünün, ayarların ve sihirbazın yeni görünümü. Klasik görünüme dönmek için kapatın.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Görünüm</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>Telefondaki gibi</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Koyu</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>Açık</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>Tema</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>Grafit</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>Siyah / beyaz</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>Gece mavisi</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Vurgu rengi</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>Mor</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>Mavi</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>Turkuaz</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Yeşil</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>Turuncu</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>Pembe</translation>
     </message>
     <message>
         <source>Tile size:</source>

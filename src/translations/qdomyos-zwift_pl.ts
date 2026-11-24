@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="pl_PL">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>Zamknij</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -382,6 +389,14 @@ Czy chcesz włączyć wymagane usługi?</translation>
     <message>
         <source>Not connecting?</source>
         <translation>Brak połączenia?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>Nie znaleziono sprzętu</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>Włącz rower, bieżnię lub ergometr wioślarski, a potem dotknij ikony Bluetooth u góry, aby wyszukać ponownie.</translation>
     </message>
 </context>
 <context>
@@ -1145,6 +1160,10 @@ Zaktualizować ustawienia QZ?</translation>
         <source>YPOO M5 initialization failed; reconnect required</source>
         <translation>Inicjalizacja YPOO M5 nie powiodła się; wymagane ponowne połączenie</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S połączony!</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1363,6 +1382,21 @@ Zaktualizować ustawienia QZ?</translation>
     <message>
         <source>Open email</source>
         <translation>Otwórz e-mail</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>Trwa zakup...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>Zakup udany</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>Zakup nieudany</translation>
     </message>
 </context>
 <context>
@@ -3370,6 +3404,10 @@ Przy pierwszym uruchomieniu może to chwilę potrwać.</translation>
 <context>
     <name>homeform</name>
     <message>
+        <source>No enabled metrics</source>
+        <translation>Brak włączonych wskaźników</translation>
+    </message>
+    <message>
         <source>Speed (%1/h)</source>
         <translation>Prędkość (%1/h)</translation>
     </message>
@@ -3940,6 +3978,10 @@ Przy pierwszym uruchomieniu może to chwilę potrwać.</translation>
         <translation>Wyszukiwanie urządzenia…</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>Łączenie z %1…</translation>
+    </message>
+    <message>
         <source>%1 found</source>
         <translation>Znaleziono: %1</translation>
     </message>
@@ -4292,9 +4334,17 @@ Przy pierwszym uruchomieniu może to chwilę potrwać.</translation>
         <source>Unable to open an email application</source>
         <translation>Nie można otworzyć aplikacji pocztowej</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>Bluetooth jest wyłączony</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>Pływające wskaźniki (obraz w obrazie)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -5209,6 +5259,42 @@ Zezwolić QZ na zmianę tej wartości?
     <message>
         <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
         <translation>Pozycja tego wykresu w historii treningów. Kolejność zmienia się przyciskami w górę i w dół w Ogólnych opcjach interfejsu użytkownika.</translation>
+    </message>
+    <message>
+        <source>Setting reset</source>
+        <translation>Zresetowano ustawienie</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>Zresetowano ustawienia: %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>Resetuj wszystko</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>Zresetować zmienione ustawienia?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>Zmienione ustawienia (%1) wrócą do wartości domyślnych.</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Resetuj</translation>
+    </message>
+    <message>
+        <source>Reset section?</source>
+        <translation>Zresetować sekcję?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>Ustawienia w sekcji „%2” (%1) wrócą do wartości domyślnych.</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>Resetuj sekcję</translation>
     </message>
     <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
@@ -8581,6 +8667,75 @@ Domyślnie: A = -0.96, B = 1.33</translation>
     <message>
         <source>Experimental: gradually correct QZ-controlled treadmill speed using Runn/Stryd feedback, when the driver provides independent machine speed measurements. Requires &apos;Use speed from the power sensor&apos;. Disabled by default.</source>
         <translation>Eksperymentalne: QZ stopniowo koryguje ustawianą przez siebie prędkość bieżni na podstawie danych z Runn/Stryd, jeśli sterownik bieżni przekazuje niezależne pomiary prędkości. Wymaga opcji „Używaj prędkości z czujnika mocy”. Domyślnie: wyłączone.</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>Nowoczesny interfejs</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>Nowy wygląd ekranu głównego, menu bocznego, ustawień i kreatora. Wyłącz, aby przywrócić klasyczny wygląd.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Wygląd</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>Jak w telefonie</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Ciemny</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>Jasny</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>Motyw</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>Grafitowy</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>Czarny / biały</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>Granatowy</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Kolor akcentu</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>Fioletowy</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>Niebieski</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>Morski</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Zielony</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>Pomarańczowy</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>Różowy</translation>
     </message>
     <message>
         <source>Tile size:</source>

@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="da_DK">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>Luk</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -366,6 +373,14 @@ Vil du aktivere de nødvendige tjenester?</translation>
     <message>
         <source>Not connecting?</source>
         <translation>Ingen forbindelse?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>Træningsudstyret blev ikke fundet</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>Tænd for cyklen, løbebåndet eller romaskinen, og tryk på Bluetooth-ikonet øverst for at søge igen.</translation>
     </message>
 </context>
 <context>
@@ -1129,6 +1144,10 @@ Vil du opdatere QZ-indstillingerne?</translation>
         <source>%1 (HR sensor) not found. Make sure it is on and broadcasting heart rate.</source>
         <translation>%1 (pulssensor) blev ikke fundet. Sørg for, at den er tændt og udsender pulsmålinger.</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S tilsluttet!</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1347,6 +1366,21 @@ Vil du opdatere QZ-indstillingerne?</translation>
     <message>
         <source>Open email</source>
         <translation>Åbn mail</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>Gennemfører køb...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>Købet er gennemført</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>Købet mislykkedes</translation>
     </message>
 </context>
 <context>
@@ -3354,6 +3388,10 @@ Det kan tage et øjeblik ved første start.</translation>
 <context>
     <name>homeform</name>
     <message>
+        <source>No enabled metrics</source>
+        <translation>Ingen aktiverede målinger</translation>
+    </message>
+    <message>
         <source>Speed (%1/h)</source>
         <translation>Hastighed (%1/t)</translation>
     </message>
@@ -3924,6 +3962,10 @@ Det kan tage et øjeblik ved første start.</translation>
         <translation>Søger efter enheden...</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>Opretter forbindelse til %1...</translation>
+    </message>
+    <message>
         <source>%1 found</source>
         <translation>%1 fundet</translation>
     </message>
@@ -4276,9 +4318,17 @@ Det kan tage et øjeblik ved første start.</translation>
         <extracomment>Android notification: title shown while QZ works in the background.</extracomment>
         <translation>QZ kører</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>Bluetooth er slået fra</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>Flydende målinger (billede i billede)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -5185,6 +5235,42 @@ Må QZ ændre værdien?
     <message>
         <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
         <translation>Grafens plads i rækkefølgen i træningshistorikken. Rækkefølgen ændres med op- og ned-knapperne i Generelle indstillinger for brugerflade.</translation>
+    </message>
+    <message>
+        <source>Setting reset</source>
+        <translation>Indstillingen er nulstillet</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>Nulstillede indstillinger: %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>Nulstil alle</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>Nulstil ændrede indstillinger?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>Indstillinger, der nulstilles til standardværdierne: %1</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Nulstil</translation>
+    </message>
+    <message>
+        <source>Reset section?</source>
+        <translation>Nulstil afsnit?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>Indstillinger i "%2", der nulstilles til standardværdierne: %1</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>Nulstil afsnit</translation>
     </message>
     <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
@@ -8533,6 +8619,75 @@ Standard: A = -0.96, B = 1.33</translation>
     <message>
         <source>Experimental: gradually correct QZ-controlled treadmill speed using Runn/Stryd feedback, when the driver provides independent machine speed measurements. Requires &apos;Use speed from the power sensor&apos;. Disabled by default.</source>
         <translation>Eksperimentelt: retter gradvist den løbebåndshastighed, QZ styrer, ud fra målinger fra Runn/Stryd, når driveren leverer løbebåndets egne hastighedsmålinger. Kræver &quot;Brug hastighed fra effektsensoren&quot;. Standard: deaktiveret.</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>Moderne brugerflade</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>Nyt udseende for hovedskærmen, sidemenuen, indstillingerne og guiden. Slå fra for at få det klassiske udseende tilbage.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Udseende</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>Som på telefonen</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Mørk</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>Lys</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>Tema</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>Grafit</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>Sort / hvid</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>Midnatsblå</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Accentfarve</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>Violet</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>Blå</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>Blågrøn</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Grøn</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>Orange</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>Pink</translation>
     </message>
     <message>
         <source>Tile size:</source>

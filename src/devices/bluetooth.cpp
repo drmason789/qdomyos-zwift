@@ -324,13 +324,15 @@ void bluetooth::finished() {
             const qint64 now = QDateTime::currentMSecsSinceEpoch();
             if (!rescanStartedMs)
                 rescanStartedMs = now;
-            if (now - rescanStartedMs > 10 * 60 * 1000) {
+            // the Gym mode window is open: the user waits there for the trainer, the search goes on
+            // with pauses of at most 10 s (the window restarted it every 10 s on its own before)
+            if (!gymModeWindowOpen && now - rescanStartedMs > 10 * 60 * 1000) {
                 debug(QStringLiteral("BTLE scanning stopped, no device found in 10 minutes"));
                 nextRescanMs = 0;
                 rescanStopped = true;
                 return;
             }
-            const int delayMs = qMin(3000 << qMin(rescanCount, 5), 60000);
+            const int delayMs = qMin(3000 << qMin(rescanCount, 5), gymModeWindowOpen ? 10000 : 60000);
             rescanCount++;
             nextRescanMs = now + delayMs;
             rescanTimer.start(delayMs);
@@ -1223,6 +1225,9 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
 
                 filter = (b.name().compare(effectiveFilterDevice, Qt::CaseInsensitive) == 0);
             }
+            // only until it is connected: the search goes on afterwards for the accessories
+            if (!gymModeSessionDevice.isEmpty() && filter && !this->device())
+                debug(QStringLiteral("gym mode: \"%1\" matches the selected device").arg(b.name()));
             const QString deviceName = b.name();
             const QString upperDeviceName = deviceName.toUpper();
             // Some Hammer Speed Race S bikes advertise a four-digit prefix, e.g. "4864 RACER S".
@@ -2402,6 +2407,7 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                         b.name().toUpper().startsWith("HS-5000L") ||
                         (b.name().toUpper().startsWith(QStringLiteral("ICONSOLE+")) && toorx_ftms ) ||
                         (b.name().toUpper().startsWith("DI") && b.name().length() == 2) || // Elite smart trainer #1682
+                        (b.name().toUpper().startsWith("AS6-")) ||                         // ART.IS Cross AS6 (ChangYow SM5081E BLE)
                         (b.name().toUpper().startsWith("DHZ-")) ||                         // JK fitness 577
                         (b.name().toUpper().startsWith("MKSM")) ||                         // MKSM3600036
                         (b.name().toUpper().startsWith("YS_C1_")) ||                       // Yesoul C1H
@@ -3085,7 +3091,8 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                         ((b.name().toUpper().startsWith(QStringLiteral("HT")) && b.name().length() == 10) &&
                          ftms_bike.contains(QZSettings::default_ftms_bike)) ||
                         (b.name().toUpper().contains(QStringLiteral("CARE")) &&
-                         b.name().length() == 11) ||
+                         b.name().length() == 11 &&
+                         !b.name().toUpper().startsWith(QStringLiteral("CARE11216+"))) ||
                         sportsplusbike::isCareSportsPlusBike13Name(b.name())) // CARE9040177, CARE113770737
                        && !sportsPlusBike && filter) {
                 this->setLastBluetoothDevice(b);
@@ -3103,7 +3110,8 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                 sportsPlusBike->deviceDiscovered(b);
                 this->signalBluetoothDeviceConnected(sportsPlusBike);
             } else if (((b.name().toUpper().contains(QStringLiteral("CARE")) && b.name().length() >= 12 &&
-                         !sportsplusbike::isCareSportsPlusBike13Name(b.name())) ||  // CARE968300122, CARE10692135
+                         !sportsplusbike::isCareSportsPlusBike13Name(b.name()) &&
+                         !b.name().toUpper().startsWith(QStringLiteral("CARE11216+"))) ||  // CARE968300122, CARE10692135
                        (b.name().toUpper().startsWith(QStringLiteral("VMAX"))))
                        && !sportsPlusRower && filter) {
                 this->setLastBluetoothDevice(b);
@@ -3421,6 +3429,7 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
                         upperDeviceName.startsWith(QStringLiteral("FITHIWAY")) ||
                         upperDeviceName.startsWith(QStringLiteral("FIT HI WAY")) ||
                         upperDeviceName.startsWith(QStringLiteral("BODYSCULPTURE")) ||
+                        upperDeviceName.startsWith(QStringLiteral("CARE11216+")) ||
                         upperDeviceName.startsWith(QStringLiteral("BIKZU_")) ||
                         upperDeviceName.startsWith(QStringLiteral("PASYOU-")) ||
                         upperDeviceName.startsWith(QStringLiteral("VIRTUFIT")) ||
@@ -4464,6 +4473,7 @@ void bluetooth::heartRate(uint8_t heart) { Q_UNUSED(heart) }
 void bluetooth::selectGymModeDevice(const QString &deviceName) {
     QString normalizedDeviceName = deviceName.trimmed();
     normalizedDeviceName.remove(QRegularExpression(QStringLiteral(" \\(\\d+%\\)$")));
+    debug(QStringLiteral("gym mode: device selected \"%1\", searching %2").arg(normalizedDeviceName).arg(isSearching()));
 
     if (normalizedDeviceName.isEmpty() ||
         !normalizedDeviceName.compare(QStringLiteral("Disabled"), Qt::CaseInsensitive) ||

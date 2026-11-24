@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ko_KR">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>닫기</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -382,6 +389,14 @@ Would you like to enable the required services?</source>
     <message>
         <source>Not connecting?</source>
         <translation>연결되지 않나요?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>운동 기구를 찾을 수 없습니다</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>자전거, 트레드밀 또는 로잉 머신의 전원을 켠 다음 상단의 Bluetooth 아이콘을 눌러 다시 검색하세요.</translation>
     </message>
 </context>
 <context>
@@ -1145,6 +1160,10 @@ QZ 설정을 업데이트하시겠습니까?</translation>
         <source>YPOO M5 initialization failed; reconnect required</source>
         <translation>YPOO M5 초기화에 실패했습니다. 다시 연결해야 합니다</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S 연결됨!</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1363,6 +1382,21 @@ QZ 설정을 업데이트하시겠습니까?</translation>
     <message>
         <source>Open email</source>
         <translation>이메일 열기</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>구매 중...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>구매 완료</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>구매 실패</translation>
     </message>
 </context>
 <context>
@@ -3370,6 +3404,10 @@ This may take a few moments on first startup.</source>
 <context>
     <name>homeform</name>
     <message>
+        <source>No enabled metrics</source>
+        <translation>활성화된 지표가 없습니다</translation>
+    </message>
+    <message>
         <source>Speed (%1/h)</source>
         <translation>속도 (%1/h)</translation>
     </message>
@@ -3940,6 +3978,10 @@ This may take a few moments on first startup.</source>
         <translation>기기를 검색하는 중…</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>%1에 연결하는 중…</translation>
+    </message>
+    <message>
         <source>%1 found</source>
         <translation>%1 찾음</translation>
     </message>
@@ -4292,9 +4334,17 @@ This may take a few moments on first startup.</source>
         <source>Unable to open an email application</source>
         <translation>이메일 앱을 열 수 없습니다</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>Bluetooth가 꺼져 있습니다</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>플로팅 지표 (화면 속 화면)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -5209,6 +5259,42 @@ QZ가 이 값을 변경하도록 허용하시겠습니까?
     <message>
         <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
         <translation>운동 기록에서 이 그래프의 순서입니다. 순서는 일반 UI 옵션의 위로/아래로 버튼으로 바꿉니다.</translation>
+    </message>
+    <message>
+        <source>Setting reset</source>
+        <translation>설정을 초기화했습니다</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>초기화한 설정: %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>모두 초기화</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>변경된 설정을 초기화하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>기본값으로 돌아갈 설정: %1</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>초기화</translation>
+    </message>
+    <message>
+        <source>Reset section?</source>
+        <translation>섹션을 초기화하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>“%2”의 설정 %1개가 기본값으로 돌아갑니다.</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>섹션 초기화</translation>
     </message>
     <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
@@ -8581,6 +8667,75 @@ A와 B가 모두 0이면 QZ는 기본 공식 9.8 × 체중 × (경사도/100)을
     <message>
         <source>Experimental: gradually correct QZ-controlled treadmill speed using Runn/Stryd feedback, when the driver provides independent machine speed measurements. Requires &apos;Use speed from the power sensor&apos;. Disabled by default.</source>
         <translation>실험적 기능: 트레드밀 드라이버가 기기 자체의 속도 측정값을 제공하는 경우, Runn/Stryd 피드백으로 QZ가 제어하는 트레드밀 속도를 점진적으로 보정합니다. [파워 센서의 속도 사용]이 필요합니다. 기본값: 꺼짐.</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>새 인터페이스</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>메인 화면, 사이드 메뉴, 설정, 마법사의 새로운 디자인입니다. 끄면 클래식 디자인으로 돌아갑니다.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>화면 모드</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>휴대폰 설정과 동일</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>다크</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>라이트</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>테마</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>그래파이트</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>검정 / 흰색</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>미드나이트 블루</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>강조 색상</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>보라</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>파랑</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>청록</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>초록</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>주황</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>분홍</translation>
     </message>
     <message>
         <source>Tile size:</source>

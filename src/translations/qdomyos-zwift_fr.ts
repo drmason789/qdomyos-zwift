@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>Fermer</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -382,6 +389,14 @@ Souhaitez-vous activer les services nécessaires ?</translation>
     <message>
         <source>Not connecting?</source>
         <translation>Pas de connexion ?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>Appareil introuvable</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>Allumez votre vélo, tapis de course ou rameur, puis touchez l’icône Bluetooth en haut pour relancer la recherche.</translation>
     </message>
 </context>
 <context>
@@ -1145,6 +1160,10 @@ Voulez-vous mettre à jour les paramètres de QZ ?</translation>
         <source>YPOO M5 initialization failed; reconnect required</source>
         <translation>Échec de l&apos;initialisation du YPOO M5 ; reconnexion nécessaire</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S connecté !</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1363,6 +1382,21 @@ Voulez-vous mettre à jour les paramètres de QZ ?</translation>
     <message>
         <source>Open email</source>
         <translation>Ouvrir l’e-mail</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>Achat en cours...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>Achat réussi</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>Échec de l’achat</translation>
     </message>
 </context>
 <context>
@@ -2753,7 +2787,7 @@ Les questions suivantes personnaliseront QZ pour votre équipement et vos object
     </message>
     <message>
         <source>Zwift Click</source>
-        <translation>Zwift Clic</translation>
+        <translation>Zwift Click</translation>
     </message>
     <message>
         <source>Zwift Play</source>
@@ -3369,6 +3403,10 @@ Cela peut prendre quelques instants au premier démarrage.</translation>
 </context>
 <context>
     <name>homeform</name>
+    <message>
+        <source>No enabled metrics</source>
+        <translation>Aucune mesure activée</translation>
+    </message>
     <message>
         <source>Speed (%1/h)</source>
         <translation>Vitesse (%1/h)</translation>
@@ -4012,6 +4050,10 @@ Cela peut prendre quelques instants au premier démarrage.</translation>
         <translation>Recherche de l’appareil...</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>Connexion à %1...</translation>
+    </message>
+    <message>
         <source>Search stopped, tap the Bluetooth icon</source>
         <translation>Recherche arrêtée, touchez l’icône Bluetooth</translation>
     </message>
@@ -4300,9 +4342,17 @@ Cela peut prendre quelques instants au premier démarrage.</translation>
         <source>Unable to open an email application</source>
         <translation>Impossible d’ouvrir une application de messagerie</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>Bluetooth désactivé</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>Mesures flottantes (image dans l’image)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -4827,7 +4877,7 @@ Autoriser QZ à modifier cette valeur ?
     </message>
     <message>
         <source>Fake device (%1) is active. If this was unintentional, disable it in Settings.</source>
-        <translation>L'appareil simulé (%1) est actif. Si ce n'était pas voulu, désactivez-le dans les paramètres.</translation>
+        <translation>L&apos;appareil simulé (%1) est actif. Si ce n&apos;était pas voulu, désactivez-le dans les paramètres.</translation>
     </message>
     <message>
         <source>Bike</source>
@@ -6260,6 +6310,30 @@ Autoriser QZ à modifier cette valeur ?
         <translation>Langue de l&apos;application :</translation>
     </message>
     <message>
+        <source>Setting reset</source>
+        <translation>Paramètre réinitialisé</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>Paramètres réinitialisés : %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>Tout réinitialiser</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>Réinitialiser les paramètres modifiés ?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>Paramètres qui reviennent à leurs valeurs par défaut : %1</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Réinitialiser</translation>
+    </message>
+    <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
         <translation>Choisissez Auto pour suivre la langue de votre appareil, ou sélectionnez une langue spécifique pour QZ.</translation>
     </message>
@@ -6434,6 +6508,18 @@ Autoriser QZ à modifier cette valeur ?
     <message>
         <source>km/h</source>
         <translation>km/h</translation>
+    </message>
+    <message>
+        <source>Reset section?</source>
+        <translation>Réinitialiser la section ?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>Paramètres de « %2 » qui reviennent à leurs valeurs par défaut : %1</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>Réinitialiser la section</translation>
     </message>
     <message>
         <source>Minimum speed for Peloton walking sessions. Set to 0 to disable. Applied to all speed targets in walking workouts.</source>
@@ -7197,6 +7283,75 @@ Veuillez le saisir ci-dessous :</translation>
     <message>
         <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
         <translation>Position de ce graphique dans l&apos;historique des entraînements. L&apos;ordre se modifie avec les boutons Monter et Descendre dans Options générales de l&apos;interface.</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>Interface moderne</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>Nouvel aspect de l’écran principal, du menu latéral, des paramètres et de l’assistant. Désactivez-le pour retrouver l’aspect classique.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Apparence</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>Comme sur le téléphone</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Sombre</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>Clair</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>Thème</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>Graphite</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>Noir / blanc</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>Bleu nuit</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Couleur d’accentuation</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>Violet</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>Bleu</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>Sarcelle</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Vert</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>Orange</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>Rose</translation>
     </message>
     <message>
         <source>Tile size:</source>
@@ -8172,7 +8327,7 @@ Par défaut : A = -0.96, B = 1.33</translation>
     </message>
     <message>
         <source>Zwift Click</source>
-        <translation>Zwift Clic</translation>
+        <translation>Zwift Click</translation>
     </message>
     <message>
         <source>Use it to change the gears on QZ!</source>

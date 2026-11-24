@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="hu_HU">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>Bezárás</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -366,6 +373,14 @@ Szeretné bekapcsolni a szükséges szolgáltatásokat?</translation>
     <message>
         <source>Not connecting?</source>
         <translation>Nem sikerül csatlakozni?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>Az edzőgép nem található</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>Kapcsolja be a kerékpárt, a futópadot vagy az evezőgépet, majd az újbóli kereséshez koppintson a felül található Bluetooth-ikonra.</translation>
     </message>
 </context>
 <context>
@@ -1129,6 +1144,10 @@ Szeretné frissíteni a QZ beállításait?</translation>
         <source>%1 (HR sensor) not found. Make sure it is on and broadcasting heart rate.</source>
         <translation>%1 (pulzusérzékelő) nem található. Ellenőrizd, hogy be van-e kapcsolva és sugározza-e a pulzusadatokat.</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S csatlakoztatva!</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1347,6 +1366,21 @@ Szeretné frissíteni a QZ beállításait?</translation>
     <message>
         <source>Open email</source>
         <translation>E-mail megnyitása</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>Vásárlás...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>Sikeres vásárlás</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>Sikertelen vásárlás</translation>
     </message>
 </context>
 <context>
@@ -3354,6 +3388,10 @@ Az első indításkor ez eltarthat néhány pillanatig.</translation>
 <context>
     <name>homeform</name>
     <message>
+        <source>No enabled metrics</source>
+        <translation>Nincs engedélyezett mérőszám</translation>
+    </message>
+    <message>
         <source>Speed (%1/h)</source>
         <translation>Sebesség(%1/h)</translation>
     </message>
@@ -3924,6 +3962,10 @@ Az első indításkor ez eltarthat néhány pillanatig.</translation>
         <translation>Eszköz keresése...</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>Csatlakozás: %1...</translation>
+    </message>
+    <message>
         <source>%1 found</source>
         <translation>Megtalálva: %1</translation>
     </message>
@@ -4276,9 +4318,17 @@ Az első indításkor ez eltarthat néhány pillanatig.</translation>
         <extracomment>Android notification: title shown while QZ works in the background.</extracomment>
         <translation>A QZ fut</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>A Bluetooth ki van kapcsolva</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>Lebegő mérőszámok (kép a képben)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -5185,6 +5235,42 @@ Engedélyezi, hogy a QZ módosítsa ezt az értéket?
     <message>
         <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
         <translation>A diagram sorszáma az edzéselőzményekben. A sorrend a felület általános beállításaiban, a fel és le gombokkal módosítható.</translation>
+    </message>
+    <message>
+        <source>Setting reset</source>
+        <translation>Beállítás visszaállítva</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>Visszaállított beállítások: %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>Összes visszaállítása</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>Visszaállítja a módosított beállításokat?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>Az alapértelmezett értékre visszaálló beállítások: %1</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Visszaállítás</translation>
+    </message>
+    <message>
+        <source>Reset section?</source>
+        <translation>Visszaállítja a szakaszt?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>%1 beállítás visszaáll az alapértelmezett értékére itt: „%2”.</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>Szakasz visszaállítása</translation>
     </message>
     <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
@@ -8533,6 +8619,75 @@ Alapértelmezett: A = -0.96, B = 1.33</translation>
     <message>
         <source>Experimental: gradually correct QZ-controlled treadmill speed using Runn/Stryd feedback, when the driver provides independent machine speed measurements. Requires &apos;Use speed from the power sensor&apos;. Disabled by default.</source>
         <translation>Kísérleti: fokozatosan korrigálja a QZ által vezérelt futópad sebességét a Runn/Stryd visszajelzése alapján, ha az illesztőprogram független mérést ad a gép sebességéről. Szükséges hozzá a „Sebesség a teljesítményérzékelőtől” beállítás. Alapértelmezett: ki.</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>Modern felület</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>A főképernyő, az oldalsó menü, a beállítások és a varázsló új megjelenése. Kapcsolja ki, ha vissza szeretné kapni a klasszikus megjelenést.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Megjelenés</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>Mint a telefonon</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Sötét</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>Világos</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>Téma</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>Grafit</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>Fekete / fehér</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>Éjkék</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Kiemelőszín</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>Ibolya</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>Kék</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>Kékeszöld</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Zöld</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>Narancs</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>Rózsaszín</translation>
     </message>
     <message>
         <source>Tile size:</source>

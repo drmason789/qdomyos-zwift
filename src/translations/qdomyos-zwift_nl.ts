@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="nl_NL">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>Sluiten</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -382,6 +389,14 @@ Wil je de vereiste voorzieningen inschakelen?</translation>
     <message>
         <source>Not connecting?</source>
         <translation>Geen verbinding?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>Apparaat niet gevonden</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>Zet je fiets, loopband of roeitrainer aan en tik bovenaan op het Bluetooth-pictogram om opnieuw te zoeken.</translation>
     </message>
 </context>
 <context>
@@ -1145,6 +1160,10 @@ Wil je de QZ-instellingen bijwerken?</translation>
         <source>YPOO M5 initialization failed; reconnect required</source>
         <translation>Initialisatie van YPOO M5 mislukt; opnieuw verbinden vereist</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S verbonden!</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1363,6 +1382,21 @@ Wil je de QZ-instellingen bijwerken?</translation>
     <message>
         <source>Open email</source>
         <translation>E-mail openen</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>Aankoop bezig...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>Aankoop geslaagd</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>Aankoop mislukt</translation>
     </message>
 </context>
 <context>
@@ -3370,6 +3404,10 @@ Bij de eerste start kan dit even duren.</translation>
 <context>
     <name>homeform</name>
     <message>
+        <source>No enabled metrics</source>
+        <translation>Geen meetwaarden ingeschakeld</translation>
+    </message>
+    <message>
         <source>Speed (%1/h)</source>
         <translation>Snelheid (%1/h)</translation>
     </message>
@@ -3940,6 +3978,10 @@ Bij de eerste start kan dit even duren.</translation>
         <translation>Apparaat zoeken…</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>Verbinden met %1…</translation>
+    </message>
+    <message>
         <source>%1 found</source>
         <translation>%1 gevonden</translation>
     </message>
@@ -4292,9 +4334,17 @@ Bij de eerste start kan dit even duren.</translation>
         <source>Unable to open an email application</source>
         <translation>Kan geen e-mailapp openen</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>Bluetooth staat uit</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>Zwevende meetwaarden (beeld-in-beeld)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -5209,6 +5259,42 @@ Mag QZ deze waarde wijzigen?
     <message>
         <source>Numeric position of this chart in Workout History. Reorder using the up and down buttons in General UI Options.</source>
         <translation>Plaats van deze grafiek in de trainingsgeschiedenis. Wijzig de volgorde met de knoppen omhoog en omlaag in Algemene interface-opties.</translation>
+    </message>
+    <message>
+        <source>Setting reset</source>
+        <translation>Instelling gereset</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>Instellingen gereset: %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>Alles resetten</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>Gewijzigde instellingen resetten?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>Instellingen die worden teruggezet naar hun standaardwaarden: %1</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Resetten</translation>
+    </message>
+    <message>
+        <source>Reset section?</source>
+        <translation>Sectie resetten?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>Instellingen in ‘%2’ die worden teruggezet naar hun standaardwaarden: %1</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>Sectie resetten</translation>
     </message>
     <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
@@ -8581,6 +8667,75 @@ Standaard: A = -0.96, B = 1.33</translation>
     <message>
         <source>Experimental: gradually correct QZ-controlled treadmill speed using Runn/Stryd feedback, when the driver provides independent machine speed measurements. Requires &apos;Use speed from the power sensor&apos;. Disabled by default.</source>
         <translation>Experimenteel: corrigeert de door QZ ingestelde loopbandsnelheid geleidelijk op basis van Runn/Stryd, als het stuurprogramma eigen snelheidsmetingen van het apparaat levert. Vereist ‘Snelheid van de vermogenssensor gebruiken’. Standaard: uit.</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>Moderne interface</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>Nieuw uiterlijk van het hoofdscherm, het zijmenu, de instellingen en de wizard. Schakel dit uit om het klassieke uiterlijk terug te krijgen.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Weergave</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>Zoals op de telefoon</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Donker</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>Licht</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>Thema</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>Grafiet</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>Zwart / wit</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>Middernachtblauw</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Accentkleur</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>Violet</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>Blauw</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>Blauwgroen</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Groen</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>Oranje</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>Roze</translation>
     </message>
     <message>
         <source>Tile size:</source>

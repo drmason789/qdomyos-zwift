@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE">
 <context>
+    <name>ChartJsTest</name>
+    <message>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+</context>
+<context>
     <name>ChartsEndWorkoutForm.ui</name>
     <message>
         <source>Power</source>
@@ -382,6 +389,14 @@ Möchten Sie die erforderlichen Dienste aktivieren?</translation>
     <message>
         <source>Not connecting?</source>
         <translation>Keine Verbindung?</translation>
+    </message>
+    <message>
+        <source>Equipment not found</source>
+        <translation>Gerät nicht gefunden</translation>
+    </message>
+    <message>
+        <source>Turn on your bike, treadmill or rower, then tap the Bluetooth icon at the top to search again.</source>
+        <translation>Schalten Sie Ihr Fahrrad, Laufband oder Rudergerät ein und tippen Sie oben auf das Bluetooth-Symbol, um erneut zu suchen.</translation>
     </message>
 </context>
 <context>
@@ -1145,6 +1160,10 @@ Möchten Sie die QZ-Einstellungen aktualisieren?</translation>
         <source>YPOO M5 initialization failed; reconnect required</source>
         <translation>Initialisierung des YPOO M5 fehlgeschlagen; erneute Verbindung erforderlich</translation>
     </message>
+    <message>
+        <source>Coach S connected!</source>
+        <translation>Coach S verbunden!</translation>
+    </message>
 </context>
 <context>
     <name>QPlatformTheme</name>
@@ -1363,6 +1382,21 @@ Möchten Sie die QZ-Einstellungen aktualisieren?</translation>
     <message>
         <source>Open email</source>
         <translation>E-Mail öffnen</translation>
+    </message>
+</context>
+<context>
+    <name>SwagBagItem</name>
+    <message>
+        <source>Purchasing...</source>
+        <translation>Kauf läuft...</translation>
+    </message>
+    <message>
+        <source>Purchase Succeeded</source>
+        <translation>Kauf erfolgreich</translation>
+    </message>
+    <message>
+        <source>Purchase Failed</source>
+        <translation>Kauf fehlgeschlagen</translation>
     </message>
 </context>
 <context>
@@ -2753,7 +2787,7 @@ Die folgenden Fragen passen QZ an Ihre Ausrüstung und Ziele an.</translation>
     </message>
     <message>
         <source>Zwift Click</source>
-        <translation>Zwift Klick</translation>
+        <translation>Zwift Click</translation>
     </message>
     <message>
         <source>Zwift Play</source>
@@ -3369,6 +3403,10 @@ Beim ersten Start kann dies einen Moment dauern.</translation>
 </context>
 <context>
     <name>homeform</name>
+    <message>
+        <source>No enabled metrics</source>
+        <translation>Keine Messwerte aktiviert</translation>
+    </message>
     <message>
         <source>Speed (%1/h)</source>
         <translation>Geschwindigkeit (%1/h)</translation>
@@ -4012,6 +4050,10 @@ Beim ersten Start kann dies einen Moment dauern.</translation>
         <translation>Suche nach dem Gerät...</translation>
     </message>
     <message>
+        <source>Connecting to %1...</source>
+        <translation>Verbindung mit %1 wird hergestellt...</translation>
+    </message>
+    <message>
         <source>Search stopped, tap the Bluetooth icon</source>
         <translation>Suche gestoppt, tippen Sie auf das Bluetooth-Symbol</translation>
     </message>
@@ -4300,9 +4342,17 @@ Beim ersten Start kann dies einen Moment dauern.</translation>
         <source>Unable to open an email application</source>
         <translation>E-Mail-Anwendung konnte nicht geöffnet werden</translation>
     </message>
+    <message>
+        <source>Bluetooth is off</source>
+        <translation>Bluetooth ist aus</translation>
+    </message>
 </context>
 <context>
     <name>main</name>
+    <message>
+        <source>Floating Metrics (Picture in Picture)</source>
+        <translation>Schwebende Messwerte (Bild-in-Bild)</translation>
+    </message>
     <message>
         <source>qDomyos-Zwift</source>
         <translation>qDomyos-Zwift</translation>
@@ -6328,6 +6378,30 @@ Darf QZ diesen Wert ändern?
         <translation>Platz dieses Diagramms im Trainingsverlauf. Die Reihenfolge ändern Sie mit den Schaltflächen nach oben und nach unten in den Allgemeinen UI-Optionen.</translation>
     </message>
     <message>
+        <source>Setting reset</source>
+        <translation>Einstellung zurückgesetzt</translation>
+    </message>
+    <message>
+        <source>Settings reset: %1</source>
+        <translation>Zurückgesetzte Einstellungen: %1</translation>
+    </message>
+    <message>
+        <source>Reset all</source>
+        <translation>Alle zurücksetzen</translation>
+    </message>
+    <message>
+        <source>Reset changed settings?</source>
+        <translation>Geänderte Einstellungen zurücksetzen?</translation>
+    </message>
+    <message>
+        <source>Settings that go back to their default values: %1</source>
+        <translation>Einstellungen, die auf ihre Standardwerte zurückgesetzt werden: %1</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>Zurücksetzen</translation>
+    </message>
+    <message>
         <source>Choose Auto to follow your device language, or pick a specific language for QZ.</source>
         <translation>Wählen Sie Auto, um die Sprache Ihres Geräts zu übernehmen, oder wählen Sie eine bestimmte Sprache für QZ.</translation>
     </message>
@@ -7193,6 +7267,75 @@ Bitte geben Sie ihn unten ein:</translation>
     <message>
         <source>Inclination</source>
         <translation>Neigung</translation>
+    </message>
+    <message>
+        <source>Modern interface</source>
+        <translation>Moderne Oberfläche</translation>
+    </message>
+    <message>
+        <source>New look of the main screen, the side menu, the settings and the wizard. Turn it off to get the classic look back.</source>
+        <translation>Neues Aussehen von Startbildschirm, Seitenmenü, Einstellungen und Assistent. Ausschalten, um das klassische Aussehen zurückzuholen.</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Darstellung</translation>
+    </message>
+    <message>
+        <source>As on the phone</source>
+        <translation>Wie auf dem Telefon</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Dunkel</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <extracomment>Colour theme: the light one (not &quot;easy&quot; as in the effort scale)</extracomment>
+        <translation>Hell</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation>Design</translation>
+    </message>
+    <message>
+        <source>Graphite</source>
+        <translation>Graphit</translation>
+    </message>
+    <message>
+        <source>Black / white</source>
+        <translation>Schwarz / Weiß</translation>
+    </message>
+    <message>
+        <source>Midnight blue</source>
+        <translation>Mitternachtsblau</translation>
+    </message>
+    <message>
+        <source>Accent color</source>
+        <translation>Akzentfarbe</translation>
+    </message>
+    <message>
+        <source>Violet</source>
+        <translation>Violett</translation>
+    </message>
+    <message>
+        <source>Blue</source>
+        <translation>Blau</translation>
+    </message>
+    <message>
+        <source>Teal</source>
+        <translation>Türkis</translation>
+    </message>
+    <message>
+        <source>Green</source>
+        <translation>Grün</translation>
+    </message>
+    <message>
+        <source>Orange</source>
+        <translation>Orange</translation>
+    </message>
+    <message>
+        <source>Pink</source>
+        <translation>Rosa</translation>
     </message>
     <message>
         <source>Tile size:</source>
@@ -8107,6 +8250,18 @@ Standard: A = -0.96, B = 1.33</translation>
         <translation>Leistung</translation>
     </message>
     <message>
+        <source>Reset section?</source>
+        <translation>Abschnitt zurücksetzen?</translation>
+    </message>
+    <message>
+        <source>Settings in “%2” that go back to their default values: %1</source>
+        <translation>Einstellungen in „%2“, die auf ihre Standardwerte zurückgesetzt werden: %1</translation>
+    </message>
+    <message>
+        <source>Reset section</source>
+        <translation>Abschnitt zurücksetzen</translation>
+    </message>
+    <message>
         <source>Manual</source>
         <translation>Manuell</translation>
     </message>
@@ -8152,7 +8307,7 @@ Standard: A = -0.96, B = 1.33</translation>
     </message>
     <message>
         <source>Zwift Click</source>
-        <translation>Zwift Klick</translation>
+        <translation>Zwift Click</translation>
     </message>
     <message>
         <source>Use it to change the gears on QZ!</source>
