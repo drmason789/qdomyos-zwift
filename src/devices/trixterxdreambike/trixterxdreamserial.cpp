@@ -7,17 +7,12 @@
 #include <memory>
 
 #include "serialdatasource.h"
+#include "serialhandlerdatasource.h"
 
-#if !defined(Q_OS_IOS) && !defined(Q_OS_ANDROID)
-#include "qserialdatasource.h"
-#endif
 
 std::function<serialdatasource*(QObject *)> trixterxdreamserial::serialDataSourceFactory =
-#if !defined(Q_OS_IOS) && !defined(Q_OS_ANDROID)
-        [](QObject * parent) { return new qserialdatasource(parent); };
-#else
-        nullptr;
-#endif
+    [](QObject * parent) { return new serialhandlerdatasource(); };
+
 
 trixterxdreamserial::trixterxdreamserial(QObject * parent) : QThread(parent){}
 

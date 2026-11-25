@@ -1113,7 +1113,7 @@ void bluetooth::deviceDiscovered(const QBluetoothDeviceInfo &device) {
 
 #ifndef Q_OS_IOS
     if(trixter_xdream_bike && !this->trixterXDreambike &&
-            (this->trixterXDreambike = trixterxdreambike::tryCreate(noWriteResistance, noHeartService, false))) {
+            (this->trixterXDreambike = trixterxdreambike::tryCreate(noWriteResistance, noHeartService, false, "COM2"))) {
         emit deviceConnected(this->trixterXDreambike->bluetoothDevice);
         connect(this->trixterXDreambike, &bluetoothdevice::connectedAndDiscovered, this, &bluetooth::connectedAndDiscovered);
         if (this->discoveryAgent && !this->discoveryAgent->isActive()) {
